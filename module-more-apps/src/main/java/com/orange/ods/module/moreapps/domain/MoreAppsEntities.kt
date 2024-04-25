@@ -23,7 +23,7 @@ data class AppsSection(
 data class App(
     val type: String,
     val name: String?,
-    val description: String,
+    val description: String?,
     val url: String?,
     val iconUrlByDensity: Map<Density, String>?,
 )

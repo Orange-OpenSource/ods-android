@@ -71,6 +71,7 @@ internal fun OdsMoreAppsScreen(configuration: OdsMoreAppsConfiguration, viewMode
                             OdsListItem(
                                 text = app.name.orEmpty(),
                                 secondaryText = app.description,
+                                secondaryText = app.description.orEmpty(),
                                 secondaryTextLineCount = OdsListItem.SecondaryTextLineCount.Two,
                                 leadingIcon = getAppLeadingIcon(app.iconUrlByDensity)
                             )

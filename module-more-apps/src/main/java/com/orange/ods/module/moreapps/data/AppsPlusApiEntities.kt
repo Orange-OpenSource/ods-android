@@ -30,7 +30,7 @@ internal data class AppDto(
     val type: String,
     val iconUrl: String,
     val icons: IconsDto?,
-    val description: String,
+    val description: String?,
     val link: String?,
     val providerId: String
 )
