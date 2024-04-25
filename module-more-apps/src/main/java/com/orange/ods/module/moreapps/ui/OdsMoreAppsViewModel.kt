@@ -42,7 +42,7 @@ internal class OdsMoreAppsViewModel @Inject constructor(private val moreAppsServ
         configuration?.let { configuration ->
             _uiState.value = OdsMoreAppsUiState.Loading
             viewModelScope.launch {
-                moreAppsService.getAppsSections(configuration.apiKey, configuration.locale).collect { resource ->
+                moreAppsService.getAppsSections(configuration.apiKey, configuration.locale, configuration.filter).collect { resource ->
                     _uiState.value = when (resource) {
                         is Resource.Success -> OdsMoreAppsUiState.Success(resource.value)
                         is Resource.Failure -> OdsMoreAppsUiState.Error(OdsMoreAppsError.RequestFailure(resource.throwable.message.orElse { resource.throwable.stackTrace.toString() }))

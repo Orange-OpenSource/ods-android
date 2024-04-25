@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 internal class MoreAppsServiceImpl @Inject constructor(private val moreAppsRepository: MoreAppsRepository) : MoreAppsService {
 
-    override suspend fun getAppsSections(apiKey: String, locale: Locale): Flow<Resource<List<AppsSection>>> {
-        return moreAppsRepository.getAppsSections(apiKey, locale)
+    override suspend fun getAppsSections(apiKey: String, locale: Locale, filter: String?): Flow<Resource<List<AppsSection>>> {
+        return moreAppsRepository.getAppsSections(apiKey, locale, filter)
     }
 }

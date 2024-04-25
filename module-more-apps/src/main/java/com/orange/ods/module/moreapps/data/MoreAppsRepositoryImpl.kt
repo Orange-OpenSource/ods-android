@@ -26,8 +26,8 @@ import java.util.Locale
 
 internal class MoreAppsRepositoryImpl(private val appsPlusApi: AppsPlusApi) : MoreAppsRepository {
 
-    override fun getAppsSections(apiKey: String, locale: Locale): Flow<Resource<List<AppsSection>>> = flow {
-        val response = appsPlusApi.getApps(apiKey, locale.toString())
+    override fun getAppsSections(apiKey: String, locale: Locale, filter: String?): Flow<Resource<List<AppsSection>>> = flow {
+        val response = appsPlusApi.getApps(apiKey, locale.toString(), filter)
 
         if (!response.isSuccessful) {
             emit(Resource.Failure(IOException("Unexpected HTTP code: ${response.code()}")))
@@ -40,10 +40,14 @@ internal class MoreAppsRepositoryImpl(private val appsPlusApi: AppsPlusApi) : Mo
 }
 
 private fun AppsSectionDto.toModel() = AppsSection(
-        type = try { AppsSectionType.valueOf(this.type) } catch (_: Exception) { AppsSectionType.Section },
-        name = this.description,
-        apps = this.children.map { appDto -> appDto.toModel() }
-    )
+    type = try {
+        AppsSectionType.valueOf(this.type)
+    } catch (_: Exception) {
+        AppsSectionType.Section
+    },
+    name = this.description,
+    apps = this.children.map { appDto -> appDto.toModel() }
+)
 
 private fun AppDto.toModel() = App(
     type = this.type,

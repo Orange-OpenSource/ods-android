@@ -21,6 +21,7 @@ internal interface AppsPlusApi {
     @GET("get")
     suspend fun getApps(
         @Query("apikey") apikey: String,
-        @Query("lang") lang: String
+        @Query("lang") lang: String,
+        @Query("filter") filter: String?
     ): Response<AppsPlusResponseDto>
 }

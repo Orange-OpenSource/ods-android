@@ -16,5 +16,5 @@ import kotlinx.coroutines.flow.Flow
 import java.util.Locale
 
 internal interface MoreAppsService {
-    suspend fun getAppsSections(apiKey: String, locale: Locale): Flow<Resource<List<AppsSection>>>
+    suspend fun getAppsSections(apiKey: String, locale: Locale, filter: String?): Flow<Resource<List<AppsSection>>>
 }

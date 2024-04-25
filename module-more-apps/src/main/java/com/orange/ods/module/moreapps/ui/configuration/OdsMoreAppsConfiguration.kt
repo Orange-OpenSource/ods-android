@@ -18,13 +18,20 @@ import java.util.Locale
  * More apps module configuration.
  */
 data class OdsMoreAppsConfiguration(
+
     /**
      * The AppsPlus API key.
      */
     val apiKey: String,
 
     /**
-     *
+     * Locale used to retrieve apps from AppsPlus.
      */
-    val locale: Locale = Locale.getDefault()
+    val locale: Locale = Locale.getDefault(),
+
+    /**
+     * Display apps from AppsPlus corresponding to the provided filter.
+     */
+    val filter: String? = null
+
 )
