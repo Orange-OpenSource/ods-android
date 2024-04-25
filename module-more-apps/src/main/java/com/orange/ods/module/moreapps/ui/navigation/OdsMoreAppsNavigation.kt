@@ -30,8 +30,8 @@ fun NavController.navigateToOdsMoreApps(navOptions: NavOptions? = null) {
 /**
  * Add this graph to your app in order to integrate the ODS More apps module.
  */
-fun NavGraphBuilder.odsMoreAppsGraph(configuration: OdsMoreAppsConfiguration) {
-        composable(route = OdsMoreAppsDestinations.MoreAppsRoute) { _ ->
-            OdsMoreAppsScreen(configuration)
-        }
+fun NavGraphBuilder.odsMoreAppsGraph(configuration: () -> OdsMoreAppsConfiguration) {
+    composable(route = OdsMoreAppsDestinations.MoreAppsRoute) { _ ->
+        OdsMoreAppsScreen(configuration())
+    }
 }

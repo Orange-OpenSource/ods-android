@@ -10,19 +10,13 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ods.app.ui.modules.moreapps
+package com.orange.ods.app.ui.about.moreapps
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import androidx.lifecycle.ViewModel
 import com.orange.ods.app.BuildConfig
 import com.orange.ods.module.moreapps.ui.configuration.OdsMoreAppsConfiguration
 
-class MoreAppsCustomizationViewModel : ViewModel() {
-    var filter: String? by mutableStateOf(null)
-
-    @Composable
-    fun moreAppsConfiguration() = OdsMoreAppsConfiguration(apiKey = BuildConfig.APPS_PLUS_API_KEY, filter = filter)
-}
+@Composable
+fun appMoreAppsConfiguration() = OdsMoreAppsConfiguration(
+    apiKey = BuildConfig.APPS_PLUS_API_KEY
+)

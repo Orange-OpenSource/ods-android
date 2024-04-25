@@ -50,8 +50,10 @@ import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalCategories
 import com.orange.ods.app.domain.recipes.LocalRecipes
 import com.orange.ods.app.ui.about.appAboutConfiguration
+import com.orange.ods.app.ui.about.moreapps.appMoreAppsConfiguration
 import com.orange.ods.app.ui.components.tabs.tabs
 import com.orange.ods.app.ui.modules.about.AboutCustomizationViewModel
+import com.orange.ods.app.ui.modules.moreapps.MoreAppsCustomizationViewModel
 import com.orange.ods.app.ui.utilities.extension.isDarkModeEnabled
 import com.orange.ods.app.ui.utilities.extension.isOrange
 import com.orange.ods.compose.component.listitem.OdsListItem
@@ -61,6 +63,7 @@ import com.orange.ods.compose.extension.orElse
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.module.about.ui.navigation.navigateToOdsAbout
+import com.orange.ods.module.moreapps.ui.navigation.navigateToOdsMoreApps
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.theme.annotation.ExperimentalOdsApi
 import com.orange.ods.theme.typography.OdsTextStyle
@@ -126,9 +129,18 @@ fun MainScreen(themeConfigurations: List<OdsThemeConfigurationContract>, mainVie
                 modifier = Modifier
             }
 
+            // About module configuration
             val appAboutConfiguration = appAboutConfiguration()
             var aboutConfiguration by remember { mutableStateOf(appAboutConfiguration) }
-            val aboutDemoConfiguration = viewModel<AboutCustomizationViewModel>().aboutConfiguration()
+            val vm1 = viewModel<AboutCustomizationViewModel>()
+            val aboutDemoConfiguration = vm1.aboutConfiguration()
+
+            // More apps module configuration
+            val appMoreAppsConfiguration = appMoreAppsConfiguration()
+            var moreAppsConfiguration by remember { mutableStateOf(appMoreAppsConfiguration) }
+            val vm2 = viewModel<MoreAppsCustomizationViewModel>()
+            val moreAppsDemoConfiguration = vm2.moreAppsConfiguration()
+
             Scaffold(
                 modifier = modifier,
                 topBar = {
@@ -181,6 +193,13 @@ fun MainScreen(themeConfigurations: List<OdsThemeConfigurationContract>, mainVie
                         },
                         aboutConfiguration = {
                             aboutConfiguration
+                        },
+                        navigateToMoreAppsDemo = {
+                            moreAppsConfiguration = moreAppsDemoConfiguration
+                            mainState.navigationState.navController.navigateToOdsMoreApps()
+                        },
+                        moreAppsConfiguration = {
+                            moreAppsConfiguration
                         }
                     )
                 }

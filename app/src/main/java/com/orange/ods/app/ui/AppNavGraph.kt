@@ -21,6 +21,7 @@ import com.orange.ods.app.ui.guidelines.addGuidelinesGraph
 import com.orange.ods.app.ui.modules.addModulesGraph
 import com.orange.ods.app.ui.search.SearchScreen
 import com.orange.ods.module.about.ui.configuration.OdsAboutConfiguration
+import com.orange.ods.module.moreapps.ui.configuration.OdsMoreAppsConfiguration
 
 /**
  * Destinations used in the [MainScreen].
@@ -36,13 +37,15 @@ fun NavGraphBuilder.appNavGraph(
     navController: NavController,
     navigateToElement: (String, Long?, NavBackStackEntry) -> Unit,
     navigateToAboutDemo: () -> Unit,
-    aboutConfiguration: () -> OdsAboutConfiguration
+    aboutConfiguration: () -> OdsAboutConfiguration,
+    navigateToMoreAppsDemo: () -> Unit,
+    moreAppsConfiguration: () -> OdsMoreAppsConfiguration
 ) {
     addBottomBarGraph(navController, aboutConfiguration)
 
     addGuidelinesGraph()
     addComponentsGraph(navController)
-    addModulesGraph(navController, navigateToAboutDemo)
+    addModulesGraph(navController, navigateToAboutDemo, navigateToMoreAppsDemo, moreAppsConfiguration)
 
     composable(
         route = MainNavigation.SearchRoute
