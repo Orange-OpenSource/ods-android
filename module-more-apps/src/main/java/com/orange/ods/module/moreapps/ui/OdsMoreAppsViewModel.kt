@@ -57,21 +57,18 @@ internal class OdsMoreAppsViewModel @Inject constructor(private val moreAppsServ
 }
 
 internal sealed class OdsMoreAppsUiState {
-    data object Loading: OdsMoreAppsUiState()
-    data class Success(val appsSections: List<AppsSection>): OdsMoreAppsUiState()
-    data class Error(val odsMoreAppsError: OdsMoreAppsError): OdsMoreAppsUiState()
+    data object Loading : OdsMoreAppsUiState()
+    data class Success(val appsSections: List<AppsSection>) : OdsMoreAppsUiState()
+    data class Error(val odsMoreAppsError: OdsMoreAppsError) : OdsMoreAppsUiState()
 }
 
 internal sealed class OdsMoreAppsError {
-    data object MissingConfiguration: OdsMoreAppsError()
-    data class RequestFailure(val message: String): OdsMoreAppsError()
+    data object MissingConfiguration : OdsMoreAppsError()
+    data class RequestFailure(val message: String) : OdsMoreAppsError()
 
     @Composable
-    fun getMessage(): String {
-        val errorMessage = when(this) {
-            MissingConfiguration -> stringResource(id = R.string.odsMoreApps_error_missingConfiguration)
-            is RequestFailure -> this.message
-        }
-        return stringResource(id = R.string.odsMoreApps_error, errorMessage)
+    fun getMessage() = when (this) {
+        MissingConfiguration -> stringResource(id = R.string.odsMoreApps_error_missingConfiguration)
+        is RequestFailure -> this.message
     }
 }

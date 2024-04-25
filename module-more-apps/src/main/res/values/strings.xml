@@ -12,8 +12,8 @@
   -->
 
 <resources>
-    <string name="odsMoreApps_error">Error: %s</string>
-    <string name="odsMoreApps_error_missingConfiguration">Missing configuration for OdsMoreApps module.</string>
-
+    <string name="odsMoreApps_error">Something goes wrong</string>
+    <string name="odsMoreApps_error_missingConfiguration">Configuration is missing for More Apps module.</string>
+    <string name="odsMoreApps_loading">Loading apps list…</string>
     <string name="odsMoreApps_section_uncategorizedApps">Uncategorized apps</string>
 </resources>

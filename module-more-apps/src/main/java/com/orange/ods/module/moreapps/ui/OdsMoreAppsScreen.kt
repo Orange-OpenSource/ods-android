@@ -14,30 +14,34 @@ package com.orange.ods.module.moreapps.ui
 
 import android.content.Context
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import coil.size.Size
-import coil.size.Scale
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
+import coil.size.Scale
+import coil.size.Size
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.progressindicator.OdsCircularProgressIndicator
 import com.orange.ods.compose.extension.orElse
+import com.orange.ods.compose.module.emptystate.OdsEmptyStateView
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.module.moreapps.R
 import com.orange.ods.module.moreapps.domain.Density
@@ -45,7 +49,10 @@ import com.orange.ods.module.moreapps.ui.configuration.OdsMoreAppsConfiguration
 import com.orange.ods.theme.typography.OdsTextStyle
 
 @Composable
-internal fun OdsMoreAppsScreen(configuration: OdsMoreAppsConfiguration, viewModel: OdsMoreAppsViewModel = viewModel(LocalContext.current as ViewModelStoreOwner)) {
+internal fun OdsMoreAppsScreen(
+    configuration: OdsMoreAppsConfiguration,
+    viewModel: OdsMoreAppsViewModel = viewModel(LocalContext.current as ViewModelStoreOwner)
+) {
 
     LaunchedEffect(key1 = Unit) {
         viewModel.configuration = configuration
@@ -70,7 +77,6 @@ internal fun OdsMoreAppsScreen(configuration: OdsMoreAppsConfiguration, viewMode
                         appsSection.apps.filter { it.type == "app" }.forEach { app -> //TODO improve filter
                             OdsListItem(
                                 text = app.name.orEmpty(),
-                                secondaryText = app.description,
                                 secondaryText = app.description.orEmpty(),
                                 secondaryTextLineCount = OdsListItem.SecondaryTextLineCount.Two,
                                 leadingIcon = getAppLeadingIcon(app.iconUrlByDensity)
@@ -81,10 +87,16 @@ internal fun OdsMoreAppsScreen(configuration: OdsMoreAppsConfiguration, viewMode
             }
         }
         is OdsMoreAppsUiState.Error -> {
-            OdsText(text = (uiState as OdsMoreAppsUiState.Error).odsMoreAppsError.getMessage(), style = OdsTextStyle.BodyM)
+            OdsEmptyStateView(
+                title = stringResource(id = R.string.odsMoreApps_error),
+                text = (uiState as OdsMoreAppsUiState.Error).odsMoreAppsError.getMessage(),
+                image = OdsEmptyStateView.Image(painter = painterResource(id = R.drawable.il_empty_state_error))
+            )
         }
         is OdsMoreAppsUiState.Loading -> {
-            OdsCircularProgressIndicator()
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                OdsCircularProgressIndicator(label = stringResource(id = R.string.odsMoreApps_loading))
+            }
         }
     }
 }
@@ -95,7 +107,7 @@ fun getAppLeadingIcon(iconUrlByDensity: Map<Density, String>?): OdsListItem.Lead
     val imageDensity = Density.fromDisplayMetrics(context.resources.displayMetrics)
     val painter = iconUrlByDensity?.let {
         val imageUrl = it[imageDensity]
-        val imageSize = with(LocalDensity.current) {  dimensionResource(id = com.orange.ods.R.dimen.list_square_image_size).toPx() }
+        val imageSize = with(LocalDensity.current) { dimensionResource(id = com.orange.ods.R.dimen.list_square_image_size).toPx() }
         rememberAsyncImagePainter(
             model = ImageRequest.Builder(buildImageRequest(LocalContext.current, imageUrl))
                 .scale(Scale.FILL)
