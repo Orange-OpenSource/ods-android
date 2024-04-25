@@ -138,7 +138,7 @@ sealed class Screen(
 
     // Modules screens
 
-    data object ModuleAbout : Screen(
+    data object ModuleAboutCustomization : Screen(
         route = ModulesNavigation.AboutCustomizationRoute,
         title = UiString.StringResource(R.string.module_about),
     )
