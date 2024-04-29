@@ -44,7 +44,11 @@ import com.orange.ods.compose.extension.orElse
 import com.orange.ods.compose.module.emptystate.OdsEmptyStateView
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.module.moreapps.R
+import com.orange.ods.module.moreapps.domain.App
+import com.orange.ods.module.moreapps.domain.AppsList
+import com.orange.ods.module.moreapps.domain.AppsSection
 import com.orange.ods.module.moreapps.domain.Density
+import com.orange.ods.module.moreapps.domain.MoreAppsItem
 import com.orange.ods.module.moreapps.ui.configuration.OdsMoreAppsConfiguration
 import com.orange.ods.theme.typography.OdsTextStyle
 
@@ -62,34 +66,17 @@ internal fun OdsMoreAppsScreen(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     when (uiState) {
         is OdsMoreAppsUiState.Success -> {
-            val appsSections = (uiState as OdsMoreAppsUiState.Success).appsSections
+            val moreAppsItems = (uiState as OdsMoreAppsUiState.Success).moreAppsItems
             LazyColumn(contentPadding = PaddingValues(bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))) {
-                items(appsSections) { appsSection ->
-                    OdsText(
-                        modifier = Modifier
-                            .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
-                            .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
-                        text = appsSection.name.orElse { stringResource(id = R.string.odsMoreApps_section_uncategorizedApps) },
-                        style = OdsTextStyle.TitleM
-                    )
-
-                    Column {
-                        appsSection.apps.filter { it.type == "app" }.forEach { app -> //TODO improve filter
-                            OdsListItem(
-                                text = app.name.orEmpty(),
-                                secondaryText = app.description.orEmpty(),
-                                secondaryTextLineCount = OdsListItem.SecondaryTextLineCount.Two,
-                                leadingIcon = getAppLeadingIcon(app.iconUrlByDensity)
-                            )
-                        }
-                    }
+                items(moreAppsItems) { item ->
+                    MoreAppsItem(item = item)
                 }
             }
         }
         is OdsMoreAppsUiState.Error -> {
             OdsEmptyStateView(
                 title = stringResource(id = R.string.odsMoreApps_error),
-                text = (uiState as OdsMoreAppsUiState.Error).odsMoreAppsError.getMessage(),
+                text = (uiState as OdsMoreAppsUiState.Error).moreAppsError.getMessage(),
                 image = OdsEmptyStateView.Image(painter = painterResource(id = R.drawable.il_empty_state_error))
             )
         }
@@ -102,7 +89,50 @@ internal fun OdsMoreAppsScreen(
 }
 
 @Composable
-fun getAppLeadingIcon(iconUrlByDensity: Map<Density, String>?): OdsListItem.LeadingIcon {
+private fun MoreAppsItem(item: MoreAppsItem) {
+    when (item) {
+        is AppsSection -> MoreAppsSection(item.name, item.items)
+        is AppsList -> MoreAppsList(item.items)
+        is App -> MoreAppsApp(item)
+    }
+}
+
+
+@Composable
+private fun MoreAppsSection(name: String?, items: List<MoreAppsItem>) {
+    OdsText(
+        modifier = Modifier
+            .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
+            .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
+        text = name.orElse { stringResource(id = R.string.odsMoreApps_section_uncategorizedApps) },
+        style = OdsTextStyle.TitleM
+    )
+    MoreAppsList(items = items)
+}
+
+@Composable
+private fun MoreAppsList(items: List<MoreAppsItem>) {
+    if (items.isNotEmpty()) {
+        Column {
+            items.forEach { item ->
+                MoreAppsItem(item = item)
+            }
+        }
+    }
+}
+
+@Composable
+private fun MoreAppsApp(app: App) {
+    OdsListItem(
+        text = app.name.orEmpty(),
+        secondaryText = app.description.orEmpty(),
+        secondaryTextLineCount = OdsListItem.SecondaryTextLineCount.Two,
+        leadingIcon = getAppLeadingIcon(app.iconUrlByDensity)
+    )
+}
+
+@Composable
+private fun getAppLeadingIcon(iconUrlByDensity: Map<Density, String>?): OdsListItem.LeadingIcon {
     val context = LocalContext.current
     val imageDensity = Density.fromDisplayMetrics(context.resources.displayMetrics)
     val painter = iconUrlByDensity?.let {

@@ -14,19 +14,24 @@ package com.orange.ods.module.moreapps.domain
 
 import android.util.DisplayMetrics
 
-data class AppsSection(
-    val type: AppsSectionType,
-    val name: String?,
-    val apps: List<App>,
-)
+interface MoreAppsItem
 
-data class App(
+data class AppsSection(
+    val name: String?,
+    val items: List<MoreAppsItem>
+) : MoreAppsItem
+
+data class AppsList(
+    val items: List<MoreAppsItem>
+) : MoreAppsItem
+
+class App(
     val type: String,
     val name: String?,
     val description: String?,
     val url: String?,
     val iconUrlByDensity: Map<Density, String>?,
-)
+) : MoreAppsItem
 
 enum class Density {
     Mdpi, Hdpi, Xhdpi, Xxhdpi, Xxxhdpi;
@@ -40,8 +45,4 @@ enum class Density {
             else -> Mdpi
         }
     }
-}
-
-enum class AppsSectionType {
-    Carousel, Section
 }

@@ -14,25 +14,20 @@ package com.orange.ods.module.moreapps.data
 
 
 internal data class AppsPlusResponseDto(
-    val items: List<AppsSectionDto>
+    val items: List<ItemDto>
 )
 
-internal data class AppsSectionDto(
+internal data class ItemDto(
     val type: String,
     val description: String?,
-    val children: List<AppDto>,
-)
-
-internal data class AppDto(
-    val published: String,
+    val children: List<ItemDto>?,
+    val published: String?,
     val title: String?,
-    val mid: String,
-    val type: String,
-    val iconUrl: String,
+    val mid: String?,
+    val iconUrl: String?,
     val icons: IconsDto?,
-    val description: String?,
     val link: String?,
-    val providerId: String
+    val providerId: String?
 )
 
 internal data class IconsDto(
@@ -42,3 +37,7 @@ internal data class IconsDto(
     val xxhdpi: String,
     val xxxhdpi: String
 )
+
+enum class ItemType {
+    CAROUSEL, LIST, SECTION, APP
+}

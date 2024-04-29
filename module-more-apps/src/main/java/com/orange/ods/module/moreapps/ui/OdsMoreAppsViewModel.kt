@@ -21,7 +21,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.orange.ods.compose.extension.orElse
 import com.orange.ods.module.moreapps.R
-import com.orange.ods.module.moreapps.domain.AppsSection
+import com.orange.ods.module.moreapps.domain.MoreAppsItem
 import com.orange.ods.module.moreapps.domain.MoreAppsService
 import com.orange.ods.module.moreapps.domain.Resource
 import com.orange.ods.module.moreapps.ui.configuration.OdsMoreAppsConfiguration
@@ -42,15 +42,15 @@ internal class OdsMoreAppsViewModel @Inject constructor(private val moreAppsServ
         configuration?.let { configuration ->
             _uiState.value = OdsMoreAppsUiState.Loading
             viewModelScope.launch {
-                moreAppsService.getAppsSections(configuration.apiKey, configuration.locale, configuration.filter).collect { resource ->
+                moreAppsService.getMoreAppsItems(configuration.apiKey, configuration.locale, configuration.filter).collect { resource ->
                     _uiState.value = when (resource) {
                         is Resource.Success -> OdsMoreAppsUiState.Success(resource.value)
-                        is Resource.Failure -> OdsMoreAppsUiState.Error(OdsMoreAppsError.RequestFailure(resource.throwable.message.orElse { resource.throwable.stackTrace.toString() }))
+                        is Resource.Failure -> OdsMoreAppsUiState.Error(MoreAppsError.RequestFailure(resource.throwable.message.orElse { resource.throwable.stackTrace.toString() }))
                     }
                 }
             }
         }.orElse {
-            _uiState.value = OdsMoreAppsUiState.Error(OdsMoreAppsError.MissingConfiguration)
+            _uiState.value = OdsMoreAppsUiState.Error(MoreAppsError.MissingConfiguration)
         }
     }
 
@@ -58,13 +58,13 @@ internal class OdsMoreAppsViewModel @Inject constructor(private val moreAppsServ
 
 internal sealed class OdsMoreAppsUiState {
     data object Loading : OdsMoreAppsUiState()
-    data class Success(val appsSections: List<AppsSection>) : OdsMoreAppsUiState()
-    data class Error(val odsMoreAppsError: OdsMoreAppsError) : OdsMoreAppsUiState()
+    data class Success(val moreAppsItems: List<MoreAppsItem>) : OdsMoreAppsUiState()
+    data class Error(val moreAppsError: MoreAppsError) : OdsMoreAppsUiState()
 }
 
-internal sealed class OdsMoreAppsError {
-    data object MissingConfiguration : OdsMoreAppsError()
-    data class RequestFailure(val message: String) : OdsMoreAppsError()
+internal sealed class MoreAppsError {
+    data object MissingConfiguration : MoreAppsError()
+    data class RequestFailure(val message: String) : MoreAppsError()
 
     @Composable
     fun getMessage() = when (this) {

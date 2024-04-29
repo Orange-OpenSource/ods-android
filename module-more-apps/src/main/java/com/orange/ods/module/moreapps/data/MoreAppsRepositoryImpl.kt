@@ -13,9 +13,10 @@
 package com.orange.ods.module.moreapps.data
 
 import com.orange.ods.module.moreapps.domain.App
+import com.orange.ods.module.moreapps.domain.AppsList
 import com.orange.ods.module.moreapps.domain.AppsSection
-import com.orange.ods.module.moreapps.domain.AppsSectionType
 import com.orange.ods.module.moreapps.domain.Density
+import com.orange.ods.module.moreapps.domain.MoreAppsItem
 import com.orange.ods.module.moreapps.domain.MoreAppsRepository
 import com.orange.ods.module.moreapps.domain.Resource
 import kotlinx.coroutines.flow.Flow
@@ -26,36 +27,40 @@ import java.util.Locale
 
 internal class MoreAppsRepositoryImpl(private val appsPlusApi: AppsPlusApi) : MoreAppsRepository {
 
-    override fun getAppsSections(apiKey: String, locale: Locale, filter: String?): Flow<Resource<List<AppsSection>>> = flow {
+    override fun getMoreAppsItems(apiKey: String, locale: Locale, filter: String?): Flow<Resource<List<MoreAppsItem>>> = flow {
         val response = appsPlusApi.getApps(apiKey, locale.toString(), filter)
 
         if (!response.isSuccessful) {
             emit(Resource.Failure(IOException("Unexpected HTTP code: ${response.code()}")))
         } else {
-            emit(Resource.Success(response.body()?.items?.map { appSectionDto ->
-                appSectionDto.toModel()
-            }.orEmpty()))
+            emit(Resource.Success(response.body()?.items?.toModel().orEmpty()))
         }
     }
 }
 
-private fun AppsSectionDto.toModel() = AppsSection(
-    type = try {
-        AppsSectionType.valueOf(this.type)
-    } catch (_: Exception) {
-        AppsSectionType.Section
-    },
-    name = this.description,
-    apps = this.children.map { appDto -> appDto.toModel() }
-)
+private fun List<ItemDto>.toModel(): List<MoreAppsItem> = this.map { itemDto -> itemDto.toModel() }
 
-private fun AppDto.toModel() = App(
-    type = this.type,
-    name = this.title,
-    description = this.description,
-    url = this.link,
-    iconUrlByDensity = this.icons?.toModel().orEmpty()
-)
+private fun ItemDto.toModel(): MoreAppsItem {
+    val type = try {
+        ItemType.valueOf(this.type.uppercase())
+    } catch (_: Exception) {
+        ItemType.LIST
+    }
+
+    return when (type) {
+        ItemType.CAROUSEL, ItemType.LIST -> AppsList(
+            this.children?.toModel().orEmpty()
+        ) // For the moment Carousel is managed like a List because we are waiting developments on Apps+ side
+        ItemType.SECTION -> AppsSection(this.description, this.children?.toModel().orEmpty())
+        ItemType.APP -> App(
+            type = this.type,
+            name = this.title,
+            description = this.description,
+            url = this.link,
+            iconUrlByDensity = this.icons?.toModel().orEmpty()
+        )
+    }
+}
 
 private fun IconsDto.toModel(): Map<Density, String> {
     val iconUrlByDensity: MutableMap<Density, String> = mutableMapOf()
