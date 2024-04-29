@@ -38,6 +38,7 @@ import com.orange.ods.compose.component.button.OdsExtendedFloatingActionButton
 import com.orange.ods.compose.component.button.OdsFloatingActionButton
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
+import com.orange.ods.compose.theme.OdsTheme
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -54,8 +55,8 @@ fun ComponentFloatingActionButton() {
             .let {
                 if (isFullScreenWidth) it
                     .padding(
-                        start = dimensionResource(id = com.orange.ods.R.dimen.spacing_m),
-                        end = dimensionResource(id = com.orange.ods.R.dimen.spacing_m),
+                        start = OdsTheme.spacings.medium.dp,
+                        end = OdsTheme.spacings.medium.dp,
                         bottom = 64.dp
                     )
                     .fillMaxWidth()
@@ -93,7 +94,7 @@ fun ComponentFloatingActionButton() {
                 Subtitle(textRes = R.string.component_size, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
                     selectedChoiceChipIndex = FabCustomizationState.Size.entries.indexOf(size.value),
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                    modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp),
                     choiceChips = FabCustomizationState.Size.entries.map { size ->
                         val textResId = when (size) {
                             FabCustomizationState.Size.Default -> R.string.component_floating_action_button_size_default

@@ -17,7 +17,6 @@ import androidx.annotation.ColorRes
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
 import com.orange.ods.theme.annotation.ExperimentalOdsApi
 import com.orange.ods.theme.colors.OdsColors
 
@@ -69,21 +68,3 @@ fun Color.toRgbString(): String {
     val (red, green, blue) = listOf(red, green, blue).map { (it * 255).toInt() }
     return "rgb($red, $green, $blue)"
 }
-
-/**
- * A typography displayed in the guideline color part of the ODS application
- *
- * @property name The name of the typography (ex. Headline 1)
- * @property textStyle The [TextStyle] of the typography
- * @property composeStyle The typography style to use for a composable
- * @property xmlResource The typography style to use in XML
- * @property allCaps Controls whether the text is in uppercase or not.
- */
-@ExperimentalOdsApi
-data class GuidelineTextStyle(
-    val name: String,
-    val textStyle: TextStyle,
-    val composeStyle: String,
-    @AttrRes val xmlResource: Int,
-    val allCaps: Boolean = false
-)

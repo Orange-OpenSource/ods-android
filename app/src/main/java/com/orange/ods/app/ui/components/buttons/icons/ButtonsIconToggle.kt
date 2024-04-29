@@ -42,6 +42,7 @@ import com.orange.ods.app.ui.utilities.code.XmlViewTag
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.button.OdsIconToggleButton
+import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
 fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
@@ -66,7 +67,7 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
                 )
             }
 
-            Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
+            Spacer(modifier = Modifier.padding(top = OdsTheme.spacings.small.dp))
 
             InvertedBackgroundColumn(horizontalAlignment = Alignment.CenterHorizontally) {
                 IconToggleButton(
@@ -138,7 +139,7 @@ private fun IconToggleButton(
     Box(
         modifier = Modifier.padding(
             horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin),
-            vertical = dimensionResource(com.orange.ods.R.dimen.spacing_m)
+            vertical = OdsTheme.spacings.medium.dp
         )
     ) {
         UiFramework<OdsIconToogleButtonBinding>(

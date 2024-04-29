@@ -42,7 +42,7 @@ import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.tab.OdsTabRow
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.theme.typography.OdsTextStyle
+import com.orange.ods.compose.theme.OdsTheme
 
 private const val MinFixedTabCount = 2
 private const val MaxFixedTabCount = 3
@@ -87,7 +87,7 @@ fun ComponentTabs(variant: Variant) {
                 Subtitle(textRes = R.string.component_tabs_icon_position, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
                     selectedChoiceChipIndex = OdsTabRow.Tab.Icon.Position.entries.indexOf(tabIconPosition.value),
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                    modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp),
                     choiceChips = OdsTabRow.Tab.Icon.Position.entries.map { tabIconPosition ->
                         val textResId = when (tabIconPosition) {
                             OdsTabRow.Tab.Icon.Position.Top -> R.string.component_tabs_icon_position_top
@@ -152,7 +152,7 @@ fun ComponentTabs(variant: Variant) {
                             )
                         }
                     } else {
-                        OdsText(text = stringResource(tabs[pageIndex].textResId), style = OdsTextStyle.BodyL)
+                        OdsText(text = stringResource(tabs[pageIndex].textResId), style = OdsTheme.typography.bodyLarge)
                     }
                 }
             }

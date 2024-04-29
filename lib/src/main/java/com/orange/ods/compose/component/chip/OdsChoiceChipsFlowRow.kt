@@ -29,7 +29,6 @@ import androidx.compose.ui.semantics.SemanticsPropertyReceiver
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.dp
-import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.utilities.OdsPreview
@@ -59,7 +58,7 @@ fun OdsChoiceChipsFlowRow(
         modifier = modifier
             .fillMaxWidth()
             .selectableGroup(),
-        horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s)),
+        horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.small.dp),
         verticalArrangement = Arrangement.spacedBy((-4).dp),
         content = {
             choiceChips.forEachIndexed { index, choiceChip ->
@@ -117,7 +116,7 @@ private fun PreviewOdsChoiceChipsFlowRow() = OdsPreview {
     var selectedChoiceChipIndex by remember { mutableIntStateOf(0) }
     OdsChoiceChipsFlowRow(
         selectedChoiceChipIndex = selectedChoiceChipIndex,
-        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+        modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp),
         choiceChips = texts.mapIndexed { index, text ->
             OdsChoiceChipsFlowRow.ChoiceChip(
                 text = text,

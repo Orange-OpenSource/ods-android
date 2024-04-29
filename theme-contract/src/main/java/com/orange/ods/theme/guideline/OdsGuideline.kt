@@ -28,42 +28,4 @@ open class OdsGuideline(private val typography: OdsTypography) {
      */
     open val guidelineColors: List<GuidelineColor>
         get() = emptyList()
-
-    /**
-     * Typography displayed in the guideline part of the ODS application
-     */
-    open val guidelineTypography: List<GuidelineTextStyle>
-        get() {
-            with(typography) {
-                val properties =
-                    listOf(::headlineL, ::headlineS, ::titleL, ::titleM, ::titleS, ::bodyL, ::bodyM, ::bodyS, ::labelL, ::labelS)
-
-                return properties.mapNotNull { property ->
-                    val (name, xmlResource) = when (property) {
-                        ::headlineL -> "Headline L" to com.google.android.material.R.attr.textAppearanceHeadlineLarge
-                        ::headlineS -> "Headline S" to com.google.android.material.R.attr.textAppearanceHeadlineSmall
-                        ::titleL -> "Title L" to com.google.android.material.R.attr.textAppearanceTitleLarge
-                        ::titleM -> "Title M" to com.google.android.material.R.attr.textAppearanceTitleMedium
-                        ::titleS -> "Title S" to com.google.android.material.R.attr.textAppearanceTitleSmall
-                        ::bodyL -> "Body L" to com.google.android.material.R.attr.textAppearanceBodyLarge
-                        ::bodyM -> "Body M" to com.google.android.material.R.attr.textAppearanceBodyMedium
-                        ::bodyS -> "Body S" to com.google.android.material.R.attr.textAppearanceBodySmall
-                        ::labelL -> "Label L" to com.google.android.material.R.attr.textAppearanceLabelLarge
-                        ::labelS -> "Label S" to com.google.android.material.R.attr.textAppearanceLabelSmall
-                        else -> null to null
-                    }
-                    if (name != null && xmlResource != null) {
-                        GuidelineTextStyle(
-                            name = name,
-                            textStyle = property(),
-                            composeStyle = "OdsTheme.typography.${property.name}",
-                            xmlResource = xmlResource,
-                            allCaps = isAllCapsTextStyle(property())
-                        )
-                    } else {
-                        null
-                    }
-                }
-            }
-        }
 }

@@ -33,7 +33,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -47,7 +46,6 @@ import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.theme.typography.OdsTextStyle
 
 private const val ActiveTickColorAlpha = 0.4f
 
@@ -93,7 +91,7 @@ fun OdsSlider(
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_m))
+        horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium.dp)
     ) {
         startIcon?.Content()
         // For the moment we cannot change the height of the slider track (need to check in jetpack compose future versions)
@@ -158,7 +156,7 @@ fun OdsSliderLockups(
 
     Row(
         modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_xs))
+        horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.extraSmall.dp)
     ) {
         startIcon?.Content(
             modifier = Modifier
@@ -189,7 +187,7 @@ fun OdsSliderLockups(
                 onValueChange = onValueChange,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = dimensionResource(id = R.dimen.spacing_l))
+                    .padding(top = OdsTheme.spacings.large.dp)
                     .padding(horizontal = labelMinWidth / 3),
                 enabled = enabled,
                 valueRange = valueRange,
@@ -259,7 +257,7 @@ private fun SliderLabel(
         text = label,
         textAlign = TextAlign.Center,
         color = OdsTheme.colors.onPrimary,
-        style = OdsTextStyle.BodyL,
+        style = OdsTheme.typography.bodyLarge,
         modifier = modifier
             .background(
                 color = OdsTheme.colors.primary,

@@ -33,7 +33,6 @@ import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.colors.OdsColors
-import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -103,7 +102,7 @@ internal fun OdsTextButton(
             OdsText(
                 text = text,
                 enabled = enabled,
-                style = OdsTextStyle.LabelL,
+                style = OdsTheme.typography.labelLarge,
                 maxLines = maxLines,
                 overflow = overflow
             )

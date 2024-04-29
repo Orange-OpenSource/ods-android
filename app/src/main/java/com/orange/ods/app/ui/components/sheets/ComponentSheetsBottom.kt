@@ -34,7 +34,7 @@ import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.theme.typography.OdsTextStyle
+import com.orange.ods.compose.theme.OdsTheme
 
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -67,11 +67,11 @@ fun ComponentSheetsBottom() {
                         .padding(top = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
                         .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
                 ) {
-                    OdsText(text = stringResource(id = R.string.component_sheet_bottom_customize), style = OdsTextStyle.BodyL)
+                    OdsText(text = stringResource(id = R.string.component_sheet_bottom_customize), style = OdsTheme.typography.bodyLarge)
                     OdsText(
                         text = stringResource(id = R.string.component_element_content),
-                        modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
-                        style = OdsTextStyle.TitleM
+                        modifier = Modifier.padding(top = OdsTheme.spacings.small.dp),
+                        style = OdsTheme.typography.titleMedium
                     )
                     OdsChoiceChipsFlowRow(
                         selectedChoiceChipIndex = SheetsBottomCustomizationState.Content.entries.indexOf(content.value),

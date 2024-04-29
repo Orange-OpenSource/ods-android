@@ -33,13 +33,11 @@ import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
-import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.content.OdsComponentScopeContent
@@ -47,7 +45,6 @@ import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.theme.typography.OdsTextStyle
 
 private const val MaxBottomNavigationItemCount = 5
 
@@ -122,8 +119,8 @@ object OdsBottomNavigation {
 
         @Composable
         override fun RowScope.Content(modifier: Modifier) {
-            val selectedLineMargin = dimensionResource(id = R.dimen.spacing_s)
-            val selectedLineHeight = dimensionResource(id = R.dimen.spacing_xs)
+            val selectedLineMargin = OdsTheme.spacings.small.dp
+            val selectedLineHeight = OdsTheme.spacings.extraSmall.dp
 
             ConstraintLayout(
                 modifier = modifier
@@ -150,7 +147,7 @@ object OdsBottomNavigation {
                                 text = label,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
-                                style = OdsTextStyle.BodyS
+                                style = OdsTheme.typography.bodySmall
                             )
                         }
                     },

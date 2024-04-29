@@ -25,11 +25,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
@@ -37,7 +35,6 @@ import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.theme.typography.OdsTextStyle
 
 private val MiniFabSize = 40.dp
 private val FabIconSize = 24.dp
@@ -100,7 +97,7 @@ fun OdsExtendedFloatingActionButton(
 ) {
     ExtendedFloatingActionButton(
         onClick = onClick,
-        text = { OdsText(text = text, style = OdsTextStyle.LabelL, color = LocalContentColor.current) },
+        text = { OdsText(text = text, style = OdsTheme.typography.labelLarge, color = LocalContentColor.current) },
         modifier = modifier,
         backgroundColor = OdsTheme.colors.components.floatingActionButton.background,
         contentColor = OdsTheme.colors.components.floatingActionButton.content,
@@ -157,7 +154,7 @@ object OdsFloatingActionButton {
 @Composable
 private fun PreviewOdsFloatingActionButton(@PreviewParameter(OdsFloatingActionButtonPreviewParameterProvider::class) isMini: Boolean) =
     OdsPreview {
-        Column(modifier = Modifier.padding(dimensionResource(id = R.dimen.spacing_s))) {
+        Column(modifier = Modifier.padding(OdsTheme.spacings.small.dp)) {
             OdsFloatingActionButton(
                 onClick = {},
                 mini = isMini,
@@ -171,7 +168,7 @@ internal class OdsFloatingActionButtonPreviewParameterProvider : BasicPreviewPar
 @UiModePreviews.Button
 @Composable
 private fun PreviewOdsExtendedFloatingActionButton() = OdsPreview {
-    Column(modifier = Modifier.padding(dimensionResource(id = R.dimen.spacing_s))) {
+    Column(modifier = Modifier.padding(OdsTheme.spacings.small.dp)) {
         OdsExtendedFloatingActionButton(
             modifier = Modifier.fillMaxWidth(),
             onClick = {},

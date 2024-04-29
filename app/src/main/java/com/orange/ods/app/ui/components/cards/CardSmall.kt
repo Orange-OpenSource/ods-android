@@ -39,6 +39,7 @@ import com.orange.ods.app.ui.utilities.extension.buildImageRequest
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.card.OdsCard
 import com.orange.ods.compose.component.card.OdsSmallCard
+import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
 fun CardSmall(customizationState: CardCustomizationState) {
@@ -52,12 +53,12 @@ fun CardSmall(customizationState: CardCustomizationState) {
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(state = rememberScrollState())
-                .padding(dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
+                .padding(OdsTheme.spacings.medium.dp)
         ) {
             Row(
                 modifier = Modifier
                     .fillMaxSize(),
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium.dp),
             ) {
                 val cardText = stringResource(id = R.string.component_card_element_card)
 
@@ -81,7 +82,7 @@ fun CardSmall(customizationState: CardCustomizationState) {
             }
 
             CodeImplementationColumn(
-                modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s))
+                modifier = Modifier.padding(top = OdsTheme.spacings.small.dp)
             ) {
                 FunctionCallCode(
                     name = OdsComposable.OdsSmallCard.name,

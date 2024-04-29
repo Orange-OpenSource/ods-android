@@ -41,7 +41,6 @@ import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.compose.theme.OdsThemeTweak
 import com.orange.ods.compose.theme.OdsThemeTweakType
-import com.orange.ods.theme.typography.OdsTextStyle
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -66,7 +65,7 @@ fun ComponentButtons(variant: Variant) {
                         val buttonStyles = listOf(OdsButton.Style.FunctionalPositive, OdsButton.Style.FunctionalNegative)
                         OdsChoiceChipsFlowRow(
                             selectedChoiceChipIndex = buttonStyles.indexOf(buttonStyle.value),
-                            modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                            modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp),
                             choiceChips = buttonStyles.map { buttonStyle ->
                                 val textResId =
                                     if (buttonStyle == OdsButton.Style.FunctionalPositive) R.string.component_button_style_functional_positive else R.string.component_button_style_functional_negative
@@ -78,7 +77,7 @@ fun ComponentButtons(variant: Variant) {
                         Subtitle(textRes = R.string.component_style, horizontalPadding = true)
                         OdsChoiceChipsFlowRow(
                             selectedChoiceChipIndex = OdsTextButton.Style.entries.indexOf(textButtonStyle.value),
-                            modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                            modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp),
                             choiceChips = OdsTextButton.Style.entries.map { textButtonStyle ->
                                 val textResId = when (textButtonStyle) {
                                     OdsTextButton.Style.Default -> R.string.component_button_style_default
@@ -147,17 +146,17 @@ fun InvertedBackgroundColumn(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(color = OdsTheme.colors.surface)
-                .padding(bottom = dimensionResource(com.orange.ods.R.dimen.spacing_m)),
+                .padding(bottom = OdsTheme.spacings.medium.dp),
             horizontalAlignment = horizontalAlignment
         ) {
             OdsText(
                 modifier = Modifier
-                    .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
-                    .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
+                    .padding(horizontal = OdsTheme.spacings.medium.dp)
+                    .padding(top = OdsTheme.spacings.small.dp)
                     .fillMaxWidth()
                     .align(Alignment.Start),
                 text = stringResource(id = textRes),
-                style = OdsTextStyle.BodyM
+                style = OdsTheme.typography.bodyMedium
             )
             content()
         }

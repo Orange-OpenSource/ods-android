@@ -39,12 +39,12 @@ import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.module.about.R
 import com.orange.ods.module.about.ui.configuration.OdsAboutAccessibilityStatementMenuItemConfiguration
 import com.orange.ods.module.about.ui.configuration.OdsAboutConfiguration
 import com.orange.ods.module.about.ui.configuration.OdsAboutFileMenuItem
 import com.orange.ods.module.about.ui.configuration.OdsAboutShareData
-import com.orange.ods.theme.typography.OdsTextStyle
 
 private const val ImageHeight = 249
 
@@ -66,18 +66,18 @@ internal fun OdsAboutHomeScreen(configuration: OdsAboutConfiguration, onAboutMen
 
             Column(
                 modifier = Modifier
-                    .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
-                    .padding(bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
+                    .padding(horizontal = OdsTheme.spacings.medium.dp)
+                    .padding(bottom = OdsTheme.spacings.medium.dp)
             ) {
                 OdsText(
                     text = configuration.appName,
-                    modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                    style = OdsTextStyle.HeadlineL
+                    modifier = Modifier.padding(top = OdsTheme.spacings.medium.dp),
+                    style = OdsTheme.typography.headlineLarge
                 )
-                Row(modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))) {
+                Row(modifier = Modifier.padding(top = OdsTheme.spacings.small.dp)) {
                     configuration.shareData?.let { shareData ->
                         OdsTextButton(
-                            modifier = Modifier.padding(end = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
+                            modifier = Modifier.padding(end = OdsTheme.spacings.small.dp),
                             text = stringResource(id = R.string.odsAbout_appShare),
                             icon = OdsButton.Icon(painterResource(id = R.drawable.ic_share)),
                             onClick = {
@@ -103,15 +103,15 @@ internal fun OdsAboutHomeScreen(configuration: OdsAboutConfiguration, onAboutMen
                 configuration.appVersion?.let { appVersion ->
                     OdsText(
                         text = appVersion,
-                        modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-                        style = OdsTextStyle.BodyM
+                        modifier = Modifier.padding(top = OdsTheme.spacings.medium.dp),
+                        style = OdsTheme.typography.bodyMedium
                     )
                 }
                 configuration.appDescription?.let { description ->
                     OdsText(
                         text = description,
-                        modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
-                        style = OdsTextStyle.BodyL
+                        modifier = Modifier.padding(top = OdsTheme.spacings.small.dp),
+                        style = OdsTheme.typography.bodyLarge
                     )
                 }
             }

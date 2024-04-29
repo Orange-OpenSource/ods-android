@@ -26,13 +26,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.compose.component.card.OdsCard
 import com.orange.ods.compose.component.card.OdsSmallCard
 import com.orange.ods.compose.extension.orElse
+import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
 fun ComponentsScreen(onComponentClick: (Long) -> Unit) {
@@ -42,12 +42,12 @@ fun ComponentsScreen(onComponentClick: (Long) -> Unit) {
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(scrollState)
-            .padding(dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
+            .padding(OdsTheme.spacings.medium.dp),
+        verticalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium.dp)
     ) {
         components.sortedBy { context.getString(it.titleRes) }.chunked(2).forEach { rowCards ->
             Row(
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium.dp),
             ) {
                 ComponentCard(component = rowCards[0], onComponentClick)
                 if (rowCards.size == 2) {

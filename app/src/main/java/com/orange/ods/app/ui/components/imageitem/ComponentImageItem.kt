@@ -48,6 +48,7 @@ import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.imageitem.OdsImageItem
 import com.orange.ods.compose.component.listitem.OdsListItem
+import com.orange.ods.compose.theme.OdsTheme
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -72,7 +73,7 @@ fun ComponentImageItem() {
                 Subtitle(textRes = R.string.component_image_item_legend_area_display_type, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
                     selectedChoiceChipIndex = OdsImageItem.LegendAreaDisplayType.entries.indexOf(type.value),
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                    modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp),
                     choiceChips = OdsImageItem.LegendAreaDisplayType.entries.map { type ->
                         val textResId = when (type) {
                             OdsImageItem.LegendAreaDisplayType.Below -> R.string.component_image_item_legend_area_display_type_below
@@ -135,7 +136,7 @@ fun ComponentImageItem() {
                     }
                 )
                 CodeImplementationColumn(
-                    modifier = Modifier.padding(end = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
+                    modifier = Modifier.padding(end = OdsTheme.spacings.medium.dp)
                 ) {
                     FunctionCallCode(
                         name = OdsComposable.OdsImageItem.name,

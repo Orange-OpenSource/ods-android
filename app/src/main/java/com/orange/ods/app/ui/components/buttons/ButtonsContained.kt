@@ -38,6 +38,7 @@ import com.orange.ods.app.ui.utilities.code.XmlViewTag
 import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsButton
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.xml.utilities.extension.xmlEnumValue
 
 @Composable
@@ -67,7 +68,7 @@ fun ButtonsContained(customizationState: ButtonCustomizationState) {
                 fullScreenWidth = hasFullScreenWidth
             )
 
-            Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
+            Spacer(modifier = Modifier.padding(top = OdsTheme.spacings.small.dp))
 
             InvertedBackgroundColumn {
                 ContainedButton(
@@ -135,7 +136,7 @@ private fun ContainedButton(
     Box(
         modifier = Modifier.padding(
             horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin),
-            vertical = dimensionResource(com.orange.ods.R.dimen.spacing_m)
+            vertical = OdsTheme.spacings.medium.dp
         )
     ) {
         UiFramework<OdsButtonBinding>(

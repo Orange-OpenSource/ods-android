@@ -26,6 +26,7 @@ import com.orange.ods.app.R
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ods.compose.component.listitem.OdsListItem
+import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
 fun ComponentDetailScreen(
@@ -46,7 +47,7 @@ fun ComponentDetailScreen(
             imageAlignment = component.imageAlignment,
         )
         Column(
-            modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
+            modifier = Modifier.padding(top = OdsTheme.spacings.medium.dp)
         ) {
             if (component.variants.isEmpty()) {
                 ComponentDetailLinkItem(

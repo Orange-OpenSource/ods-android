@@ -17,145 +17,162 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.orange.ods.theme.OdsThemeConfigurationItem
+import com.orange.ods.theme.OdsToken
 
 /**
  * ODS typography system.
  *
  * The ODS typography system can help you create an ODS typography theme that reflects your brand or style.
  * By default, the ODS typography is built with Orange values but you can override these values in your theme as you want.
- * The [fontFamily] applied to the typography text styles can be changed and you can define text styles you want to be in capitals by adding it into
- * the [allCapsTextStyles] list.
+ * The [defaultFontFamily] applied to the typography text styles can be changed.
  */
 class OdsTypography(
-    private val fontFamily: FontFamily = FontFamily.Default,
-    headlineL: TextStyle = TextStyle(
-        fontWeight = FontWeight.Bold,
-        fontSize = 34.sp,
-        lineHeight = 36.sp,
-        letterSpacing = 0.25.sp
+    private val defaultFontFamily: FontFamily = FontFamily.Default,
+    headlineLarge: OdsTextStyle = OdsTextStyle(
+        TextStyle(
+            fontWeight = FontWeight.Bold,
+            fontSize = 34.sp,
+            lineHeight = 36.sp,
+            letterSpacing = 0.25.sp
+        )
     ),
-    headlineS: TextStyle = TextStyle(
-        fontWeight = FontWeight.Bold,
-        fontSize = 24.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.sp
+    headlineSmall: OdsTextStyle = OdsTextStyle(
+        TextStyle(
+            fontWeight = FontWeight.Bold,
+            fontSize = 24.sp,
+            lineHeight = 24.sp,
+            letterSpacing = 0.sp
+        )
     ),
-    titleL: TextStyle = TextStyle(
-        fontWeight = FontWeight.Bold,
-        fontSize = 20.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.15.sp
+    titleLarge: OdsTextStyle = OdsTextStyle(
+        TextStyle(
+            fontWeight = FontWeight.Bold,
+            fontSize = 20.sp,
+            lineHeight = 24.sp,
+            letterSpacing = 0.15.sp
+        )
     ),
-    titleM: TextStyle = TextStyle(
-        fontWeight = FontWeight.Bold,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.15.sp
+    titleMedium: OdsTextStyle = OdsTextStyle(
+        TextStyle(
+            fontWeight = FontWeight.Bold,
+            fontSize = 16.sp,
+            lineHeight = 24.sp,
+            letterSpacing = 0.15.sp
+        )
     ),
-    titleS: TextStyle = TextStyle(
-        fontWeight = FontWeight.Bold,
-        fontSize = 14.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.1.sp
+    titleSmall: OdsTextStyle = OdsTextStyle(
+        TextStyle(
+            fontWeight = FontWeight.Bold,
+            fontSize = 14.sp,
+            lineHeight = 24.sp,
+            letterSpacing = 0.1.sp
+        )
     ),
-    bodyL: TextStyle = TextStyle(
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 20.sp,
-        letterSpacing = 0.5.sp
+    bodyLarge: OdsTextStyle = OdsTextStyle(
+        TextStyle(
+            fontWeight = FontWeight.Normal,
+            fontSize = 16.sp,
+            lineHeight = 20.sp,
+            letterSpacing = 0.5.sp
+        )
     ),
-    bodyM: TextStyle = TextStyle(
-        fontWeight = FontWeight.Normal,
-        fontSize = 14.sp,
-        lineHeight = 20.sp,
-        letterSpacing = 0.25.sp
+    bodyMedium: OdsTextStyle = OdsTextStyle(
+        TextStyle(
+            fontWeight = FontWeight.Normal,
+            fontSize = 14.sp,
+            lineHeight = 20.sp,
+            letterSpacing = 0.25.sp
+        )
     ),
-    bodyS: TextStyle = TextStyle(
-        fontWeight = FontWeight.Normal,
-        fontSize = 12.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.4.sp
+    bodySmall: OdsTextStyle = OdsTextStyle(
+        TextStyle(
+            fontWeight = FontWeight.Normal,
+            fontSize = 12.sp,
+            lineHeight = 16.sp,
+            letterSpacing = 0.4.sp
+        )
     ),
-    labelL: TextStyle = TextStyle(
-        fontWeight = FontWeight.Bold,
-        fontSize = 14.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 1.25.sp,
+    labelLarge: OdsTextStyle = OdsTextStyle(
+        TextStyle(
+            fontWeight = FontWeight.Bold,
+            fontSize = 14.sp,
+            lineHeight = 16.sp,
+            letterSpacing = 1.25.sp
+        ),
+        isAllCaps = true
     ),
-    labelS: TextStyle = TextStyle(
-        fontWeight = FontWeight.Bold,
-        fontSize = 10.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 1.5.sp
-    ),
-    allCapsTextStyles: List<OdsTextStyle> = listOf(OdsTextStyle.LabelL)
-) {
+    labelSmall: OdsTextStyle = OdsTextStyle(
+        TextStyle(
+            fontWeight = FontWeight.Bold,
+            fontSize = 10.sp,
+            lineHeight = 16.sp,
+            letterSpacing = 1.5.sp
+        )
+    )
+) : OdsTypographyCatalog<OdsTextStyle>, OdsThemeConfigurationItem.TokenProvider<OdsTypographyCatalog<OdsToken<OdsTextStyle>>> {
 
-    val headlineL: TextStyle
-    val headlineS: TextStyle
-    val titleL: TextStyle
-    val titleM: TextStyle
-    val titleS: TextStyle
-    val bodyL: TextStyle
-    val bodyM: TextStyle
-    val bodyS: TextStyle
-    val labelL: TextStyle
-    val labelS: TextStyle
-    private val allCapsTextStyles: List<TextStyle>
+    override val headlineLarge = headlineLarge.withDefaultFontFamily(defaultFontFamily)
+    override val headlineSmall = headlineSmall.withDefaultFontFamily(defaultFontFamily)
+    override val titleLarge = titleLarge.withDefaultFontFamily(defaultFontFamily)
+    override val titleMedium = titleMedium.withDefaultFontFamily(defaultFontFamily)
+    override val titleSmall = titleSmall.withDefaultFontFamily(defaultFontFamily)
+    override val bodyLarge = bodyLarge.withDefaultFontFamily(defaultFontFamily)
+    override val bodyMedium = bodyMedium.withDefaultFontFamily(defaultFontFamily)
+    override val bodySmall = bodySmall.withDefaultFontFamily(defaultFontFamily)
+    override val labelLarge = labelLarge.withDefaultFontFamily(defaultFontFamily)
+    override val labelSmall = labelSmall.withDefaultFontFamily(defaultFontFamily)
 
-    init {
-        this.headlineL = headlineL.withDefaultFontFamily(fontFamily)
-        this.headlineS = headlineS.withDefaultFontFamily(fontFamily)
-        this.titleL = titleL.withDefaultFontFamily(fontFamily)
-        this.titleM = titleM.withDefaultFontFamily(fontFamily)
-        this.titleS = titleS.withDefaultFontFamily(fontFamily)
-        this.bodyL = bodyL.withDefaultFontFamily(fontFamily)
-        this.bodyM = bodyM.withDefaultFontFamily(fontFamily)
-        this.bodyS = bodyS.withDefaultFontFamily(fontFamily)
-        this.labelL = labelL.withDefaultFontFamily(fontFamily)
-        this.labelS = labelS.withDefaultFontFamily(fontFamily)
-        this.allCapsTextStyles = allCapsTextStyles.map { textStyle ->
-            when (textStyle) {
-                OdsTextStyle.HeadlineL -> this.headlineL
-                OdsTextStyle.HeadlineS -> this.headlineS
-                OdsTextStyle.TitleL -> this.titleL
-                OdsTextStyle.TitleM -> this.titleM
-                OdsTextStyle.TitleS -> this.titleS
-                OdsTextStyle.BodyL -> this.bodyL
-                OdsTextStyle.BodyM -> this.bodyM
-                OdsTextStyle.BodyS -> this.bodyS
-                OdsTextStyle.LabelL -> this.labelL
-                OdsTextStyle.LabelS -> this.labelS
-            }
-        }
+    override val tokens = object : OdsTypographyCatalog<OdsToken<OdsTextStyle>> {
+        override val headlineLarge = OdsToken(OdsToken.TextStyle.HeadlineLarge, this@OdsTypography.headlineLarge)
+        override val headlineSmall = OdsToken(OdsToken.TextStyle.HeadlineSmall, this@OdsTypography.headlineSmall)
+        override val titleLarge = OdsToken(OdsToken.TextStyle.TitleLarge, this@OdsTypography.titleLarge)
+        override val titleMedium = OdsToken(OdsToken.TextStyle.TitleMedium, this@OdsTypography.titleMedium)
+        override val titleSmall = OdsToken(OdsToken.TextStyle.TitleSmall, this@OdsTypography.titleSmall)
+        override val bodyLarge = OdsToken(OdsToken.TextStyle.BodyLarge, this@OdsTypography.bodyLarge)
+        override val bodyMedium = OdsToken(OdsToken.TextStyle.BodyMedium, this@OdsTypography.bodyMedium)
+        override val bodySmall = OdsToken(OdsToken.TextStyle.BodySmall, this@OdsTypography.bodySmall)
+        override val labelLarge = OdsToken(OdsToken.TextStyle.LabelLarge, this@OdsTypography.labelLarge)
+        override val labelSmall = OdsToken(OdsToken.TextStyle.LabelSmall, this@OdsTypography.labelSmall)
     }
-
-    fun isAllCapsTextStyle(textStyle: TextStyle) = allCapsTextStyles.contains(textStyle)
 
     /** Corresponding Material 2 Typography */
     val materialTypography
         get() = Typography(
-            defaultFontFamily = fontFamily,
-            h1 = headlineL,
-            h2 = headlineL,
-            h3 = headlineL,
-            h4 = headlineL,
-            h5 = headlineS,
-            h6 = titleL,
-            subtitle1 = titleM,
-            subtitle2 = titleS,
-            body1 = bodyL,
-            body2 = bodyM,
-            button = labelL,
-            caption = bodyS,
-            overline = labelS
+            defaultFontFamily = defaultFontFamily,
+            h1 = headlineLarge.textStyle,
+            h2 = headlineLarge.textStyle,
+            h3 = headlineLarge.textStyle,
+            h4 = headlineLarge.textStyle,
+            h5 = headlineSmall.textStyle,
+            h6 = titleLarge.textStyle,
+            subtitle1 = titleMedium.textStyle,
+            subtitle2 = titleSmall.textStyle,
+            body1 = bodyLarge.textStyle,
+            body2 = bodyMedium.textStyle,
+            button = labelLarge.textStyle,
+            caption = bodySmall.textStyle,
+            overline = labelSmall.textStyle
         )
+
+    private fun OdsTextStyle.withDefaultFontFamily(default: FontFamily): OdsTextStyle {
+        return if (textStyle.fontFamily != null) this else copy(textStyle = textStyle.copy(fontFamily = default))
+    }
 }
 
-private fun TextStyle.withDefaultFontFamily(default: FontFamily): TextStyle {
-    return if (fontFamily != null) this else copy(fontFamily = default)
-}
+interface OdsTypographyCatalog<T> : OdsThemeConfigurationItem.Catalog<T> {
 
-enum class OdsTextStyle {
-    HeadlineL, HeadlineS, TitleL, TitleM, TitleS, BodyL, BodyM, BodyS, LabelL, LabelS
+    val headlineLarge: T
+    val headlineSmall: T
+    val titleLarge: T
+    val titleMedium: T
+    val titleSmall: T
+    val bodyLarge: T
+    val bodyMedium: T
+    val bodySmall: T
+    val labelLarge: T
+    val labelSmall: T
+
+    override val entries: List<T>
+        get() = listOf(headlineLarge, headlineSmall, titleLarge, titleMedium, titleSmall, bodyLarge, bodyMedium, bodySmall, labelLarge, labelSmall)
 }

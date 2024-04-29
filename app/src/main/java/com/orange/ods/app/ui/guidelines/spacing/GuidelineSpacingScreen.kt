@@ -36,7 +36,8 @@ import com.orange.ods.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ods.app.ui.utilities.extension.isOrange
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.theme.typography.OdsTextStyle
+import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.spacing.OdsSpacing
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.Locale
@@ -45,7 +46,8 @@ private val ratioFormatter = DecimalFormat("0.#", DecimalFormatSymbols(Locale.EN
 
 @Composable
 fun GuidelineSpacingScreen() {
-    LazyColumn(contentPadding = PaddingValues(bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))) {
+    val spacings = OdsTheme.spacings
+    LazyColumn(contentPadding = PaddingValues(bottom = spacings.medium.dp)) {
         item {
             DetailScreenHeader(
                 imageRes = DrawableManager.getDrawableResIdForCurrentTheme(resId = R.drawable.il_spacing),
@@ -57,19 +59,19 @@ fun GuidelineSpacingScreen() {
             OdsText(
                 modifier = Modifier
                     .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
-                    .padding(vertical = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                    .padding(vertical = spacings.medium.dp),
                 text = stringResource(id = R.string.guideline_spacing_subtitle),
-                style = OdsTextStyle.TitleM
+                style = OdsTheme.typography.titleMedium
             )
         }
-        items(Spacing.entries) { spacing ->
-            val dp = spacing.getDp()
-            val ratio = spacing.getRatio()
+        items(spacings.tokens.entries) { spacing ->
+            val dp = spacing.value.dp
+            val ratio = dp / spacings.small.dp
             OdsListItem(
-                text = spacing.tokenName,
+                text = spacing.name,
                 secondaryText = stringResource(id = R.string.guideline_spacing_dp, dp.value.toInt()) + "\n",
                 secondaryTextLineCount = OdsListItem.SecondaryTextLineCount.Two,
-                leadingIcon = OdsListItem.LeadingIcon(OdsListItem.LeadingIcon.Type.SquareImage, rememberGuidelineSpacingPainter(spacing = spacing), ""),
+                leadingIcon = OdsListItem.LeadingIcon(OdsListItem.LeadingIcon.Type.SquareImage, rememberGuidelineSpacingPainter(spacing = spacing.value), ""),
                 trailing = OdsListItem.TrailingCaption(
                     stringResource(
                         id = R.string.guideline_spacing_ratio,
@@ -83,11 +85,13 @@ fun GuidelineSpacingScreen() {
 }
 
 @Composable
-private fun rememberGuidelineSpacingPainter(spacing: Spacing): GuidelineSpacingPainter {
+private fun rememberGuidelineSpacingPainter(spacing: OdsSpacing): GuidelineSpacingPainter {
     with(LocalDensity.current) {
         val width = dimensionResource(id = com.orange.ods.R.dimen.list_wide_image_width).toPx()
         val height = dimensionResource(id = com.orange.ods.R.dimen.list_wide_image_height).toPx()
-        val spacingWidth = dimensionResource(id = spacing.dimenRes).coerceAtLeast(1.dp).toPx() // Spacing width is at least 1 dp to make spacing-none visible
+        val spacingWidth = spacing.dp
+            .coerceAtLeast(1.dp) // Spacing width is at least 1 dp to make spacing-none visible
+            .toPx()
         val isOrangeTheme = LocalThemeManager.current.currentThemeConfiguration.isOrange
         val spacingColor = if (isOrangeTheme) 0xff4bb4e6 else 0xff949494
 

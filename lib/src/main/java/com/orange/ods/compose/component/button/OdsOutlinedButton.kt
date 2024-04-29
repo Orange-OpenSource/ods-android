@@ -28,7 +28,6 @@ import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.extension.enable
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/06a393-buttons/b/79b091" target="_blank">ODS Buttons</a>.
@@ -71,7 +70,7 @@ fun OdsOutlinedButton(
         icon?.Content()
         OdsText(
             text = text,
-            style = OdsTextStyle.LabelL,
+            style = OdsTheme.typography.labelLarge,
             enabled = enabled
         )
     }

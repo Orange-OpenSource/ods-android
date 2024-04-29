@@ -23,5 +23,5 @@ private val Roboto = FontFamily(
 )
 
 internal val OrangeTypography = OdsTypography(
-    fontFamily = Roboto
+    defaultFontFamily = Roboto
 )

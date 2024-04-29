@@ -45,6 +45,7 @@ import com.orange.ods.compose.component.chip.OdsChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.chip.OdsFilterChip
 import com.orange.ods.compose.component.listitem.OdsListItem
+import com.orange.ods.compose.theme.OdsTheme
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalLayoutApi::class)
 @Composable
@@ -63,7 +64,7 @@ fun ChipFilter() {
                 val leadingElements = listOf(ChipCustomizationState.LeadingElement.None, ChipCustomizationState.LeadingElement.Avatar)
                 OdsChoiceChipsFlowRow(
                     selectedChoiceChipIndex = leadingElements.indexOf(leadingElement.value),
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                    modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp),
                     choiceChips = leadingElements.map { leadingElement ->
                         val textResId =
                             if (leadingElement == ChipCustomizationState.LeadingElement.None) R.string.component_element_none else R.string.component_element_avatar
@@ -80,7 +81,7 @@ fun ChipFilter() {
             ChipTypeDemo(chipType = chipType.value) {
                 FlowRow(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
+                    horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.small.dp)
                 ) {
                     recipe.ingredients.forEachIndexed { index, ingredient ->
                         OdsFilterChip(
@@ -103,7 +104,7 @@ fun ChipFilter() {
                     }
                 }
 
-                Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
+                Spacer(modifier = Modifier.padding(top = OdsTheme.spacings.small.dp))
 
                 CodeImplementationColumn {
                     FunctionCallCode(

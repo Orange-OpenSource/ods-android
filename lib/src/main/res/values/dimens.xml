@@ -14,15 +14,6 @@
 
 <resources>
 
-    <!-- Spacing -->
-    <dimen name="spacing_none">0dp</dimen>
-    <dimen name="spacing_xs">4dp</dimen>
-    <dimen name="spacing_s">8dp</dimen>
-    <dimen name="spacing_m">16dp</dimen>
-    <dimen name="spacing_l">24dp</dimen>
-    <dimen name="spacing_xl">32dp</dimen>
-    <dimen name="spacing_2xl">40dp</dimen>
-
     <!-- Screen margins -->
     <dimen name="screen_vertical_margin">@dimen/spacing_s</dimen>
     <dimen name="screen_horizontal_margin">@dimen/spacing_m</dimen>

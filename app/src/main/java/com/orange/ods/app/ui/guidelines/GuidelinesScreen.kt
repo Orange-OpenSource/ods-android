@@ -20,12 +20,12 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.compose.component.card.OdsCard
 import com.orange.ods.compose.component.card.OdsVerticalImageFirstCard
+import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
 fun GuidelinesScreen(onGuidelineClick: (String) -> Unit) {
@@ -35,8 +35,8 @@ fun GuidelinesScreen(onGuidelineClick: (String) -> Unit) {
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(scrollState)
-            .padding(dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
+            .padding(OdsTheme.spacings.medium.dp),
+        verticalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium.dp)
     ) {
         Guideline.entries.forEach { guideline ->
             OdsVerticalImageFirstCard(

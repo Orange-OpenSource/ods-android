@@ -26,7 +26,7 @@ import androidx.compose.ui.semantics.semantics
 import com.orange.ods.app.R
 import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.theme.typography.OdsTextStyle
+import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
 fun ComponentCountRow(
@@ -43,7 +43,7 @@ fun ComponentCountRow(
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        OdsText(modifier = Modifier.weight(1f), text = title, style = OdsTextStyle.TitleM)
+        OdsText(modifier = Modifier.weight(1f), text = title, style = OdsTheme.typography.titleMedium)
         OdsIconButton(
             onClick = { count.intValue-- },
             icon = OdsIconButton.Icon(painterResource(id = R.drawable.ic_remove), minusIconContentDescription),
@@ -56,7 +56,7 @@ fun ComponentCountRow(
                 this.contentDescription = count.intValue.toString()
                 liveRegion = LiveRegionMode.Polite
             },
-            style = OdsTextStyle.TitleM
+            style = OdsTheme.typography.titleMedium
         )
         OdsIconButton(
             onClick = { count.intValue++ },

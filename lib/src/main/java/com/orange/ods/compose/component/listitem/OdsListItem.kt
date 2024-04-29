@@ -109,7 +109,7 @@ fun OdsListItem(
     OdsListItem(
         text = text,
         textColor = OdsTheme.colors.onSurface,
-        textStyle = OdsTextStyle.TitleM,
+        textStyle = OdsTheme.typography.titleMedium,
         modifier = modifier,
         leadingIcon = leadingIcon,
         secondaryText = secondaryText,
@@ -202,7 +202,7 @@ private fun OdsListItemInternal(
             {
                 OdsText(
                     text = secondaryText,
-                    style = OdsTextStyle.BodyM,
+                    style = OdsTheme.typography.bodyMedium,
                     maxLines = secondaryTextLinesNumber,
                     overflow = TextOverflow.Ellipsis,
                     color = OdsTheme.colors.onSurface
@@ -211,7 +211,7 @@ private fun OdsListItemInternal(
         } else null,
         singleLineSecondaryText = singleLineSecondaryText,
         overlineText = if (overlineText.isNotNullOrBlank()) {
-            { OdsText(text = overlineText, style = OdsTextStyle.LabelS, color = OdsTheme.colors.onSurface.copy(alpha = 0.6f)) }
+            { OdsText(text = overlineText, style = OdsTheme.typography.labelSmall, color = OdsTheme.colors.onSurface.copy(alpha = 0.6f)) }
         } else null,
         trailing = (trailing as? OdsComponentContent<*>)?.let { { it.Content() } },
         text = {
@@ -523,7 +523,7 @@ object OdsListItem {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            OdsText(modifier = modifier, text = text, style = OdsTextStyle.BodyS)
+            OdsText(modifier = modifier, text = text, style = OdsTheme.typography.bodySmall)
         }
     }
 
@@ -533,10 +533,10 @@ object OdsListItem {
 private fun getDividerStartIndent(leadingIconType: OdsListItem.LeadingIcon.Type?): Dp {
     return when (leadingIconType) {
         OdsListItem.LeadingIcon.Type.Icon,
-        OdsListItem.LeadingIcon.Type.CircularImage -> dimensionResource(id = R.dimen.avatar_size) + dimensionResource(id = R.dimen.spacing_m).times(2)
-        OdsListItem.LeadingIcon.Type.SquareImage -> dimensionResource(id = R.dimen.list_square_image_size) + dimensionResource(id = R.dimen.spacing_m).times(2)
-        OdsListItem.LeadingIcon.Type.WideImage -> dimensionResource(id = R.dimen.list_wide_image_width) + dimensionResource(id = R.dimen.spacing_m)
-        null -> dimensionResource(id = R.dimen.spacing_m)
+        OdsListItem.LeadingIcon.Type.CircularImage -> dimensionResource(id = R.dimen.avatar_size) + OdsTheme.spacings.medium.dp.times(2)
+        OdsListItem.LeadingIcon.Type.SquareImage -> dimensionResource(id = R.dimen.list_square_image_size) + OdsTheme.spacings.medium.dp.times(2)
+        OdsListItem.LeadingIcon.Type.WideImage -> dimensionResource(id = R.dimen.list_wide_image_width) + OdsTheme.spacings.medium.dp
+        null -> OdsTheme.spacings.medium.dp
     }
 }
 

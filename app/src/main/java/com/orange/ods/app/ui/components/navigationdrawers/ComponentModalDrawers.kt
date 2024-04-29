@@ -48,6 +48,7 @@ import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.navigationdrawer.OdsModalDrawer
+import com.orange.ods.compose.theme.OdsTheme
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -128,7 +129,7 @@ fun ComponentModalDrawers() {
                         Subtitle(textRes = R.string.component_modal_drawer_header_image, horizontalPadding = true)
                         OdsChoiceChipsFlowRow(
                             selectedChoiceChipIndex = ComponentNavigationDrawersContentState.HeaderImage.entries.indexOf(headerImage.value),
-                            modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                            modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp),
                             choiceChips = ComponentNavigationDrawersContentState.HeaderImage.entries.map { headerImage ->
                                 val textResId = when (headerImage) {
                                     ComponentNavigationDrawersContentState.HeaderImage.Avatar -> R.string.component_element_avatar
@@ -149,7 +150,7 @@ fun ComponentModalDrawers() {
                         Subtitle(textRes = R.string.component_modal_drawer_list_example, horizontalPadding = true)
                         OdsChoiceChipsFlowRow(
                             selectedChoiceChipIndex = ComponentNavigationDrawersContentState.SectionListExample.entries.indexOf(content.value),
-                            modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                            modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp),
                             choiceChips = ComponentNavigationDrawersContentState.SectionListExample.entries.map { content ->
                                 val textResId = when (content) {
                                     ComponentNavigationDrawersContentState.SectionListExample.Divider -> R.string.component_element_divider

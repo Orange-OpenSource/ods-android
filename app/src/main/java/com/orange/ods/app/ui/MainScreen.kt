@@ -69,7 +69,6 @@ import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.module.about.ui.navigation.navigateToOdsAbout
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.theme.annotation.ExperimentalOdsApi
-import com.orange.ods.theme.typography.OdsTextStyle
 import com.orange.ods.xml.theme.OdsXml
 import com.orange.ods.xml.utilities.extension.xml
 import kotlinx.coroutines.flow.launchIn
@@ -298,9 +297,9 @@ private fun ChangeThemeDialog(themeManager: ThemeManager, dismissDialog: () -> U
             OdsText(
                 text = stringResource(R.string.top_app_bar_action_change_theme_desc),
                 modifier = Modifier
-                    .padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_m), bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
+                    .padding(top = OdsTheme.spacings.medium.dp, bottom = OdsTheme.spacings.small.dp)
                     .padding(horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin)),
-                style = OdsTextStyle.TitleL
+                style = OdsTheme.typography.titleLarge
             )
             themeManager.themeConfigurations.forEach { themeConfiguration ->
                 OdsListItem(

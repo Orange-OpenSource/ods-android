@@ -25,12 +25,9 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.toUpperCase
-import com.orange.ods.R
 import com.orange.ods.compose.component.button.OdsIconButton
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentIcon
@@ -62,10 +59,10 @@ object OdsTextField {
         override fun Content(modifier: Modifier) {
             OdsText(
                 modifier = modifier
-                    .padding(top = dimensionResource(id = R.dimen.spacing_xs), end = dimensionResource(id = R.dimen.spacing_m)),
+                    .padding(top = OdsTheme.spacings.extraSmall.dp, end = OdsTheme.spacings.medium.dp),
                 text = "$characterCount/$maxCharacterCount",
                 enabled = enabled,
-                style = OdsTextStyle.BodyS
+                style = OdsTheme.typography.bodySmall
             )
         }
     }
@@ -129,9 +126,9 @@ object OdsTextField {
         @Composable
         override fun Content(modifier: Modifier) {
             OdsText(
-                modifier = modifier.padding(end = dimensionResource(id = R.dimen.spacing_s)),
+                modifier = modifier.padding(end = OdsTheme.spacings.small.dp),
                 text = text,
-                style = OdsTextStyle.TitleM,
+                style = OdsTheme.typography.titleMedium,
                 color = OdsTextFieldDefaults.trailingTextColor(extraParameters.isTextFieldEmpty, extraParameters.enabled)
             )
         }
@@ -213,9 +210,9 @@ internal fun OdsTextFieldBottomRow(isError: Boolean, errorMessage: String?, char
 }
 
 @Composable
-internal fun styledTextFieldValue(value: TextFieldValue, textStyle: TextStyle): TextFieldValue {
+internal fun styledTextFieldValue(value: TextFieldValue, textStyle: OdsTextStyle): TextFieldValue {
     return with(value) {
-        if (OdsTheme.typography.isAllCapsTextStyle(textStyle)) copy(annotatedString = annotatedString.toUpperCase()) else this
+        if (textStyle.isAllCaps) copy(annotatedString = annotatedString.toUpperCase()) else this
     }
 }
 
@@ -223,11 +220,11 @@ internal fun styledTextFieldValue(value: TextFieldValue, textStyle: TextStyle): 
 private fun OdsTextFieldErrorText(message: String) {
     OdsText(
         modifier = Modifier.padding(
-            start = dimensionResource(id = R.dimen.spacing_m),
-            top = dimensionResource(id = R.dimen.spacing_xs)
+            start = OdsTheme.spacings.medium.dp,
+            top = OdsTheme.spacings.extraSmall.dp
         ),
         text = message,
-        style = OdsTextStyle.BodyS,
+        style = OdsTheme.typography.bodySmall,
         color = OdsTheme.colors.error
     )
 }

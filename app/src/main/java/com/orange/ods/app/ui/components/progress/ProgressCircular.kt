@@ -34,6 +34,7 @@ import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.progressindicator.OdsCircularProgressIndicator
+import com.orange.ods.compose.theme.OdsTheme
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -47,7 +48,7 @@ fun ProgressCircular() {
                 Subtitle(textRes = R.string.component_element_type, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
                     selectedChoiceChipIndex = ProgressCustomizationState.Type.entries.indexOf(type.value),
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                    modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp),
                     choiceChips = ProgressCustomizationState.Type.entries.map { type ->
                         val textResId = when (type) {
                             ProgressCustomizationState.Type.Determinate -> R.string.component_progress_determinate
@@ -75,7 +76,7 @@ fun ProgressCircular() {
                     progress = if (type.value == ProgressCustomizationState.Type.Determinate) determinateProgressAnimation.value else null,
                     label = if (hasLabel) text else null,
                     modifier = Modifier
-                        .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
+                        .padding(top = OdsTheme.spacings.medium.dp)
                         .align(alignment = Alignment.CenterHorizontally)
                 )
                 if (type.value == ProgressCustomizationState.Type.Determinate) {

@@ -20,9 +20,7 @@ import androidx.compose.material.SnackbarHost
 import androidx.compose.material.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.content.OdsComponentContent
@@ -30,9 +28,9 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.compose.theme.OdsThemeTweak
 import com.orange.ods.compose.theme.OdsThemeTweakType
-import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * Host for [OdsSnackbar]s to be used in [Scaffold] to properly show, hide and dismiss items based
@@ -54,7 +52,7 @@ fun OdsSnackbarHost(
     snackbar: (SnackbarData) -> OdsSnackbarHost.Snackbar = { OdsSnackbarHost.Snackbar(it) }
 ) {
     SnackbarHost(
-        modifier = modifier.padding(dimensionResource(id = R.dimen.spacing_s)),
+        modifier = modifier.padding(OdsTheme.spacings.small.dp),
         hostState = hostState,
         snackbar = { snackbar(it).Content(modifier = Modifier) }
     )
@@ -123,7 +121,7 @@ private fun OdsSnackbar(
         },
         actionOnNewLine = actionOnNewLine
     ) {
-        OdsText(text = message, style = OdsTextStyle.BodyM)
+        OdsText(text = message, style = OdsTheme.typography.bodyMedium)
     }
 }
 
