@@ -38,6 +38,7 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Scale
 import coil.size.Size
+import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.progressindicator.OdsCircularProgressIndicator
 import com.orange.ods.compose.extension.orElse
@@ -69,7 +70,7 @@ internal fun OdsMoreAppsScreen(
             val moreAppsItems = (uiState as OdsMoreAppsUiState.Success).moreAppsItems
             LazyColumn(contentPadding = PaddingValues(bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))) {
                 items(moreAppsItems) { item ->
-                    MoreAppsItem(item = item)
+                    MoreAppsItem(item = item, firstItem = true)
                 }
             }
         }
@@ -89,9 +90,9 @@ internal fun OdsMoreAppsScreen(
 }
 
 @Composable
-private fun MoreAppsItem(item: MoreAppsItem) {
+private fun MoreAppsItem(item: MoreAppsItem, firstItem: Boolean = false) {
     when (item) {
-        is AppsSection -> MoreAppsSection(item.name, item.items)
+        is AppsSection -> MoreAppsSection(item.name, item.items, firstItem)
         is AppsList -> MoreAppsList(item.items)
         is App -> MoreAppsApp(item)
     }
@@ -99,13 +100,18 @@ private fun MoreAppsItem(item: MoreAppsItem) {
 
 
 @Composable
-private fun MoreAppsSection(name: String?, items: List<MoreAppsItem>) {
+private fun MoreAppsSection(name: String?, items: List<MoreAppsItem>, firstItem: Boolean) {
+    if (!firstItem) {
+        OdsDivider(modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)))
+    }
     OdsText(
         modifier = Modifier
-            .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
-            .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
+            .padding(
+                horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m),
+                vertical = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)
+            ),
         text = name.orElse { stringResource(id = R.string.odsMoreApps_section_uncategorizedApps) },
-        style = OdsTextStyle.TitleM
+        style = OdsTextStyle.TitleS
     )
     MoreAppsList(items = items)
 }
