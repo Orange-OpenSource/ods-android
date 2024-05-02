@@ -93,7 +93,7 @@ GEM
       google-protobuf (~> 3.25)
     sass-embedded (1.71.1-x86_64-darwin)
       google-protobuf (~> 3.25)
-    sass-embedded (1.71.1-x86_64-linux)
+    sass-embedded (1.71.1-x86_64-linux-gnu)
       google-protobuf (~> 3.25)
     strscan (3.1.0)
     terminal-table (3.0.2)
@@ -106,7 +106,6 @@ PLATFORMS
   x64-unknown
   x86_64-darwin-19
   x86_64-darwin-21
-  x86_64-darwin-22
   x86_64-linux
 
 DEPENDENCIES
