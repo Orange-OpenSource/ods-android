@@ -10,4 +10,8 @@
   ~ Software description: Android library of reusable graphical components
   -->
 
-<manifest />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.orange.ods.module.moreapps">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+</manifest>

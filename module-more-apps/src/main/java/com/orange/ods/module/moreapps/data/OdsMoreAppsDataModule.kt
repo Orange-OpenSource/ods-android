@@ -12,14 +12,14 @@
 
 package com.orange.ods.module.moreapps.data
 
-import com.orange.ods.BuildConfig
+import android.content.Context
 import com.orange.ods.module.moreapps.domain.MoreAppsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -30,17 +30,14 @@ internal object OdsMoreAppsDataModule {
 
     @Singleton
     @Provides
-    fun provideOkHttp() : OkHttpClient {
-        return OkHttpClient.Builder()
-            .addInterceptor(
-                HttpLoggingInterceptor()
-                    .apply {
-                        if (BuildConfig.DEBUG) {
-                            setLevel(HttpLoggingInterceptor.Level.BODY)
-                        }
-                    },
-            )
-            .build()
+    fun provideNetworkManager(@ApplicationContext context: Context): NetworkManager {
+        return NetworkManager(context)
+    }
+
+    @Singleton
+    @Provides
+    fun provideOkHttp(@ApplicationContext context: Context, networkManager: NetworkManager): OkHttpClient {
+        return HttpClient(context, networkManager).build()
     }
 
     @Provides
