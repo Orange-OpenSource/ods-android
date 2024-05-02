@@ -12,7 +12,7 @@
 
 package com.orange.ods.module.moreapps.domain
 
-sealed interface Resource<out T> {
+internal sealed interface Resource<out T> {
     data class Success<out T>(val value: T) : Resource<T>
     data class Failure(val throwable: Throwable) : Resource<Nothing>
 }

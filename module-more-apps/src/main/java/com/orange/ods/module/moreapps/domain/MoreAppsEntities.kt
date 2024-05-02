@@ -14,18 +14,18 @@ package com.orange.ods.module.moreapps.domain
 
 import android.util.DisplayMetrics
 
-interface MoreAppsItem
+internal interface MoreAppsItem
 
-data class AppsSection(
+internal data class AppsSection(
     val name: String?,
     val items: List<MoreAppsItem>
 ) : MoreAppsItem
 
-data class AppsList(
+internal data class AppsList(
     val items: List<MoreAppsItem>
 ) : MoreAppsItem
 
-class App(
+internal class App(
     val type: String,
     val name: String?,
     val description: String?,
@@ -33,7 +33,7 @@ class App(
     val iconUrlByDensity: Map<Density, String>?,
 ) : MoreAppsItem
 
-enum class Density {
+internal enum class Density {
     Mdpi, Hdpi, Xhdpi, Xxhdpi, Xxxhdpi;
 
     companion object {

@@ -38,6 +38,6 @@ internal data class IconsDto(
     val xxxhdpi: String
 )
 
-enum class ItemType {
+internal enum class ItemType {
     CAROUSEL, LIST, SECTION, APP
 }
