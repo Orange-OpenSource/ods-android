@@ -25,7 +25,7 @@ kotlin {
 }
 
 dependencies {
-    implementation("com.android.tools.build:gradle:8.3.2")
+    implementation("com.android.tools.build:gradle:8.4.0")
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.23") // https://issuetracker.google.com/issues/176079157#comment14
     implementation("com.squareup:javapoet:1.13.0") // https://github.com/google/dagger/issues/3282
 }
