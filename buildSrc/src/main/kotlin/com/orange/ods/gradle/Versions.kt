@@ -28,7 +28,7 @@ object Versions {
     const val coil = "2.6.0"
     const val constraintLayout = "2.1.4"
     const val constraintLayoutCompose = "1.0.1"
-    const val core = "1.13.0"
+    const val core = "1.13.1"
     const val customViewPoolingContainer = "1.0.0"
     const val dataStorePreferences = "1.1.0"
     const val firebaseAppDistributionGradlePlugin = "4.2.0"
