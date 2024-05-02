@@ -45,5 +45,5 @@ object Versions {
     const val navigation = "2.7.7"
     const val testExtJUnit = "1.1.5"
     const val timber = "5.0.1"
-    const val webkit = "1.10.0"
+    const val webkit = "1.11.0"
 }
