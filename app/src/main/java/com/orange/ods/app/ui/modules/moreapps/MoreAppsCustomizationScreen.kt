@@ -38,12 +38,20 @@ private const val SectionsFilter = "sections"
 private enum class AppsPlusFilter(@StringRes val choiceLabelRes: Int, val value: String?) {
     None(R.string.component_element_none, null),
     WithCarousel(R.string.module_moreApps_customization_filter_carousel, CarouselFilter),
-    WithSections(R.string.module_moreApps_customization_filter_sections, SectionsFilter)
+    WithSections(R.string.module_moreApps_customization_filter_sections, SectionsFilter);
+
+    companion object {
+        fun fromValue(value: String?) = when (value) {
+            CarouselFilter -> WithCarousel
+            SectionsFilter -> WithSections
+            else -> None
+        }
+    }
 }
 
 @Composable
 fun MoreAppsCustomizationScreen(navigateToMoreAppsDemo: () -> Unit, viewModel: MoreAppsCustomizationViewModel) {
-    var selectedFilter by remember { mutableStateOf(AppsPlusFilter.None) }
+    var selectedFilter by remember { mutableStateOf(AppsPlusFilter.fromValue(viewModel.filter)) }
     ModuleDetailColumn(module = Module.MoreApps, onViewDemoButtonClick = navigateToMoreAppsDemo, showCustomizeSubtitle = false) {
         Column(modifier = Modifier.padding(horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin))) {
             Subtitle(textRes = R.string.module_moreApps_customization_subtitle)
