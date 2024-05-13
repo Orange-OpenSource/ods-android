@@ -51,6 +51,7 @@ import com.orange.ods.module.moreapps.domain.AppsSection
 import com.orange.ods.module.moreapps.domain.Density
 import com.orange.ods.module.moreapps.domain.MoreAppsItem
 import com.orange.ods.module.moreapps.ui.configuration.OdsMoreAppsConfiguration
+import com.orange.ods.module.moreapps.ui.extension.launchUrl
 import com.orange.ods.theme.typography.OdsTextStyle
 
 @Composable
@@ -129,11 +130,13 @@ private fun MoreAppsList(items: List<MoreAppsItem>) {
 
 @Composable
 private fun MoreAppsApp(app: App) {
+    val context = LocalContext.current
     OdsListItem(
         text = app.name.orEmpty(),
         secondaryText = app.description.orEmpty(),
         secondaryTextLineCount = OdsListItem.SecondaryTextLineCount.Two,
-        leadingIcon = getAppLeadingIcon(app.iconUrlByDensity)
+        leadingIcon = getAppLeadingIcon(app.iconUrlByDensity),
+        onClick = app.url?.let { url -> { context.launchUrl(url) } }
     )
 }
 

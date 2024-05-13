@@ -41,6 +41,7 @@ android {
 dependencies {
     implementation(project(":lib"))
     implementation(Dependencies.appCompat)
+    implementation(Dependencies.browser)
     implementation(Dependencies.coil)
     implementation(Dependencies.coilCompose)
     implementation(Dependencies.composeMaterial)
