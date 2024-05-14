@@ -32,17 +32,14 @@ import com.orange.ods.compose.text.OdsText
 import com.orange.ods.theme.typography.OdsTextStyle
 
 // Filters labels set in Apps+ applications list demo
-private const val CarouselFilter = "carousel"
 private const val SectionsFilter = "sections"
 
 private enum class AppsPlusFilter(@StringRes val choiceLabelRes: Int, val value: String?) {
     None(R.string.component_element_none, null),
-    WithCarousel(R.string.module_moreApps_customization_filter_carousel, CarouselFilter),
     WithSections(R.string.module_moreApps_customization_filter_sections, SectionsFilter);
 
     companion object {
         fun fromValue(value: String?) = when (value) {
-            CarouselFilter -> WithCarousel
             SectionsFilter -> WithSections
             else -> None
         }
