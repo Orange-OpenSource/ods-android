@@ -24,7 +24,7 @@ private val Colors.onPrimarySurface
     get() = if (isLight) onPrimary else onSurface
 
 class OdsComponentsColors(
-    val systemBarsBackground: Color,
+    val statusBar: OdsStatusBarColors,
     val bottomNavigation: OdsBottomNavigationColors,
     val floatingActionButton: OdsFloatingActionButtonColors,
     val switch: OdsSwitchColors,
@@ -32,8 +32,24 @@ class OdsComponentsColors(
     val topAppBar: OdsTopAppBarColors
 ) {
 
-    class Builder internal constructor(val systemBarsBackground: Color) {
+    @Deprecated(
+        "Please use constructor with statusBar parameter of type OdsStatusBarColors instead.",
+        replaceWith = ReplaceWith("OdsComponentsColors(statusBar, bottomNavigation, floatingActionButton, switch, tab, topAppBar)")
+    )
+    constructor(
+        systemBarsBackground: Color,
+        bottomNavigation: OdsBottomNavigationColors,
+        floatingActionButton: OdsFloatingActionButtonColors,
+        switch: OdsSwitchColors,
+        tab: OdsTabColors,
+        topAppBar: OdsTopAppBarColors
+    ) : this(
+        OdsStatusBarColors(systemBarsBackground, false),
+        bottomNavigation, floatingActionButton, switch, tab, topAppBar
+    )
 
+    class Builder internal constructor() {
+        var statusBar: OdsStatusBarColors? = null
         var bottomNavigation: OdsBottomNavigationColors? = null
         var floatingActionButton: OdsFloatingActionButtonColors? = null
         var switch: OdsSwitchColors? = null
@@ -41,7 +57,7 @@ class OdsComponentsColors(
         var topAppBar: OdsTopAppBarColors? = null
 
         internal fun build(materialColors: Colors) = OdsComponentsColors(
-            systemBarsBackground,
+            statusBar ?: materialColors.DefaultOdsStatusBarColors,
             bottomNavigation ?: materialColors.DefaultOdsBottomNavigationColors,
             floatingActionButton ?: materialColors.DefaultOdsFloatingActionButtonColors,
             switch ?: materialColors.DefaultOdsSwitchColors,
@@ -52,9 +68,39 @@ class OdsComponentsColors(
 }
 
 @Suppress("FunctionName")
-fun OdsComponentsColors(systemBarsBackground: Color, init: OdsComponentsColors.Builder.() -> Unit = {}): OdsComponentsColors.Builder {
-    return OdsComponentsColors.Builder(systemBarsBackground).apply(init)
+fun OdsComponentsColors(init: OdsComponentsColors.Builder.() -> Unit = {}): OdsComponentsColors.Builder {
+    return OdsComponentsColors.Builder().apply(init)
 }
+
+@Suppress("FunctionName")
+@Deprecated(
+    "Please use OdsComponentColors function with only init parameter instead.",
+    replaceWith = ReplaceWith("OdsComponentsColors(init)")
+)
+fun OdsComponentsColors(systemBarsBackground: Color, init: OdsComponentsColors.Builder.() -> Unit = {}): OdsComponentsColors.Builder {
+    return OdsComponentsColors.Builder().apply(init).apply {
+        statusBar = OdsStatusBarColors(background = systemBarsBackground)
+    }
+}
+
+/**
+ * Customizable colors for status bar
+ *
+ * @attribute background Background color of the status bar.
+ * @attribute isAppearanceLight Controls the items color of the status bar. When `true`, the items on the bar can be read clearly on a light background.
+ *
+ * Use [Colors.DefaultOdsStatusBarColors] to get the default component's colors based on Material Colors defined in theme
+ */
+data class OdsStatusBarColors(
+    val background: Color,
+    val isAppearanceLight: Boolean = false
+)
+
+internal val Colors.DefaultOdsStatusBarColors
+    get() = OdsStatusBarColors(
+        background = primaryVariant,
+        isAppearanceLight = false
+    )
 
 /**
  * Customizable colors for `OdsBottomNavigation` component

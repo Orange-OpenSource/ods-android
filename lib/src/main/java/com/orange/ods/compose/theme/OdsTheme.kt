@@ -12,6 +12,7 @@
 
 package com.orange.ods.compose.theme
 
+import androidx.activity.ComponentActivity
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.LocalContentColor
 import androidx.compose.material.MaterialTheme
@@ -21,8 +22,13 @@ import androidx.compose.material.ripple.RippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
+import androidx.core.view.WindowCompat
 import com.orange.ods.theme.OdsComponentsConfiguration
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.theme.colors.OdsColors
@@ -102,6 +108,7 @@ fun OdsTheme(
             colors = colors.material,
             typography = themeConfiguration.typography.materialTypography
         ) {
+            SystemBarsColorSideEffect()
             content()
         }
     }
@@ -148,6 +155,27 @@ fun OdsThemeTweak(tweakType: OdsThemeTweakType, content: @Composable () -> Unit)
             typography = LocalTypography.current.materialTypography
         ) {
             content()
+        }
+    }
+}
+
+/**
+ * Manages the system bars appearance based on theme configuration.
+ */
+@Composable
+private fun SystemBarsColorSideEffect() {
+    val systemBarsBackground = OdsTheme.colors.components.statusBar.background
+    val isAppearanceLightBars = OdsTheme.colors.components.statusBar.isAppearanceLight
+    val activity = LocalContext.current as? ComponentActivity
+    activity?.window?.let { window ->
+        val view = LocalView.current
+        SideEffect {
+            window.statusBarColor = systemBarsBackground.toArgb()
+            window.navigationBarColor = systemBarsBackground.toArgb()
+            with(WindowCompat.getInsetsController(window, view)) {
+                isAppearanceLightStatusBars = isAppearanceLightBars
+                isAppearanceLightNavigationBars = isAppearanceLightBars
+            }
         }
     }
 }

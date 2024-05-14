@@ -16,6 +16,7 @@ import androidx.compose.material.Colors
 import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.colors.OdsComponentsColors
 import com.orange.ods.theme.colors.OdsFunctionalColors
+import com.orange.ods.theme.colors.OdsStatusBarColors
 
 internal val InnovationCupLightColors = OdsColors(
     material = Colors(
@@ -43,9 +44,7 @@ internal val InnovationCupLightColors = OdsColors(
         alert = Yellow
     ),
 
-    components = OdsComponentsColors(
-        systemBarsBackground = PrimaryDark
-    )
+    components = OdsComponentsColors()
 )
 
 internal val InnovationCupDarkColors = OdsColors(
@@ -74,7 +73,10 @@ internal val InnovationCupDarkColors = OdsColors(
         alert = Yellow
     ),
 
-    components = OdsComponentsColors(
-        systemBarsBackground = Black
-    )
+    components = OdsComponentsColors {
+        statusBar = OdsStatusBarColors(
+            background = Black,
+            isAppearanceLight = false
+        )
+    }
 )
