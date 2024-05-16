@@ -16,6 +16,7 @@ import androidx.activity.ComponentActivity
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.test.assertContentDescriptionEquals
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertIsNotDisplayed
@@ -66,8 +67,16 @@ internal class OdsTopAppBarTest {
             }
 
             onNodeWithText(title).assertIsDisplayed()
-            onNode(isTopAppBarNavigationIcon(navigationIcon)).assertIsDisplayed()
-            actions.forEach { onNode(isTopAppBarActionButton(it)).assertIsDisplayed() }
+            onNode(isTopAppBarNavigationIcon(navigationIcon)).apply {
+                assertIsDisplayed()
+                assertContentDescriptionEquals(navigationIcon.contentDescription)
+            }
+            actions.forEach { action ->
+                onNode(isTopAppBarActionButton(action)).apply {
+                    assertIsDisplayed()
+                    assertContentDescriptionEquals(action.contentDescription)
+                }
+            }
             onNode(isTopAppBarOverflowMenu(composeTestRule.activity)).assertIsDisplayed()
             overflowMenuItems.forEach { onNode(isDropdownMenuItem(it)).assertIsNotDisplayed() }
         }

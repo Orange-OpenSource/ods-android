@@ -13,6 +13,7 @@
 package com.orange.ods.compose.component.banner
 
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.test.assertContentDescriptionEquals
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
@@ -50,7 +51,10 @@ internal class OdsBannerTest {
             }
 
             onNodeWithText(message).assertIsDisplayed()
-            onNode(isBannerImage(image)).assertIsDisplayed()
+            onNode(isBannerImage(image)).apply {
+                assertIsDisplayed()
+                assertContentDescriptionEquals(image.contentDescription)
+            }
             onNode(isBannerButton(firstButton)).assertIsDisplayed()
             onNode(isBannerButton(secondButton)).assertIsDisplayed()
         }
