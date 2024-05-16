@@ -14,7 +14,7 @@ import com.orange.ods.gradle.Dependencies
 import com.orange.ods.gradle.Versions
 
 plugins {
-    id("com.google.devtools.ksp") version "1.9.23-1.0.20"
+    id("com.google.devtools.ksp") version "1.9.24-1.0.20"
     id("library")
     id("github")
     id("kotlin-parcelize")
