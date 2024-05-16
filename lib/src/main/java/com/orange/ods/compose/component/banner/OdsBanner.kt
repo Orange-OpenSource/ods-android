@@ -192,7 +192,7 @@ object OdsBanner {
 
 @UiModePreviews.Default
 @Composable
-internal fun PreviewOdsBanner(@PreviewParameter(OdsBannerPreviewParameterProvider::class) parameter: OdsBannerPreviewParameter) {
+private fun PreviewOdsBanner(@PreviewParameter(OdsBannerPreviewParameterProvider::class) parameter: OdsBannerPreviewParameter) {
     PreviewOdsBanner(isSystemInDarkTheme(), parameter = parameter)
 }
 

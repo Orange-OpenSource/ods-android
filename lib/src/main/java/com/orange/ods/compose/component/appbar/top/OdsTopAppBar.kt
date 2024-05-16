@@ -72,7 +72,7 @@ fun OdsTopAppBar(
 
 @UiModePreviews.Default
 @Composable
-internal fun PreviewOdsTopAppBar() = OdsPreview {
+private fun PreviewOdsTopAppBar() = OdsPreview {
     PreviewOdsTopAppBar(isSystemInDarkTheme())
 }
 
