@@ -40,7 +40,7 @@ object Versions {
     const val kotlin = "1.9.24"
     const val kotlinPoet = "1.16.0"
     const val ksp = "1.9.24-1.0.20"
-    const val lifecycle = "2.7.0"
+    const val lifecycle = "2.8.0"
     const val material = "1.12.0"
     const val navigation = "2.7.7"
     const val testExtJUnit = "1.1.5"
