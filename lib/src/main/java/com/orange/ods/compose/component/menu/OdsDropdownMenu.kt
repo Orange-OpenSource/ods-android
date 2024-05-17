@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.DpOffset
@@ -65,7 +66,11 @@ fun OdsDropdownMenu(
         modifier = modifier.background(OdsTheme.colors.surface),
         offset = offset,
         properties = properties,
-        content = { items.forEach { it.Content(OdsDropdownMenu.Item.ExtraParameters(onDismissRequest)) } }
+        content = {
+            items.forEachIndexed { index, item ->
+                item.Content(OdsDropdownMenu.Item.ExtraParameters(index, onDismissRequest))
+            }
+        }
     )
 }
 
@@ -94,6 +99,7 @@ object OdsDropdownMenu {
     ) : OdsComponentContent<Item.ExtraParameters>(ExtraParameters::class.java) {
 
         data class ExtraParameters internal constructor(
+            internal val index: Int,
             internal val onDismissRequest: () -> Unit
         ) : OdsComponentContent.ExtraParameters()
 
@@ -185,7 +191,7 @@ object OdsDropdownMenu {
                     }
                     OdsText(text = text, style = OdsTextStyle.BodyL, enabled = enabled)
                 }
-                if (divider) OdsDivider()
+                if (divider) OdsDivider(modifier = Modifier.testTag("OdsDropdownMenu.Item.$index.Divider"))
             }
         }
     }

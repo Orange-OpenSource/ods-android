@@ -40,9 +40,6 @@ dependencies {
     implementation(platform(Dependencies.composeBom))
     implementation(Dependencies.composeMaterial)
     implementation(Dependencies.composeUi)
-
-    testImplementation(Dependencies.jUnit)
-    androidTestImplementation(Dependencies.testExtJUnit)
 }
 
 mavenCentralPublish {

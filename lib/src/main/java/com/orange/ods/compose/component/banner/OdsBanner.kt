@@ -13,6 +13,7 @@
 package com.orange.ods.compose.component.banner
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -147,7 +148,7 @@ object OdsBanner {
      * @param text Text of the button.
      * @param onClick Will be called when the user clicks the button.
      */
-    class Button(private val text: String, private val onClick: () -> Unit) : OdsComponentContent<Nothing>(Nothing::class.java) {
+    class Button(val text: String, val onClick: () -> Unit) : OdsComponentContent<Nothing>(Nothing::class.java) {
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -191,29 +192,32 @@ object OdsBanner {
 
 @UiModePreviews.Default
 @Composable
-private fun PreviewOdsBanner(@PreviewParameter(OdsBannerPreviewParameterProvider::class) parameter: OdsBannerPreviewParameter) =
-    OdsPreview {
-        with(parameter) {
-            OdsBanner(
-                message = message,
-                firstButton = firstButtonText?.let { OdsBanner.Button(it) {} },
-                image = imageRes?.let { OdsBanner.Image(painterResource(id = it), "") },
-                secondButton = secondButtonText?.let { OdsBanner.Button(it) {} },
-            )
-        }
-    }
+private fun PreviewOdsBanner(@PreviewParameter(OdsBannerPreviewParameterProvider::class) parameter: OdsBannerPreviewParameter) {
+    PreviewOdsBanner(isSystemInDarkTheme(), parameter = parameter)
+}
 
-private data class OdsBannerPreviewParameter(
+@Composable
+internal fun PreviewOdsBanner(darkThemeEnabled: Boolean, parameter: OdsBannerPreviewParameter) = OdsPreview(darkThemeEnabled) {
+    with(parameter) {
+        OdsBanner(
+            message = message,
+            firstButton = firstButtonText?.let { OdsBanner.Button(it) {} },
+            image = imageRes?.let { OdsBanner.Image(painterResource(id = it), "") },
+            secondButton = secondButtonText?.let { OdsBanner.Button(it) {} },
+        )
+    }
+}
+
+internal data class OdsBannerPreviewParameter(
     val message: String,
     val firstButtonText: String? = null,
     val secondButtonText: String? = null,
     val imageRes: Int? = null
 )
 
-private class OdsBannerPreviewParameterProvider :
-    BasicPreviewParameterProvider<OdsBannerPreviewParameter>(*previewParameterValues.toTypedArray())
+internal class OdsBannerPreviewParameterProvider : BasicPreviewParameterProvider<OdsBannerPreviewParameter>(*previewParameterValues.toTypedArray())
 
-private val previewParameterValues: List<OdsBannerPreviewParameter>
+internal val previewParameterValues: List<OdsBannerPreviewParameter>
     get() {
         val imageRes = R.drawable.placeholder
         val shortMessage = "Here is a short banner message."
