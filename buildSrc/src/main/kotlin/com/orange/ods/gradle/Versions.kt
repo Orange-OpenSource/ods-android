@@ -41,7 +41,7 @@ object Versions {
     const val ksp = "1.9.24-1.0.20"
     const val lifecycle = "2.8.0"
     const val material = "1.12.0"
-    const val mockitoAndroid = "5.11.0"
+    const val mockitoAndroid = "5.12.0"
     const val mockitoKotlin = "5.3.1"
     const val navigation = "2.7.7"
     const val timber = "5.0.1"
