@@ -14,13 +14,12 @@ package com.orange.ods.theme
 
 import android.os.Parcelable
 import androidx.compose.material.Shapes
-import com.orange.ods.theme.annotation.ExperimentalOdsApi
+import com.orange.ods.theme.colors.OdsColorPalette
 import com.orange.ods.theme.colors.OdsColors
-import com.orange.ods.theme.guideline.OdsGuideline
 import com.orange.ods.theme.spacing.OdsSpacings
 import com.orange.ods.theme.typography.OdsTypography
 
-interface OdsThemeConfigurationContract : Parcelable {
+interface OdsThemeConfigurationContract<T> : Parcelable where T : OdsColorPalette {
 
     val name: String
 
@@ -28,7 +27,7 @@ interface OdsThemeConfigurationContract : Parcelable {
      * Customization of the colors
      * Colors are different in light and dark
      */
-    val colors: OdsThemeColors
+    val colors: OdsThemeColors<T>
 
     /**
      * Customization of the typography if needed
@@ -54,15 +53,6 @@ interface OdsThemeConfigurationContract : Parcelable {
      */
     val componentsConfiguration: OdsComponentsConfiguration
         get() = OdsComponentsConfiguration()
-
-    /**
-     * Guideline definition
-     * By default a guideline typography is generated based on the theme configuration typography defined.
-     */
-    @OptIn(ExperimentalOdsApi::class)
-    val guideline: OdsGuideline
-        get() = OdsGuideline(typography)
-
 }
 
-data class OdsThemeColors(val lightColors: OdsColors, val darkColors: OdsColors)
+data class OdsThemeColors<T>(val lightColors: OdsColors, val darkColors: OdsColors, val palette: T) where T : OdsColorPalette

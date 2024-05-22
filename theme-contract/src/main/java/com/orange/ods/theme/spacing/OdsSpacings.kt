@@ -49,7 +49,4 @@ interface OdsSpacingsCatalog<T> : OdsThemeConfigurationItem.Catalog<T> {
     val large: T
     val extraLarge: T
     val extraExtraLarge: T
-
-    override val entries: List<T>
-        get() = listOf(none, extraSmall, small, medium, large, extraLarge, extraExtraLarge)
 }

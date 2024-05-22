@@ -48,99 +48,68 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.orange.ods.app.R
-import com.orange.ods.app.ui.LocalGuideline
 import com.orange.ods.app.ui.utilities.composable.Title
-import com.orange.ods.app.ui.utilities.extension.getStringName
+import com.orange.ods.app.ui.utilities.extension.CatalogEntry
+import com.orange.ods.app.ui.utilities.extension.entries
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.theme.annotation.ExperimentalOdsApi
-import com.orange.ods.theme.guideline.GuidelineColor
-import com.orange.ods.theme.guideline.GuidelineColorType
-import com.orange.ods.theme.guideline.toHexString
-import com.orange.ods.theme.guideline.toRgbString
+import com.orange.ods.theme.extension.toHexString
+import com.orange.ods.theme.extension.toRgbString
 
-@OptIn(ExperimentalOdsApi::class)
 @Composable
 fun GuidelineColorScreen() {
-    val guidelineColors = LocalGuideline.current.guidelineColors
+    val guidelineColors = OdsTheme.colors
 
-    val coreColors = guidelineColors.filter { it.type == GuidelineColorType.Core }
-    val functionalColors = guidelineColors.filter { it.type == GuidelineColorType.Functional }
-    val supportingColors = guidelineColors.filter { it.type == GuidelineColorType.Supporting }
+    val coreColors = guidelineColors.entries
+    val functionalColors = guidelineColors.functional.entries
 
-    if (guidelineColors.isEmpty()) {
-        OdsText(
-            modifier = Modifier.padding(
-                horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin),
-                vertical = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin)
-            ),
-            text = stringResource(id = R.string.guideline_colour_no_colours_defined),
-            style = OdsTheme.typography.bodyLarge
-        )
-    } else {
-        LazyColumn(
-            contentPadding = PaddingValues(
-                start = OdsTheme.spacings.medium.dp,
-                end = OdsTheme.spacings.medium.dp,
-                top = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin),
-                bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin)
-            ),
-            verticalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium.dp),
-        ) {
-            if (coreColors.isNotEmpty()) {
-                item {
-                    Title(textRes = R.string.guideline_colour_core, modifier = Modifier.semantics { heading() })
-                }
-                items(coreColors.chunked(2)) { rowColors ->
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium.dp),
-                    ) {
-                        BigColorItem(color = rowColors[0])
-                        BigColorItem(color = rowColors[1])
-                    }
+    LazyColumn(
+        contentPadding = PaddingValues(
+            start = OdsTheme.spacings.medium.dp,
+            end = OdsTheme.spacings.medium.dp,
+            top = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin),
+            bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin)
+        ),
+        verticalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium.dp),
+    ) {
+        if (coreColors.isNotEmpty()) {
+            item {
+                Title(textRes = R.string.guideline_colour_core, modifier = Modifier.semantics { heading() })
+            }
+            items(coreColors.chunked(2)) { rowColors ->
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium.dp),
+                ) {
+                    BigColorItem(colorEntry = rowColors[0])
+                    BigColorItem(colorEntry = rowColors[1])
                 }
             }
+        }
 
-            if (functionalColors.isNotEmpty()) {
-                item {
-                    Title(textRes = R.string.guideline_colour_functional, modifier = Modifier.semantics { heading() }, topPadding = true)
-                }
-                items(functionalColors.chunked(2)) { rowColors ->
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium.dp),
-                    ) {
-                        BigColorItem(color = rowColors[0])
-                        BigColorItem(color = rowColors[1])
-                    }
-                }
+        if (functionalColors.isNotEmpty()) {
+            item {
+                Title(textRes = R.string.guideline_colour_functional, modifier = Modifier.semantics { heading() }, topPadding = true)
             }
-
-            if (supportingColors.isNotEmpty()) {
-                item {
-                    Title(textRes = R.string.guideline_colour_supporting, modifier = Modifier.semantics { heading() }, topPadding = true)
-                }
-                items(supportingColors.chunked(3)) { rowColors ->
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium.dp),
-                    ) {
-                        SmallColorItem(color = rowColors[0])
-                        SmallColorItem(color = rowColors[1])
-                        SmallColorItem(color = rowColors[2])
-                    }
+            items(functionalColors.chunked(2)) { rowColors ->
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium.dp),
+                ) {
+                    BigColorItem(colorEntry = rowColors[0])
+                    BigColorItem(colorEntry = rowColors[1])
                 }
             }
         }
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalOdsApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun RowScope.SmallColorItem(color: GuidelineColor) {
+private fun RowScope.SmallColorItem(colorEntry: CatalogEntry<Color>) {
     val openDialog = remember { mutableStateOf(false) }
     val context = LocalContext.current
     val clipboardManager = LocalClipboardManager.current
-    val colorValue = color.getValue(OdsTheme.colors)
+    val colorValue = colorEntry.value
     Column(
         modifier = Modifier
             .weight(0.33f)
@@ -156,70 +125,68 @@ private fun RowScope.SmallColorItem(color: GuidelineColor) {
                 .aspectRatio(1f)
         )
         OdsText(
-            text = color.getName(),
+            text = colorEntry.description,
             modifier = Modifier.padding(top = OdsTheme.spacings.extraSmall.dp),
             style = OdsTheme.typography.titleLarge
         )
         OdsText(text = colorValue.toHexString(), style = OdsTheme.typography.bodySmall)
     }
     if (openDialog.value) {
-        DialogColor(color = color, openDialog)
+        DialogColor(colorEntry = colorEntry, openDialog)
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalOdsApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun RowScope.BigColorItem(color: GuidelineColor) {
+private fun RowScope.BigColorItem(colorEntry: CatalogEntry<Color>) {
     val openDialog = remember { mutableStateOf(false) }
     val context = LocalContext.current
     val clipboardManager = LocalClipboardManager.current
-    val colorValue = color.getValue(OdsTheme.colors)
     Column(
         modifier = Modifier
             .weight(0.5f)
             .combinedClickable(
-                onLongClick = { copyColorToClipboard(context, colorValue, clipboardManager) },
+                onLongClick = { copyColorToClipboard(context, colorEntry.value, clipboardManager) },
                 onClick = { openDialog.value = true }
             ),
     ) {
         val boxColorModifier = Modifier
-            .background(color = colorValue)
+            .background(color = colorEntry.value)
             .fillMaxWidth()
             .aspectRatio(1f)
         Box(
-            modifier = if (colorValue == OdsTheme.colors.background) {
+            modifier = if (colorEntry.value == OdsTheme.colors.background) {
                 boxColorModifier.border(BorderStroke(1.dp, OdsTheme.colors.onBackground))
             } else {
                 boxColorModifier
             }
         )
         OdsText(
-            text = color.getName(),
+            text = colorEntry.description,
             modifier = Modifier.padding(top = OdsTheme.spacings.extraSmall.dp),
             style = OdsTheme.typography.titleLarge
         )
-        OdsText(text = color.callableName, style = OdsTheme.typography.bodyLarge)
+        OdsText(text = colorEntry.name, style = OdsTheme.typography.bodyLarge)
         OdsText(
             modifier = Modifier.padding(top = OdsTheme.spacings.extraSmall.dp),
-            text = colorValue.toHexString(),
+            text = colorEntry.value.toHexString(),
             style = OdsTheme.typography.bodySmall
         )
         OdsText(
-            text = colorValue.toRgbString(),
+            text = colorEntry.value.toRgbString(),
             style = OdsTheme.typography.bodySmall
         )
     }
     if (openDialog.value) {
-        DialogColor(color = color, openDialog)
+        DialogColor(colorEntry = colorEntry, openDialog)
     }
 }
 
-@OptIn(ExperimentalOdsApi::class)
 @Composable
-fun DialogColor(color: GuidelineColor, openDialog: MutableState<Boolean>) {
+fun DialogColor(colorEntry: CatalogEntry<Color>, openDialog: MutableState<Boolean>) {
     val context = LocalContext.current
     val clipboardManager = LocalClipboardManager.current
-    val colorValue = color.getValue(OdsTheme.colors)
+    val colorValue = colorEntry.value
     Dialog(
         onDismissRequest = { openDialog.value = false },
     ) {
@@ -239,10 +206,10 @@ fun DialogColor(color: GuidelineColor, openDialog: MutableState<Boolean>) {
                         vertical = OdsTheme.spacings.small.dp
                     )
             ) {
-                OdsText(text = color.getName(), style = OdsTheme.typography.headlineSmall)
+                OdsText(text = colorEntry.description, style = OdsTheme.typography.headlineSmall)
                 OdsText(
                     modifier = Modifier.padding(top = OdsTheme.spacings.extraSmall.dp),
-                    text = color.callableName,
+                    text = colorEntry.name,
                     style = OdsTheme.typography.bodyLarge
                 )
                 OdsText(
@@ -255,16 +222,6 @@ fun DialogColor(color: GuidelineColor, openDialog: MutableState<Boolean>) {
                     text = colorValue.toRgbString(),
                     style = OdsTheme.typography.bodyLarge
                 )
-                color.xmlResource?.let { xmlResource ->
-                    OdsText(
-                        modifier = Modifier.padding(top = OdsTheme.spacings.small.dp),
-                        text = stringResource(
-                            id = R.string.guideline_colour_xml,
-                            context.getStringName(xmlResource)
-                        ),
-                        style = OdsTheme.typography.bodyLarge
-                    )
-                }
                 OdsButton(
                     modifier = Modifier.padding(top = OdsTheme.spacings.small.dp),
                     text = stringResource(id = R.string.guideline_colour_copy_to_clipboard_button_title),

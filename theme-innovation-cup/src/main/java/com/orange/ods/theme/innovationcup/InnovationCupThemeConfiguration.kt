@@ -21,13 +21,13 @@ import com.orange.ods.theme.OdsThemeConfigurationContract
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class InnovationCupThemeConfiguration : OdsThemeConfigurationContract {
+class InnovationCupThemeConfiguration : OdsThemeConfigurationContract<InnovationCupPalette> {
 
     override val name: String
         get() = "Innovation Cup"
 
-    override val colors: OdsThemeColors
-        get() = OdsThemeColors(InnovationCupLightColors, InnovationCupDarkColors)
+    override val colors: OdsThemeColors<InnovationCupPalette>
+        get() = OdsThemeColors(InnovationCupLightColors, InnovationCupDarkColors, InnovationCupPalette)
 
     override val shapes: Shapes
         get() = Shapes().copy(

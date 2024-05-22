@@ -31,17 +31,17 @@ import androidx.compose.ui.text.withStyle
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.DetailScreenHeader
+import com.orange.ods.app.ui.utilities.extension.CatalogEntry
+import com.orange.ods.app.ui.utilities.extension.entries
 import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.OdsToken
-import com.orange.ods.theme.description
 import com.orange.ods.theme.typography.OdsTextStyle
-import com.orange.ods.theme.typography.OdsTypography
 
 @Composable
 fun GuidelineTypographyScreen() {
-    val typographyTokens = OdsTheme.typography.tokens.entries
+    val typographyTokenEntries = OdsTheme.typography.tokens.entries
 
     LazyColumn(
         contentPadding = PaddingValues(bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin)),
@@ -54,9 +54,9 @@ fun GuidelineTypographyScreen() {
             )
         }
 
-        itemsIndexed(typographyTokens) { index, textStyle ->
-            TextStyleRow(textStyle)
-            if (index < typographyTokens.lastIndex) {
+        itemsIndexed(typographyTokenEntries) { index, textStyleTokenEntry ->
+            TextStyleRow(textStyleTokenEntry)
+            if (index < typographyTokenEntries.lastIndex) {
                 OdsDivider(
                     modifier = Modifier
                         .padding(top = OdsTheme.spacings.medium.dp)
@@ -68,33 +68,31 @@ fun GuidelineTypographyScreen() {
 }
 
 @Composable
-private fun TextStyleRow(textStyleToken: OdsToken<OdsTextStyle>) {
+private fun TextStyleRow(textStyleTokenEntry: CatalogEntry<OdsToken<OdsTextStyle>>) {
     val textColor = OdsTheme.colors.onBackground
     Column(modifier = Modifier
         .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
         .semantics(mergeDescendants = true) {}) {
         OdsText(
-            text = textStyleToken.description,
-            style = textStyleToken.value,
+            text = textStyleTokenEntry.description,
+            style = textStyleTokenEntry.value.value,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
-        textStyleToken.composeTextStyle?.let { composeTextStyle ->
-            Text(
-                text = buildAnnotatedString {
-                    append("Compose: ")
-                    withStyle(style = SpanStyle(fontStyle = FontStyle.Italic)) {
-                        append(composeTextStyle)
-                    }
-                },
-                color = textColor
-            )
-        }
+        Text(
+            text = buildAnnotatedString {
+                append("Compose: ")
+                withStyle(style = SpanStyle(fontStyle = FontStyle.Italic)) {
+                    append(textStyleTokenEntry.composeTextStyle)
+                }
+            },
+            color = textColor
+        )
         Text(
             text = buildAnnotatedString {
                 append("Token: ")
                 withStyle(style = SpanStyle(fontStyle = FontStyle.Italic)) {
-                    append(textStyleToken.name)
+                    append(textStyleTokenEntry.value.name)
                 }
             },
             color = textColor
@@ -102,21 +100,5 @@ private fun TextStyleRow(textStyleToken: OdsToken<OdsTextStyle>) {
     }
 }
 
-val OdsToken<OdsTextStyle>.composeTextStyle: String?
-    get() {
-        val textStyleProperty = when (name) {
-            OdsToken.TextStyle.HeadlineLarge -> OdsTypography::headlineLarge
-            OdsToken.TextStyle.HeadlineSmall -> OdsTypography::headlineSmall
-            OdsToken.TextStyle.TitleLarge -> OdsTypography::titleLarge
-            OdsToken.TextStyle.TitleMedium -> OdsTypography::titleMedium
-            OdsToken.TextStyle.TitleSmall -> OdsTypography::titleSmall
-            OdsToken.TextStyle.BodyLarge -> OdsTypography::bodyLarge
-            OdsToken.TextStyle.BodyMedium -> OdsTypography::bodyMedium
-            OdsToken.TextStyle.BodySmall -> OdsTypography::bodySmall
-            OdsToken.TextStyle.LabelLarge -> OdsTypography::labelLarge
-            OdsToken.TextStyle.LabelSmall -> OdsTypography::labelSmall
-            else -> null
-        }
-
-        return textStyleProperty?.let { "OdsTheme.typography.${it.name}" }
-    }
+val CatalogEntry<OdsToken<OdsTextStyle>>.composeTextStyle: String
+    get() = "OdsTheme.typography.${name}"

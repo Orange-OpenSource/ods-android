@@ -17,13 +17,7 @@ object OdsThemeConfigurationItem {
     /**
      * An interface implemented by some items in [OdsThemeConfigurationContract] that enumerate a catalog of properties.
      */
-    interface Catalog<T> {
-
-        /**
-         * The list of all entries in this catalog.
-         */
-        val entries: List<T>
-    }
+    interface Catalog<T>
 
     /**
      * An interface implemented by some items in [OdsThemeConfigurationContract] that provide tokens.

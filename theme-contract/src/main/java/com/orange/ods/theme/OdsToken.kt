@@ -12,15 +12,13 @@
 
 package com.orange.ods.theme
 
-import com.orange.ods.theme.typography.OdsTextStyle
-
 /**
  * Represents an Orange Design System token.
  *
  * @property name The token name.
  * @property value The token value.
  */
-class OdsToken<T>(val name: String, val value: T) {
+class OdsToken<T> internal constructor(val name: String, val value: T) {
 
     object Spacing {
 
@@ -46,19 +44,67 @@ class OdsToken<T>(val name: String, val value: T) {
         const val LabelLarge = "ods.aos.sys.font.label.l"
         const val LabelSmall = "ods.aos.sys.font.label.s"
     }
-}
 
-val OdsToken<OdsTextStyle>.description: String
-    get() = when (name) {
-        OdsToken.TextStyle.HeadlineLarge -> "Headline Large"
-        OdsToken.TextStyle.HeadlineSmall -> "Headline Small"
-        OdsToken.TextStyle.TitleLarge -> "Title Large"
-        OdsToken.TextStyle.TitleMedium -> "Title Medium"
-        OdsToken.TextStyle.TitleSmall -> "Title Small"
-        OdsToken.TextStyle.BodyLarge -> "Body Large"
-        OdsToken.TextStyle.BodyMedium -> "Body Medium"
-        OdsToken.TextStyle.BodySmall -> "Body Small"
-        OdsToken.TextStyle.LabelLarge -> "Label Large"
-        OdsToken.TextStyle.LabelSmall -> "Label Small"
-        else -> name
+    object Colors {
+
+        const val Primary = "Colors.Primary"
+        const val PrimaryVariant = "Colors.PrimaryVariant"
+        const val Secondary = "Colors.Secondary"
+        const val SecondaryVariant = "Colors.SecondaryVariant"
+        const val Background = "Colors.Background"
+        const val Surface = "Colors.Surface"
+        const val Error = "Colors.Error"
+        const val OnPrimary = "Colors.OnPrimary"
+        const val OnSecondary = "Colors.OnSecondary"
+        const val OnBackground = "Colors.OnBackground"
+        const val OnSurface = "Colors.OnSurface"
+        const val OnError = "Colors.OnError"
+
+        object Functional {
+
+            const val Positive = "Colors.Functional.Positive"
+            const val OnPositive = "Colors.Functional.OnPositive"
+            const val Negative = "Colors.Functional.Negative"
+            const val OnNegative = "Colors.Functional.OnNegative"
+            const val Info = "Colors.Functional.Info"
+            const val Alert = "Colors.Functional.Alert"
+        }
+
+        object Component {
+
+            const val SystemBarsBackground = "Colors.Component.SystemBarsBackground"
+
+            object BottomNavigation {
+
+                const val BarBackground = "Colors.Component.BottomNavigation.BarBackground"
+                const val BarContent = "Colors.Component.BottomNavigation.BarContent"
+                const val ItemSelected = "Colors.Component.BottomNavigation.ItemSelected"
+                const val ItemUnselected = "Colors.Component.BottomNavigation.ItemUnselected"
+            }
+
+            object FloatingActionButton {
+
+                const val Background = "Colors.Component.FloatingActionButton.Background"
+                const val Content = "Colors.Component.FloatingActionButton.Content"
+            }
+
+            object TopAppBar {
+
+                const val BarBackground = "Colors.Component.TopAppBar.BarBackground"
+                const val BarContent = "Colors.Component.TopAppBar.BarContent"
+            }
+
+            object Switch {
+
+                const val UncheckedThumb = "Colors.Component.Switch.UncheckedThumb"
+            }
+
+            object Tab {
+
+                const val Background = "Colors.Component.Tab.Background"
+                const val SelectedContent = "Colors.Component.Tab.SelectedContent"
+                const val UnselectedContent = "Colors.Component.Tab.UnselectedContent"
+            }
+        }
     }
+}

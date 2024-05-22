@@ -25,6 +25,7 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ods.theme.OdsComponentsConfiguration
 import com.orange.ods.theme.OdsThemeConfigurationContract
+import com.orange.ods.theme.colors.OdsColorPalette
 import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.spacing.OdsSpacings
 import com.orange.ods.theme.typography.OdsTypography
@@ -34,6 +35,7 @@ private fun odsThemeError(message: Any): Nothing = error("OdsTheme not found. $m
 internal val LocalColors = staticCompositionLocalOf<OdsColors> { odsThemeError("LocalColors CompositionLocal not present") }
 private val LocalLightThemeColors = compositionLocalOf<OdsColors> { odsThemeError("LocalLightThemeColors CompositionLocal not present") }
 private val LocalDarkThemeColors = compositionLocalOf<OdsColors> { odsThemeError("LocalDarkThemeColors CompositionLocal not present") }
+internal val LocalColorPalette = staticCompositionLocalOf<OdsColorPalette> { odsThemeError("LocalColorPalette CompositionLocal not present") }
 
 private val LocalShapes = staticCompositionLocalOf { Shapes() }
 private val LocalTypography = staticCompositionLocalOf { OdsTypography() }
@@ -58,6 +60,11 @@ object OdsTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalDarkThemeColors.current
+
+    val colorPalette: OdsColorPalette
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalColorPalette.current
 
     val typography: OdsTypography
         @Composable
@@ -89,7 +96,7 @@ object OdsTheme {
  */
 @Composable
 fun OdsTheme(
-    themeConfiguration: OdsThemeConfigurationContract,
+    themeConfiguration: OdsThemeConfigurationContract<*>,
     darkThemeEnabled: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
@@ -101,6 +108,7 @@ fun OdsTheme(
         LocalColors provides colors,
         LocalLightThemeColors provides themeConfiguration.colors.lightColors,
         LocalDarkThemeColors provides themeConfiguration.colors.darkColors,
+        LocalColorPalette provides themeConfiguration.colors.palette,
         LocalTypography provides themeConfiguration.typography,
         LocalSpacings provides themeConfiguration.spacings,
         LocalShapes provides themeConfiguration.shapes,

@@ -13,21 +13,30 @@
 package com.orange.ods.theme.innovationcup
 
 import androidx.compose.ui.graphics.Color
+import com.orange.ods.theme.colors.OdsColorPalette
+import com.orange.ods.theme.colors.OdsColorSet
 
-internal val Primary = Color(0xff1675d1)
-internal val PrimaryLight = Color(0xff62a3ff)
-internal val PrimaryDark = Color(0xff004a9f)
+object InnovationCupPalette : OdsColorPalette {
 
-internal val Secondary = Color(0xffb0bec5)
-internal val SecondaryLight = Color(0xffe2f1f8)
-internal val SecondaryDark = Color(0xff808e95)
+    class Core : OdsColorSet {
 
-internal val White = Color(0xffffffff)
-internal val Black = Color(0xff000000)
-internal val DarkGrey = Color(0xff121212)
+        val primary = Color(0xff1675d1)
+        val primaryLight = Color(0xff62a3ff)
+        val primaryDark = Color(0xff004a9f)
 
-internal val Info = Color(0xff4170D8)
-internal val Yellow = Color(0xffffcc00)
-internal val Green = Color(0xff43A047)
-internal val Red = Color(0xffB00020)
+        val secondary = Color(0xffb0bec5)
+        val secondaryLight = Color(0xffe2f1f8)
+        val secondaryDark = Color(0xff808e95)
 
+        val white = Color(0xffffffff)
+        val black = Color(0xff000000)
+        val darkGrey = Color(0xff121212)
+
+        val info = Color(0xff4170D8)
+        val yellow = Color(0xffffcc00)
+        val green = Color(0xff43A047)
+        val red = Color(0xffB00020)
+    }
+
+    val core = Core()
+}

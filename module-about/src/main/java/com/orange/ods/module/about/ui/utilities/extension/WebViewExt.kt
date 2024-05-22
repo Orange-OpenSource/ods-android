@@ -18,7 +18,7 @@ import androidx.compose.ui.graphics.Color
 import com.orange.ods.compose.extension.contentAsString
 import com.orange.ods.module.about.R
 import com.orange.ods.theme.colors.OdsColors
-import com.orange.ods.theme.guideline.toHexString
+import com.orange.ods.theme.extension.toHexString
 
 internal fun WebView.injectLightDarkModeCss(isDarkModeEnabled: Boolean, colors: OdsColors) {
     injectCss(R.raw.base_style, colors)

@@ -10,10 +10,11 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ods.app.ui.utilities.extension
+package com.orange.ods.theme.colors
 
-import com.orange.ods.theme.OdsThemeConfigurationContract
-import com.orange.ods.theme.orange.OrangeThemeConfiguration
+import androidx.compose.ui.graphics.Color
+import com.orange.ods.theme.OdsThemeConfigurationItem
 
-val OdsThemeConfigurationContract<*>.isOrange: Boolean
-    get() = name == OrangeThemeConfiguration.OrangeThemeName
+interface OdsColorSet : OdsThemeConfigurationItem.Catalog<Color>
+
+interface OdsColorPalette : OdsThemeConfigurationItem.Catalog<OdsColorSet>

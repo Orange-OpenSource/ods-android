@@ -68,15 +68,14 @@ import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.module.about.ui.navigation.navigateToOdsAbout
 import com.orange.ods.theme.OdsThemeConfigurationContract
-import com.orange.ods.theme.annotation.ExperimentalOdsApi
 import com.orange.ods.xml.theme.OdsXml
 import com.orange.ods.xml.utilities.extension.xml
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalOdsApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(themeConfigurations: List<OdsThemeConfigurationContract>, mainViewModel: MainViewModel = viewModel()) {
+fun MainScreen(themeConfigurations: List<OdsThemeConfigurationContract<*>>, mainViewModel: MainViewModel = viewModel()) {
     val isSystemInDarkTheme = isSystemInDarkTheme()
     val mainState = rememberMainState(
         themeState = rememberThemeState(
@@ -109,7 +108,6 @@ fun MainScreen(themeConfigurations: List<OdsThemeConfigurationContract>, mainVie
         LocalConfiguration provides configuration,
         LocalAppBarManager provides mainState.appBarState,
         LocalThemeManager provides mainState.themeState,
-        LocalGuideline provides mainState.themeState.currentThemeConfiguration.guideline,
         LocalRecipes provides mainViewModel.recipes,
         LocalCategories provides mainViewModel.categories,
         LocalUiFramework provides mainState.uiFramework
@@ -209,8 +207,8 @@ fun MainScreen(themeConfigurations: List<OdsThemeConfigurationContract>, mainVie
 
 private fun getCurrentThemeConfiguration(
     storedUserThemeName: String?,
-    themeConfigurations: List<OdsThemeConfigurationContract>
-): OdsThemeConfigurationContract {
+    themeConfigurations: List<OdsThemeConfigurationContract<*>>
+): OdsThemeConfigurationContract<*> {
     // Return the stored user theme configuration if it exists. If not, return the Orange theme configuration or the first existing theme configuration
     return themeConfigurations.firstOrNull { it.name == storedUserThemeName }
         .orElse { themeConfigurations.firstOrNull { it.isOrange } }

@@ -13,59 +13,79 @@
 package com.orange.ods.theme.orange
 
 import androidx.compose.ui.graphics.Color
+import com.orange.ods.theme.colors.OdsColorPalette
+import com.orange.ods.theme.colors.OdsColorSet
 
-// Core colors
+object OrangeColorPalette : OdsColorPalette {
 
-internal val Orange100 = Color(0xffff7900)
-internal val Orange200 = Color(0xfff16e00)
-internal val White100 = Color(0xffffffff)
-internal val Black900 = Color(0xff000000)
-internal val ObsGrey700 = Color(0xff595959)
+    class Core : OdsColorSet {
 
-// Supporting colors
+        val orange100 = Color(0xffff7900)
+        val orange200 = Color(0xfff16e00)
+        val white100 = Color(0xffffffff)
+        val black900 = Color(0xff000000)
+        val obsGrey700 = Color(0xff595959)
+    }
 
-internal val Blue100 = Color(0xffB5E8F7)
-internal val Blue200 = Color(0xff4BB4E6)
-internal val Blue300 = Color(0xff085EBD)
+    class Supporting : OdsColorSet {
 
-internal val Yellow100 = Color(0xffFFF6B6)
-internal val Yellow200 = Color(0xffFFD200)
-internal val Yellow300 = Color(0xffFFB400)
+        val blue100 = Color(0xffB5E8F7)
+        val blue200 = Color(0xff4BB4E6)
+        val blue300 = Color(0xff085EBD)
 
-internal val Green100 = Color(0xffB8EBD6)
-internal val Green200 = Color(0xff50BE87)
-internal val Green300 = Color(0xff0A6E31)
+        val yellow100 = Color(0xffFFF6B6)
+        val yellow200 = Color(0xffFFD200)
+        val yellow300 = Color(0xffFFB400)
 
-internal val Purple100 = Color(0xffD9C2F0)
-internal val Purple200 = Color(0xffA885D8)
-internal val Purple300 = Color(0xff492191)
+        val green100 = Color(0xffB8EBD6)
+        val green200 = Color(0xff50BE87)
+        val green300 = Color(0xff0A6E31)
 
-internal val Pink100 = Color(0xffFFE8F7)
-internal val Pink200 = Color(0xffFFB4E6)
-internal val Pink300 = Color(0xffFF8AD4)
+        val purple100 = Color(0xffD9C2F0)
+        val purple200 = Color(0xffA885D8)
+        val purple300 = Color(0xff492191)
 
-// Functional colors
+        val pink100 = Color(0xffFFE8F7)
+        val pink200 = Color(0xffFFB4E6)
+        val pink300 = Color(0xffFF8AD4)
+    }
 
-internal val Info100 = Color(0xff527EDB)
-internal val Info200 = Color(0xff4170D8)
-internal val Alert100 = Color(0xffFFCC00)
-internal val Alert200 = Color(0xff8F7200)
-internal val Positive100 = Color(0xff32C832)
-internal val Positive200 = Color(0xff228722)
-internal val Negative100 = Color(0xffD53F15)
-internal val Negative200 = Color(0xffCD3C14)
+    class Functional : OdsColorSet {
 
-// Grey colors
+        val info100 = Color(0xff527EDB)
+        val info200 = Color(0xff4170D8)
+        val alert100 = Color(0xffFFCC00)
+        val alert200 = Color(0xff8F7200)
+        val positive100 = Color(0xff32C832)
+        val positive200 = Color(0xff228722)
+        val negative100 = Color(0xffD53F15)
+        val negative200 = Color(0xffCD3C14)
+    }
 
-internal val Grey200 = Color(0xffEEEEEE)
-internal val Grey300 = Color(0xffDDDDDD)
-internal val Grey400 = Color(0xffCCCCCC)
-internal val Grey500 = Color(0xff999999)
-internal val Grey600 = Color(0xff666666)
-internal val Grey800 = Color(0xff333333)
+    class Grey : OdsColorSet {
 
-// Custom colors
+        val Grey200 = Color(0xffEEEEEE)
+        val Grey300 = Color(0xffDDDDDD)
+        val Grey400 = Color(0xffCCCCCC)
+        val Grey500 = Color(0xff999999)
+        val Grey600 = Color(0xff666666)
+        val Grey800 = Color(0xff333333)
+    }
 
-internal val DarkSurfaceDefault = Color(0xff121212)
-internal val Transparent = Color(0x00000000)
-internal val SliderActiveTickColor = Color(0xffEBA66C)
+    class Custom : OdsColorSet {
+
+        val DarkSurfaceDefault = Color(0xff121212)
+        val Transparent = Color(0x00000000)
+        val SliderActiveTickColor = Color(0xffEBA66C)
+    }
+
+    val core = Core()
+
+    val supporting = Supporting()
+
+    val functional = Functional()
+
+    val grey = Grey()
+
+    val custom = Custom()
+}

@@ -22,118 +22,122 @@ import com.orange.ods.theme.colors.OdsSwitchColors
 import com.orange.ods.theme.colors.OdsTabColors
 import com.orange.ods.theme.colors.OdsTopAppBarColors
 
-internal val OrangeLightColors = OdsColors(
-    material = Colors(
-        primary = Orange200,
-        primaryVariant = Orange100,
-        secondary = Orange200,
-        secondaryVariant = Orange200,
-        background = White100,
-        surface = White100,
-        error = Negative200,
-        onPrimary = Black900,
-        onSecondary = Black900,
-        onBackground = Black900,
-        onSurface = Black900,
-        onError = Black900,
-        isLight = true
-    ),
+internal val OrangeLightColors = with(OrangeColorPalette) {
+    OdsColors(
+        material = Colors(
+            primary = core.orange200,
+            primaryVariant = core.orange100,
+            secondary = core.orange200,
+            secondaryVariant = core.orange200,
+            background = core.white100,
+            surface = core.white100,
+            error = functional.negative200,
+            onPrimary = core.black900,
+            onSecondary = core.black900,
+            onBackground = core.black900,
+            onSurface = core.black900,
+            onError = core.black900,
+            isLight = true
+        ),
 
-    functional = OdsFunctionalColors(
-        positive = Positive200,
-        onPositive = White100,
-        negative = Negative200,
-        onNegative = White100,
-        info = Info200,
-        alert = Alert200
-    ),
+        functional = OdsFunctionalColors(
+            positive = functional.positive200,
+            onPositive = core.white100,
+            negative = functional.negative200,
+            onNegative = core.white100,
+            info = functional.info200,
+            alert = functional.alert200
+        ),
 
-    components = OdsComponentsColors(
-        systemBarsBackground = White100
-    ) {
-        bottomNavigation = OdsBottomNavigationColors(
-            barBackground = White100,
-            barContent = Black900,
-            itemSelected = Orange200,
-            itemUnselected = Black900
-        )
+        components = OdsComponentsColors(
+            systemBarsBackground = core.white100
+        ) {
+            bottomNavigation = OdsBottomNavigationColors(
+                barBackground = core.white100,
+                barContent = core.black900,
+                itemSelected = core.orange200,
+                itemUnselected = core.black900
+            )
 
-        floatingActionButton = OdsFloatingActionButtonColors(
-            background = Orange200,
-            content = Black900
-        )
+            floatingActionButton = OdsFloatingActionButtonColors(
+                background = core.orange200,
+                content = core.black900
+            )
 
-        topAppBar = OdsTopAppBarColors(
-            barBackground = White100,
-            barContent = Black900
-        )
+            topAppBar = OdsTopAppBarColors(
+                barBackground = core.white100,
+                barContent = core.black900
+            )
 
-        switch = OdsSwitchColors(
-            uncheckedThumb = White100
-        )
+            switch = OdsSwitchColors(
+                uncheckedThumb = core.white100
+            )
 
-        tab = OdsTabColors(
-            background = White100,
-            selectedContent = Orange200,
-            unselectedContent = Black900
-        )
-    }
-)
+            tab = OdsTabColors(
+                background = core.white100,
+                selectedContent = core.orange200,
+                unselectedContent = core.black900
+            )
+        }
+    )
+}
 
-internal val OrangeDarkColors = OdsColors(
-    material = Colors(
-        primary = Orange100,
-        primaryVariant = Orange200,
-        secondary = Orange200,
-        secondaryVariant = Orange200,
-        background = Black900,
-        surface = DarkSurfaceDefault,
-        error = Negative100,
-        onPrimary = Black900,
-        onSecondary = Black900,
-        onBackground = White100,
-        onSurface = White100,
-        onError = Black900,
-        isLight = false
-    ),
+internal val OrangeDarkColors = with(OrangeColorPalette) {
+    OdsColors(
+        material = Colors(
+            primary = core.orange100,
+            primaryVariant = core.orange200,
+            secondary = core.orange200,
+            secondaryVariant = core.orange200,
+            background = core.black900,
+            surface = custom.DarkSurfaceDefault,
+            error = functional.negative100,
+            onPrimary = core.black900,
+            onSecondary = core.black900,
+            onBackground = core.white100,
+            onSurface = core.white100,
+            onError = core.black900,
+            isLight = false
+        ),
 
-    functional = OdsFunctionalColors(
-        positive = Positive100,
-        onPositive = Black900,
-        negative = Negative100,
-        onNegative = White100,
-        info = Info100,
-        alert = Alert100
-    ),
+        functional = OdsFunctionalColors(
+            positive = functional.positive100,
+            onPositive = core.black900,
+            negative = functional.negative100,
+            onNegative = core.white100,
+            info = functional.info100,
+            alert = functional.alert100
+        ),
 
-    components = OdsComponentsColors(
-        systemBarsBackground = Black900
-    ) {
-        bottomNavigation = OdsBottomNavigationColors(
-            barBackground = Black900,
-            barContent = White100,
-            itemSelected = Orange200,
-            itemUnselected = White100
-        )
+        components = OdsComponentsColors(
+            systemBarsBackground = core.black900
+        ) {
+            bottomNavigation = OdsBottomNavigationColors(
+                barBackground = core.black900,
+                barContent = core.white100,
+                itemSelected = core.orange200,
+                itemUnselected = core.white100
+            )
 
-        floatingActionButton = OdsFloatingActionButtonColors(
-            background = Orange100,
-            content = Black900
-        )
+            floatingActionButton = OdsFloatingActionButtonColors(
+                background = core.orange100,
+                content = core.black900
+            )
 
-        topAppBar = OdsTopAppBarColors(
-            barBackground = DarkSurfaceDefault,
-            barContent = White100
-        )
+            topAppBar = OdsTopAppBarColors(
+                barBackground = custom.DarkSurfaceDefault,
+                barContent = core.white100
+            )
 
-        switch = OdsSwitchColors(
-            uncheckedThumb = Grey400
-        )
+            switch = OdsSwitchColors(
+                uncheckedThumb = grey.Grey400
+            )
 
-        tab = OdsTabColors(
-            background = DarkSurfaceDefault,
-            selectedContent = Orange100,
-            unselectedContent = White100
-        )
-    }
-)
+            tab = OdsTabColors(
+                background = custom.DarkSurfaceDefault,
+                selectedContent = core.orange100,
+                unselectedContent = core.white100
+            )
+        }
+    )
+}

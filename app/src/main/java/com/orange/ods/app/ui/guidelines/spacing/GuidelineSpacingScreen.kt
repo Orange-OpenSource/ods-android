@@ -64,7 +64,10 @@ fun GuidelineSpacingScreen() {
                 style = OdsTheme.typography.titleMedium
             )
         }
-        items(spacings.tokens.entries) { spacing ->
+        val spacingTokens = with(spacings.tokens) {
+            listOf(none, extraSmall, small, medium, large, extraLarge, extraExtraLarge)
+        }
+        items(spacingTokens) { spacing ->
             val dp = spacing.value.dp
             val ratio = dp / spacings.small.dp
             OdsListItem(

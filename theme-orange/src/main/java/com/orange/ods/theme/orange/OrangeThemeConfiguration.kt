@@ -17,14 +17,11 @@ import androidx.compose.material.Shapes
 import androidx.compose.ui.unit.dp
 import com.orange.ods.theme.OdsThemeColors
 import com.orange.ods.theme.OdsThemeConfigurationContract
-import com.orange.ods.theme.annotation.ExperimentalOdsApi
-import com.orange.ods.theme.guideline.OdsGuideline
-import com.orange.ods.theme.orange.guideline.OrangeGuideline
 import com.orange.ods.theme.typography.OdsTypography
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class OrangeThemeConfiguration : OdsThemeConfigurationContract {
+class OrangeThemeConfiguration : OdsThemeConfigurationContract<OrangeColorPalette> {
 
     companion object {
         const val OrangeThemeName = "Orange"
@@ -33,8 +30,8 @@ class OrangeThemeConfiguration : OdsThemeConfigurationContract {
     override val name: String
         get() = OrangeThemeName
 
-    override val colors: OdsThemeColors
-        get() = OdsThemeColors(OrangeLightColors, OrangeDarkColors)
+    override val colors: OdsThemeColors<OrangeColorPalette>
+        get() = OdsThemeColors(OrangeLightColors, OrangeDarkColors, OrangeColorPalette)
 
     override val typography: OdsTypography
         get() = OrangeTypography
@@ -43,8 +40,4 @@ class OrangeThemeConfiguration : OdsThemeConfigurationContract {
         get() = Shapes().copy(
             small = RoundedCornerShape(0.dp)
         )
-
-    @OptIn(ExperimentalOdsApi::class)
-    override val guideline: OdsGuideline
-        get() = OrangeGuideline(typography)
 }

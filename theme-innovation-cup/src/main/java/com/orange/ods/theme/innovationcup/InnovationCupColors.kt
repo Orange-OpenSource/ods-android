@@ -17,64 +17,68 @@ import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.colors.OdsComponentsColors
 import com.orange.ods.theme.colors.OdsFunctionalColors
 
-internal val InnovationCupLightColors = OdsColors(
-    material = Colors(
-        primary = Primary,
-        primaryVariant = PrimaryDark,
-        secondary = Secondary,
-        secondaryVariant = SecondaryDark,
-        background = White,
-        surface = White,
-        error = Red,
-        onPrimary = White,
-        onSecondary = Black,
-        onBackground = Black,
-        onSurface = Black,
-        onError = Black,
-        isLight = true
-    ),
+internal val InnovationCupLightColors = with(InnovationCupPalette) {
+    OdsColors(
+        material = Colors(
+            primary = core.primary,
+            primaryVariant = core.primaryDark,
+            secondary = core.secondary,
+            secondaryVariant = core.secondaryDark,
+            background = core.white,
+            surface = core.white,
+            error = core.red,
+            onPrimary = core.white,
+            onSecondary = core.black,
+            onBackground = core.black,
+            onSurface = core.black,
+            onError = core.black,
+            isLight = true
+        ),
 
-    functional = OdsFunctionalColors(
-        positive = Green,
-        onPositive = White,
-        negative = Red,
-        onNegative = White,
-        info = Info,
-        alert = Yellow
-    ),
+        functional = OdsFunctionalColors(
+            positive = core.green,
+            onPositive = core.white,
+            negative = core.red,
+            onNegative = core.white,
+            info = core.info,
+            alert = core.yellow
+        ),
 
-    components = OdsComponentsColors(
-        systemBarsBackground = PrimaryDark
+        components = OdsComponentsColors(
+            systemBarsBackground = core.primaryDark
+        )
     )
-)
+}
 
-internal val InnovationCupDarkColors = OdsColors(
-    material = Colors(
-        primary = Primary,
-        primaryVariant = PrimaryDark,
-        secondary = Secondary,
-        secondaryVariant = SecondaryDark,
-        background = Black,
-        surface = DarkGrey,
-        error = Red,
-        onPrimary = White,
-        onSecondary = Black,
-        onBackground = White,
-        onSurface = White,
-        onError = Black,
-        isLight = false
-    ),
+internal val InnovationCupDarkColors = with(InnovationCupPalette) {
+    OdsColors(
+        material = Colors(
+            primary = core.primary,
+            primaryVariant = core.primaryDark,
+            secondary = core.secondary,
+            secondaryVariant = core.secondaryDark,
+            background = core.black,
+            surface = core.darkGrey,
+            error = core.red,
+            onPrimary = core.white,
+            onSecondary = core.black,
+            onBackground = core.white,
+            onSurface = core.white,
+            onError = core.black,
+            isLight = false
+        ),
 
-    functional = OdsFunctionalColors(
-        positive = Green,
-        onPositive = White,
-        negative = Red,
-        onNegative = White,
-        info = Info,
-        alert = Yellow
-    ),
+        functional = OdsFunctionalColors(
+            positive = core.green,
+            onPositive = core.white,
+            negative = core.red,
+            onNegative = core.white,
+            info = core.info,
+            alert = core.yellow
+        ),
 
-    components = OdsComponentsColors(
-        systemBarsBackground = Black
+        components = OdsComponentsColors(
+            systemBarsBackground = core.black
+        )
     )
-)
+}

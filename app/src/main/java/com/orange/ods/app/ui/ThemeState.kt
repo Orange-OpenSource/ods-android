@@ -19,17 +19,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.orange.ods.theme.OdsThemeConfigurationContract
-import com.orange.ods.theme.annotation.ExperimentalOdsApi
-import com.orange.ods.theme.guideline.OdsGuideline
 
 val LocalThemeManager = staticCompositionLocalOf<ThemeManager> { error("CompositionLocal LocalThemeManager not present") }
 
-@OptIn(ExperimentalOdsApi::class)
-val LocalGuideline = staticCompositionLocalOf<OdsGuideline> { error("CompositionLocal LocalGuideline not present") }
-
 interface ThemeManager {
-    val themeConfigurations: List<OdsThemeConfigurationContract>
-    var currentThemeConfiguration: OdsThemeConfigurationContract
+    val themeConfigurations: List<OdsThemeConfigurationContract<*>>
+    var currentThemeConfiguration: OdsThemeConfigurationContract<*>
     var darkModeEnabled: Boolean
 }
 
@@ -37,8 +32,8 @@ interface ThemeManager {
  * Theme state source of truth.
  */
 class ThemeState(
-    override val themeConfigurations: List<OdsThemeConfigurationContract>,
-    currentThemeConfiguration: MutableState<OdsThemeConfigurationContract>,
+    override val themeConfigurations: List<OdsThemeConfigurationContract<*>>,
+    currentThemeConfiguration: MutableState<OdsThemeConfigurationContract<*>>,
     darkModeEnabled: MutableState<Boolean>
 ) : ThemeManager {
 
@@ -50,8 +45,8 @@ class ThemeState(
 
 @Composable
 fun rememberThemeState(
-    themeConfigurations: List<OdsThemeConfigurationContract>,
-    currentThemeConfiguration: MutableState<OdsThemeConfigurationContract>,
+    themeConfigurations: List<OdsThemeConfigurationContract<*>>,
+    currentThemeConfiguration: MutableState<OdsThemeConfigurationContract<*>>,
     darkModeEnabled: MutableState<Boolean>,
 ) = remember(themeConfigurations, currentThemeConfiguration, darkModeEnabled) {
     ThemeState(themeConfigurations, currentThemeConfiguration, darkModeEnabled)

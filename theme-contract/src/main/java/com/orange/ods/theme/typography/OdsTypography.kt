@@ -172,7 +172,4 @@ interface OdsTypographyCatalog<T> : OdsThemeConfigurationItem.Catalog<T> {
     val bodySmall: T
     val labelLarge: T
     val labelSmall: T
-
-    override val entries: List<T>
-        get() = listOf(headlineLarge, headlineSmall, titleLarge, titleMedium, titleSmall, bodyLarge, bodyMedium, bodySmall, labelLarge, labelSmall)
 }

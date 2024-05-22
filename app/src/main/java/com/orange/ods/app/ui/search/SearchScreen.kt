@@ -35,7 +35,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalAppBarManager
-import com.orange.ods.app.ui.LocalGuideline
 import com.orange.ods.app.ui.components.Component
 import com.orange.ods.app.ui.components.ComponentsNavigation
 import com.orange.ods.app.ui.components.Variant
@@ -44,39 +43,44 @@ import com.orange.ods.app.ui.guidelines.GuidelinesNavigation
 import com.orange.ods.app.ui.guidelines.color.DialogColor
 import com.orange.ods.app.ui.guidelines.typography.composeTextStyle
 import com.orange.ods.app.ui.utilities.DrawableManager
+import com.orange.ods.app.ui.utilities.extension.CatalogEntry
+import com.orange.ods.app.ui.utilities.extension.entries
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.extension.orElse
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.OdsToken
-import com.orange.ods.theme.annotation.ExperimentalOdsApi
-import com.orange.ods.theme.guideline.GuidelineColor
-import com.orange.ods.theme.guideline.toHexString
+import com.orange.ods.theme.extension.toHexString
 import com.orange.ods.theme.spacing.OdsSpacing
 import com.orange.ods.theme.typography.OdsTextStyle
 
-@OptIn(ExperimentalOdsApi::class)
 @Composable
 fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
     val context = LocalContext.current
     val searchedText = LocalAppBarManager.current.searchedText.text.lowercase()
 
     val filteredComponents = components.filter { component ->
-        searchedText.isEmpty() || stringResource(id = component.titleRes).lowercase()
-            .contains(searchedText)
+        searchedText.isEmpty() || stringResource(id = component.titleRes).lowercase().contains(searchedText)
     }.asSequence()
 
-    val filteredGuidelineTypography = OdsTheme.typography.tokens.entries.filter { textStyle ->
-        searchedText.isEmpty() || textStyle.name.lowercase().contains(searchedText) || textStyle.composeTextStyle?.lowercase()?.contains(searchedText) == true
+    val filteredTextStyleEntries = OdsTheme.typography.tokens.entries.filter { entry ->
+        searchedText.isEmpty() || entry.value.name.lowercase().contains(searchedText)
+                || entry.composeTextStyle.lowercase().contains(searchedText)
+                || entry.description.lowercase().contains(searchedText)
     }
 
-    val filteredSpacings = OdsTheme.spacings.tokens.entries.filter { spacing ->
-        searchedText.isEmpty() || spacing.name.lowercase().contains(searchedText)
+    val filteredSpacingEntries = OdsTheme.spacings.tokens.entries.filter { entry ->
+        searchedText.isEmpty() || entry.name.lowercase().contains(searchedText)
     }
 
-    val filteredGuidelineColors = LocalGuideline.current.guidelineColors.filter { guidelineColor ->
-        searchedText.isEmpty() || guidelineColor.getName().lowercase().contains(searchedText) ||
-                guidelineColor.lightThemeName.lowercase().contains(searchedText) ||
-                guidelineColor.darkThemeName.lowercase().contains(searchedText)
+    val colorEntries = with(OdsTheme.colorPalette) {
+        buildList {
+            entries.forEach { colorSetEntry ->
+                addAll(colorSetEntry.value.entries)
+            }
+        }
+    }
+    val filteredColorEntries = colorEntries.filter { entry ->
+        searchedText.isEmpty() || entry.description.lowercase().contains(searchedText)
     }
 
     val filteredVariants = components.filter { it.variants.isNotEmpty() }
@@ -110,15 +114,14 @@ fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
                 data = component
             )
         }
-        .plus(filteredGuidelineColors.map { guidelineColor ->
-            val color = guidelineColor.getValue(OdsTheme.colors)
+        .plus(filteredColorEntries.map { colorEntry ->
             SearchResult(
-                guidelineColor.getName(),
+                colorEntry.description,
                 0,
                 image = null,
-                color = color,
-                subtitle = color.toHexString(),
-                data = guidelineColor
+                color = colorEntry.value,
+                subtitle = colorEntry.value.toHexString(),
+                data = colorEntry
             )
         })
         .plus(filteredVariants.map { variant ->
@@ -130,23 +133,23 @@ fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
                 subtitle = variant.second.composableName,
                 data = variant.second
             )
-        }).plus(filteredSpacings.map { spacing ->
+        }).plus(filteredSpacingEntries.map { spacingEntry ->
             SearchResult(
-                spacing.name,
+                spacingEntry.description,
                 0,
                 image = R.drawable.il_spacing,
                 color = null,
-                subtitle = stringResource(id = R.string.guideline_spacing_dp, spacing.value.dp.value.toInt()),
-                data = spacing
+                subtitle = stringResource(id = R.string.guideline_spacing_dp, spacingEntry.value.value.dp.value.toInt()),
+                data = spacingEntry
             )
-        }).plus(filteredGuidelineTypography.map { guidelineTypography ->
+        }).plus(filteredTextStyleEntries.map { textStyleEntry ->
             SearchResult(
-                guidelineTypography.name,
+                textStyleEntry.description,
                 0,
                 image = R.drawable.il_typography,
                 color = null,
-                subtitle = guidelineTypography.composeTextStyle,
-                data = guidelineTypography
+                subtitle = textStyleEntry.composeTextStyle,
+                data = textStyleEntry
             )
         }).sortedBy { it.title }.toList()
 
@@ -175,8 +178,8 @@ fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
         }
         items(searchResults) { item ->
             val openDialog = remember { mutableStateOf(false) }
-            val guidelineColor = filteredGuidelineColors.firstOrNull { guidelineColor ->
-                guidelineColor.getName() == item.title && guidelineColor.getValue(OdsTheme.colors) == item.color
+            val colorEntry = filteredColorEntries.firstOrNull { colorEntry ->
+                colorEntry.name == item.title && colorEntry.value == item.color
             }
             val painter = when {
                 item.image != null -> painterResource(id = DrawableManager.getDrawableResIdForCurrentTheme(resId = item.image))
@@ -189,20 +192,24 @@ fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
                 secondaryTextLineCount = OdsListItem.SecondaryTextLineCount.One,
                 leadingIcon = OdsListItem.LeadingIcon(OdsListItem.LeadingIcon.Type.WideImage, painter, "")
             ) {
-                when (item.data) {
+                when (val data = item.data) {
                     is Component -> onResultItemClick(ComponentsNavigation.ComponentDetailRoute, item.id)
                     is Variant -> onResultItemClick(ComponentsNavigation.ComponentVariantDemoRoute, item.id)
-                    is GuidelineColor -> openDialog.value = true
-                    is OdsToken<*> -> {
-                        when (item.data.value) {
-                            is OdsSpacing -> onResultItemClick(GuidelinesNavigation.GuidelineSpacing, null)
-                            is OdsTextStyle -> onResultItemClick(GuidelinesNavigation.GuidelineTypography, null)
+                    is CatalogEntry<*> -> {
+                        when (val value = data.value) {
+                            is Color -> openDialog.value = true
+                            is OdsToken<*> -> {
+                                when (value.value) {
+                                    is OdsSpacing -> onResultItemClick(GuidelinesNavigation.GuidelineSpacing, null)
+                                    is OdsTextStyle -> onResultItemClick(GuidelinesNavigation.GuidelineTypography, null)
+                                }
+                            }
                         }
                     }
                 }
             }
-            if (openDialog.value && guidelineColor != null) {
-                DialogColor(color = guidelineColor, openDialog)
+            if (openDialog.value && colorEntry != null) {
+                DialogColor(colorEntry = colorEntry, openDialog)
             }
         }
     }

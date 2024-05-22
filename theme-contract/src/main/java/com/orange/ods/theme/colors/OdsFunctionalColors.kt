@@ -17,6 +17,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.structuralEqualityPolicy
 import androidx.compose.ui.graphics.Color
+import com.orange.ods.theme.OdsThemeConfigurationItem
+import com.orange.ods.theme.OdsToken
 
 class OdsFunctionalColors(
     positive: Color,
@@ -25,18 +27,37 @@ class OdsFunctionalColors(
     onNegative: Color,
     info: Color,
     alert: Color
-) {
-    var positive by mutableStateOf(positive, structuralEqualityPolicy())
+) : OdsFunctionalColorsCatalog<Color>, OdsThemeConfigurationItem.TokenProvider<OdsFunctionalColorsCatalog<OdsToken<Color>>> {
+
+    override var positive by mutableStateOf(positive, structuralEqualityPolicy())
         private set
-    var onPositive by mutableStateOf(onPositive, structuralEqualityPolicy())
+    override var onPositive by mutableStateOf(onPositive, structuralEqualityPolicy())
         private set
-    var negative by mutableStateOf(negative, structuralEqualityPolicy())
+    override var negative by mutableStateOf(negative, structuralEqualityPolicy())
         private set
-    var onNegative by mutableStateOf(onNegative, structuralEqualityPolicy())
+    override var onNegative by mutableStateOf(onNegative, structuralEqualityPolicy())
         private set
-    var info by mutableStateOf(info, structuralEqualityPolicy())
+    override var info by mutableStateOf(info, structuralEqualityPolicy())
         private set
-    var alert by mutableStateOf(alert, structuralEqualityPolicy())
+    override var alert by mutableStateOf(alert, structuralEqualityPolicy())
         private set
+
+    override val tokens = object : OdsFunctionalColorsCatalog<OdsToken<Color>> {
+        override val positive = OdsToken(OdsToken.Colors.Functional.Positive, this@OdsFunctionalColors.positive)
+        override val onPositive = OdsToken(OdsToken.Colors.Functional.OnPositive, this@OdsFunctionalColors.onPositive)
+        override val negative = OdsToken(OdsToken.Colors.Functional.Negative, this@OdsFunctionalColors.negative)
+        override val onNegative = OdsToken(OdsToken.Colors.Functional.OnNegative, this@OdsFunctionalColors.onNegative)
+        override val info = OdsToken(OdsToken.Colors.Functional.Info, this@OdsFunctionalColors.info)
+        override val alert = OdsToken(OdsToken.Colors.Functional.Alert, this@OdsFunctionalColors.alert)
+    }
 }
 
+interface OdsFunctionalColorsCatalog<T> : OdsThemeConfigurationItem.Catalog<T> {
+
+    val positive: T
+    val onPositive: T
+    val negative: T
+    val onNegative: T
+    val info: T
+    val alert: T
+}

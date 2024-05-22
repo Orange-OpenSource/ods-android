@@ -24,6 +24,6 @@ class OdsXml {
         Automatic, Light, Dark
     }
 
-    var themeConfiguration by mutableStateOf<OdsThemeConfigurationContract>(OrangeThemeConfiguration())
+    var themeConfiguration by mutableStateOf<OdsThemeConfigurationContract<*>>(OrangeThemeConfiguration())
     var uiMode by mutableStateOf(UiMode.Automatic)
 }

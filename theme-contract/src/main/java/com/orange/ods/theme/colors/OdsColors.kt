@@ -16,6 +16,9 @@ import androidx.compose.material.Colors
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
+import com.orange.ods.theme.OdsThemeConfigurationItem
+import com.orange.ods.theme.OdsToken
 
 /**
  * ODS color system.
@@ -28,34 +31,69 @@ class OdsColors(
     val material: Colors,
     functional: OdsFunctionalColors,
     components: OdsComponentsColors.Builder
-) {
-    var primary = material.primary
+) : OdsColorsCatalog<Color>, OdsThemeConfigurationItem.TokenProvider<OdsColorsCatalog<OdsToken<Color>>> {
+    override var primary = material.primary
         private set
-    var primaryVariant = material.primaryVariant
+    override var primaryVariant = material.primaryVariant
         private set
-    var secondary = material.secondary
+    override var secondary = material.secondary
         private set
-    var secondaryVariant = material.secondaryVariant
+    override var secondaryVariant = material.secondaryVariant
         private set
-    var background = material.background
+    override var background = material.background
         private set
-    var surface = material.surface
+    override var surface = material.surface
         private set
-    var error = material.error
+    override var error = material.error
         private set
-    var onPrimary = material.onPrimary
+    override var onPrimary = material.onPrimary
         private set
-    var onSecondary = material.onSecondary
+    override var onSecondary = material.onSecondary
         private set
-    var onBackground = material.onBackground
+    override var onBackground = material.onBackground
         private set
-    var onSurface = material.onSurface
+    override var onSurface = material.onSurface
         private set
-    var onError = material.onError
-        private set
-
-    var functional by mutableStateOf(functional)
+    override var onError = material.onError
         private set
 
-    val components = components.build(material)
+    override var functional by mutableStateOf(functional)
+        private set
+
+    override val components = components.build(material)
+
+    override val tokens = object : OdsColorsCatalog<OdsToken<Color>> {
+        override val primary = OdsToken(OdsToken.Colors.Primary, this@OdsColors.primary)
+        override val primaryVariant = OdsToken(OdsToken.Colors.PrimaryVariant, this@OdsColors.primaryVariant)
+        override val secondary = OdsToken(OdsToken.Colors.Secondary, this@OdsColors.secondary)
+        override val secondaryVariant = OdsToken(OdsToken.Colors.SecondaryVariant, this@OdsColors.secondaryVariant)
+        override val background = OdsToken(OdsToken.Colors.Background, this@OdsColors.background)
+        override val surface = OdsToken(OdsToken.Colors.Surface, this@OdsColors.surface)
+        override val error = OdsToken(OdsToken.Colors.Error, this@OdsColors.error)
+        override val onPrimary = OdsToken(OdsToken.Colors.OnPrimary, this@OdsColors.onPrimary)
+        override val onSecondary = OdsToken(OdsToken.Colors.OnSecondary, this@OdsColors.onSecondary)
+        override val onBackground = OdsToken(OdsToken.Colors.OnBackground, this@OdsColors.onBackground)
+        override val onSurface = OdsToken(OdsToken.Colors.OnSurface, this@OdsColors.onSurface)
+        override val onError = OdsToken(OdsToken.Colors.OnError, this@OdsColors.onError)
+        override val functional = this@OdsColors.functional.tokens
+        override val components = this@OdsColors.components.tokens
+    }
+}
+
+interface OdsColorsCatalog<T> : OdsThemeConfigurationItem.Catalog<T> {
+
+    val primary: T
+    val primaryVariant: T
+    val secondary: T
+    val secondaryVariant: T
+    val background: T
+    val surface: T
+    val error: T
+    val onPrimary: T
+    val onSecondary: T
+    val onBackground: T
+    val onSurface: T
+    val onError: T
+    val functional: OdsFunctionalColorsCatalog<T>
+    val components: OdsComponentColorsCatalog<T>
 }
