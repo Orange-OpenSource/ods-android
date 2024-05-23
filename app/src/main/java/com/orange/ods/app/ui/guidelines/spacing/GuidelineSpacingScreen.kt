@@ -38,6 +38,8 @@ import com.orange.ods.app.ui.utilities.extension.isOrange
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.OdsToken
+import com.orange.ods.theme.spacing.OdsSpacings
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.Locale
@@ -69,7 +71,7 @@ fun GuidelineSpacingScreen() {
             val ratio = dp / spacings.small
             OdsListItem(
                 text = spacing.name,
-                secondaryText = stringResource(id = R.string.guideline_spacing_dp, dp.value.toInt()) + "\n",
+                secondaryText = stringResource(id = R.string.guideline_spacing_dp, dp.value.toInt()) + "\n" + spacing.composeSpacing,
                 secondaryTextLineCount = OdsListItem.SecondaryTextLineCount.Two,
                 leadingIcon = OdsListItem.LeadingIcon(OdsListItem.LeadingIcon.Type.SquareImage, rememberGuidelineSpacingPainter(spacing = spacing.value), ""),
                 trailing = OdsListItem.TrailingCaption(
@@ -119,3 +121,19 @@ private class GuidelineSpacingPainter(override val intrinsicSize: Size, val spac
         )
     }
 }
+
+private val OdsToken<Dp>.composeSpacing: String?
+    get() {
+        val spacingProperty = when (name) {
+            OdsToken.Spacing.None -> OdsSpacings::none
+            OdsToken.Spacing.ExtraSmall -> OdsSpacings::extraSmall
+            OdsToken.Spacing.Small -> OdsSpacings::small
+            OdsToken.Spacing.Medium -> OdsSpacings::medium
+            OdsToken.Spacing.Large -> OdsSpacings::large
+            OdsToken.Spacing.ExtraLarge -> OdsSpacings::extraLarge
+            OdsToken.Spacing.ExtraExtraLarge -> OdsSpacings::extraExtraLarge
+            else -> null
+        }
+
+        return spacingProperty?.let { "OdsTheme.spacing.${it.name}" }
+    }
