@@ -55,7 +55,6 @@ fun AppBar(
                 navigationIcon = getNavigationIcon(upPress),
                 actions = actions,
                 overflowMenuItems = overflowMenuItems,
-                elevated = false // elevation is managed in MainScreen cause of tabs
             )
         }
     }

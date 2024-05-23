@@ -141,27 +141,25 @@ internal val ColorScheme.DefaultOdsFloatingActionButtonColors
  * Use [ColorScheme.DefaultOdsTopAppBarColors] to get the default component's colors based on Material Colors defined in theme
  */
 data class OdsTopAppBarColors(
-    override val barBackground: Color,
-    override val barContent: Color
+    override val container: Color,
+    override val content: Color
 ) : OdsTopAppBarColorsCatalog<Color>, OdsThemeConfigurationItem.TokenProvider<OdsTopAppBarColorsCatalog<OdsToken<Color>>> {
 
     override val tokens = object : OdsTopAppBarColorsCatalog<OdsToken<Color>> {
-        override val barBackground = OdsToken(OdsToken.Colors.Component.TopAppBar.BarBackground, this@OdsTopAppBarColors.barBackground)
-        override val barContent = OdsToken(OdsToken.Colors.Component.TopAppBar.BarContent, this@OdsTopAppBarColors.barContent)
+        override val container = OdsToken(OdsToken.Colors.Component.TopAppBar.Container, this@OdsTopAppBarColors.container)
+        override val content = OdsToken(OdsToken.Colors.Component.TopAppBar.Content, this@OdsTopAppBarColors.content)
     }
 }
 
 interface OdsTopAppBarColorsCatalog<T> : OdsThemeConfigurationItem.Catalog<T> {
-
-    val barBackground: T
-    val barContent: T
+    val container: T
+    val content: T
 }
 
-//TODO Verify and change default colors if necessary
 internal val ColorScheme.DefaultOdsTopAppBarColors
     get() = OdsTopAppBarColors(
-        barBackground = primaryContainer,
-        barContent = onPrimaryContainer
+        container = surface,
+        content = onSurface
     )
 
 /**

@@ -12,17 +12,17 @@
 
 package com.orange.ods.compose.component.appbar.top
 
-import androidx.compose.material.AppBarDefaults
-import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.isTraversalGroup
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.traversalIndex
-import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
 import com.orange.ods.compose.component.utilities.OdsPreview
@@ -45,8 +45,8 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param navigationIcon Icon displayed at the start of the top app bar.
  * @param actions Actions displayed at the end of the top app bar. The default layout here is a [androidx.compose.foundation.layout.Row], so icons inside will be placed horizontally.
  * @param overflowMenuItems List of items displayed in the overflow menu. The top app bar uses `OdsDropdownMenu` to display its overflow menu.
- * @param elevated Controls the elevation of the top app bar: `true` to set an elevation to the top app bar (a shadow is displayed below), `false` otherwise.
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @OdsComposable
 fun OdsTopAppBar(
@@ -55,16 +55,19 @@ fun OdsTopAppBar(
     navigationIcon: OdsTopAppBar.NavigationIcon? = null,
     actions: List<OdsTopAppBar.ActionButton> = emptyList(),
     overflowMenuItems: List<OdsDropdownMenu.Item> = emptyList(),
-    elevated: Boolean = true
 ) {
+    val contentColor = OdsTheme.colors.components.topAppBar.content
     TopAppBar(
         title = { OdsText(text = title, style = OdsTheme.typography.titleLarge, modifier = Modifier.semantics { traversalIndex = -1f }) },
         modifier = modifier.semantics { isTraversalGroup = true },
-        navigationIcon = navigationIcon?.let { { it.Content() } },
+        navigationIcon = { navigationIcon?.Content() },
         actions = { OdsTopAppBarActions(actions = actions, overflowMenuItems = overflowMenuItems) },
-        backgroundColor = OdsTheme.colors.components.topAppBar.barBackground,
-        contentColor = OdsTheme.colors.components.topAppBar.barContent,
-        elevation = if (elevated) AppBarDefaults.TopAppBarElevation else 0.dp
+        colors = TopAppBarDefaults.topAppBarColors().copy(
+            containerColor = OdsTheme.colors.components.topAppBar.container,
+            titleContentColor = contentColor,
+            navigationIconContentColor = contentColor,
+            actionIconContentColor = contentColor
+        ),
     )
 }
 

@@ -93,7 +93,7 @@ object OdsTopAppBar {
 
         override val tint: Color?
             @Composable
-            get() = OdsTheme.colors.components.topAppBar.barContent
+            get() = OdsTheme.colors.components.topAppBar.content
     }
 
     /**
@@ -156,7 +156,7 @@ object OdsTopAppBar {
 
         override val tint: Color
             @Composable
-            get() = OdsTheme.colors.components.topAppBar.barContent
+            get() = OdsTheme.colors.components.topAppBar.content
     }
 
 }

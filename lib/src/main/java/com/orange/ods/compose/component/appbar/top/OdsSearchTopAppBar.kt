@@ -71,8 +71,8 @@ fun OdsSearchTopAppBar(
                 focusRequester.requestFocus()
             }
         },
-        backgroundColor = OdsTheme.colors.components.topAppBar.barBackground,
-        contentColor = OdsTheme.colors.components.topAppBar.barContent,
+        backgroundColor = OdsTheme.colors.components.topAppBar.container,
+        contentColor = OdsTheme.colors.components.topAppBar.content,
         elevation = if (elevated) AppBarDefaults.TopAppBarElevation else 0.dp
     )
 }

@@ -90,8 +90,8 @@ class OdsToken<T> internal constructor(val name: String, val value: T) {
 
             object TopAppBar {
 
-                const val BarBackground = "Colors.Component.TopAppBar.BarBackground"
-                const val BarContent = "Colors.Component.TopAppBar.BarContent"
+                const val Container = "Colors.Component.TopAppBar.Container"
+                const val Content = "Colors.Component.TopAppBar.Content"
             }
 
             object Switch {

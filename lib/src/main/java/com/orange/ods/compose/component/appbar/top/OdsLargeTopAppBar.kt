@@ -68,7 +68,7 @@ fun OdsLargeTopAppBar(
     overflowMenuItems: List<OdsDropdownMenu.Item> = emptyList(),
     scrollBehavior: TopAppBarScrollBehavior? = null
 ) {
-    val contentColor = OdsTheme.colors.components.topAppBar.barContent
+    val contentColor = OdsTheme.colors.components.topAppBar.content
     val expandedTitleStartPadding = 48.dp
     val collapsedTitleStartPadding = 8.dp
     val expandedTitleAlpha = 1f
@@ -129,7 +129,7 @@ fun OdsLargeTopAppBar(
         navigationIcon = { navigationIcon?.Content() },
         actions = { OdsTopAppBarActions(actions = actions, overflowMenuItems = overflowMenuItems) },
         colors = TopAppBarDefaults.largeTopAppBarColors(
-            containerColor = OdsTheme.colors.components.topAppBar.barBackground,
+            containerColor = OdsTheme.colors.components.topAppBar.container,
             navigationIconContentColor = contentColor,
             titleContentColor = contentColor,
             actionIconContentColor = contentColor

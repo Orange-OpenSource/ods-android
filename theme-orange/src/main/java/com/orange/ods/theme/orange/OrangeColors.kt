@@ -83,8 +83,8 @@ internal val OrangeLightColors = with(OrangeColorPalette) {
             )
 
             topAppBar = OdsTopAppBarColors(
-                barBackground = core.white100,
-                barContent = core.black900
+                container = core.white100,
+                content = core.black900
             )
 
             switch = OdsSwitchColors(
@@ -161,8 +161,8 @@ internal val OrangeDarkColors = with(OrangeColorPalette) {
             )
 
             topAppBar = OdsTopAppBarColors(
-                barBackground = custom.DarkSurfaceDefault,
-                barContent = core.white100
+                container = custom.DarkSurfaceDefault,
+                content = core.white100
             )
 
             switch = OdsSwitchColors(
