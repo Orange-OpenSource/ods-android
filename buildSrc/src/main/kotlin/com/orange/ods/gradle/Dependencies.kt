@@ -23,6 +23,7 @@ object Dependencies {
     const val coil = "io.coil-kt:coil:${Versions.coil}"
     const val coilCompose = "io.coil-kt:coil-compose:${Versions.coil}"
     const val composeBom = "androidx.compose:compose-bom:${Versions.composeBom}"
+    const val composeCompilerGradlePlugin = "org.jetbrains.kotlin:compose-compiler-gradle-plugin:${Versions.kotlin}"
     const val composeMaterial = "androidx.compose.material:material"
     const val composeMaterial3 = "androidx.compose.material3:material3"
     const val composeUi = "androidx.compose.ui:ui"
