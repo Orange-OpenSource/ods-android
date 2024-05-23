@@ -11,11 +11,11 @@
  */
 
 import com.orange.ods.gradle.Dependencies
-import com.orange.ods.gradle.Versions
 
 plugins {
     id("library")
     id("kotlin-kapt")
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 android {
@@ -27,8 +27,12 @@ android {
         dataBinding = true
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = Versions.composeCompiler
+    kotlin {
+        compilerOptions {
+            // Suppresses an expected warning that triggers a build failure because allWarningsAsErrors is true
+            // See https://youtrack.jetbrains.com/issue/KT-68400/K2-w-Kapt-currently-doesnt-support-language-version-2.0.-Falling-back-to-1.9.
+            freeCompilerArgs.add("-Xsuppress-version-warnings")
+        }
     }
 }
 

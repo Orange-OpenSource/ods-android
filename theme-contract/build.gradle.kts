@@ -11,10 +11,10 @@
  */
 
 import com.orange.ods.gradle.Dependencies
-import com.orange.ods.gradle.Versions
 
 plugins {
     id("library")
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 android {
@@ -22,10 +22,6 @@ android {
 
     buildFeatures {
         compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = Versions.composeCompiler
     }
 }
 

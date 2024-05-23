@@ -11,14 +11,14 @@
  */
 
 import com.orange.ods.gradle.Dependencies
-import com.orange.ods.gradle.Versions
 
 plugins {
-    id("com.google.devtools.ksp") version "1.9.24-1.0.20"
+    id("com.google.devtools.ksp") version "2.0.0-1.0.21"
     id("library")
     id("github")
     id("kotlin-parcelize")
     id("app.cash.paparazzi") version "1.3.3"
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 buildscript {
@@ -45,10 +45,6 @@ android {
     buildFeatures {
         buildConfig = true
         compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = Versions.composeCompiler
     }
 
     sourceSets.configureEach {

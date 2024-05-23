@@ -24,6 +24,7 @@ plugins {
     id("com.google.firebase.crashlytics")
     id("firebase")
     id("dagger.hilt.android.plugin")
+    id("org.jetbrains.kotlin.plugin.compose")
     id("kotlin-kapt") // This must be the last statement in the plugins {} to avoid "options not recognized" warning
 }
 
@@ -101,6 +102,9 @@ android {
         compilerOptions {
             allWarningsAsErrors = true
             freeCompilerArgs.add("-opt-in=kotlin.RequiresOptIn")
+            // Suppresses an expected warning that triggers a build failure because allWarningsAsErrors is true
+            // See https://youtrack.jetbrains.com/issue/KT-68400/K2-w-Kapt-currently-doesnt-support-language-version-2.0.-Falling-back-to-1.9.
+            freeCompilerArgs.add("-Xsuppress-version-warnings")
         }
     }
 
@@ -109,10 +113,6 @@ android {
         compose = true
         viewBinding = true
         dataBinding = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = Versions.composeCompiler
     }
 
     packaging {

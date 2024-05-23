@@ -14,7 +14,6 @@ import com.orange.ods.gradle.Dependencies
 
 plugins {
     id("library")
-    id("kotlin-kapt")
     id("kotlin-parcelize")
 }
 
