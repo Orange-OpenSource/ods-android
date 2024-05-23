@@ -12,7 +12,7 @@
 
 package com.orange.ods.theme.orange
 
-import androidx.compose.material.Colors
+import androidx.compose.material3.ColorScheme
 import com.orange.ods.theme.colors.OdsBottomNavigationColors
 import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.colors.OdsComponentsColors
@@ -24,20 +24,38 @@ import com.orange.ods.theme.colors.OdsTopAppBarColors
 
 internal val OrangeLightColors = with(OrangeColorPalette) {
     OdsColors(
-        material = Colors(
+        colorScheme = ColorScheme(
             primary = core.orange200,
-            primaryVariant = core.orange100,
+            onPrimary = core.white100,
+            primaryContainer = core.tmpOrangeFFA14D,
+            onPrimaryContainer = core.black900,
+            inversePrimary = core.tmpOrangeFFB68E,
+
             secondary = core.orange200,
-            secondaryVariant = core.orange200,
-            background = core.white100,
-            surface = core.white100,
-            error = functional.negative200,
-            onPrimary = core.black900,
             onSecondary = core.black900,
+            secondaryContainer = core.tmpGrey333333,
+            onSecondaryContainer = core.white100,
+
+            tertiary = core.tmpGrey666666,
+            onTertiary = core.white100,
+            tertiaryContainer = core.tmpGreyCCCCCC,
+            onTertiaryContainer = core.black900,
+            background = core.white100,
             onBackground = core.black900,
+            surface = core.white100,
             onSurface = core.black900,
-            onError = core.black900,
-            isLight = true
+            surfaceVariant = core.tmpGreyEEEEEE,
+            onSurfaceVariant = core.black900,
+            surfaceTint = core.white100,
+            inverseSurface = core.tmpBrown362F2C,
+            inverseOnSurface = core.white100,
+            error = functional.negative200,
+            onError = core.white100,
+            errorContainer = functional.tmpRedFFDAD6,
+            onErrorContainer = functional.tmpRed410002,
+            outline = core.black900,
+            outlineVariant = core.tmpGreyEBEBEB,
+            scrim = core.black900,
         ),
 
         functional = OdsFunctionalColors(
@@ -84,20 +102,38 @@ internal val OrangeLightColors = with(OrangeColorPalette) {
 
 internal val OrangeDarkColors = with(OrangeColorPalette) {
     OdsColors(
-        material = Colors(
+        colorScheme = ColorScheme(
             primary = core.orange100,
-            primaryVariant = core.orange200,
-            secondary = core.orange200,
-            secondaryVariant = core.orange200,
-            background = core.black900,
-            surface = custom.DarkSurfaceDefault,
-            error = functional.negative100,
             onPrimary = core.black900,
+            primaryContainer = core.tmpOrangeFFA14D,
+            onPrimaryContainer = core.black900,
+            inversePrimary = core.tmpBrown9C4500,
+
+            secondary = core.white100,
             onSecondary = core.black900,
+            secondaryContainer = core.tmpGreyCCCCCC,
+            onSecondaryContainer = core.black900,
+
+            tertiary = core.tmpGreyCCCCCC,
+            onTertiary = core.black900,
+            tertiaryContainer = core.tmpGrey333333,
+            onTertiaryContainer = core.white100,
+            background = core.black900,
             onBackground = core.white100,
-            onSurface = core.white100,
+            surface = core.white100,
+            onSurface = core.black900,
+            surfaceVariant = core.tmpGreyEEEEEE,
+            onSurfaceVariant = core.black900,
+            surfaceTint = core.black900,
+            inverseSurface = core.tmpGreyEEEEEE,
+            inverseOnSurface = core.black900,
+            error = functional.tmpRedD53F15,
             onError = core.black900,
-            isLight = false
+            errorContainer = functional.tmpRed93000A,
+            onErrorContainer = functional.tmpRedFFDAD6,
+            outline = core.tmpGreyEEEEEE,
+            outlineVariant = core.tmpBrown52443C,
+            scrim = core.black900,
         ),
 
         functional = OdsFunctionalColors(

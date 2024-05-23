@@ -13,7 +13,7 @@
 package com.orange.ods.theme.orange
 
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Shapes
+import androidx.compose.material3.Shapes
 import androidx.compose.ui.unit.dp
 import com.orange.ods.theme.OdsThemeColors
 import com.orange.ods.theme.OdsThemeConfigurationContract

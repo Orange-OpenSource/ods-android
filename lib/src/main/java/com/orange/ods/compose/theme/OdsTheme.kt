@@ -13,11 +13,11 @@
 package com.orange.ods.compose.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.LocalContentColor
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Shapes
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material.ripple.RippleTheme
+import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Shapes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
@@ -115,7 +115,7 @@ fun OdsTheme(
         LocalComponentsConfiguration provides themeConfiguration.componentsConfiguration
     ) {
         MaterialTheme(
-            colors = colors.material,
+            colorScheme = colors.colorScheme,
             typography = themeConfiguration.typography.materialTypography
         ) {
             content()
@@ -160,7 +160,7 @@ fun OdsThemeTweak(tweakType: OdsThemeTweakType, content: @Composable () -> Unit)
         LocalContentColor provides colors.onSurface
     ) {
         MaterialTheme(
-            colors = colors.material,
+            colorScheme = colors.colorScheme,
             typography = LocalTypography.current.materialTypography
         ) {
             content()

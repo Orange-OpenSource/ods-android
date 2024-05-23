@@ -12,27 +12,46 @@
 
 package com.orange.ods.theme.innovationcup
 
-import androidx.compose.material.Colors
+import androidx.compose.material3.ColorScheme
 import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.colors.OdsComponentsColors
 import com.orange.ods.theme.colors.OdsFunctionalColors
 
 internal val InnovationCupLightColors = with(InnovationCupPalette) {
     OdsColors(
-        material = Colors(
-            primary = core.primary,
-            primaryVariant = core.primaryDark,
-            secondary = core.secondary,
-            secondaryVariant = core.secondaryDark,
-            background = core.white,
-            surface = core.white,
-            error = core.red,
+        colorScheme = ColorScheme(
+            primary = core.primary40,
             onPrimary = core.white,
-            onSecondary = core.black,
+            primaryContainer = core.primary90,
+            onPrimaryContainer = core.white,
+            inversePrimary = core.primary80,
+
+            secondary = core.secondary40,
+            onSecondary = core.white,
+            secondaryContainer = core.secondary90,
+            onSecondaryContainer = core.secondary10,
+
+            tertiary = core.tertiary40,
+            onTertiary = core.white,
+            tertiaryContainer = core.tertiary90,
+            onTertiaryContainer = core.tertiary10,
+
+            background = core.white,
             onBackground = core.black,
+            surface = core.neutral98,
             onSurface = core.black,
-            onError = core.black,
-            isLight = true
+            surfaceVariant = core.neutral94,
+            onSurfaceVariant = core.black,
+            surfaceTint = core.white,
+            inverseSurface = core.neutral20,
+            inverseOnSurface = core.neutral95,
+            error = core.error40,
+            onError = core.white,
+            errorContainer = core.error90,
+            onErrorContainer = core.white,
+            outline = core.neutralVariant50,
+            outlineVariant = core.neutralVariant80,
+            scrim = core.black,
         ),
 
         functional = OdsFunctionalColors(
@@ -45,27 +64,46 @@ internal val InnovationCupLightColors = with(InnovationCupPalette) {
         ),
 
         components = OdsComponentsColors(
-            systemBarsBackground = core.primaryDark
+            systemBarsBackground = core.primary40
         )
     )
 }
 
 internal val InnovationCupDarkColors = with(InnovationCupPalette) {
     OdsColors(
-        material = Colors(
-            primary = core.primary,
-            primaryVariant = core.primaryDark,
-            secondary = core.secondary,
-            secondaryVariant = core.secondaryDark,
+        colorScheme = ColorScheme(
+            primary = core.primary80,
+            onPrimary = core.primary20,
+            primaryContainer = core.primary30,
+            onPrimaryContainer = core.white,
+            inversePrimary = core.primary40,
+
+            secondary = core.secondary80,
+            onSecondary = core.secondary20,
+            secondaryContainer = core.secondary30,
+            onSecondaryContainer = core.secondary90,
+
+            tertiary = core.tertiary80,
+            onTertiary = core.tertiary20,
+            tertiaryContainer = core.tertiary30,
+            onTertiaryContainer = core.tertiary90,
+
             background = core.black,
-            surface = core.darkGrey,
-            error = core.red,
-            onPrimary = core.white,
-            onSecondary = core.black,
             onBackground = core.white,
-            onSurface = core.white,
-            onError = core.black,
-            isLight = false
+            surface = core.neutral98,
+            onSurface = core.neutral6,
+            surfaceVariant = core.neutral24,
+            onSurfaceVariant = core.neutralVariant90,
+            surfaceTint = core.neutral98,
+            inverseSurface = core.neutral90,
+            inverseOnSurface = core.neutral20,
+            error = core.error80,
+            onError = core.error20,
+            errorContainer = core.error30,
+            onErrorContainer = core.error90,
+            outline = core.neutralVariant60,
+            outlineVariant = core.neutralVariant30,
+            scrim = core.black,
         ),
 
         functional = OdsFunctionalColors(

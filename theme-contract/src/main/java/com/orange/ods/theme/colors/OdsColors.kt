@@ -12,7 +12,7 @@
 
 package com.orange.ods.theme.colors
 
-import androidx.compose.material.Colors
+import androidx.compose.material3.ColorScheme
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -24,43 +24,43 @@ import com.orange.ods.theme.OdsToken
  * ODS color system.
  *
  * The ODS color system can help you create an ODS color theme that reflects your brand or style.
- * Default components' colors are based on the provided [material] but you can override these colors by providing your colors for each component. As an
+ * Default components' colors are based on the provided [colorScheme] but you can override these colors by providing your colors for each component. As an
  * example, if you need to change the switches' colors you can provide your own [OdsSwitchColors] in the ODS color system.
  */
 class OdsColors(
-    val material: Colors,
+    val colorScheme: ColorScheme,
     functional: OdsFunctionalColors,
     components: OdsComponentsColors.Builder
 ) : OdsColorsCatalog<Color>, OdsThemeConfigurationItem.TokenProvider<OdsColorsCatalog<OdsToken<Color>>> {
-    override var primary = material.primary
+    override var primary = colorScheme.primary
         private set
-    override var primaryVariant = material.primaryVariant
+    override var primaryVariant = colorScheme.tertiary
         private set
-    override var secondary = material.secondary
+    override var secondary = colorScheme.secondary
         private set
-    override var secondaryVariant = material.secondaryVariant
+    override var secondaryVariant = colorScheme.secondaryContainer
         private set
-    override var background = material.background
+    override var background = colorScheme.background
         private set
-    override var surface = material.surface
+    override var surface = colorScheme.surface
         private set
-    override var error = material.error
+    override var error = colorScheme.error
         private set
-    override var onPrimary = material.onPrimary
+    override var onPrimary = colorScheme.onPrimary
         private set
-    override var onSecondary = material.onSecondary
+    override var onSecondary = colorScheme.onSecondary
         private set
-    override var onBackground = material.onBackground
+    override var onBackground = colorScheme.onBackground
         private set
-    override var onSurface = material.onSurface
+    override var onSurface = colorScheme.onSurface
         private set
-    override var onError = material.onError
+    override var onError = colorScheme.onError
         private set
 
     override var functional by mutableStateOf(functional)
         private set
 
-    override val components = components.build(material)
+    override val components = components.build(colorScheme)
 
     override val tokens = object : OdsColorsCatalog<OdsToken<Color>> {
         override val primary = OdsToken(OdsToken.Colors.Primary, this@OdsColors.primary)

@@ -12,7 +12,7 @@
 
 package com.orange.ods.theme.typography
 
-import androidx.compose.material.Typography
+import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -136,23 +136,24 @@ class OdsTypography(
         override val labelSmall = OdsToken(OdsToken.TextStyle.LabelSmall, this@OdsTypography.labelSmall)
     }
 
-    /** Corresponding Material 2 Typography */
+    /** Corresponding Material 3 Typography */
     val materialTypography
         get() = Typography(
-            defaultFontFamily = defaultFontFamily,
-            h1 = headlineLarge.textStyle,
-            h2 = headlineLarge.textStyle,
-            h3 = headlineLarge.textStyle,
-            h4 = headlineLarge.textStyle,
-            h5 = headlineSmall.textStyle,
-            h6 = titleLarge.textStyle,
-            subtitle1 = titleMedium.textStyle,
-            subtitle2 = titleSmall.textStyle,
-            body1 = bodyLarge.textStyle,
-            body2 = bodyMedium.textStyle,
-            button = labelLarge.textStyle,
-            caption = bodySmall.textStyle,
-            overline = labelSmall.textStyle
+            displayLarge = headlineLarge.textStyle,
+            displayMedium = headlineLarge.textStyle,
+            displaySmall = headlineLarge.textStyle,
+            headlineLarge = headlineLarge.textStyle,
+            headlineMedium = headlineSmall.textStyle, //TODO headlineMedium does not exist in the DSM
+            headlineSmall = headlineSmall.textStyle,
+            titleLarge = titleLarge.textStyle,
+            titleMedium = titleMedium.textStyle,
+            titleSmall = titleSmall.textStyle,
+            bodyLarge = bodyLarge.textStyle,
+            bodyMedium = bodyMedium.textStyle,
+            bodySmall = bodySmall.textStyle,
+            labelLarge = labelLarge.textStyle,
+            labelMedium = labelSmall.textStyle, //TODO labelMedium does not exist in the DSM
+            labelSmall = labelSmall.textStyle,
         )
 
     private fun OdsTextStyle.withDefaultFontFamily(default: FontFamily): OdsTextStyle {

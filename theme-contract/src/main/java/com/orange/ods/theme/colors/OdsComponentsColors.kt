@@ -12,18 +12,12 @@
 
 package com.orange.ods.theme.colors
 
-import androidx.compose.material.Colors
+import androidx.compose.material3.ColorScheme
 import androidx.compose.ui.graphics.Color
 import com.orange.ods.theme.OdsThemeConfigurationItem
 import com.orange.ods.theme.OdsToken
 
 private const val ContentUnselectedAlpha = 0.74f
-
-private val Colors.primarySurface
-    get() = if (isLight) primary else surface
-
-private val Colors.onPrimarySurface
-    get() = if (isLight) onPrimary else onSurface
 
 class OdsComponentsColors(
     override val systemBarsBackground: Color,
@@ -42,13 +36,13 @@ class OdsComponentsColors(
         var tab: OdsTabColors? = null
         var topAppBar: OdsTopAppBarColors? = null
 
-        internal fun build(materialColors: Colors) = OdsComponentsColors(
+        internal fun build(colorScheme: ColorScheme) = OdsComponentsColors(
             systemBarsBackground,
-            bottomNavigation ?: materialColors.DefaultOdsBottomNavigationColors,
-            floatingActionButton ?: materialColors.DefaultOdsFloatingActionButtonColors,
-            switch ?: materialColors.DefaultOdsSwitchColors,
-            tab ?: materialColors.DefaultOdsTabColors,
-            topAppBar ?: materialColors.DefaultOdsTopAppBarColors
+            bottomNavigation ?: colorScheme.DefaultOdsBottomNavigationColors,
+            floatingActionButton ?: colorScheme.DefaultOdsFloatingActionButtonColors,
+            switch ?: colorScheme.DefaultOdsSwitchColors,
+            tab ?: colorScheme.DefaultOdsTabColors,
+            topAppBar ?: colorScheme.DefaultOdsTopAppBarColors
         )
     }
 
@@ -80,7 +74,7 @@ fun OdsComponentsColors(systemBarsBackground: Color, init: OdsComponentsColors.B
 /**
  * Customizable colors for `OdsBottomNavigation` component
  *
- * Use [Colors.DefaultOdsBottomNavigationColors] to get the default component's colors based on Material Colors defined in theme
+ * Use [ColorScheme.DefaultOdsBottomNavigationColors] to get the default component's colors based on Material Colors defined in theme
  */
 data class OdsBottomNavigationColors(
     override val barBackground: Color,
@@ -105,17 +99,18 @@ interface OdsBottomNavigationColorsCatalog<T> : OdsThemeConfigurationItem.Catalo
     val itemUnselected: T
 }
 
-internal val Colors.DefaultOdsBottomNavigationColors
+//TODO Verify and change default colors if necessary
+internal val ColorScheme.DefaultOdsBottomNavigationColors
     get() = OdsBottomNavigationColors(
-        barBackground = primarySurface,
-        barContent = onPrimarySurface,
-        itemSelected = onPrimarySurface
+        barBackground = primaryContainer,
+        barContent = onPrimaryContainer,
+        itemSelected = onSurface
     )
 
 /**
  * Customizable colors for `OdsFloatingActionButton` component
  *
- * Use [Colors.DefaultOdsFloatingActionButtonColors] to get the default component's colors based on Material Colors defined in theme
+ * Use [ColorScheme.DefaultOdsFloatingActionButtonColors] to get the default component's colors based on Material Colors defined in theme
  */
 data class OdsFloatingActionButtonColors(
     override val background: Color,
@@ -134,7 +129,7 @@ interface OdsFloatingActionButtonColorsCatalog<T> : OdsThemeConfigurationItem.Ca
     val content: T
 }
 
-internal val Colors.DefaultOdsFloatingActionButtonColors
+internal val ColorScheme.DefaultOdsFloatingActionButtonColors
     get() = OdsFloatingActionButtonColors(
         background = secondary,
         content = onSecondary
@@ -143,7 +138,7 @@ internal val Colors.DefaultOdsFloatingActionButtonColors
 /**
  * Customizable colors for `OdsTopAppBar` component
  *
- * Use [Colors.DefaultOdsTopAppBarColors] to get the default component's colors based on Material Colors defined in theme
+ * Use [ColorScheme.DefaultOdsTopAppBarColors] to get the default component's colors based on Material Colors defined in theme
  */
 data class OdsTopAppBarColors(
     override val barBackground: Color,
@@ -162,16 +157,17 @@ interface OdsTopAppBarColorsCatalog<T> : OdsThemeConfigurationItem.Catalog<T> {
     val barContent: T
 }
 
-internal val Colors.DefaultOdsTopAppBarColors
+//TODO Verify and change default colors if necessary
+internal val ColorScheme.DefaultOdsTopAppBarColors
     get() = OdsTopAppBarColors(
-        barBackground = primarySurface,
-        barContent = onPrimarySurface
+        barBackground = primaryContainer,
+        barContent = onPrimaryContainer
     )
 
 /**
  * Customizable colors for `OdsSwitch` component
  *
- * Use [Colors.DefaultOdsSwitchColors] to get the default component's colors based on Material Colors defined in theme
+ * Use [ColorScheme.DefaultOdsSwitchColors] to get the default component's colors based on Material Colors defined in theme
  */
 data class OdsSwitchColors(
     override val uncheckedThumb: Color
@@ -187,7 +183,7 @@ interface OdsSwitchColorsCatalog<T> : OdsThemeConfigurationItem.Catalog<T> {
     val uncheckedThumb: T
 }
 
-internal val Colors.DefaultOdsSwitchColors
+internal val ColorScheme.DefaultOdsSwitchColors
     get() = OdsSwitchColors(
         uncheckedThumb = surface
     )
@@ -195,7 +191,7 @@ internal val Colors.DefaultOdsSwitchColors
 /**
  * Customizable colors for `OdsTab` component
  *
- * Use [Colors.DefaultOdsTabColors] to get the default component's colors based on Material Colors defined in theme
+ * Use [ColorScheme.DefaultOdsTabColors] to get the default component's colors based on Material Colors defined in theme
  */
 data class OdsTabColors(
     override val background: Color,
@@ -217,8 +213,9 @@ interface OdsTabColorsCatalog<T> : OdsThemeConfigurationItem.Catalog<T> {
     val unselectedContent: T
 }
 
-internal val Colors.DefaultOdsTabColors
+//TODO Verify and change default colors if necessary
+internal val ColorScheme.DefaultOdsTabColors
     get() = OdsTabColors(
-        background = primarySurface,
-        selectedContent = onPrimarySurface
+        background = primaryContainer,
+        selectedContent = onPrimaryContainer
     )

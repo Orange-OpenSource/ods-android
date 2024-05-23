@@ -13,7 +13,7 @@
 package com.orange.ods.theme
 
 import android.os.Parcelable
-import androidx.compose.material.Shapes
+import androidx.compose.material3.Shapes
 import com.orange.ods.theme.colors.OdsColorPalette
 import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.spacing.OdsSpacings

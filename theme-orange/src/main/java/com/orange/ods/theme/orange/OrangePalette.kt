@@ -19,12 +19,22 @@ import com.orange.ods.theme.colors.OdsColorSet
 object OrangeColorPalette : OdsColorPalette {
 
     class Core : OdsColorSet {
-
         val orange100 = Color(0xffff7900)
         val orange200 = Color(0xfff16e00)
+        val tmpOrangeFFA14D = Color(0xffffa14d)
+        val tmpOrangeFFB68E = Color(0xffffb68e)
+
         val white100 = Color(0xffffffff)
         val black900 = Color(0xff000000)
-        val obsGrey700 = Color(0xff595959)
+
+        val tmpBrown362F2C = Color(0xff362f2c)
+        val tmpBrown9C4500 = Color(0xff9C4500)
+        val tmpBrown52443C = Color(0xff52443C)
+        val tmpGrey333333 = Color(0xff333333)
+        val tmpGrey666666 = Color(0xff666666)
+        val tmpGreyCCCCCC = Color(0xffcccccc)
+        val tmpGreyEBEBEB = Color(0xffebebeb)
+        val tmpGreyEEEEEE = Color(0xffeeeeee)
     }
 
     class Supporting : OdsColorSet {
@@ -51,7 +61,6 @@ object OrangeColorPalette : OdsColorPalette {
     }
 
     class Functional : OdsColorSet {
-
         val info100 = Color(0xff527EDB)
         val info200 = Color(0xff4170D8)
         val alert100 = Color(0xffFFCC00)
@@ -60,6 +69,12 @@ object OrangeColorPalette : OdsColorPalette {
         val positive200 = Color(0xff228722)
         val negative100 = Color(0xffD53F15)
         val negative200 = Color(0xffCD3C14)
+
+        val tmpRedD53F15 = Color(0xffd53f15)
+        val tmpRedFFDAD6 = Color(0xffffdad6)
+        val tmpRed410002 = Color(0xff410002)
+        val tmpRed93000A = Color(0xff93000a)
+
     }
 
     class Grey : OdsColorSet {
