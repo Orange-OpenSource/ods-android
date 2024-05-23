@@ -17,7 +17,7 @@ plugins {
     id("library")
     id("github")
     id("kotlin-parcelize")
-    id("app.cash.paparazzi") version "1.3.3"
+    id("app.cash.paparazzi") version "1.3.4"
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
