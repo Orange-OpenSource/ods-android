@@ -202,7 +202,7 @@ OdsChoiceChipsFlowRow(
         OdsChoiceChipsFlowRow.ChoiceChip("Choice chip 1", { selectedChoiceChipIndex = 0 }),
         OdsChoiceChipsFlowRow.ChoiceChip("Choice chip 2", { selectedChoiceChipIndex = 1 })
     ),
-    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
+    modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp)
 )
 ```
 
