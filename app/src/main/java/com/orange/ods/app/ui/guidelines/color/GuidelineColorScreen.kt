@@ -81,12 +81,12 @@ fun GuidelineColorScreen() {
     } else {
         LazyColumn(
             contentPadding = PaddingValues(
-                start = OdsTheme.spacings.medium.dp,
-                end = OdsTheme.spacings.medium.dp,
+                start = OdsTheme.spacings.medium,
+                end = OdsTheme.spacings.medium,
                 top = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin),
                 bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin)
             ),
-            verticalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium.dp),
+            verticalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium),
         ) {
             if (coreColors.isNotEmpty()) {
                 item {
@@ -94,7 +94,7 @@ fun GuidelineColorScreen() {
                 }
                 items(coreColors.chunked(2)) { rowColors ->
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium.dp),
+                        horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium),
                     ) {
                         BigColorItem(color = rowColors[0])
                         BigColorItem(color = rowColors[1])
@@ -108,7 +108,7 @@ fun GuidelineColorScreen() {
                 }
                 items(functionalColors.chunked(2)) { rowColors ->
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium.dp),
+                        horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium),
                     ) {
                         BigColorItem(color = rowColors[0])
                         BigColorItem(color = rowColors[1])
@@ -122,7 +122,7 @@ fun GuidelineColorScreen() {
                 }
                 items(supportingColors.chunked(3)) { rowColors ->
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium.dp),
+                        horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium),
                     ) {
                         SmallColorItem(color = rowColors[0])
                         SmallColorItem(color = rowColors[1])
@@ -157,7 +157,7 @@ private fun RowScope.SmallColorItem(color: GuidelineColor) {
         )
         OdsText(
             text = color.getName(),
-            modifier = Modifier.padding(top = OdsTheme.spacings.extraSmall.dp),
+            modifier = Modifier.padding(top = OdsTheme.spacings.extraSmall),
             style = OdsTheme.typography.titleLarge
         )
         OdsText(text = colorValue.toHexString(), style = OdsTheme.typography.bodySmall)
@@ -195,12 +195,12 @@ private fun RowScope.BigColorItem(color: GuidelineColor) {
         )
         OdsText(
             text = color.getName(),
-            modifier = Modifier.padding(top = OdsTheme.spacings.extraSmall.dp),
+            modifier = Modifier.padding(top = OdsTheme.spacings.extraSmall),
             style = OdsTheme.typography.titleLarge
         )
         OdsText(text = color.callableName, style = OdsTheme.typography.bodyLarge)
         OdsText(
-            modifier = Modifier.padding(top = OdsTheme.spacings.extraSmall.dp),
+            modifier = Modifier.padding(top = OdsTheme.spacings.extraSmall),
             text = colorValue.toHexString(),
             style = OdsTheme.typography.bodySmall
         )
@@ -235,29 +235,29 @@ fun DialogColor(color: GuidelineColor, openDialog: MutableState<Boolean>) {
                     .background(color = OdsTheme.colors.background)
                     .fillMaxWidth()
                     .padding(
-                        horizontal = OdsTheme.spacings.medium.dp,
-                        vertical = OdsTheme.spacings.small.dp
+                        horizontal = OdsTheme.spacings.medium,
+                        vertical = OdsTheme.spacings.small
                     )
             ) {
                 OdsText(text = color.getName(), style = OdsTheme.typography.headlineSmall)
                 OdsText(
-                    modifier = Modifier.padding(top = OdsTheme.spacings.extraSmall.dp),
+                    modifier = Modifier.padding(top = OdsTheme.spacings.extraSmall),
                     text = color.callableName,
                     style = OdsTheme.typography.bodyLarge
                 )
                 OdsText(
-                    modifier = Modifier.padding(top = OdsTheme.spacings.small.dp),
+                    modifier = Modifier.padding(top = OdsTheme.spacings.small),
                     text = colorValue.toHexString(),
                     style = OdsTheme.typography.bodyLarge
                 )
                 OdsText(
-                    modifier = Modifier.padding(top = OdsTheme.spacings.small.dp),
+                    modifier = Modifier.padding(top = OdsTheme.spacings.small),
                     text = colorValue.toRgbString(),
                     style = OdsTheme.typography.bodyLarge
                 )
                 color.xmlResource?.let { xmlResource ->
                     OdsText(
-                        modifier = Modifier.padding(top = OdsTheme.spacings.small.dp),
+                        modifier = Modifier.padding(top = OdsTheme.spacings.small),
                         text = stringResource(
                             id = R.string.guideline_colour_xml,
                             context.getStringName(xmlResource)
@@ -266,7 +266,7 @@ fun DialogColor(color: GuidelineColor, openDialog: MutableState<Boolean>) {
                     )
                 }
                 OdsButton(
-                    modifier = Modifier.padding(top = OdsTheme.spacings.small.dp),
+                    modifier = Modifier.padding(top = OdsTheme.spacings.small),
                     text = stringResource(id = R.string.guideline_colour_copy_to_clipboard_button_title),
                     onClick = { copyColorToClipboard(context, colorValue, clipboardManager) })
             }

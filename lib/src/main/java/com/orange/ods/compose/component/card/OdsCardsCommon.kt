@@ -50,7 +50,7 @@ internal fun OdsCard(modifier: Modifier, onClick: (() -> Unit)?, content: @Compo
 internal fun OdsCardButtonsFlowRow(modifier: Modifier = Modifier, firstButton: OdsCard.Button? = null, secondButton: OdsCard.Button? = null) {
     FlowRow(
         modifier = modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.small.dp),
+        horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.small),
         verticalArrangement = Arrangement.spacedBy((-6).dp)
     ) {
         firstButton?.Content()

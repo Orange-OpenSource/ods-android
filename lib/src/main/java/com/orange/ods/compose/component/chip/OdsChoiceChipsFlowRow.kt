@@ -58,7 +58,7 @@ fun OdsChoiceChipsFlowRow(
         modifier = modifier
             .fillMaxWidth()
             .selectableGroup(),
-        horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.small.dp),
+        horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.small),
         verticalArrangement = Arrangement.spacedBy((-4).dp),
         content = {
             choiceChips.forEachIndexed { index, choiceChip ->
@@ -116,7 +116,7 @@ private fun PreviewOdsChoiceChipsFlowRow() = OdsPreview {
     var selectedChoiceChipIndex by remember { mutableIntStateOf(0) }
     OdsChoiceChipsFlowRow(
         selectedChoiceChipIndex = selectedChoiceChipIndex,
-        modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp),
+        modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium),
         choiceChips = texts.mapIndexed { index, text ->
             OdsChoiceChipsFlowRow.ChoiceChip(
                 text = text,

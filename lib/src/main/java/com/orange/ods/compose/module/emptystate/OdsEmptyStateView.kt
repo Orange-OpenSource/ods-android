@@ -57,7 +57,7 @@ fun OdsEmptyStateView(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(horizontal = OdsTheme.spacings.medium.dp, vertical = OdsTheme.spacings.small.dp),
+            .padding(horizontal = OdsTheme.spacings.medium, vertical = OdsTheme.spacings.small),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -66,7 +66,7 @@ fun OdsEmptyStateView(
 
         OdsText(
             modifier = Modifier
-                .padding(top = OdsTheme.spacings.medium.dp)
+                .padding(top = OdsTheme.spacings.medium)
                 .fillMaxWidth(),
             text = title,
             textAlign = TextAlign.Center,
@@ -76,7 +76,7 @@ fun OdsEmptyStateView(
         text?.let {
             OdsText(
                 modifier = Modifier
-                    .padding(top = OdsTheme.spacings.small.dp)
+                    .padding(top = OdsTheme.spacings.small)
                     .fillMaxWidth(),
                 text = text,
                 textAlign = TextAlign.Center,
@@ -84,7 +84,7 @@ fun OdsEmptyStateView(
             )
         }
 
-        button?.Content(modifier = Modifier.padding(top = OdsTheme.spacings.medium.dp))
+        button?.Content(modifier = Modifier.padding(top = OdsTheme.spacings.medium))
     }
 }
 

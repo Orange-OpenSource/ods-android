@@ -83,16 +83,16 @@ fun OdsBanner(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(
-                    top = if (buttonCount == 0 || !isSingleLineBanner) OdsTheme.spacings.medium.dp else OdsTheme.spacings.small.dp,
+                    top = if (buttonCount == 0 || !isSingleLineBanner) OdsTheme.spacings.medium else OdsTheme.spacings.small,
                     bottom = when {
-                        buttonCount == 0 -> OdsTheme.spacings.medium.dp
-                        isSingleLineBanner -> OdsTheme.spacings.small.dp
+                        buttonCount == 0 -> OdsTheme.spacings.medium
+                        isSingleLineBanner -> OdsTheme.spacings.small
                         else -> 0.dp
                     }
                 )
-                .padding(horizontal = OdsTheme.spacings.medium.dp)
+                .padding(horizontal = OdsTheme.spacings.medium)
         ) {
-            image?.Content(modifier = Modifier.padding(end = OdsTheme.spacings.medium.dp))
+            image?.Content(modifier = Modifier.padding(end = OdsTheme.spacings.medium))
 
             Row(
                 verticalAlignment = Alignment.CenterVertically
@@ -111,18 +111,18 @@ fun OdsBanner(
                     }
                 )
                 if (isSingleLineBanner) {
-                    firstButton?.Content(modifier = Modifier.padding(start = OdsTheme.spacings.extraSmall.dp))
-                    secondButton?.Content(modifier = Modifier.padding(start = OdsTheme.spacings.extraSmall.dp))
+                    firstButton?.Content(modifier = Modifier.padding(start = OdsTheme.spacings.extraSmall))
+                    secondButton?.Content(modifier = Modifier.padding(start = OdsTheme.spacings.extraSmall))
                 }
             }
         }
         if (!isSingleLineBanner && buttonCount > 0) {
             FlowRow(
                 modifier = Modifier
-                    .padding(horizontal = OdsTheme.spacings.medium.dp)
-                    .padding(bottom = OdsTheme.spacings.extraSmall.dp)
+                    .padding(horizontal = OdsTheme.spacings.medium)
+                    .padding(bottom = OdsTheme.spacings.extraSmall)
                     .align(Alignment.End),
-                horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.small.dp, Alignment.End),
+                horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.small, Alignment.End),
                 verticalArrangement = Arrangement.spacedBy((-6).dp)
             ) {
                 firstButton?.Content()

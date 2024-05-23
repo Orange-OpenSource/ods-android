@@ -59,7 +59,7 @@ fun OdsCircularProgressIndicator(
         if (label != null) {
             OdsText(
                 text = label,
-                modifier = Modifier.padding(top = OdsTheme.spacings.small.dp),
+                modifier = Modifier.padding(top = OdsTheme.spacings.small),
                 style = OdsTheme.typography.bodySmall
             )
         }

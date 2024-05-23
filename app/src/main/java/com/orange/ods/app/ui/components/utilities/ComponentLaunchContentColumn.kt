@@ -29,7 +29,7 @@ fun ComponentLaunchContentColumn(@StringRes textRes: Int, @StringRes buttonLabel
     Column(
         modifier = Modifier.padding(
             top = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin),
-            bottom = OdsTheme.spacings.small.dp
+            bottom = OdsTheme.spacings.small
         )
     ) {
         OdsText(
@@ -43,7 +43,7 @@ fun ComponentLaunchContentColumn(@StringRes textRes: Int, @StringRes buttonLabel
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin))
-                .padding(top = OdsTheme.spacings.medium.dp),
+                .padding(top = OdsTheme.spacings.medium),
             text = stringResource(id = buttonLabelRes),
             style = OdsButton.Style.Primary,
             onClick = onButtonClick

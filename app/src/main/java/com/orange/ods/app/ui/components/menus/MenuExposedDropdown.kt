@@ -85,7 +85,7 @@ fun MenuExposedDropdown() {
                     .verticalScroll(rememberScrollState())
                     .padding(
                         top = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin),
-                        bottom = OdsTheme.spacings.small.dp
+                        bottom = OdsTheme.spacings.small
                     )
                     .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
             ) {
@@ -93,7 +93,7 @@ fun MenuExposedDropdown() {
                 OdsExposedDropdownMenu(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = OdsTheme.spacings.small.dp),
+                        .padding(top = OdsTheme.spacings.small),
                     label = label,
                     items = items,
                     selectedItem = selectedItem,

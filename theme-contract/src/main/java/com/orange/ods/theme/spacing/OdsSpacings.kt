@@ -12,24 +12,25 @@
 
 package com.orange.ods.theme.spacing
 
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.orange.ods.theme.OdsThemeConfigurationItem
 import com.orange.ods.theme.OdsToken
-import com.orange.ods.theme.R
 
 /**
  * The Orange Design System spacings.
  */
 class OdsSpacings(
-    override val none: OdsSpacing = OdsSpacing.Resource(R.dimen.spacing_none),
-    override val extraSmall: OdsSpacing = OdsSpacing.Resource(R.dimen.spacing_xs),
-    override val small: OdsSpacing = OdsSpacing.Resource(R.dimen.spacing_s),
-    override val medium: OdsSpacing = OdsSpacing.Resource(R.dimen.spacing_m),
-    override val large: OdsSpacing = OdsSpacing.Resource(R.dimen.spacing_l),
-    override val extraLarge: OdsSpacing = OdsSpacing.Resource(R.dimen.spacing_xl),
-    override val extraExtraLarge: OdsSpacing = OdsSpacing.Resource(R.dimen.spacing_2xl)
-) : OdsSpacingsCatalog<OdsSpacing>, OdsThemeConfigurationItem.TokenProvider<OdsSpacingsCatalog<OdsToken<OdsSpacing>>> {
+    override val none: Dp = 0.dp,
+    override val extraSmall: Dp = 4.dp,
+    override val small: Dp = 8.dp,
+    override val medium: Dp = 16.dp,
+    override val large: Dp = 24.dp,
+    override val extraLarge: Dp = 32.dp,
+    override val extraExtraLarge: Dp = 40.dp
+) : OdsSpacingsCatalog<Dp>, OdsThemeConfigurationItem.TokenProvider<OdsSpacingsCatalog<OdsToken<Dp>>> {
 
-    override val tokens = object : OdsSpacingsCatalog<OdsToken<OdsSpacing>> {
+    override val tokens = object : OdsSpacingsCatalog<OdsToken<Dp>> {
         override val none = OdsToken(OdsToken.Spacing.None, this@OdsSpacings.none)
         override val extraSmall = OdsToken(OdsToken.Spacing.ExtraSmall, this@OdsSpacings.extraSmall)
         override val small = OdsToken(OdsToken.Spacing.Small, this@OdsSpacings.small)

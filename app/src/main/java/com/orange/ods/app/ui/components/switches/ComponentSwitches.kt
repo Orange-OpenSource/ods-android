@@ -51,7 +51,7 @@ fun ComponentSwitches() {
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
-                .padding(vertical = OdsTheme.spacings.small.dp)
+                .padding(vertical = OdsTheme.spacings.small)
         ) {
             var checked by rememberSaveable { mutableStateOf(false) }
             val recipe = LocalRecipes.current.first()
@@ -62,7 +62,7 @@ fun ComponentSwitches() {
 
             CodeImplementationColumn(
                 modifier = Modifier
-                    .padding(top = OdsTheme.spacings.extraSmall.dp)
+                    .padding(top = OdsTheme.spacings.extraSmall)
                     .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
             ) {
                 FunctionCallCode(

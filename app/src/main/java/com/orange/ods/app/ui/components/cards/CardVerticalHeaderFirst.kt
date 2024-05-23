@@ -52,7 +52,7 @@ fun CardVerticalHeaderFirst(customizationState: CardCustomizationState) {
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(state = rememberScrollState())
-                .padding(OdsTheme.spacings.medium.dp)
+                .padding(OdsTheme.spacings.medium)
         ) {
             val firstButtonText = stringResource(id = R.string.component_element_first_button)
             val secondButtonText = stringResource(id = R.string.component_element_second_button)
@@ -79,7 +79,7 @@ fun CardVerticalHeaderFirst(customizationState: CardCustomizationState) {
             )
 
             CodeImplementationColumn(
-                modifier = Modifier.padding(top = OdsTheme.spacings.small.dp)
+                modifier = Modifier.padding(top = OdsTheme.spacings.small)
             ) {
                 FunctionCallCode(
                     name = OdsComposable.OdsVerticalHeaderFirstCard.name,

@@ -81,8 +81,8 @@ fun OdsHorizontalCard(
             ) = createRefs()
 
             val imageSize = dimensionResource(R.dimen.card_horizontal_image_size)
-            val smallSpacing = OdsTheme.spacings.small.dp
-            val mediumSpacing = OdsTheme.spacings.medium.dp
+            val smallSpacing = OdsTheme.spacings.small
+            val mediumSpacing = OdsTheme.spacings.medium
 
             image.Content(
                 modifier = Modifier

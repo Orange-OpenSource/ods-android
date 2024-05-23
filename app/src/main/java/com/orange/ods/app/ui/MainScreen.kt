@@ -297,7 +297,7 @@ private fun ChangeThemeDialog(themeManager: ThemeManager, dismissDialog: () -> U
             OdsText(
                 text = stringResource(R.string.top_app_bar_action_change_theme_desc),
                 modifier = Modifier
-                    .padding(top = OdsTheme.spacings.medium.dp, bottom = OdsTheme.spacings.small.dp)
+                    .padding(top = OdsTheme.spacings.medium, bottom = OdsTheme.spacings.small)
                     .padding(horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin)),
                 style = OdsTheme.typography.titleLarge
             )

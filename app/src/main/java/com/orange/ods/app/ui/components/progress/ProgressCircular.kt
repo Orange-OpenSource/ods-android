@@ -48,7 +48,7 @@ fun ProgressCircular() {
                 Subtitle(textRes = R.string.component_element_type, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
                     selectedChoiceChipIndex = ProgressCustomizationState.Type.entries.indexOf(type.value),
-                    modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp),
+                    modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium),
                     choiceChips = ProgressCustomizationState.Type.entries.map { type ->
                         val textResId = when (type) {
                             ProgressCustomizationState.Type.Determinate -> R.string.component_progress_determinate
@@ -76,7 +76,7 @@ fun ProgressCircular() {
                     progress = if (type.value == ProgressCustomizationState.Type.Determinate) determinateProgressAnimation.value else null,
                     label = if (hasLabel) text else null,
                     modifier = Modifier
-                        .padding(top = OdsTheme.spacings.medium.dp)
+                        .padding(top = OdsTheme.spacings.medium)
                         .align(alignment = Alignment.CenterHorizontally)
                 )
                 if (type.value == ProgressCustomizationState.Type.Determinate) {

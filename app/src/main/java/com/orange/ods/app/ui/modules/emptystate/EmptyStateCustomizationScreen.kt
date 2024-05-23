@@ -72,7 +72,7 @@ fun EmptyStateCustomizationScreen(onViewDemoButtonClick: () -> Unit, viewModel: 
             Subtitle(textRes = R.string.module_emptyState_usage_customization, horizontalPadding = true)
             OdsChoiceChipsFlowRow(
                 selectedChoiceChipIndex = EmptyStateUsage.entries.indexOf(usage),
-                modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp),
+                modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium),
                 choiceChips = EmptyStateUsage.entries.map { emptyStateUsage ->
                     OdsChoiceChipsFlowRow.ChoiceChip(
                         stringResource(id = emptyStateUsage.choiceLabelRes),

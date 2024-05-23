@@ -113,7 +113,7 @@ fun OdsLargeTopAppBar(
                 modifier = Modifier
                     .padding(
                         start = titleStartPadding,
-                        end = OdsTheme.spacings.medium.dp
+                        end = OdsTheme.spacings.medium
                     )
                     .alpha(titleAlpha)
                     .semantics { traversalIndex = -1f }

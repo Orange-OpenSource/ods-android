@@ -42,12 +42,12 @@ fun ComponentsScreen(onComponentClick: (Long) -> Unit) {
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(scrollState)
-            .padding(OdsTheme.spacings.medium.dp),
-        verticalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium.dp)
+            .padding(OdsTheme.spacings.medium),
+        verticalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium)
     ) {
         components.sortedBy { context.getString(it.titleRes) }.chunked(2).forEach { rowCards ->
             Row(
-                horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium.dp),
+                horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium),
             ) {
                 ComponentCard(component = rowCards[0], onComponentClick)
                 if (rowCards.size == 2) {

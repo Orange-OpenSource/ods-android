@@ -75,7 +75,7 @@ fun MenuDropdown() {
                     .verticalScroll(rememberScrollState())
                     .padding(
                         top = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin),
-                        bottom = OdsTheme.spacings.small.dp
+                        bottom = OdsTheme.spacings.small
                     )
             ) {
                 OdsText(
@@ -87,9 +87,9 @@ fun MenuDropdown() {
 
                 val dividerIndex = 1
 
-                Box(modifier = Modifier.padding(top = OdsTheme.spacings.small.dp)) {
+                Box(modifier = Modifier.padding(top = OdsTheme.spacings.small)) {
                     OdsListItem(
-                        modifier = Modifier.padding(top = OdsTheme.spacings.small.dp),
+                        modifier = Modifier.padding(top = OdsTheme.spacings.small),
                         text = recipe.title,
                         secondaryText = recipe.subtitle,
                         trailing = OdsListItem.TrailingIcon(

@@ -55,7 +55,7 @@ fun CodeImplementationColumn(
 
     Column(
         modifier = modifier.padding(
-            vertical = OdsTheme.spacings.small.dp
+            vertical = OdsTheme.spacings.small
         )
     ) {
         UiFrameworkChoice()
@@ -73,7 +73,7 @@ fun CodeImplementationColumn(
                     TechnicalText(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(OdsTheme.spacings.extraSmall.dp),
+                            .padding(OdsTheme.spacings.extraSmall),
                         text = stringResource(id = R.string.xml_component_not_yet_available)
                     )
                 }
@@ -113,7 +113,7 @@ fun CodeBackgroundColumn(content: @Composable () -> Unit) {
                 OdsTheme.colors.onSurface.copy(alpha = 0.12f),
                 shape = RoundedCornerShape(10f)
             )
-            .padding(horizontal = OdsTheme.spacings.small.dp, vertical = OdsTheme.spacings.small.dp)
+            .padding(horizontal = OdsTheme.spacings.small, vertical = OdsTheme.spacings.small)
             .semantics(mergeDescendants = true) {}) {
         content()
     }
@@ -121,7 +121,7 @@ fun CodeBackgroundColumn(content: @Composable () -> Unit) {
 
 @Composable
 fun IndentCodeColumn(content: @Composable () -> Unit) {
-    Column(modifier = Modifier.padding(start = OdsTheme.spacings.small.dp)) {
+    Column(modifier = Modifier.padding(start = OdsTheme.spacings.small)) {
         content()
     }
 }

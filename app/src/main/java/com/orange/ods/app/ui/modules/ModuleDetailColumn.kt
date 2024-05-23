@@ -53,8 +53,8 @@ fun ModuleDetailColumn(
             content()
             OdsButton(
                 modifier = Modifier
-                    .padding(top = OdsTheme.spacings.medium.dp)
-                    .padding(horizontal = OdsTheme.spacings.medium.dp)
+                    .padding(top = OdsTheme.spacings.medium)
+                    .padding(horizontal = OdsTheme.spacings.medium)
                     .fillMaxWidth(),
                 style = OdsButton.Style.Primary,
                 text = stringResource(id = com.orange.ods.app.R.string.module_view_demo),

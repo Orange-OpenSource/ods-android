@@ -87,7 +87,7 @@ fun ComponentTabs(variant: Variant) {
                 Subtitle(textRes = R.string.component_tabs_icon_position, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
                     selectedChoiceChipIndex = OdsTabRow.Tab.Icon.Position.entries.indexOf(tabIconPosition.value),
-                    modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp),
+                    modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium),
                     choiceChips = OdsTabRow.Tab.Icon.Position.entries.map { tabIconPosition ->
                         val textResId = when (tabIconPosition) {
                             OdsTabRow.Tab.Icon.Position.Top -> R.string.component_tabs_icon_position_top

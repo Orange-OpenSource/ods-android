@@ -47,7 +47,7 @@ fun ComponentDetailScreen(
             imageAlignment = component.imageAlignment,
         )
         Column(
-            modifier = Modifier.padding(top = OdsTheme.spacings.medium.dp)
+            modifier = Modifier.padding(top = OdsTheme.spacings.medium)
         ) {
             if (component.variants.isEmpty()) {
                 ComponentDetailLinkItem(

@@ -55,8 +55,8 @@ fun ComponentFloatingActionButton() {
             .let {
                 if (isFullScreenWidth) it
                     .padding(
-                        start = OdsTheme.spacings.medium.dp,
-                        end = OdsTheme.spacings.medium.dp,
+                        start = OdsTheme.spacings.medium,
+                        end = OdsTheme.spacings.medium,
                         bottom = 64.dp
                     )
                     .fillMaxWidth()
@@ -94,7 +94,7 @@ fun ComponentFloatingActionButton() {
                 Subtitle(textRes = R.string.component_size, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
                     selectedChoiceChipIndex = FabCustomizationState.Size.entries.indexOf(size.value),
-                    modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp),
+                    modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium),
                     choiceChips = FabCustomizationState.Size.entries.map { size ->
                         val textResId = when (size) {
                             FabCustomizationState.Size.Default -> R.string.component_floating_action_button_size_default

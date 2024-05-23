@@ -67,7 +67,7 @@ fun OdsVerticalImageFirstCard(
             )
             Column(
                 modifier = Modifier
-                    .padding(OdsTheme.spacings.medium.dp)
+                    .padding(OdsTheme.spacings.medium)
             ) {
                 OdsText(text = title, style = OdsTheme.typography.titleLarge)
                 subtitle?.let {
@@ -76,7 +76,7 @@ fun OdsVerticalImageFirstCard(
                 text?.let {
                     OdsText(
                         modifier = Modifier.padding(
-                            top = OdsTheme.spacings.small.dp
+                            top = OdsTheme.spacings.small
                         ),
                         text = it,
                         style = OdsTheme.typography.bodyLarge
@@ -85,7 +85,7 @@ fun OdsVerticalImageFirstCard(
             }
 
             OdsCardButtonsFlowRow(
-                modifier = Modifier.padding(horizontal = OdsTheme.spacings.small.dp),
+                modifier = Modifier.padding(horizontal = OdsTheme.spacings.small),
                 firstButton = firstButton,
                 secondButton = secondButton
             )

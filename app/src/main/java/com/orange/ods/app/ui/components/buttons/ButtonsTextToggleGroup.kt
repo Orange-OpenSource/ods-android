@@ -59,7 +59,7 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
                 sameItemsWeight = hasSameItemsWeight,
             )
 
-            Spacer(modifier = Modifier.padding(top = OdsTheme.spacings.small.dp))
+            Spacer(modifier = Modifier.padding(top = OdsTheme.spacings.small))
 
             InvertedBackgroundColumn {
                 ToggleButtonsRow(
@@ -102,7 +102,7 @@ private fun ToggleButtonsRow(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = OdsTheme.spacings.medium.dp)
+            .padding(top = OdsTheme.spacings.medium)
             .padding(horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin)),
         horizontalArrangement = Arrangement.Center
     ) {

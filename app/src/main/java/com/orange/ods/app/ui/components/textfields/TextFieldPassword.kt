@@ -36,7 +36,7 @@ fun TextFieldPassword(customizationState: TextFieldCustomizationState) {
             OdsPasswordTextField(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = OdsTheme.spacings.small.dp),
+                    .padding(top = OdsTheme.spacings.small),
                 enabled = isEnabled,
                 isError = isError,
                 errorMessage = if (isError) errorMessage else null,

@@ -121,8 +121,8 @@ fun ComponentBottomNavigation() {
                     }
                     OdsText(
                         modifier = Modifier.padding(
-                            top = OdsTheme.spacings.small.dp,
-                            bottom = OdsTheme.spacings.extraSmall.dp
+                            top = OdsTheme.spacings.small,
+                            bottom = OdsTheme.spacings.extraSmall
                         ),
                         text = stringResource(id = R.string.component_bottom_navigation_code_add_items),
                         style = OdsTheme.typography.bodyMedium

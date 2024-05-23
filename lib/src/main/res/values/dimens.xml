@@ -15,8 +15,8 @@
 <resources>
 
     <!-- Screen margins -->
-    <dimen name="screen_vertical_margin">@dimen/spacing_s</dimen>
-    <dimen name="screen_horizontal_margin">@dimen/spacing_m</dimen>
+    <dimen name="screen_vertical_margin">8dp</dimen>
+    <dimen name="screen_horizontal_margin">16dp</dimen>
 
     <!-- Card -->
     <dimen name="card_big_image_height">184dp</dimen>

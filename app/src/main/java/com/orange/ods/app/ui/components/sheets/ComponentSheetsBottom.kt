@@ -70,7 +70,7 @@ fun ComponentSheetsBottom() {
                     OdsText(text = stringResource(id = R.string.component_sheet_bottom_customize), style = OdsTheme.typography.bodyLarge)
                     OdsText(
                         text = stringResource(id = R.string.component_element_content),
-                        modifier = Modifier.padding(top = OdsTheme.spacings.small.dp),
+                        modifier = Modifier.padding(top = OdsTheme.spacings.small),
                         style = OdsTheme.typography.titleMedium
                     )
                     OdsChoiceChipsFlowRow(

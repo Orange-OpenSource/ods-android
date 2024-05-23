@@ -40,8 +40,8 @@ fun ModulesScreen(onModuleClick: (String) -> Unit) {
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(scrollState)
-            .padding(OdsTheme.spacings.medium.dp),
-        verticalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium.dp)
+            .padding(OdsTheme.spacings.medium),
+        verticalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium)
     ) {
         modules.sortedBy { context.getString(it.titleRes) }.forEach { module ->
             ModuleCard(module = module, onModuleClick = onModuleClick)

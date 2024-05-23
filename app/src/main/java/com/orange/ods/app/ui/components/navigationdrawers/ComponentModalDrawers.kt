@@ -129,7 +129,7 @@ fun ComponentModalDrawers() {
                         Subtitle(textRes = R.string.component_modal_drawer_header_image, horizontalPadding = true)
                         OdsChoiceChipsFlowRow(
                             selectedChoiceChipIndex = ComponentNavigationDrawersContentState.HeaderImage.entries.indexOf(headerImage.value),
-                            modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp),
+                            modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium),
                             choiceChips = ComponentNavigationDrawersContentState.HeaderImage.entries.map { headerImage ->
                                 val textResId = when (headerImage) {
                                     ComponentNavigationDrawersContentState.HeaderImage.Avatar -> R.string.component_element_avatar
@@ -150,7 +150,7 @@ fun ComponentModalDrawers() {
                         Subtitle(textRes = R.string.component_modal_drawer_list_example, horizontalPadding = true)
                         OdsChoiceChipsFlowRow(
                             selectedChoiceChipIndex = ComponentNavigationDrawersContentState.SectionListExample.entries.indexOf(content.value),
-                            modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp),
+                            modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium),
                             choiceChips = ComponentNavigationDrawersContentState.SectionListExample.entries.map { content ->
                                 val textResId = when (content) {
                                     ComponentNavigationDrawersContentState.SectionListExample.Divider -> R.string.component_element_divider

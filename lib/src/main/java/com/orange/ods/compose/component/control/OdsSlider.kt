@@ -91,7 +91,7 @@ fun OdsSlider(
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium.dp)
+        horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium)
     ) {
         startIcon?.Content()
         // For the moment we cannot change the height of the slider track (need to check in jetpack compose future versions)
@@ -156,7 +156,7 @@ fun OdsSliderLockups(
 
     Row(
         modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.extraSmall.dp)
+        horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.extraSmall)
     ) {
         startIcon?.Content(
             modifier = Modifier
@@ -187,7 +187,7 @@ fun OdsSliderLockups(
                 onValueChange = onValueChange,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = OdsTheme.spacings.large.dp)
+                    .padding(top = OdsTheme.spacings.large)
                     .padding(horizontal = labelMinWidth / 3),
                 enabled = enabled,
                 valueRange = valueRange,

@@ -35,7 +35,7 @@ fun Title(@StringRes textRes: Int, modifier: Modifier = Modifier, horizontalPadd
         text = stringResource(textRes),
         modifier = modifier
             .fillMaxWidth()
-            .padding(top = if (topPadding) OdsTheme.spacings.extraLarge.dp else 0.dp)
+            .padding(top = if (topPadding) OdsTheme.spacings.extraLarge else 0.dp)
             .padding(horizontal = if (horizontalPadding) dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin) else 0.dp),
         style = OdsTheme.typography.headlineSmall
     )
@@ -47,7 +47,7 @@ fun Subtitle(@StringRes textRes: Int, horizontalPadding: Boolean = false) {
         text = stringResource(textRes),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = OdsTheme.spacings.medium.dp)
+            .padding(top = OdsTheme.spacings.medium)
             .padding(horizontal = if (horizontalPadding) dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin) else 0.dp),
         style = OdsTheme.typography.titleMedium
     )

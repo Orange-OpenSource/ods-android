@@ -66,18 +66,18 @@ internal fun OdsAboutHomeScreen(configuration: OdsAboutConfiguration, onAboutMen
 
             Column(
                 modifier = Modifier
-                    .padding(horizontal = OdsTheme.spacings.medium.dp)
-                    .padding(bottom = OdsTheme.spacings.medium.dp)
+                    .padding(horizontal = OdsTheme.spacings.medium)
+                    .padding(bottom = OdsTheme.spacings.medium)
             ) {
                 OdsText(
                     text = configuration.appName,
-                    modifier = Modifier.padding(top = OdsTheme.spacings.medium.dp),
+                    modifier = Modifier.padding(top = OdsTheme.spacings.medium),
                     style = OdsTheme.typography.headlineLarge
                 )
-                Row(modifier = Modifier.padding(top = OdsTheme.spacings.small.dp)) {
+                Row(modifier = Modifier.padding(top = OdsTheme.spacings.small)) {
                     configuration.shareData?.let { shareData ->
                         OdsTextButton(
-                            modifier = Modifier.padding(end = OdsTheme.spacings.small.dp),
+                            modifier = Modifier.padding(end = OdsTheme.spacings.small),
                             text = stringResource(id = R.string.odsAbout_appShare),
                             icon = OdsButton.Icon(painterResource(id = R.drawable.ic_share)),
                             onClick = {
@@ -103,14 +103,14 @@ internal fun OdsAboutHomeScreen(configuration: OdsAboutConfiguration, onAboutMen
                 configuration.appVersion?.let { appVersion ->
                     OdsText(
                         text = appVersion,
-                        modifier = Modifier.padding(top = OdsTheme.spacings.medium.dp),
+                        modifier = Modifier.padding(top = OdsTheme.spacings.medium),
                         style = OdsTheme.typography.bodyMedium
                     )
                 }
                 configuration.appDescription?.let { description ->
                     OdsText(
                         text = description,
-                        modifier = Modifier.padding(top = OdsTheme.spacings.small.dp),
+                        modifier = Modifier.padding(top = OdsTheme.spacings.small),
                         style = OdsTheme.typography.bodyLarge
                     )
                 }

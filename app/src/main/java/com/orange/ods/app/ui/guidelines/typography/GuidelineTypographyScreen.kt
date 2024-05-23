@@ -45,7 +45,7 @@ fun GuidelineTypographyScreen() {
 
     LazyColumn(
         contentPadding = PaddingValues(bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin)),
-        verticalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium.dp)
+        verticalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium)
     ) {
         item {
             DetailScreenHeader(
@@ -59,7 +59,7 @@ fun GuidelineTypographyScreen() {
             if (index < typographyTokens.lastIndex) {
                 OdsDivider(
                     modifier = Modifier
-                        .padding(top = OdsTheme.spacings.medium.dp)
+                        .padding(top = OdsTheme.spacings.medium)
                         .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
                 )
             }

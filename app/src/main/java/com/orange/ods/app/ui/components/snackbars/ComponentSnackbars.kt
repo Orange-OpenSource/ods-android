@@ -99,8 +99,8 @@ fun ComponentSnackbars() {
             ) {
                 OdsText(
                     modifier = Modifier.padding(
-                        top = OdsTheme.spacings.small.dp,
-                        bottom = OdsTheme.spacings.extraSmall.dp
+                        top = OdsTheme.spacings.small,
+                        bottom = OdsTheme.spacings.extraSmall
                     ),
                     text = stringResource(id = R.string.component_snackbar_code_first_step),
                     style = OdsTheme.typography.bodyMedium
@@ -123,8 +123,8 @@ fun ComponentSnackbars() {
 
                 OdsText(
                     modifier = Modifier.padding(
-                        top = OdsTheme.spacings.small.dp,
-                        bottom = OdsTheme.spacings.extraSmall.dp
+                        top = OdsTheme.spacings.small,
+                        bottom = OdsTheme.spacings.extraSmall
                     ),
                     text = stringResource(id = R.string.component_snackbar_code_second_step),
                     style = OdsTheme.typography.bodyMedium

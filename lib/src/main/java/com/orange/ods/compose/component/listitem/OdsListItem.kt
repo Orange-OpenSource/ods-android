@@ -533,10 +533,10 @@ object OdsListItem {
 private fun getDividerStartIndent(leadingIconType: OdsListItem.LeadingIcon.Type?): Dp {
     return when (leadingIconType) {
         OdsListItem.LeadingIcon.Type.Icon,
-        OdsListItem.LeadingIcon.Type.CircularImage -> dimensionResource(id = R.dimen.avatar_size) + OdsTheme.spacings.medium.dp.times(2)
-        OdsListItem.LeadingIcon.Type.SquareImage -> dimensionResource(id = R.dimen.list_square_image_size) + OdsTheme.spacings.medium.dp.times(2)
-        OdsListItem.LeadingIcon.Type.WideImage -> dimensionResource(id = R.dimen.list_wide_image_width) + OdsTheme.spacings.medium.dp
-        null -> OdsTheme.spacings.medium.dp
+        OdsListItem.LeadingIcon.Type.CircularImage -> dimensionResource(id = R.dimen.avatar_size) + OdsTheme.spacings.medium.times(2)
+        OdsListItem.LeadingIcon.Type.SquareImage -> dimensionResource(id = R.dimen.list_square_image_size) + OdsTheme.spacings.medium.times(2)
+        OdsListItem.LeadingIcon.Type.WideImage -> dimensionResource(id = R.dimen.list_wide_image_width) + OdsTheme.spacings.medium
+        null -> OdsTheme.spacings.medium
     }
 }
 

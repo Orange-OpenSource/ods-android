@@ -52,7 +52,7 @@ fun OdsSnackbarHost(
     snackbar: (SnackbarData) -> OdsSnackbarHost.Snackbar = { OdsSnackbarHost.Snackbar(it) }
 ) {
     SnackbarHost(
-        modifier = modifier.padding(OdsTheme.spacings.small.dp),
+        modifier = modifier.padding(OdsTheme.spacings.small),
         hostState = hostState,
         snackbar = { snackbar(it).Content(modifier = Modifier) }
     )

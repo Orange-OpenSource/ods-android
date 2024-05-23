@@ -154,7 +154,7 @@ object OdsFloatingActionButton {
 @Composable
 private fun PreviewOdsFloatingActionButton(@PreviewParameter(OdsFloatingActionButtonPreviewParameterProvider::class) isMini: Boolean) =
     OdsPreview {
-        Column(modifier = Modifier.padding(OdsTheme.spacings.small.dp)) {
+        Column(modifier = Modifier.padding(OdsTheme.spacings.small)) {
             OdsFloatingActionButton(
                 onClick = {},
                 mini = isMini,
@@ -168,7 +168,7 @@ internal class OdsFloatingActionButtonPreviewParameterProvider : BasicPreviewPar
 @UiModePreviews.Button
 @Composable
 private fun PreviewOdsExtendedFloatingActionButton() = OdsPreview {
-    Column(modifier = Modifier.padding(OdsTheme.spacings.small.dp)) {
+    Column(modifier = Modifier.padding(OdsTheme.spacings.small)) {
         OdsExtendedFloatingActionButton(
             modifier = Modifier.fillMaxWidth(),
             onClick = {},

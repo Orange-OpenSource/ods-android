@@ -62,7 +62,7 @@ fun Chip(variant: Variant) {
                     Subtitle(textRes = R.string.component_element_leading, horizontalPadding = true)
                     OdsChoiceChipsFlowRow(
                         selectedChoiceChipIndex = ChipCustomizationState.LeadingElement.entries.indexOf(leadingElement.value),
-                        modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp),
+                        modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium),
                         choiceChips = ChipCustomizationState.LeadingElement.entries.map { leadingElement ->
                             val textResId = when (leadingElement) {
                                 LeadingElement.None -> R.string.component_element_none
@@ -99,7 +99,7 @@ fun ChipTypeDemo(chipType: ChipType, content: @Composable () -> Unit) {
             )
     ) {
         OdsText(
-            modifier = Modifier.padding(bottom = OdsTheme.spacings.small.dp),
+            modifier = Modifier.padding(bottom = OdsTheme.spacings.small),
             text = stringResource(id = chipType.descriptionRes),
             style = OdsTheme.typography.bodyMedium
         )
@@ -117,7 +117,7 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
         if (isChoiceChip) {
             OdsChoiceChipsFlowRow(
                 selectedChoiceChipIndex = selectedChoiceChipIndex.value.orElse { 0 },
-                modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp),
+                modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium),
                 choiceChips = recipes.mapIndexed { index, recipe ->
                     OdsChoiceChipsFlowRow.ChoiceChip(
                         text = recipe.title,
@@ -127,7 +127,7 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
                 }
             )
 
-            Spacer(modifier = Modifier.padding(top = OdsTheme.spacings.small.dp))
+            Spacer(modifier = Modifier.padding(top = OdsTheme.spacings.small))
 
             CodeImplementationColumn {
                 FunctionCallCode(
@@ -171,7 +171,7 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
                 } else null
             )
 
-            Spacer(modifier = Modifier.padding(top = OdsTheme.spacings.small.dp))
+            Spacer(modifier = Modifier.padding(top = OdsTheme.spacings.small))
 
             CodeImplementationColumn {
                 val leadingParameterName = "leading"

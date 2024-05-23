@@ -65,7 +65,7 @@ private fun DetailScreenDescription(
     OdsText(
         text = stringResource(descriptionRes),
         modifier = modifier.padding(
-            top = OdsTheme.spacings.medium.dp
+            top = OdsTheme.spacings.medium
         ),
         style = OdsTheme.typography.bodyLarge
     )

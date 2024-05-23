@@ -92,7 +92,7 @@ fun OdsImageItem(
                                 text = it,
                                 textModifier = Modifier
                                     .weight(1f)
-                                    .padding(all = OdsTheme.spacings.medium.dp),
+                                    .padding(all = OdsTheme.spacings.medium),
                                 icon = icon
                             )
                         }
@@ -117,8 +117,8 @@ fun OdsImageItem(
                                 text = it,
                                 textModifier = Modifier
                                     .weight(1f)
-                                    .padding(vertical = OdsTheme.spacings.medium.dp)
-                                    .padding(end = OdsTheme.spacings.medium.dp),
+                                    .padding(vertical = OdsTheme.spacings.medium)
+                                    .padding(end = OdsTheme.spacings.medium),
                                 icon = icon
                             )
                         }

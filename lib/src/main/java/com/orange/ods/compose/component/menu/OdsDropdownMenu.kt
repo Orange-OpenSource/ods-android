@@ -177,7 +177,7 @@ object OdsDropdownMenu {
                             contentDescription = "",
                             tint = OdsTheme.colors.onSurface,
                             enabled = enabled,
-                            modifier = Modifier.padding(end = OdsTheme.spacings.medium.dp),
+                            modifier = Modifier.padding(end = OdsTheme.spacings.medium),
                         )
                     }
                     OdsText(text = text, style = OdsTheme.typography.bodyLarge, enabled = enabled)

@@ -67,7 +67,7 @@ fun OdsSmallCard(
             )
             Column(
                 modifier = Modifier
-                    .padding(OdsTheme.spacings.medium.dp)
+                    .padding(OdsTheme.spacings.medium)
             ) {
                 SmallCardText(text = title, style = OdsTheme.typography.titleLarge, isClickableCard = onClick != null)
                 subtitle?.let {

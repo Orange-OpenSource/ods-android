@@ -60,7 +60,7 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
                 )
             }
 
-            Spacer(modifier = Modifier.padding(top = OdsTheme.spacings.small.dp))
+            Spacer(modifier = Modifier.padding(top = OdsTheme.spacings.small))
 
             InvertedBackgroundColumn(horizontalAlignment = Alignment.CenterHorizontally) {
                 IconButton(
@@ -117,7 +117,7 @@ private fun IconButton(
     Box(
         modifier = Modifier.padding(
             horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin),
-            vertical = OdsTheme.spacings.medium.dp
+            vertical = OdsTheme.spacings.medium
         )
     ) {
         UiFramework<OdsIconButtonBinding>(

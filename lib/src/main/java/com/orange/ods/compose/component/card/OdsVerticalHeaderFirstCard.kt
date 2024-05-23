@@ -73,11 +73,11 @@ fun OdsVerticalHeaderFirstCard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(IntrinsicSize.Min)
-                    .padding(all = OdsTheme.spacings.medium.dp),
+                    .padding(all = OdsTheme.spacings.medium),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 thumbnail?.Content()
-                Column(modifier = Modifier.padding(start = thumbnail?.let { OdsTheme.spacings.small.dp }.orElse { 0.dp })) {
+                Column(modifier = Modifier.padding(start = thumbnail?.let { OdsTheme.spacings.small }.orElse { 0.dp })) {
                     OdsText(text = title, style = OdsTheme.typography.titleLarge)
                     subtitle?.let {
                         OdsText(text = it, style = OdsTheme.typography.bodyMedium)
@@ -93,19 +93,19 @@ fun OdsVerticalHeaderFirstCard(
             text?.let {
                 OdsText(
                     modifier = Modifier
-                        .padding(top = OdsTheme.spacings.medium.dp)
-                        .padding(horizontal = OdsTheme.spacings.medium.dp),
+                        .padding(top = OdsTheme.spacings.medium)
+                        .padding(horizontal = OdsTheme.spacings.medium),
                     text = it,
                     style = OdsTheme.typography.bodyLarge
                 )
             }
 
             if (firstButton != null || secondButton != null || text != null) {
-                Spacer(modifier = Modifier.height(OdsTheme.spacings.medium.dp))
+                Spacer(modifier = Modifier.height(OdsTheme.spacings.medium))
             }
 
             OdsCardButtonsFlowRow(
-                modifier = Modifier.padding(horizontal = OdsTheme.spacings.small.dp),
+                modifier = Modifier.padding(horizontal = OdsTheme.spacings.small),
                 firstButton = firstButton,
                 secondButton = secondButton
             )

@@ -67,7 +67,7 @@ fun ButtonsIconToggle(customizationState: ButtonIconCustomizationState) {
                 )
             }
 
-            Spacer(modifier = Modifier.padding(top = OdsTheme.spacings.small.dp))
+            Spacer(modifier = Modifier.padding(top = OdsTheme.spacings.small))
 
             InvertedBackgroundColumn(horizontalAlignment = Alignment.CenterHorizontally) {
                 IconToggleButton(
@@ -139,7 +139,7 @@ private fun IconToggleButton(
     Box(
         modifier = Modifier.padding(
             horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin),
-            vertical = OdsTheme.spacings.medium.dp
+            vertical = OdsTheme.spacings.medium
         )
     ) {
         UiFramework<OdsIconToogleButtonBinding>(

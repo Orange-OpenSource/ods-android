@@ -32,6 +32,7 @@ import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalAppBarManager
@@ -51,7 +52,6 @@ import com.orange.ods.theme.OdsToken
 import com.orange.ods.theme.annotation.ExperimentalOdsApi
 import com.orange.ods.theme.guideline.GuidelineColor
 import com.orange.ods.theme.guideline.toHexString
-import com.orange.ods.theme.spacing.OdsSpacing
 import com.orange.ods.theme.typography.OdsTextStyle
 
 @OptIn(ExperimentalOdsApi::class)
@@ -136,7 +136,7 @@ fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
                 0,
                 image = R.drawable.il_spacing,
                 color = null,
-                subtitle = stringResource(id = R.string.guideline_spacing_dp, spacing.value.dp.value.toInt()),
+                subtitle = stringResource(id = R.string.guideline_spacing_dp, spacing.value.value.toInt()),
                 data = spacing
             )
         }).plus(filteredGuidelineTypography.map { guidelineTypography ->
@@ -195,7 +195,7 @@ fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
                     is GuidelineColor -> openDialog.value = true
                     is OdsToken<*> -> {
                         when (item.data.value) {
-                            is OdsSpacing -> onResultItemClick(GuidelinesNavigation.GuidelineSpacing, null)
+                            is Dp -> onResultItemClick(GuidelinesNavigation.GuidelineSpacing, null)
                             is OdsTextStyle -> onResultItemClick(GuidelinesNavigation.GuidelineTypography, null)
                         }
                     }

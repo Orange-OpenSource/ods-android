@@ -35,8 +35,8 @@ fun GuidelinesScreen(onGuidelineClick: (String) -> Unit) {
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(scrollState)
-            .padding(OdsTheme.spacings.medium.dp),
-        verticalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium.dp)
+            .padding(OdsTheme.spacings.medium),
+        verticalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium)
     ) {
         Guideline.entries.forEach { guideline ->
             OdsVerticalImageFirstCard(

@@ -111,7 +111,7 @@ fun ComponentCustomizationBottomSheetScaffold(
                     tint = OdsTheme.colors.onSurface
                 )
                 OdsText(
-                    modifier = Modifier.padding(start = OdsTheme.spacings.medium.dp),
+                    modifier = Modifier.padding(start = OdsTheme.spacings.medium),
                     text = stringResource(id = titleResId),
                     style = OdsTheme.typography.titleMedium
                 )

@@ -129,7 +129,7 @@ object OdsModalDrawer {
             Column(modifier = modifier) {
                 OdsDivider()
                 OdsText(
-                    modifier = Modifier.padding(top = OdsTheme.spacings.medium.dp, start = OdsTheme.spacings.medium.dp),
+                    modifier = Modifier.padding(top = OdsTheme.spacings.medium, start = OdsTheme.spacings.medium),
                     text = label,
                     style = OdsTheme.typography.bodyMedium
                 )
@@ -224,7 +224,7 @@ object OdsModalDrawer {
                         verticalArrangement = Arrangement.Bottom
                     ) {
                         image.Content(
-                            modifier = Modifier.padding(all = OdsTheme.spacings.medium.dp)
+                            modifier = Modifier.padding(all = OdsTheme.spacings.medium)
                         )
                         OdsHeaderText(title = title, subtitle = subtitle, color = OdsTheme.colors.onSurface)
                     }
@@ -320,7 +320,7 @@ private object OdsModalDrawerListItemRippleTheme : RippleTheme {
 @Composable
 private fun OdsHeaderText(title: String, subtitle: String?, color: Color, modifier: Modifier = Modifier) {
     Column(
-        modifier = modifier.padding(all = OdsTheme.spacings.medium.dp),
+        modifier = modifier.padding(all = OdsTheme.spacings.medium),
         verticalArrangement = Arrangement.Center
     ) {
         OdsText(text = title, color = color, style = OdsTheme.typography.titleLarge)

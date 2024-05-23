@@ -52,7 +52,7 @@ fun ComponentRadioButtons() {
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
-                .padding(vertical = OdsTheme.spacings.small.dp)
+                .padding(vertical = OdsTheme.spacings.small)
         ) {
             val recipes = LocalRecipes.current.take(3)
             var selectedRecipe by rememberSaveable { mutableStateOf(recipes.firstOrNull()) }

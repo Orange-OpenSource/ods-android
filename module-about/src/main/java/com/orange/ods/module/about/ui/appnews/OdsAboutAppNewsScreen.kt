@@ -36,13 +36,13 @@ internal fun OdsAboutAppNewsScreen(@RawRes fileRes: Int, viewModel: OdsAboutAppN
         viewModel.getAppNews(fileRes)
     }
 
-    LazyColumn(contentPadding = PaddingValues(bottom = OdsTheme.spacings.medium.dp)) {
+    LazyColumn(contentPadding = PaddingValues(bottom = OdsTheme.spacings.medium)) {
         itemsIndexed(viewModel.appNews) { index, news ->
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = OdsTheme.spacings.medium.dp)
-                    .padding(top = OdsTheme.spacings.medium.dp)
+                    .padding(horizontal = OdsTheme.spacings.medium)
+                    .padding(top = OdsTheme.spacings.medium)
             ) {
                 OdsText(modifier = Modifier.weight(1f), text = news.version, style = OdsTheme.typography.titleMedium)
                 OdsText(text = news.date, style = OdsTheme.typography.bodySmall)
@@ -50,13 +50,13 @@ internal fun OdsAboutAppNewsScreen(@RawRes fileRes: Int, viewModel: OdsAboutAppN
             OdsText(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = OdsTheme.spacings.medium.dp)
-                    .padding(top = OdsTheme.spacings.small.dp),
+                    .padding(horizontal = OdsTheme.spacings.medium)
+                    .padding(top = OdsTheme.spacings.small),
                 text = news.news,
                 style = OdsTheme.typography.bodyLarge
             )
             if (index + 1 < viewModel.appNews.size) {
-                OdsDivider(modifier = Modifier.padding(top = OdsTheme.spacings.medium.dp))
+                OdsDivider(modifier = Modifier.padding(top = OdsTheme.spacings.medium))
             }
         }
     }

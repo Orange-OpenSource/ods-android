@@ -54,7 +54,7 @@ fun AboutCustomizationScreen(navigateToAboutDemo: () -> Unit, viewModel: AboutCu
         ModuleDetailColumn(module = Module.About, onViewDemoButtonClick = navigateToAboutDemo) {
             OdsText(
                 modifier = Modifier
-                    .padding(top = OdsTheme.spacings.small.dp)
+                    .padding(top = OdsTheme.spacings.small)
                     .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                 text = stringResource(id = R.string.module_about_customization),
                 style = OdsTheme.typography.bodyMedium
@@ -105,9 +105,9 @@ private fun CustomizationChipsFlowRow(content: @Composable () -> Unit) {
     FlowRow(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = OdsTheme.spacings.extraSmall.dp)
+            .padding(top = OdsTheme.spacings.extraSmall)
             .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-        horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.small.dp),
+        horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.small),
         verticalArrangement = Arrangement.spacedBy((-4).dp),
         content = { content() }
     )

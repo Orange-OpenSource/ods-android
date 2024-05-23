@@ -53,12 +53,12 @@ fun CardSmall(customizationState: CardCustomizationState) {
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(state = rememberScrollState())
-                .padding(OdsTheme.spacings.medium.dp)
+                .padding(OdsTheme.spacings.medium)
         ) {
             Row(
                 modifier = Modifier
                     .fillMaxSize(),
-                horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium.dp),
+                horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.medium),
             ) {
                 val cardText = stringResource(id = R.string.component_card_element_card)
 
@@ -82,7 +82,7 @@ fun CardSmall(customizationState: CardCustomizationState) {
             }
 
             CodeImplementationColumn(
-                modifier = Modifier.padding(top = OdsTheme.spacings.small.dp)
+                modifier = Modifier.padding(top = OdsTheme.spacings.small)
             ) {
                 FunctionCallCode(
                     name = OdsComposable.OdsSmallCard.name,

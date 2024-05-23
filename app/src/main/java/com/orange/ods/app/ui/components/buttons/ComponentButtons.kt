@@ -65,7 +65,7 @@ fun ComponentButtons(variant: Variant) {
                         val buttonStyles = listOf(OdsButton.Style.FunctionalPositive, OdsButton.Style.FunctionalNegative)
                         OdsChoiceChipsFlowRow(
                             selectedChoiceChipIndex = buttonStyles.indexOf(buttonStyle.value),
-                            modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp),
+                            modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium),
                             choiceChips = buttonStyles.map { buttonStyle ->
                                 val textResId =
                                     if (buttonStyle == OdsButton.Style.FunctionalPositive) R.string.component_button_style_functional_positive else R.string.component_button_style_functional_negative
@@ -77,7 +77,7 @@ fun ComponentButtons(variant: Variant) {
                         Subtitle(textRes = R.string.component_style, horizontalPadding = true)
                         OdsChoiceChipsFlowRow(
                             selectedChoiceChipIndex = OdsTextButton.Style.entries.indexOf(textButtonStyle.value),
-                            modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp),
+                            modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium),
                             choiceChips = OdsTextButton.Style.entries.map { textButtonStyle ->
                                 val textResId = when (textButtonStyle) {
                                     OdsTextButton.Style.Default -> R.string.component_button_style_default
@@ -146,13 +146,13 @@ fun InvertedBackgroundColumn(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(color = OdsTheme.colors.surface)
-                .padding(bottom = OdsTheme.spacings.medium.dp),
+                .padding(bottom = OdsTheme.spacings.medium),
             horizontalAlignment = horizontalAlignment
         ) {
             OdsText(
                 modifier = Modifier
-                    .padding(horizontal = OdsTheme.spacings.medium.dp)
-                    .padding(top = OdsTheme.spacings.small.dp)
+                    .padding(horizontal = OdsTheme.spacings.medium)
+                    .padding(top = OdsTheme.spacings.small)
                     .fillMaxWidth()
                     .align(Alignment.Start),
                 text = stringResource(id = textRes),

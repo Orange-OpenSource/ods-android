@@ -64,7 +64,7 @@ fun ChipFilter() {
                 val leadingElements = listOf(ChipCustomizationState.LeadingElement.None, ChipCustomizationState.LeadingElement.Avatar)
                 OdsChoiceChipsFlowRow(
                     selectedChoiceChipIndex = leadingElements.indexOf(leadingElement.value),
-                    modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp),
+                    modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium),
                     choiceChips = leadingElements.map { leadingElement ->
                         val textResId =
                             if (leadingElement == ChipCustomizationState.LeadingElement.None) R.string.component_element_none else R.string.component_element_avatar
@@ -81,7 +81,7 @@ fun ChipFilter() {
             ChipTypeDemo(chipType = chipType.value) {
                 FlowRow(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.small.dp)
+                    horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.small)
                 ) {
                     recipe.ingredients.forEachIndexed { index, ingredient ->
                         OdsFilterChip(
@@ -104,7 +104,7 @@ fun ChipFilter() {
                     }
                 }
 
-                Spacer(modifier = Modifier.padding(top = OdsTheme.spacings.small.dp))
+                Spacer(modifier = Modifier.padding(top = OdsTheme.spacings.small))
 
                 CodeImplementationColumn {
                     FunctionCallCode(

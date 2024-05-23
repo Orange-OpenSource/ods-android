@@ -67,12 +67,12 @@ fun OdsLinearProgressIndicator(
 ) {
     Column(
         modifier = modifier
-            .padding(horizontal = OdsTheme.spacings.medium.dp)
-            .padding(top = OdsTheme.spacings.medium.dp)
+            .padding(horizontal = OdsTheme.spacings.medium)
+            .padding(top = OdsTheme.spacings.medium)
     ) {
         Row(
             modifier = Modifier
-                .padding(bottom = OdsTheme.spacings.extraSmall.dp),
+                .padding(bottom = OdsTheme.spacings.extraSmall),
         ) {
             icon?.Content(modifier = Modifier.padding(end = ButtonDefaults.IconSpacing))
 
@@ -94,7 +94,7 @@ fun OdsLinearProgressIndicator(
                 Row(horizontalArrangement = Arrangement.End, modifier = Modifier.fillMaxWidth()) {
                     OdsText(
                         modifier = Modifier
-                            .padding(top = OdsTheme.spacings.extraSmall.dp)
+                            .padding(top = OdsTheme.spacings.extraSmall)
                             .semantics {
                                 this.invisibleToUser() // Prevent TalkBack to focus this Text cause the value of the progress is already read on LinearProgressIndicator focus
                             },

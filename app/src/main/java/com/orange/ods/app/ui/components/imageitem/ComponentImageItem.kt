@@ -73,7 +73,7 @@ fun ComponentImageItem() {
                 Subtitle(textRes = R.string.component_image_item_legend_area_display_type, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
                     selectedChoiceChipIndex = OdsImageItem.LegendAreaDisplayType.entries.indexOf(type.value),
-                    modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp),
+                    modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium),
                     choiceChips = OdsImageItem.LegendAreaDisplayType.entries.map { type ->
                         val textResId = when (type) {
                             OdsImageItem.LegendAreaDisplayType.Below -> R.string.component_image_item_legend_area_display_type_below
@@ -136,7 +136,7 @@ fun ComponentImageItem() {
                     }
                 )
                 CodeImplementationColumn(
-                    modifier = Modifier.padding(end = OdsTheme.spacings.medium.dp)
+                    modifier = Modifier.padding(end = OdsTheme.spacings.medium)
                 ) {
                     FunctionCallCode(
                         name = OdsComposable.OdsImageItem.name,

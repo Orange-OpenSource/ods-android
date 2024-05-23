@@ -68,7 +68,7 @@ fun ComponentBanners() {
                 Subtitle(textRes = R.string.component_banner_message_example, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
                     selectedChoiceChipIndex = if (shortMessage.value) 0 else 1,
-                    modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp),
+                    modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium),
                     choiceChips = listOf(
                         OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = R.string.component_banner_message_example_short), { shortMessage.value = true }),
                         OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = R.string.component_banner_message_example_long), { shortMessage.value = false })

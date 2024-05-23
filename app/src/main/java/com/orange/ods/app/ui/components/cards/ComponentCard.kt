@@ -51,7 +51,7 @@ fun ComponentCard(variant: Variant) {
                     Subtitle(textRes = R.string.component_card_horizontal_image_position, horizontalPadding = true)
                     OdsChoiceChipsFlowRow(
                         selectedChoiceChipIndex = OdsCard.Image.Position.entries.indexOf(imagePosition.value),
-                        modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp),
+                        modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium),
                         choiceChips = OdsCard.Image.Position.entries.map { imagePosition ->
                             val textResId = when (imagePosition) {
                                 OdsCard.Image.Position.Start -> R.string.component_card_horizontal_image_position_start

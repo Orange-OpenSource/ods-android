@@ -40,7 +40,7 @@ fun TextField(customizationState: TextFieldCustomizationState) {
 
     val modifier = Modifier
         .fillMaxWidth()
-        .padding(top = OdsTheme.spacings.small.dp)
+        .padding(top = OdsTheme.spacings.small)
 
     with(customizationState) {
         val leadingIcon = if (hasLeadingIcon) OdsTextField.LeadingIcon(painterResource(id = R.drawable.ic_heart), "") else null

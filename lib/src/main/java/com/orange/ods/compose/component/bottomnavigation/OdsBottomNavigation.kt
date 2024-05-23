@@ -119,8 +119,8 @@ object OdsBottomNavigation {
 
         @Composable
         override fun RowScope.Content(modifier: Modifier) {
-            val selectedLineMargin = OdsTheme.spacings.small.dp
-            val selectedLineHeight = OdsTheme.spacings.extraSmall.dp
+            val selectedLineMargin = OdsTheme.spacings.small
+            val selectedLineHeight = OdsTheme.spacings.extraSmall
 
             ConstraintLayout(
                 modifier = modifier

@@ -59,7 +59,7 @@ object OdsTextField {
         override fun Content(modifier: Modifier) {
             OdsText(
                 modifier = modifier
-                    .padding(top = OdsTheme.spacings.extraSmall.dp, end = OdsTheme.spacings.medium.dp),
+                    .padding(top = OdsTheme.spacings.extraSmall, end = OdsTheme.spacings.medium),
                 text = "$characterCount/$maxCharacterCount",
                 enabled = enabled,
                 style = OdsTheme.typography.bodySmall
@@ -126,7 +126,7 @@ object OdsTextField {
         @Composable
         override fun Content(modifier: Modifier) {
             OdsText(
-                modifier = modifier.padding(end = OdsTheme.spacings.small.dp),
+                modifier = modifier.padding(end = OdsTheme.spacings.small),
                 text = text,
                 style = OdsTheme.typography.titleMedium,
                 color = OdsTextFieldDefaults.trailingTextColor(extraParameters.isTextFieldEmpty, extraParameters.enabled)
@@ -220,8 +220,8 @@ internal fun styledTextFieldValue(value: TextFieldValue, textStyle: OdsTextStyle
 private fun OdsTextFieldErrorText(message: String) {
     OdsText(
         modifier = Modifier.padding(
-            start = OdsTheme.spacings.medium.dp,
-            top = OdsTheme.spacings.extraSmall.dp
+            start = OdsTheme.spacings.medium,
+            top = OdsTheme.spacings.extraSmall
         ),
         text = message,
         style = OdsTheme.typography.bodySmall,

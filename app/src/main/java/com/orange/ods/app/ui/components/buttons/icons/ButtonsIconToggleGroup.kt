@@ -76,7 +76,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
                 iconButtons = displayedIconButtons
             )
 
-            Spacer(modifier = Modifier.padding(top = OdsTheme.spacings.small.dp))
+            Spacer(modifier = Modifier.padding(top = OdsTheme.spacings.small))
 
             InvertedBackgroundColumn {
                 ToggleButtonsRow(
@@ -120,8 +120,8 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
                     }
                     OdsText(
                         modifier = Modifier.padding(
-                            top = OdsTheme.spacings.small.dp,
-                            bottom = OdsTheme.spacings.extraSmall.dp
+                            top = OdsTheme.spacings.small,
+                            bottom = OdsTheme.spacings.extraSmall
                         ),
                         text = stringResource(id = com.orange.ods.app.R.string.component_button_icon_toggle_group_code_add_icons),
                         style = OdsTheme.typography.bodyMedium
@@ -155,7 +155,7 @@ private fun ToggleButtonsRow(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = OdsTheme.spacings.medium.dp)
+            .padding(top = OdsTheme.spacings.medium)
             .padding(horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin)),
         horizontalArrangement = Arrangement.Center
     ) {

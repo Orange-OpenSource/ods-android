@@ -125,7 +125,7 @@ private fun OdsChip(
             val iconModifier = if (enabled) Modifier.noRippleClickable {
                 onCancel()
             } else Modifier
-            Spacer(modifier = Modifier.size(OdsTheme.spacings.small.dp))
+            Spacer(modifier = Modifier.size(OdsTheme.spacings.small))
             Icon(
                 modifier = iconModifier.size(18.dp),
                 painter = painterResource(id = R.drawable.ic_cancel),

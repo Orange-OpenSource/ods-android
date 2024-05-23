@@ -68,7 +68,7 @@ fun ButtonsContained(customizationState: ButtonCustomizationState) {
                 fullScreenWidth = hasFullScreenWidth
             )
 
-            Spacer(modifier = Modifier.padding(top = OdsTheme.spacings.small.dp))
+            Spacer(modifier = Modifier.padding(top = OdsTheme.spacings.small))
 
             InvertedBackgroundColumn {
                 ContainedButton(
@@ -136,7 +136,7 @@ private fun ContainedButton(
     Box(
         modifier = Modifier.padding(
             horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin),
-            vertical = OdsTheme.spacings.medium.dp
+            vertical = OdsTheme.spacings.medium
         )
     ) {
         UiFramework<OdsButtonBinding>(
