@@ -13,10 +13,11 @@
 package com.orange.ods.compose.component.appbar.top
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.AppBarDefaults
-import androidx.compose.material.TopAppBar
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -24,7 +25,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.textfield.search.OdsSearchTextField
 import com.orange.ods.compose.component.utilities.OdsPreview
@@ -41,8 +41,8 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param onValueChange Callback invoked when the search value changes. The new value is available in parameter.
  * @param modifier [Modifier] applied to the top app bar.
  * @param navigationIcon Icon displayed at the start of the search top app bar before the text field.
- * @param elevated Controls the elevation of the top app bar: `true` to set an elevation to the top app bar (a shadow is displayed below), `false` otherwise.
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @OdsComposable
 fun OdsSearchTopAppBar(
@@ -50,13 +50,12 @@ fun OdsSearchTopAppBar(
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
     modifier: Modifier = Modifier,
-    navigationIcon: OdsTopAppBar.NavigationIcon? = null,
-    elevated: Boolean = true
+    navigationIcon: OdsTopAppBar.NavigationIcon? = null
 ) {
     TopAppBar(
         title = { },
         modifier = modifier,
-        navigationIcon = navigationIcon?.let { { it.Content() } },
+        navigationIcon = { navigationIcon?.Content() },
         actions = {
             val focusRequester = remember { FocusRequester() }
             OdsSearchTextField(
@@ -64,6 +63,7 @@ fun OdsSearchTopAppBar(
                 onValueChange = onValueChange,
                 placeholder = placeholder,
                 modifier = modifier
+                    .padding(start = OdsTheme.spacings.extraExtraLarge.dp)
                     .fillMaxWidth()
                     .focusRequester(focusRequester)
             )
@@ -71,9 +71,7 @@ fun OdsSearchTopAppBar(
                 focusRequester.requestFocus()
             }
         },
-        backgroundColor = OdsTheme.colors.components.topAppBar.container,
-        contentColor = OdsTheme.colors.components.topAppBar.content,
-        elevation = if (elevated) AppBarDefaults.TopAppBarElevation else 0.dp
+        colors = OdsTopAppBarDefaults.topAppBarColors()
     )
 }
 

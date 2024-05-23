@@ -56,18 +56,12 @@ fun OdsTopAppBar(
     actions: List<OdsTopAppBar.ActionButton> = emptyList(),
     overflowMenuItems: List<OdsDropdownMenu.Item> = emptyList(),
 ) {
-    val contentColor = OdsTheme.colors.components.topAppBar.content
     TopAppBar(
         title = { OdsText(text = title, style = OdsTheme.typography.titleLarge, modifier = Modifier.semantics { traversalIndex = -1f }) },
         modifier = modifier.semantics { isTraversalGroup = true },
         navigationIcon = { navigationIcon?.Content() },
         actions = { OdsTopAppBarActions(actions = actions, overflowMenuItems = overflowMenuItems) },
-        colors = TopAppBarDefaults.topAppBarColors().copy(
-            containerColor = OdsTheme.colors.components.topAppBar.container,
-            titleContentColor = contentColor,
-            navigationIconContentColor = contentColor,
-            actionIconContentColor = contentColor
-        ),
+        colors = OdsTopAppBarDefaults.topAppBarColors()
     )
 }
 

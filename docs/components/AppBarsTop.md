@@ -7,7 +7,7 @@ description: Top app bars display information and actions relating to the curren
 <br>**On this page**
 
 * Table of contents
-{:toc}
+  {:toc}
 
 ---
 
@@ -59,18 +59,15 @@ OdsTopAppBar(
 )
 ```
 
-Note: By default, the `OdsTopAppBar` is elevated but you can set `elevated` parameter to `false` if you don't want any shadow below it (for example if you want to display tabs below).
-
 ##### OdsTopAppBar API
 
-| Parameter                                       | Default&nbsp;value | Description                                                                                                                               |
-|-------------------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| <b>`title: String`</b>                          |                    | Title to be displayed in the center of the top app bar                                                                                    |
-| `modifier: Modifier`                            | `Modifier`         | `Modifier` to be applied to the top app bar                                                                                               |
-| `navigationIcon: OdsTopAppBar.NavigationIcon?`  | `null`             | Icon to be displayed at the start of the top app bar                                                                                      |
-| `actions: List<OdsTopAppBar.ActionButton>`      | `emptyList()`      | Actions to be displayed at the end of the top app bar. The default layout here is a `Row`, so icons inside will be placed horizontally.   |
-| `overflowMenuItems: List<OdsDropdownMenu.Item>` | `emptyList()`      | List of items displayed in the overflow menu. The top app bar uses `OdsDropdownMenu` to display its overflow menu.                        |
-| `elevated: Boolean`                             | `true`             | Controls the elevation of the top app bar: `true` to set an elevation to the top app bar (a shadow is displayed below), `false` otherwise |
+| Parameter                                       | Default&nbsp;value | Description                                                                                                                             |
+|-------------------------------------------------|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| <b>`title: String`</b>                          |                    | Title to be displayed in the center of the top app bar                                                                                  |
+| `modifier: Modifier`                            | `Modifier`         | `Modifier` to be applied to the top app bar                                                                                             |
+| `navigationIcon: OdsTopAppBar.NavigationIcon?`  | `null`             | Icon to be displayed at the start of the top app bar                                                                                    |
+| `actions: List<OdsTopAppBar.ActionButton>`      | `emptyList()`      | Actions to be displayed at the end of the top app bar. The default layout here is a `Row`, so icons inside will be placed horizontally. |
+| `overflowMenuItems: List<OdsDropdownMenu.Item>` | `emptyList()`      | List of items displayed in the overflow menu. The top app bar uses `OdsDropdownMenu` to display its overflow menu.                      |
 
 ### Large top app bar
 
@@ -169,11 +166,10 @@ OdsSearchTopAppBar(
 
 ##### OdsSearchTopAppBar API
 
-| Parameter                                        | Default&nbsp;value | Description                                                                                                                               |
-|--------------------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| <b>`placeholder: String`</b>                     |                    | Text placeholder displayed in the search text field when search value is empty                                                            |
-| <b>`value: TextFieldValue`</b>                   |                    | Value of the search text field                                                                                                            |
-| <b>`onValueChange: (TextFieldValue) -> Unit`</b> |                    | Callback invoked when the search value changes. The new value is available in parameter.                                                  |
-| `modifier: Modifier`                             | `Modifier`         | `Modifier` to be applied to the search top app bar                                                                                        |
-| `navigationIcon: OdsTopAppBar.NavigationIcon?`   | `null`             | Icon to be displayed at the start of the top app bar before the text field                                                                |
-| `elevated: Boolean`                              | `true`             | Controls the elevation of the top app bar: `true` to set an elevation to the top app bar (a shadow is displayed below), `false` otherwise |
+| Parameter                                        | Default&nbsp;value | Description                                                                              |
+|--------------------------------------------------|--------------------|------------------------------------------------------------------------------------------|
+| <b>`placeholder: String`</b>                     |                    | Text placeholder displayed in the search text field when search value is empty           |
+| <b>`value: TextFieldValue`</b>                   |                    | Value of the search text field                                                           |
+| <b>`onValueChange: (TextFieldValue) -> Unit`</b> |                    | Callback invoked when the search value changes. The new value is available in parameter. |
+| `modifier: Modifier`                             | `Modifier`         | `Modifier` to be applied to the search top app bar                                       |
+| `navigationIcon: OdsTopAppBar.NavigationIcon?`   | `null`             | Icon to be displayed at the start of the top app bar before the text field               |

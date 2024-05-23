@@ -47,7 +47,6 @@ fun AppBar(
                     onValueChange = { appBarManager.searchedText = it },
                     value = appBarManager.searchedText,
                     navigationIcon = getNavigationIcon(upPress),
-                    elevated = false // elevation is managed in MainScreen
                 )
             }
             Screen.TopAppBarType.Default -> OdsTopAppBar(
