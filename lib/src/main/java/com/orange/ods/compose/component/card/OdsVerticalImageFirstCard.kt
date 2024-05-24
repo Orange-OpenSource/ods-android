@@ -59,37 +59,35 @@ fun OdsVerticalImageFirstCard(
         modifier = modifier,
         onClick = onClick
     ) {
-        Column {
-            image.Content(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(dimensionResource(R.dimen.card_big_image_height))
-            )
-            Column(
-                modifier = Modifier
-                    .padding(OdsTheme.spacings.medium.dp)
-            ) {
-                OdsText(text = title, style = OdsTheme.typography.titleLarge)
-                subtitle?.let {
-                    OdsText(text = it, style = OdsTheme.typography.bodyMedium)
-                }
-                text?.let {
-                    OdsText(
-                        modifier = Modifier.padding(
-                            top = OdsTheme.spacings.small.dp
-                        ),
-                        text = it,
-                        style = OdsTheme.typography.bodyLarge
-                    )
-                }
+        image.Content(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(dimensionResource(R.dimen.card_big_image_height))
+        )
+        Column(
+            modifier = Modifier
+                .padding(OdsTheme.spacings.medium.dp)
+        ) {
+            OdsText(text = title, style = OdsTheme.typography.titleLarge)
+            subtitle?.let {
+                OdsText(text = it, style = OdsTheme.typography.bodyMedium)
             }
-
-            OdsCardButtonsFlowRow(
-                modifier = Modifier.padding(horizontal = OdsTheme.spacings.small.dp),
-                firstButton = firstButton,
-                secondButton = secondButton
-            )
+            text?.let {
+                OdsText(
+                    modifier = Modifier.padding(
+                        top = OdsTheme.spacings.small.dp
+                    ),
+                    text = it,
+                    style = OdsTheme.typography.bodyLarge
+                )
+            }
         }
+
+        OdsCardButtonsFlowRow(
+            modifier = Modifier.padding(horizontal = OdsTheme.spacings.small.dp),
+            firstButton = firstButton,
+            secondButton = secondButton
+        )
     }
 }
 

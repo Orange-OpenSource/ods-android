@@ -68,48 +68,46 @@ fun OdsVerticalHeaderFirstCard(
         modifier = modifier,
         onClick = onClick
     ) {
-        Column {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(IntrinsicSize.Min)
-                    .padding(all = OdsTheme.spacings.medium.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                thumbnail?.Content()
-                Column(modifier = Modifier.padding(start = thumbnail?.let { OdsTheme.spacings.small.dp }.orElse { 0.dp })) {
-                    OdsText(text = title, style = OdsTheme.typography.titleLarge)
-                    subtitle?.let {
-                        OdsText(text = it, style = OdsTheme.typography.bodyMedium)
-                    }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(IntrinsicSize.Min)
+                .padding(all = OdsTheme.spacings.medium.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            thumbnail?.Content()
+            Column(modifier = Modifier.padding(start = thumbnail?.let { OdsTheme.spacings.small.dp }.orElse { 0.dp })) {
+                OdsText(text = title, style = OdsTheme.typography.titleLarge)
+                subtitle?.let {
+                    OdsText(text = it, style = OdsTheme.typography.bodyMedium)
                 }
             }
-            image.Content(
+        }
+        image.Content(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(dimensionResource(R.dimen.card_big_image_height))
+        )
+
+        text?.let {
+            OdsText(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .height(dimensionResource(R.dimen.card_big_image_height))
-            )
-
-            text?.let {
-                OdsText(
-                    modifier = Modifier
-                        .padding(top = OdsTheme.spacings.medium.dp)
-                        .padding(horizontal = OdsTheme.spacings.medium.dp),
-                    text = it,
-                    style = OdsTheme.typography.bodyLarge
-                )
-            }
-
-            if (firstButton != null || secondButton != null || text != null) {
-                Spacer(modifier = Modifier.height(OdsTheme.spacings.medium.dp))
-            }
-
-            OdsCardButtonsFlowRow(
-                modifier = Modifier.padding(horizontal = OdsTheme.spacings.small.dp),
-                firstButton = firstButton,
-                secondButton = secondButton
+                    .padding(top = OdsTheme.spacings.medium.dp)
+                    .padding(horizontal = OdsTheme.spacings.medium.dp),
+                text = it,
+                style = OdsTheme.typography.bodyLarge
             )
         }
+
+        if (firstButton != null || secondButton != null || text != null) {
+            Spacer(modifier = Modifier.height(OdsTheme.spacings.medium.dp))
+        }
+
+        OdsCardButtonsFlowRow(
+            modifier = Modifier.padding(horizontal = OdsTheme.spacings.small.dp),
+            firstButton = firstButton,
+            secondButton = secondButton
+        )
     }
 }
 

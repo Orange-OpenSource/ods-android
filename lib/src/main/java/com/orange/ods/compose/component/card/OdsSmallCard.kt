@@ -59,20 +59,18 @@ fun OdsSmallCard(
         modifier = modifier,
         onClick = onClick
     ) {
-        Column {
-            image.Content(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(dimensionResource(R.dimen.card_small_image_width))
-            )
-            Column(
-                modifier = Modifier
-                    .padding(OdsTheme.spacings.medium.dp)
-            ) {
-                SmallCardText(text = title, style = OdsTheme.typography.titleLarge, isClickableCard = onClick != null)
-                subtitle?.let {
-                    SmallCardText(text = it, style = OdsTheme.typography.bodyMedium, isClickableCard = onClick != null)
-                }
+        image.Content(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(dimensionResource(R.dimen.card_small_image_width))
+        )
+        Column(
+            modifier = Modifier
+                .padding(OdsTheme.spacings.medium.dp)
+        ) {
+            SmallCardText(text = title, style = OdsTheme.typography.titleLarge, isClickableCard = onClick != null)
+            subtitle?.let {
+                SmallCardText(text = it, style = OdsTheme.typography.bodyMedium, isClickableCard = onClick != null)
             }
         }
     }

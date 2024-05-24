@@ -13,12 +13,13 @@
 package com.orange.ods.compose.component.card
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.Card
-import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,11 +36,10 @@ import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentImage
 import com.orange.ods.compose.theme.OdsTheme
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
-internal fun OdsCard(modifier: Modifier, onClick: (() -> Unit)?, content: @Composable () -> Unit) {
+internal fun OdsCard(modifier: Modifier, onClick: (() -> Unit)?, content: @Composable ColumnScope.() -> Unit) {
     if (onClick != null) {
-        Card(modifier = modifier, onClick = onClick, content = content)
+        Card(modifier = modifier.clickable { onClick() }, content = content)
     } else {
         Card(modifier = modifier.semantics(mergeDescendants = true) {}, content = content)
     }
