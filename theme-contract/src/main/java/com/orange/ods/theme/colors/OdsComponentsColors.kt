@@ -78,7 +78,8 @@ fun OdsComponentsColors(init: OdsComponentsColors.Builder.() -> Unit = {}): OdsC
     replaceWith = ReplaceWith("OdsComponentsColors(init)")
 )
 fun OdsComponentsColors(systemBarsBackground: Color, init: OdsComponentsColors.Builder.() -> Unit = {}): OdsComponentsColors.Builder {
-    return OdsComponentsColors.Builder().apply(init).apply {
+    return OdsComponentsColors.Builder().apply {
+        init()
         statusBar = OdsStatusBarColors(background = systemBarsBackground)
     }
 }
