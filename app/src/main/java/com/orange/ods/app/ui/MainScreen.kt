@@ -23,10 +23,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.AppBarDefaults
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
@@ -47,7 +45,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -135,19 +132,17 @@ fun MainScreen(themeConfigurations: List<OdsThemeConfigurationContract<*>>, main
             Scaffold(
                 modifier = modifier,
                 topBar = {
-                    Surface(elevation = if (isSystemInDarkTheme()) 0.dp else AppBarDefaults.TopAppBarElevation) {
-                        Column {
-                            SystemBarsColorSideEffect(mainState)
-                            AppBar(
-                                appBarState = mainState.appBarState,
-                                upPress = mainState.navigationState::upPress,
-                                scrollBehavior = topBarScrollBehavior
-                            )
-                            if (mainState.navigationState.currentScreen?.hasTabs == true && mainState.appBarState.tabsState.hasTabs) {
-                                AppBarTabs(appBarTabsState = mainState.appBarState.tabsState)
-                            } else {
-                                mainState.appBarState.clearAppBarTabs()
-                            }
+                    Column {
+                        SystemBarsColorSideEffect(mainState)
+                        AppBar(
+                            appBarState = mainState.appBarState,
+                            upPress = mainState.navigationState::upPress,
+                            scrollBehavior = topBarScrollBehavior
+                        )
+                        if (mainState.navigationState.currentScreen?.hasTabs == true && mainState.appBarState.tabsState.hasTabs) {
+                            AppBarTabs(appBarTabsState = mainState.appBarState.tabsState)
+                        } else {
+                            mainState.appBarState.clearAppBarTabs()
                         }
                     }
                 },
