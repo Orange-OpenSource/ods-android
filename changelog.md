@@ -5,6 +5,17 @@ All notable changes done in ODS library will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased](https://github.com/Orange-OpenSource/ods-android/compare/1.0.0...develop)
+
+### Added
+
+- \[Lib\] Add status bar appearance management in `OdsTheme`. Applications no longer have to worry about the appearance of the status bar. ([#876](https://github.com/Orange-OpenSource/ods-android/issues/876))
+
+### Deprecated
+
+- \[Lib\] `ODSComponentsColors` constructor is deprecated, replaced by the new one with `statusBar` parameter ([#876](https://github.com/Orange-OpenSource/ods-android/issues/876))
+- \[Lib\] `ODSComponentsColors` function is deprecated, replaced by the new one with only `init` parameter ([#876](https://github.com/Orange-OpenSource/ods-android/issues/876))
+
 ## [1.0.0](https://github.com/Orange-OpenSource/ods-android/compare/0.18.0...1.0.0) - 2024-03-13
 
 ### Added

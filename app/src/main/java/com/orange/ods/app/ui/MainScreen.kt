@@ -12,7 +12,6 @@
 
 package com.orange.ods.app.ui
 
-import androidx.activity.ComponentActivity
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.tween
@@ -33,23 +32,18 @@ import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-import androidx.core.view.WindowCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import com.orange.ods.app.R
@@ -140,7 +134,6 @@ fun MainScreen(themeConfigurations: List<OdsThemeConfigurationContract>, mainVie
                 topBar = {
                     Surface(elevation = if (isSystemInDarkTheme()) 0.dp else AppBarDefaults.TopAppBarElevation) {
                         Column {
-                            SystemBarsColorSideEffect(mainState)
                             AppBar(
                                 appBarState = mainState.appBarState,
                                 upPress = mainState.navigationState::upPress,
@@ -216,24 +209,6 @@ private fun getCurrentThemeConfiguration(
     return themeConfigurations.firstOrNull { it.name == storedUserThemeName }
         .orElse { themeConfigurations.firstOrNull { it.isOrange } }
         .orElse { themeConfigurations.first() }
-}
-
-@Composable
-private fun SystemBarsColorSideEffect(mainState: MainState) {
-    val systemBarsBackground = OdsTheme.colors.components.systemBarsBackground
-    val activity = LocalContext.current as? ComponentActivity
-    activity?.window?.let { window ->
-        val view = LocalView.current
-        SideEffect {
-            window.statusBarColor = systemBarsBackground.toArgb()
-            window.navigationBarColor = systemBarsBackground.toArgb()
-            val isAppearanceLightBars = with(mainState.themeState) { if (currentThemeConfiguration.isOrange) !darkModeEnabled else false }
-            with(WindowCompat.getInsetsController(window, view)) {
-                isAppearanceLightStatusBars = isAppearanceLightBars
-                isAppearanceLightNavigationBars = isAppearanceLightBars
-            }
-        }
-    }
 }
 
 @OptIn(ExperimentalFoundationApi::class)

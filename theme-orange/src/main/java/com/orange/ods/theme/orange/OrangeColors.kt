@@ -18,6 +18,7 @@ import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.colors.OdsComponentsColors
 import com.orange.ods.theme.colors.OdsFloatingActionButtonColors
 import com.orange.ods.theme.colors.OdsFunctionalColors
+import com.orange.ods.theme.colors.OdsStatusBarColors
 import com.orange.ods.theme.colors.OdsSwitchColors
 import com.orange.ods.theme.colors.OdsTabColors
 import com.orange.ods.theme.colors.OdsTopAppBarColors
@@ -48,9 +49,12 @@ internal val OrangeLightColors = OdsColors(
         alert = Alert200
     ),
 
-    components = OdsComponentsColors(
-        systemBarsBackground = White100
-    ) {
+    components = OdsComponentsColors {
+        statusBar = OdsStatusBarColors(
+            background = White100,
+            isAppearanceLight = true
+        )
+
         bottomNavigation = OdsBottomNavigationColors(
             barBackground = White100,
             barContent = Black900,
@@ -106,9 +110,11 @@ internal val OrangeDarkColors = OdsColors(
         alert = Alert100
     ),
 
-    components = OdsComponentsColors(
-        systemBarsBackground = Black900
-    ) {
+    components = OdsComponentsColors {
+        statusBar = OdsStatusBarColors(
+            background = Black900
+        )
+
         bottomNavigation = OdsBottomNavigationColors(
             barBackground = Black900,
             barContent = White100,
