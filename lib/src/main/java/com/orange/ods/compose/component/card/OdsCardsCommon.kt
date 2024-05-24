@@ -27,14 +27,13 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
-import com.orange.ods.R
 import com.orange.ods.compose.component.button.OdsTextButton
 import com.orange.ods.compose.component.content.OdsComponentCircularImage
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.content.OdsComponentImage
+import com.orange.ods.compose.theme.OdsTheme
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -51,7 +50,7 @@ internal fun OdsCard(modifier: Modifier, onClick: (() -> Unit)?, content: @Compo
 internal fun OdsCardButtonsFlowRow(modifier: Modifier = Modifier, firstButton: OdsCard.Button? = null, secondButton: OdsCard.Button? = null) {
     FlowRow(
         modifier = modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s)),
+        horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.small),
         verticalArrangement = Arrangement.spacedBy((-6).dp)
     ) {
         firstButton?.Content()

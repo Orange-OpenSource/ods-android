@@ -39,6 +39,7 @@ import com.orange.ods.app.ui.utilities.composable.Title
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsTextButton
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.xml.utilities.extension.xmlEnumValue
 
 @Composable
@@ -64,7 +65,7 @@ fun ButtonsText(customizationState: ButtonCustomizationState) {
                 fullScreenWidth = hasFullScreenWidth
             )
 
-            Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
+            Spacer(modifier = Modifier.padding(top = OdsTheme.spacings.small))
 
             InvertedBackgroundColumn {
                 TextButton(
@@ -132,7 +133,7 @@ private fun TextButton(
     Box(
         modifier = Modifier.padding(
             horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin),
-            vertical = dimensionResource(com.orange.ods.R.dimen.spacing_m)
+            vertical = OdsTheme.spacings.medium
         )
     ) {
         UiFramework<OdsTextButtonBinding>(

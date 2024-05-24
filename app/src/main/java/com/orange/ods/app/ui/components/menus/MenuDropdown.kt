@@ -45,7 +45,7 @@ import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.theme.typography.OdsTextStyle
+import com.orange.ods.compose.theme.OdsTheme
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -75,21 +75,21 @@ fun MenuDropdown() {
                     .verticalScroll(rememberScrollState())
                     .padding(
                         top = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin),
-                        bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)
+                        bottom = OdsTheme.spacings.small
                     )
             ) {
                 OdsText(
                     modifier = Modifier
                         .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                     text = stringResource(id = R.string.component_menu_dropdown_description),
-                    style = OdsTextStyle.BodyL
+                    style = OdsTheme.typography.bodyLarge
                 )
 
                 val dividerIndex = 1
 
-                Box(modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))) {
+                Box(modifier = Modifier.padding(top = OdsTheme.spacings.small)) {
                     OdsListItem(
-                        modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
+                        modifier = Modifier.padding(top = OdsTheme.spacings.small),
                         text = recipe.title,
                         secondaryText = recipe.subtitle,
                         trailing = OdsListItem.TrailingIcon(

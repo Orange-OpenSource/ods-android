@@ -23,7 +23,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import com.orange.ods.compose.extension.enable
-import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
@@ -90,9 +89,8 @@ internal fun OdsText(
     minLines: Int = 1,
     onTextLayout: ((TextLayoutResult) -> Unit)? = null,
 ) {
-    val textStyle = textStyle(style = style)
     Text(
-        text = styledText(text = text, textStyle = textStyle),
+        text = styledText(text = text, textStyle = style),
         modifier = modifier,
         color = color,
         fontWeight = fontWeight,
@@ -102,29 +100,11 @@ internal fun OdsText(
         maxLines = maxLines,
         minLines = minLines,
         onTextLayout = onTextLayout,
-        style = textStyle
+        style = style.textStyle
     )
 }
 
 @Composable
-internal fun textStyle(style: OdsTextStyle): TextStyle {
-    return with(OdsTheme.typography) {
-        when (style) {
-            OdsTextStyle.HeadlineL -> headlineL
-            OdsTextStyle.HeadlineS -> headlineS
-            OdsTextStyle.TitleL -> titleL
-            OdsTextStyle.TitleM -> titleM
-            OdsTextStyle.TitleS -> titleS
-            OdsTextStyle.BodyL -> bodyL
-            OdsTextStyle.BodyM -> bodyM
-            OdsTextStyle.BodyS -> bodyS
-            OdsTextStyle.LabelL -> labelL
-            OdsTextStyle.LabelS -> labelS
-        }
-    }
-}
-
-@Composable
-internal fun styledText(text: String, textStyle: TextStyle): String {
-    return if (OdsTheme.typography.isAllCapsTextStyle(textStyle)) text.uppercase() else text
+internal fun styledText(text: String, textStyle: OdsTextStyle): String {
+    return if (textStyle.isAllCaps) text.uppercase() else text
 }

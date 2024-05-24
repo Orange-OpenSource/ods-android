@@ -30,7 +30,7 @@ import com.orange.ods.app.ui.modules.ModuleDetailColumn
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.chip.OdsFilterChip
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.theme.typography.OdsTextStyle
+import com.orange.ods.compose.theme.OdsTheme
 
 enum class AboutCustomizationAppSection(@StringRes val labelResId: Int) {
     Version(R.string.module_about_customization_app_section_version),
@@ -54,10 +54,10 @@ fun AboutCustomizationScreen(navigateToAboutDemo: () -> Unit, viewModel: AboutCu
         ModuleDetailColumn(module = Module.About, onViewDemoButtonClick = navigateToAboutDemo) {
             OdsText(
                 modifier = Modifier
-                    .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
+                    .padding(top = OdsTheme.spacings.small)
                     .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                 text = stringResource(id = R.string.module_about_customization),
-                style = OdsTextStyle.BodyM
+                style = OdsTheme.typography.bodyMedium
             )
 
             Subtitle(textRes = R.string.module_about_customization_app_sections, horizontalPadding = true)
@@ -105,9 +105,9 @@ private fun CustomizationChipsFlowRow(content: @Composable () -> Unit) {
     FlowRow(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs))
+            .padding(top = OdsTheme.spacings.extraSmall)
             .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
-        horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
+        horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.small),
         verticalArrangement = Arrangement.spacedBy((-4).dp),
         content = { content() }
     )

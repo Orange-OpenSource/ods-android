@@ -32,7 +32,6 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -46,9 +45,9 @@ import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.extension.orElse
 import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.compose.theme.OdsThemeTweak
 import com.orange.ods.compose.theme.OdsThemeTweakType
-import com.orange.ods.theme.typography.OdsTextStyle
 
 
 /**
@@ -93,7 +92,7 @@ fun OdsImageItem(
                                 text = it,
                                 textModifier = Modifier
                                     .weight(1f)
-                                    .padding(all = dimensionResource(id = R.dimen.spacing_m)),
+                                    .padding(all = OdsTheme.spacings.medium),
                                 icon = icon
                             )
                         }
@@ -118,8 +117,8 @@ fun OdsImageItem(
                                 text = it,
                                 textModifier = Modifier
                                     .weight(1f)
-                                    .padding(vertical = dimensionResource(id = R.dimen.spacing_m))
-                                    .padding(end = dimensionResource(id = R.dimen.spacing_m)),
+                                    .padding(vertical = OdsTheme.spacings.medium)
+                                    .padding(end = OdsTheme.spacings.medium),
                                 icon = icon
                             )
                         }
@@ -226,7 +225,7 @@ private fun OdsImageItemLegendArea(
     OdsText(
         text = text,
         modifier = textModifier,
-        style = OdsTextStyle.TitleM,
+        style = OdsTheme.typography.titleMedium,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis
     )

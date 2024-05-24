@@ -51,7 +51,6 @@ import com.orange.ods.app.ui.utilities.composable.OnResumeEffect
 import com.orange.ods.compose.component.bottomsheet.OdsBottomSheetScaffold
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.theme.typography.OdsTextStyle
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -112,9 +111,9 @@ fun ComponentCustomizationBottomSheetScaffold(
                     tint = OdsTheme.colors.onSurface
                 )
                 OdsText(
-                    modifier = Modifier.padding(start = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                    modifier = Modifier.padding(start = OdsTheme.spacings.medium),
                     text = stringResource(id = titleResId),
-                    style = OdsTextStyle.TitleM
+                    style = OdsTheme.typography.titleMedium
                 )
             }
 

@@ -45,9 +45,9 @@ import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChip
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
-import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.extension.orElse
-import com.orange.ods.theme.typography.OdsTextStyle
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.theme.OdsTheme
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -62,7 +62,7 @@ fun Chip(variant: Variant) {
                     Subtitle(textRes = R.string.component_element_leading, horizontalPadding = true)
                     OdsChoiceChipsFlowRow(
                         selectedChoiceChipIndex = ChipCustomizationState.LeadingElement.entries.indexOf(leadingElement.value),
-                        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                        modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium),
                         choiceChips = ChipCustomizationState.LeadingElement.entries.map { leadingElement ->
                             val textResId = when (leadingElement) {
                                 LeadingElement.None -> R.string.component_element_none
@@ -99,9 +99,9 @@ fun ChipTypeDemo(chipType: ChipType, content: @Composable () -> Unit) {
             )
     ) {
         OdsText(
-            modifier = Modifier.padding(bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
+            modifier = Modifier.padding(bottom = OdsTheme.spacings.small),
             text = stringResource(id = chipType.descriptionRes),
-            style = OdsTextStyle.BodyM
+            style = OdsTheme.typography.bodyMedium
         )
         content()
     }
@@ -117,7 +117,7 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
         if (isChoiceChip) {
             OdsChoiceChipsFlowRow(
                 selectedChoiceChipIndex = selectedChoiceChipIndex.value.orElse { 0 },
-                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium),
                 choiceChips = recipes.mapIndexed { index, recipe ->
                     OdsChoiceChipsFlowRow.ChoiceChip(
                         text = recipe.title,
@@ -127,7 +127,7 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
                 }
             )
 
-            Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
+            Spacer(modifier = Modifier.padding(top = OdsTheme.spacings.small))
 
             CodeImplementationColumn {
                 FunctionCallCode(
@@ -171,7 +171,7 @@ private fun Chip(chipCustomizationState: ChipCustomizationState) {
                 } else null
             )
 
-            Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
+            Spacer(modifier = Modifier.padding(top = OdsTheme.spacings.small))
 
             CodeImplementationColumn {
                 val leadingParameterName = "leading"

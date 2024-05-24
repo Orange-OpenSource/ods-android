@@ -29,7 +29,7 @@ We recommend you to use `OdsText` composable and provide an `OdsTextStyle` to di
 ```kotlin
 OdsText(
     text = "Hello",
-    style = OdsTextStyle.BodyL,
+    style = OdsTheme.typography.bodyLarge,
 )
 ```
 
@@ -38,7 +38,7 @@ However, you can directly use ODS typography in a `Text` composable as shown bel
 ```kotlin
 Text(
     text = "Hello",
-    style = OdsTheme.typography.bodyL,
+    style = OdsTheme.typography.bodyLarge,
 )
 ```
 
@@ -56,6 +56,6 @@ Example of use:
 ```kotlin
 OdsText(
     text = "Big title",
-    style = OdsTextStyle.HeadlineL
+    style = OdsTheme.typography.headlineLarge
 )
 ```

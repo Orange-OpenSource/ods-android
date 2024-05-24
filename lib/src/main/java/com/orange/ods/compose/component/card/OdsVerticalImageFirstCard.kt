@@ -27,7 +27,7 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.theme.typography.OdsTextStyle
+import com.orange.ods.compose.theme.OdsTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/272739-cards/b/991690" target="_blank">ODS Card</a>.
@@ -67,25 +67,25 @@ fun OdsVerticalImageFirstCard(
             )
             Column(
                 modifier = Modifier
-                    .padding(dimensionResource(id = R.dimen.spacing_m))
+                    .padding(OdsTheme.spacings.medium)
             ) {
-                OdsText(text = title, style = OdsTextStyle.TitleL)
+                OdsText(text = title, style = OdsTheme.typography.titleLarge)
                 subtitle?.let {
-                    OdsText(text = it, style = OdsTextStyle.BodyM)
+                    OdsText(text = it, style = OdsTheme.typography.bodyMedium)
                 }
                 text?.let {
                     OdsText(
                         modifier = Modifier.padding(
-                            top = dimensionResource(id = R.dimen.spacing_s)
+                            top = OdsTheme.spacings.small
                         ),
                         text = it,
-                        style = OdsTextStyle.BodyL
+                        style = OdsTheme.typography.bodyLarge
                     )
                 }
             }
 
             OdsCardButtonsFlowRow(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_s)),
+                modifier = Modifier.padding(horizontal = OdsTheme.spacings.small),
                 firstButton = firstButton,
                 secondButton = secondButton
             )

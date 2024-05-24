@@ -33,7 +33,7 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.theme.typography.OdsTextStyle
+import com.orange.ods.compose.theme.OdsTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/272739-cards/b/991690" target="_blank">ODS Card</a>.
@@ -81,8 +81,8 @@ fun OdsHorizontalCard(
             ) = createRefs()
 
             val imageSize = dimensionResource(R.dimen.card_horizontal_image_size)
-            val smallSpacing = dimensionResource(id = R.dimen.spacing_s)
-            val mediumSpacing = dimensionResource(id = R.dimen.spacing_m)
+            val smallSpacing = OdsTheme.spacings.small
+            val mediumSpacing = OdsTheme.spacings.medium
 
             image.Content(
                 modifier = Modifier
@@ -119,7 +119,7 @@ fun OdsHorizontalCard(
                     }
                     width = Dimension.fillToConstraints
                 },
-                style = OdsTextStyle.TitleL
+                style = OdsTheme.typography.titleLarge
             )
 
             OdsText(
@@ -130,7 +130,7 @@ fun OdsHorizontalCard(
                     width = Dimension.fillToConstraints
                     visibility = if (subtitle != null) Visibility.Visible else Visibility.Gone
                 },
-                style = OdsTextStyle.BodyM
+                style = OdsTheme.typography.bodyMedium
             )
 
             OdsText(
@@ -143,7 +143,7 @@ fun OdsHorizontalCard(
                         visibility = if (text != null) Visibility.Visible else Visibility.Gone
                     },
                 text = text.orEmpty(),
-                style = OdsTextStyle.BodyL,
+                style = OdsTheme.typography.bodyLarge,
                 maxLines = if (subtitle == null) 3 else 2,
                 overflow = TextOverflow.Ellipsis
             )

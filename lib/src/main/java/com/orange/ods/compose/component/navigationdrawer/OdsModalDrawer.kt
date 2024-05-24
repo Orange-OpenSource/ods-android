@@ -43,7 +43,6 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -59,7 +58,6 @@ import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.theme.typography.OdsTextStyle
 
 private val DrawerHeaderMinHeight = 167.dp
 private const val SelectedItemOpacity = 20f / 255f
@@ -131,9 +129,9 @@ object OdsModalDrawer {
             Column(modifier = modifier) {
                 OdsDivider()
                 OdsText(
-                    modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m), start = dimensionResource(id = R.dimen.spacing_m)),
+                    modifier = Modifier.padding(top = OdsTheme.spacings.medium, start = OdsTheme.spacings.medium),
                     text = label,
-                    style = OdsTextStyle.BodyM
+                    style = OdsTheme.typography.bodyMedium
                 )
             }
         }
@@ -167,7 +165,7 @@ object OdsModalDrawer {
                 OdsListItem(
                     text = text,
                     textColor = if (selected) OdsTheme.colors.primaryVariant else OdsTheme.colors.onSurface,
-                    textStyle = OdsTextStyle.BodyM,
+                    textStyle = OdsTheme.typography.bodyMedium,
                     modifier = modifier
                         .selectable(selected = selected, onClick = { onClick(this@ListItem) })
                         .let {
@@ -226,7 +224,7 @@ object OdsModalDrawer {
                         verticalArrangement = Arrangement.Bottom
                     ) {
                         image.Content(
-                            modifier = Modifier.padding(all = dimensionResource(id = R.dimen.spacing_m))
+                            modifier = Modifier.padding(all = OdsTheme.spacings.medium)
                         )
                         OdsHeaderText(title = title, subtitle = subtitle, color = OdsTheme.colors.onSurface)
                     }
@@ -322,11 +320,11 @@ private object OdsModalDrawerListItemRippleTheme : RippleTheme {
 @Composable
 private fun OdsHeaderText(title: String, subtitle: String?, color: Color, modifier: Modifier = Modifier) {
     Column(
-        modifier = modifier.padding(all = dimensionResource(id = R.dimen.spacing_m)),
+        modifier = modifier.padding(all = OdsTheme.spacings.medium),
         verticalArrangement = Arrangement.Center
     ) {
-        OdsText(text = title, color = color, style = OdsTextStyle.TitleL)
-        subtitle?.let { OdsText(text = it, color = color, style = OdsTextStyle.BodyM) }
+        OdsText(text = title, color = color, style = OdsTheme.typography.titleLarge)
+        subtitle?.let { OdsText(text = it, color = color, style = OdsTheme.typography.bodyMedium) }
     }
 }
 

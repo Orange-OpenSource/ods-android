@@ -39,6 +39,7 @@ import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.menu.OdsExposedDropdownMenu
+import com.orange.ods.compose.theme.OdsTheme
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -84,7 +85,7 @@ fun MenuExposedDropdown() {
                     .verticalScroll(rememberScrollState())
                     .padding(
                         top = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin),
-                        bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)
+                        bottom = OdsTheme.spacings.small
                     )
                     .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
             ) {
@@ -92,7 +93,7 @@ fun MenuExposedDropdown() {
                 OdsExposedDropdownMenu(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
+                        .padding(top = OdsTheme.spacings.small),
                     label = label,
                     items = items,
                     selectedItem = selectedItem,

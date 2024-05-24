@@ -19,7 +19,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -30,6 +29,7 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.textfield.OdsTextField
+import com.orange.ods.compose.theme.OdsTheme
 
 private const val TrailingText = "units"
 
@@ -40,7 +40,7 @@ fun TextField(customizationState: TextFieldCustomizationState) {
 
     val modifier = Modifier
         .fillMaxWidth()
-        .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
+        .padding(top = OdsTheme.spacings.small)
 
     with(customizationState) {
         val leadingIcon = if (hasLeadingIcon) OdsTextField.LeadingIcon(painterResource(id = R.drawable.ic_heart), "") else null

@@ -55,19 +55,19 @@ internal fun OdsSearchTextField(
     placeholder: String,
     modifier: Modifier = Modifier,
 ) {
-    val textStyle = OdsTheme.typography.titleL
+    val textStyle = OdsTheme.typography.titleLarge
     TextField(
         value = styledTextFieldValue(value = value, textStyle = textStyle),
         onValueChange = onValueChange,
         placeholder = {
             Text(
                 text = placeholder,
-                style = OdsTheme.typography.bodyL,
+                style = OdsTheme.typography.bodyLarge.textStyle,
                 fontSize = 20.sp
             )
         },
         modifier = modifier,
-        textStyle = textStyle,
+        textStyle = textStyle.textStyle,
         trailingIcon = {
             OdsIconButton(
                 onClick = { onValueChange(TextFieldValue("")) },

@@ -23,12 +23,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.dimensionResource
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.theme.typography.OdsTextStyle
+import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
 internal fun OdsAboutAppNewsScreen(@RawRes fileRes: Int, viewModel: OdsAboutAppNewsViewModel = viewModel(LocalContext.current as ViewModelStoreOwner)) {
@@ -37,27 +36,27 @@ internal fun OdsAboutAppNewsScreen(@RawRes fileRes: Int, viewModel: OdsAboutAppN
         viewModel.getAppNews(fileRes)
     }
 
-    LazyColumn(contentPadding = PaddingValues(bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))) {
+    LazyColumn(contentPadding = PaddingValues(bottom = OdsTheme.spacings.medium)) {
         itemsIndexed(viewModel.appNews) { index, news ->
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
-                    .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
+                    .padding(horizontal = OdsTheme.spacings.medium)
+                    .padding(top = OdsTheme.spacings.medium)
             ) {
-                OdsText(modifier = Modifier.weight(1f), text = news.version, style = OdsTextStyle.TitleM)
-                OdsText(text = news.date, style = OdsTextStyle.BodyS)
+                OdsText(modifier = Modifier.weight(1f), text = news.version, style = OdsTheme.typography.titleMedium)
+                OdsText(text = news.date, style = OdsTheme.typography.bodySmall)
             }
             OdsText(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
-                    .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
+                    .padding(horizontal = OdsTheme.spacings.medium)
+                    .padding(top = OdsTheme.spacings.small),
                 text = news.news,
-                style = OdsTextStyle.BodyL
+                style = OdsTheme.typography.bodyLarge
             )
             if (index + 1 < viewModel.appNews.size) {
-                OdsDivider(modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)))
+                OdsDivider(modifier = Modifier.padding(top = OdsTheme.spacings.medium))
             }
         }
     }

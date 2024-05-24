@@ -32,6 +32,7 @@ import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.LocalAppBarManager
@@ -42,15 +43,16 @@ import com.orange.ods.app.ui.components.Variant
 import com.orange.ods.app.ui.components.components
 import com.orange.ods.app.ui.guidelines.GuidelinesNavigation
 import com.orange.ods.app.ui.guidelines.color.DialogColor
-import com.orange.ods.app.ui.guidelines.spacing.Spacing
+import com.orange.ods.app.ui.guidelines.typography.composeTextStyle
 import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.extension.orElse
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.OdsToken
 import com.orange.ods.theme.annotation.ExperimentalOdsApi
 import com.orange.ods.theme.guideline.GuidelineColor
-import com.orange.ods.theme.guideline.GuidelineTextStyle
 import com.orange.ods.theme.guideline.toHexString
+import com.orange.ods.theme.typography.OdsTextStyle
 
 @OptIn(ExperimentalOdsApi::class)
 @Composable
@@ -63,13 +65,12 @@ fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
             .contains(searchedText)
     }.asSequence()
 
-    val filteredGuidelineTypography = LocalGuideline.current.guidelineTypography.filter { typography ->
-        searchedText.isEmpty() || typography.name.lowercase().contains(searchedText) || typography.composeStyle.lowercase().contains(searchedText)
+    val filteredGuidelineTypography = OdsTheme.typography.tokens.entries.filter { textStyle ->
+        searchedText.isEmpty() || textStyle.name.lowercase().contains(searchedText) || textStyle.composeTextStyle?.lowercase()?.contains(searchedText) == true
     }
 
-    val filteredSpacings = Spacing.entries.filter { spacing ->
-        searchedText.isEmpty() || spacing.tokenName.lowercase()
-            .contains(searchedText)
+    val filteredSpacings = OdsTheme.spacings.tokens.entries.filter { spacing ->
+        searchedText.isEmpty() || spacing.name.lowercase().contains(searchedText)
     }
 
     val filteredGuidelineColors = LocalGuideline.current.guidelineColors.filter { guidelineColor ->
@@ -131,11 +132,11 @@ fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
             )
         }).plus(filteredSpacings.map { spacing ->
             SearchResult(
-                spacing.tokenName,
+                spacing.name,
                 0,
                 image = R.drawable.il_spacing,
                 color = null,
-                subtitle = stringResource(id = R.string.guideline_spacing_dp, spacing.getDp().value.toInt()),
+                subtitle = stringResource(id = R.string.guideline_spacing_dp, spacing.value.value.toInt()),
                 data = spacing
             )
         }).plus(filteredGuidelineTypography.map { guidelineTypography ->
@@ -144,7 +145,7 @@ fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
                 0,
                 image = R.drawable.il_typography,
                 color = null,
-                subtitle = guidelineTypography.composeStyle,
+                subtitle = guidelineTypography.composeTextStyle,
                 data = guidelineTypography
             )
         }).sortedBy { it.title }.toList()
@@ -191,9 +192,13 @@ fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
                 when (item.data) {
                     is Component -> onResultItemClick(ComponentsNavigation.ComponentDetailRoute, item.id)
                     is Variant -> onResultItemClick(ComponentsNavigation.ComponentVariantDemoRoute, item.id)
-                    is Spacing -> onResultItemClick(GuidelinesNavigation.GuidelineSpacing, null)
                     is GuidelineColor -> openDialog.value = true
-                    is GuidelineTextStyle -> onResultItemClick(GuidelinesNavigation.GuidelineTypography, null)
+                    is OdsToken<*> -> {
+                        when (item.data.value) {
+                            is Dp -> onResultItemClick(GuidelinesNavigation.GuidelineSpacing, null)
+                            is OdsTextStyle -> onResultItemClick(GuidelinesNavigation.GuidelineTypography, null)
+                        }
+                    }
                 }
             }
             if (openDialog.value && guidelineColor != null) {
@@ -202,4 +207,3 @@ fun SearchScreen(onResultItemClick: (String, Long?) -> Unit) {
         }
     }
 }
-

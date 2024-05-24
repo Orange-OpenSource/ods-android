@@ -33,7 +33,6 @@ import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.text.styledText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.theme.typography.OdsTextStyle
 
 @Composable
 internal fun OdsFilledTextField(
@@ -55,7 +54,7 @@ internal fun OdsFilledTextField(
     maxLines: Int = Int.MAX_VALUE,
     characterCounter: OdsTextField.CharacterCounter? = null
 ) {
-    val textStyle = OdsTheme.typography.titleM
+    val textStyle = OdsTheme.typography.titleMedium
     Column(modifier = modifier) {
         TextField(
             modifier = Modifier.fillMaxWidth(),
@@ -67,9 +66,9 @@ internal fun OdsFilledTextField(
             },
             enabled = enabled,
             readOnly = readOnly,
-            textStyle = textStyle,
+            textStyle = textStyle.textStyle,
             label = label?.let { { Text(label) } },
-            placeholder = placeholder?.let { { OdsText(text = placeholder, style = OdsTextStyle.TitleM) } },
+            placeholder = placeholder?.let { { OdsText(text = placeholder, style = OdsTheme.typography.titleMedium) } },
             leadingIcon = leadingIcon?.let {
                 {
                     it.Content(OdsTextField.LeadingIcon.ExtraParameters(enabled))

@@ -26,7 +26,6 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.extension.enable
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * Contains classes to build an [com.orange.ods.compose.component.tab.OdsTabRow] or an [com.orange.ods.compose.component.tab.OdsScrollableTabRow].
@@ -59,7 +58,7 @@ object OdsTabRow {
                             text = text,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
-                            style = OdsTextStyle.LabelL
+                            style = OdsTheme.typography.labelLarge
                         )
                     },
                     selected = extraParameters.selected,
@@ -81,7 +80,7 @@ object OdsTabRow {
                                 text = text,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
-                                style = OdsTextStyle.LabelL
+                                style = OdsTheme.typography.labelLarge
                             )
                         }
                     },

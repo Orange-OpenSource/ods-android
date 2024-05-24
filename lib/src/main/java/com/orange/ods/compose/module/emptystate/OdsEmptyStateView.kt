@@ -24,7 +24,6 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -36,7 +35,7 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.theme.typography.OdsTextStyle
+import com.orange.ods.compose.theme.OdsTheme
 
 /**
  * Display an empty state with a centered image followed by a title and an optional text. A button can also be added.
@@ -58,7 +57,7 @@ fun OdsEmptyStateView(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(horizontal = dimensionResource(id = R.dimen.spacing_m), vertical = dimensionResource(id = R.dimen.spacing_s)),
+            .padding(horizontal = OdsTheme.spacings.medium, vertical = OdsTheme.spacings.small),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -67,25 +66,25 @@ fun OdsEmptyStateView(
 
         OdsText(
             modifier = Modifier
-                .padding(top = dimensionResource(id = R.dimen.spacing_m))
+                .padding(top = OdsTheme.spacings.medium)
                 .fillMaxWidth(),
             text = title,
             textAlign = TextAlign.Center,
-            style = OdsTextStyle.TitleL
+            style = OdsTheme.typography.titleLarge
         )
 
         text?.let {
             OdsText(
                 modifier = Modifier
-                    .padding(top = dimensionResource(id = R.dimen.spacing_s))
+                    .padding(top = OdsTheme.spacings.small)
                     .fillMaxWidth(),
                 text = text,
                 textAlign = TextAlign.Center,
-                style = OdsTextStyle.BodyM
+                style = OdsTheme.typography.bodyMedium
             )
         }
 
-        button?.Content(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_m)))
+        button?.Content(modifier = Modifier.padding(top = OdsTheme.spacings.medium))
     }
 }
 

@@ -27,7 +27,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.invisibleToUser
@@ -43,7 +42,6 @@ import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.extension.orElse
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * Progress indicators express an unspecified wait time or display the length of a process.
@@ -69,19 +67,19 @@ fun OdsLinearProgressIndicator(
 ) {
     Column(
         modifier = modifier
-            .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
-            .padding(top = dimensionResource(id = R.dimen.spacing_m))
+            .padding(horizontal = OdsTheme.spacings.medium)
+            .padding(top = OdsTheme.spacings.medium)
     ) {
         Row(
             modifier = Modifier
-                .padding(bottom = dimensionResource(id = R.dimen.spacing_xs)),
+                .padding(bottom = OdsTheme.spacings.extraSmall),
         ) {
             icon?.Content(modifier = Modifier.padding(end = ButtonDefaults.IconSpacing))
 
             if (label != null) {
                 OdsText(
                     text = label,
-                    style = OdsTextStyle.BodyS,
+                    style = OdsTheme.typography.bodySmall,
                     color = OdsTheme.colors.onSurface,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1,
@@ -96,12 +94,12 @@ fun OdsLinearProgressIndicator(
                 Row(horizontalArrangement = Arrangement.End, modifier = Modifier.fillMaxWidth()) {
                     OdsText(
                         modifier = Modifier
-                            .padding(top = dimensionResource(id = R.dimen.spacing_xs))
+                            .padding(top = OdsTheme.spacings.extraSmall)
                             .semantics {
                                 this.invisibleToUser() // Prevent TalkBack to focus this Text cause the value of the progress is already read on LinearProgressIndicator focus
                             },
                         text = stringResource(id = R.string.ods_progressLinearIndicator_value, (progress * 100).toInt()),
-                        style = OdsTextStyle.BodyS
+                        style = OdsTheme.typography.bodySmall
                     )
                 }
             }

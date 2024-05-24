@@ -50,6 +50,7 @@ import com.orange.ods.compose.component.banner.OdsBanner
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.extension.ifNotNull
+import com.orange.ods.compose.theme.OdsTheme
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -67,7 +68,7 @@ fun ComponentBanners() {
                 Subtitle(textRes = R.string.component_banner_message_example, horizontalPadding = true)
                 OdsChoiceChipsFlowRow(
                     selectedChoiceChipIndex = if (shortMessage.value) 0 else 1,
-                    modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                    modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium),
                     choiceChips = listOf(
                         OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = R.string.component_banner_message_example_short), { shortMessage.value = true }),
                         OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = R.string.component_banner_message_example_long), { shortMessage.value = false })

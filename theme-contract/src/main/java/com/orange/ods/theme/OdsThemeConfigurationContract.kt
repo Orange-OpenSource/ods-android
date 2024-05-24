@@ -17,6 +17,7 @@ import androidx.compose.material.Shapes
 import com.orange.ods.theme.annotation.ExperimentalOdsApi
 import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.guideline.OdsGuideline
+import com.orange.ods.theme.spacing.OdsSpacings
 import com.orange.ods.theme.typography.OdsTypography
 
 interface OdsThemeConfigurationContract : Parcelable {
@@ -34,6 +35,12 @@ interface OdsThemeConfigurationContract : Parcelable {
      */
     val typography: OdsTypography
         get() = OdsTypography()
+
+    /**
+     * Customization of the spacings if needed
+     */
+    val spacings: OdsSpacings
+        get() = OdsSpacings()
 
     /**
      * Customization of the shapes if needed

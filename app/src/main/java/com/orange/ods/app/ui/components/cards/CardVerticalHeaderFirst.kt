@@ -38,6 +38,7 @@ import com.orange.ods.app.ui.utilities.extension.buildImageRequest
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.card.OdsCard
 import com.orange.ods.compose.component.card.OdsVerticalHeaderFirstCard
+import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
 fun CardVerticalHeaderFirst(customizationState: CardCustomizationState) {
@@ -51,7 +52,7 @@ fun CardVerticalHeaderFirst(customizationState: CardCustomizationState) {
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(state = rememberScrollState())
-                .padding(dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
+                .padding(OdsTheme.spacings.medium)
         ) {
             val firstButtonText = stringResource(id = R.string.component_element_first_button)
             val secondButtonText = stringResource(id = R.string.component_element_second_button)
@@ -78,7 +79,7 @@ fun CardVerticalHeaderFirst(customizationState: CardCustomizationState) {
             )
 
             CodeImplementationColumn(
-                modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s))
+                modifier = Modifier.padding(top = OdsTheme.spacings.small)
             ) {
                 FunctionCallCode(
                     name = OdsComposable.OdsVerticalHeaderFirstCard.name,

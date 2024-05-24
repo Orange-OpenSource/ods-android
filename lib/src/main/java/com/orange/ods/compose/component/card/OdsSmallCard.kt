@@ -30,6 +30,7 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
@@ -66,11 +67,11 @@ fun OdsSmallCard(
             )
             Column(
                 modifier = Modifier
-                    .padding(dimensionResource(id = R.dimen.spacing_m))
+                    .padding(OdsTheme.spacings.medium)
             ) {
-                SmallCardText(text = title, style = OdsTextStyle.TitleL, isClickableCard = onClick != null)
+                SmallCardText(text = title, style = OdsTheme.typography.titleLarge, isClickableCard = onClick != null)
                 subtitle?.let {
-                    SmallCardText(text = it, style = OdsTextStyle.BodyM, isClickableCard = onClick != null)
+                    SmallCardText(text = it, style = OdsTheme.typography.bodyMedium, isClickableCard = onClick != null)
                 }
             }
         }
@@ -110,7 +111,7 @@ private class OdsSmallCardPreviewParameterProvider :
 
 private val previewParameterValues: List<OdsSmallCardPreviewParameter>
     get() = listOf(
-            OdsSmallCardPreviewParameter(CardPreview.Title, CardPreview.Subtitle),
-            OdsSmallCardPreviewParameter(CardPreview.LongTitle, CardPreview.LongSubtitle),
-            OdsSmallCardPreviewParameter(CardPreview.LongTitle, CardPreview.LongSubtitle, null),
-        )
+        OdsSmallCardPreviewParameter(CardPreview.Title, CardPreview.Subtitle),
+        OdsSmallCardPreviewParameter(CardPreview.LongTitle, CardPreview.LongSubtitle),
+        OdsSmallCardPreviewParameter(CardPreview.LongTitle, CardPreview.LongSubtitle, null),
+    )

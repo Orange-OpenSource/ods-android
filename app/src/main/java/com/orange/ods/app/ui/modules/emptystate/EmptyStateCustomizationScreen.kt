@@ -17,7 +17,6 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.orange.ods.app.R
@@ -26,6 +25,7 @@ import com.orange.ods.app.ui.modules.ModuleDetailColumn
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
+import com.orange.ods.compose.theme.OdsTheme
 
 enum class EmptyStateUsage(
     @StringRes val choiceLabelRes: Int,
@@ -72,7 +72,7 @@ fun EmptyStateCustomizationScreen(onViewDemoButtonClick: () -> Unit, viewModel: 
             Subtitle(textRes = R.string.module_emptyState_usage_customization, horizontalPadding = true)
             OdsChoiceChipsFlowRow(
                 selectedChoiceChipIndex = EmptyStateUsage.entries.indexOf(usage),
-                modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium),
                 choiceChips = EmptyStateUsage.entries.map { emptyStateUsage ->
                     OdsChoiceChipsFlowRow.ChoiceChip(
                         stringResource(id = emptyStateUsage.choiceLabelRes),

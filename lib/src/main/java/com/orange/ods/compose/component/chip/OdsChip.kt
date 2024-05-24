@@ -25,7 +25,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
@@ -40,7 +39,6 @@ import com.orange.ods.compose.extension.noRippleClickable
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.OdsComponentsConfiguration
-import com.orange.ods.theme.typography.OdsTextStyle
 
 
 /**
@@ -120,14 +118,14 @@ private fun OdsChip(
     ) {
         OdsText(
             text = text,
-            style = OdsTextStyle.BodyM
+            style = OdsTheme.typography.bodyMedium
         )
 
         onCancel?.let {
             val iconModifier = if (enabled) Modifier.noRippleClickable {
                 onCancel()
             } else Modifier
-            Spacer(modifier = Modifier.size(dimensionResource(id = R.dimen.spacing_s)))
+            Spacer(modifier = Modifier.size(OdsTheme.spacings.small))
             Icon(
                 modifier = iconModifier.size(18.dp),
                 painter = painterResource(id = R.drawable.ic_cancel),

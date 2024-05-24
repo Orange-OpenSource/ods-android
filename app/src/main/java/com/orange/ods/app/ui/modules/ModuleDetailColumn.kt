@@ -28,6 +28,7 @@ import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.composable.DetailScreenHeader
 import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.button.OdsButton
+import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
 fun ModuleDetailColumn(
@@ -52,8 +53,8 @@ fun ModuleDetailColumn(
             content()
             OdsButton(
                 modifier = Modifier
-                    .padding(top = dimensionResource(id = R.dimen.spacing_m))
-                    .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
+                    .padding(top = OdsTheme.spacings.medium)
+                    .padding(horizontal = OdsTheme.spacings.medium)
                     .fillMaxWidth(),
                 style = OdsButton.Style.Primary,
                 text = stringResource(id = com.orange.ods.app.R.string.module_view_demo),

@@ -33,6 +33,7 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.listitem.OdsListItem
+import com.orange.ods.compose.theme.OdsTheme
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -50,7 +51,7 @@ fun ComponentSwitches() {
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
-                .padding(vertical = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
+                .padding(vertical = OdsTheme.spacings.small)
         ) {
             var checked by rememberSaveable { mutableStateOf(false) }
             val recipe = LocalRecipes.current.first()
@@ -61,7 +62,7 @@ fun ComponentSwitches() {
 
             CodeImplementationColumn(
                 modifier = Modifier
-                    .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_xs))
+                    .padding(top = OdsTheme.spacings.extraSmall)
                     .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
             ) {
                 FunctionCallCode(

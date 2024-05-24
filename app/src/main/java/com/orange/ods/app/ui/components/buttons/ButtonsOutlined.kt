@@ -38,6 +38,7 @@ import com.orange.ods.app.ui.utilities.code.XmlViewTag
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsButton
 import com.orange.ods.compose.component.button.OdsOutlinedButton
+import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
 fun ButtonsOutlined(customizationState: ButtonCustomizationState) {
@@ -52,7 +53,7 @@ fun ButtonsOutlined(customizationState: ButtonCustomizationState) {
 
             OutlinedButton(text = buttonText, leadingIcon = hasLeadingIcon, enabled = isEnabled, fullScreenWidth = hasFullScreenWidth)
 
-            Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
+            Spacer(modifier = Modifier.padding(top = OdsTheme.spacings.small))
 
             InvertedBackgroundColumn {
                 OutlinedButton(
@@ -115,7 +116,7 @@ private fun OutlinedButton(
     Box(
         modifier = Modifier.padding(
             horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin),
-            vertical = dimensionResource(com.orange.ods.R.dimen.spacing_m)
+            vertical = OdsTheme.spacings.medium
         )
     ) {
         UiFramework<OdsOutlinedButtonBinding>(

@@ -33,6 +33,7 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsTextToggleButtonsRow
+import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.theme.annotation.ExperimentalOdsApi
 
 @Composable
@@ -58,7 +59,7 @@ fun ButtonsTextToggleButtonsRow(customizationState: ButtonCustomizationState) {
                 sameItemsWeight = hasSameItemsWeight,
             )
 
-            Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
+            Spacer(modifier = Modifier.padding(top = OdsTheme.spacings.small))
 
             InvertedBackgroundColumn {
                 ToggleButtonsRow(
@@ -101,7 +102,7 @@ private fun ToggleButtonsRow(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_m))
+            .padding(top = OdsTheme.spacings.medium)
             .padding(horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin)),
         horizontalArrangement = Arrangement.Center
     ) {

@@ -40,6 +40,7 @@ import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.code.XmlViewTag
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconButton
+import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
 fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
@@ -59,7 +60,7 @@ fun ButtonsIcon(customizationState: ButtonIconCustomizationState) {
                 )
             }
 
-            Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
+            Spacer(modifier = Modifier.padding(top = OdsTheme.spacings.small))
 
             InvertedBackgroundColumn(horizontalAlignment = Alignment.CenterHorizontally) {
                 IconButton(
@@ -116,7 +117,7 @@ private fun IconButton(
     Box(
         modifier = Modifier.padding(
             horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin),
-            vertical = dimensionResource(com.orange.ods.R.dimen.spacing_m)
+            vertical = OdsTheme.spacings.medium
         )
     ) {
         UiFramework<OdsIconButtonBinding>(

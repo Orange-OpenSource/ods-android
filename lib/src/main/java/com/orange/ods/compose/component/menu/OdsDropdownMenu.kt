@@ -21,12 +21,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.PopupProperties
-import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.content.OdsComponentContent
 import com.orange.ods.compose.component.divider.OdsDivider
@@ -35,7 +33,6 @@ import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/07a69b-menus/b/862cbb" class="external" target="_blank">ODS menus</a>.
@@ -180,10 +177,10 @@ object OdsDropdownMenu {
                             contentDescription = "",
                             tint = OdsTheme.colors.onSurface,
                             enabled = enabled,
-                            modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_m)),
+                            modifier = Modifier.padding(end = OdsTheme.spacings.medium),
                         )
                     }
-                    OdsText(text = text, style = OdsTextStyle.BodyL, enabled = enabled)
+                    OdsText(text = text, style = OdsTheme.typography.bodyLarge, enabled = enabled)
                 }
                 if (divider) OdsDivider()
             }

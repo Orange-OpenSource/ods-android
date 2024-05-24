@@ -25,7 +25,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import com.orange.ods.app.R
@@ -33,8 +32,8 @@ import com.orange.ods.app.ui.LocalUiFramework
 import com.orange.ods.app.ui.UiFramework
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
 import com.orange.ods.compose.component.menu.OdsExposedDropdownMenu
-import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.compose.extension.orElse
+import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
 fun CodeImplementationColumn(
@@ -56,7 +55,7 @@ fun CodeImplementationColumn(
 
     Column(
         modifier = modifier.padding(
-            vertical = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)
+            vertical = OdsTheme.spacings.small
         )
     ) {
         UiFrameworkChoice()
@@ -74,7 +73,7 @@ fun CodeImplementationColumn(
                     TechnicalText(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(dimensionResource(id = com.orange.ods.R.dimen.spacing_xs)),
+                            .padding(OdsTheme.spacings.extraSmall),
                         text = stringResource(id = R.string.xml_component_not_yet_available)
                     )
                 }
@@ -114,7 +113,7 @@ fun CodeBackgroundColumn(content: @Composable () -> Unit) {
                 OdsTheme.colors.onSurface.copy(alpha = 0.12f),
                 shape = RoundedCornerShape(10f)
             )
-            .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_s), vertical = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
+            .padding(horizontal = OdsTheme.spacings.small, vertical = OdsTheme.spacings.small)
             .semantics(mergeDescendants = true) {}) {
         content()
     }
@@ -122,7 +121,7 @@ fun CodeBackgroundColumn(content: @Composable () -> Unit) {
 
 @Composable
 fun IndentCodeColumn(content: @Composable () -> Unit) {
-    Column(modifier = Modifier.padding(start = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))) {
+    Column(modifier = Modifier.padding(start = OdsTheme.spacings.small)) {
         content()
     }
 }

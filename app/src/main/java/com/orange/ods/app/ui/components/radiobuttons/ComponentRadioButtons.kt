@@ -34,6 +34,7 @@ import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.listitem.OdsListItem
+import com.orange.ods.compose.theme.OdsTheme
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -51,7 +52,7 @@ fun ComponentRadioButtons() {
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
-                .padding(vertical = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
+                .padding(vertical = OdsTheme.spacings.small)
         ) {
             val recipes = LocalRecipes.current.take(3)
             var selectedRecipe by rememberSaveable { mutableStateOf(recipes.firstOrNull()) }

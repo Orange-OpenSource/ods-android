@@ -17,13 +17,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.ui.components.textfields.TextFieldCustomizationState.Companion.TextFieldMaxChars
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.textfield.OdsTextField
 import com.orange.ods.compose.component.textfield.password.OdsPasswordTextField
+import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
 fun TextFieldPassword(customizationState: TextFieldCustomizationState) {
@@ -36,7 +36,7 @@ fun TextFieldPassword(customizationState: TextFieldCustomizationState) {
             OdsPasswordTextField(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)),
+                    .padding(top = OdsTheme.spacings.small),
                 enabled = isEnabled,
                 isError = isError,
                 errorMessage = if (isError) errorMessage else null,

@@ -47,6 +47,7 @@ import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.extension.ifNotNull
 import com.orange.ods.compose.extension.orElse
+import com.orange.ods.compose.theme.OdsTheme
 
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -66,7 +67,7 @@ private fun ComponentListItemBottomSheetContent(listItemCustomizationState: List
     val secondaryTextLineCountValues = listOf(null) + OdsListItem.SecondaryTextLineCount.entries
     OdsChoiceChipsFlowRow(
         selectedChoiceChipIndex = secondaryTextLineCountValues.indexOf(listItemCustomizationState.secondaryTextLineCount.value),
-        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+        modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium),
         choiceChips = secondaryTextLineCountValues.map { secondaryTextLineCount ->
             val textResId = when (secondaryTextLineCount) {
                 OdsListItem.SecondaryTextLineCount.One -> R.string.component_list_item_secondary_text_one_line
@@ -83,7 +84,7 @@ private fun ComponentListItemBottomSheetContent(listItemCustomizationState: List
     val leadingIconTypes = listOf(null) + OdsListItem.LeadingIcon.Type.entries
     OdsChoiceChipsFlowRow(
         selectedChoiceChipIndex = leadingIconTypes.indexOf(listItemCustomizationState.selectedLeadingIconType.value),
-        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+        modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium),
         choiceChips = leadingIconTypes.map { leadingIconType ->
             val textResId = when (leadingIconType) {
                 OdsListItem.LeadingIcon.Type.Icon -> R.string.component_element_icon
@@ -99,7 +100,7 @@ private fun ComponentListItemBottomSheetContent(listItemCustomizationState: List
     Subtitle(textRes = R.string.component_list_trailing, horizontalPadding = true)
     OdsChoiceChipsFlowRow(
         selectedChoiceChipIndex = listItemCustomizationState.trailings.indexOf(listItemCustomizationState.selectedTrailing.value),
-        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+        modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium),
         choiceChips = listItemCustomizationState.trailings.map { trailing ->
             OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = trailing.textResId), { listItemCustomizationState.selectedTrailing.value = trailing })
         }
@@ -136,7 +137,7 @@ private fun ComponentListItemContent(listItemCustomizationState: ListItemCustomi
             CodeImplementationColumn(
                 modifier = Modifier
                     .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin))
-                    .padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s))
+                    .padding(top = OdsTheme.spacings.small)
             ) {
                 FunctionCallCode(
                     name = OdsComposable.OdsListItem.name,

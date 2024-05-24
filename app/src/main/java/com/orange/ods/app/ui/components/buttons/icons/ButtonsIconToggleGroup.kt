@@ -40,11 +40,11 @@ import com.orange.ods.app.ui.utilities.code.FunctionCallCode
 import com.orange.ods.app.ui.utilities.code.IndentCodeColumn
 import com.orange.ods.app.ui.utilities.code.XmlViewTag
 import com.orange.ods.app.ui.utilities.composable.TechnicalText
+import com.orange.ods.app.ui.utilities.extension.simpleNestedName
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.button.OdsIconToggleButtonsRow
 import com.orange.ods.compose.text.OdsText
-import com.orange.ods.app.ui.utilities.extension.simpleNestedName
-import com.orange.ods.theme.typography.OdsTextStyle
+import com.orange.ods.compose.theme.OdsTheme
 
 @Composable
 fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
@@ -76,7 +76,7 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
                 iconButtons = displayedIconButtons
             )
 
-            Spacer(modifier = Modifier.padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_s)))
+            Spacer(modifier = Modifier.padding(top = OdsTheme.spacings.small))
 
             InvertedBackgroundColumn {
                 ToggleButtonsRow(
@@ -120,11 +120,11 @@ fun ButtonsIconToggleGroup(customizationState: ButtonIconCustomizationState) {
                     }
                     OdsText(
                         modifier = Modifier.padding(
-                            top = dimensionResource(id = R.dimen.spacing_s),
-                            bottom = dimensionResource(id = R.dimen.spacing_xs)
+                            top = OdsTheme.spacings.small,
+                            bottom = OdsTheme.spacings.extraSmall
                         ),
                         text = stringResource(id = com.orange.ods.app.R.string.component_button_icon_toggle_group_code_add_icons),
-                        style = OdsTextStyle.BodyM
+                        style = OdsTheme.typography.bodyMedium
                     )
                     CodeBackgroundColumn {
                         TechnicalText(text = "binding.odsIconToggleButtonsRow.icons = listOf(")
@@ -155,7 +155,7 @@ private fun ToggleButtonsRow(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = dimensionResource(com.orange.ods.R.dimen.spacing_m))
+            .padding(top = OdsTheme.spacings.medium)
             .padding(horizontal = dimensionResource(com.orange.ods.R.dimen.screen_horizontal_margin)),
         horizontalArrangement = Arrangement.Center
     ) {

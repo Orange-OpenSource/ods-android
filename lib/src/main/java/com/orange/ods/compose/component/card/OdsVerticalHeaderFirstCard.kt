@@ -32,9 +32,9 @@ import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.extension.orElse
-import com.orange.ods.theme.typography.OdsTextStyle
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.theme.OdsTheme
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/272739-cards/b/991690" target="_blank">ODS Card</a>.
@@ -73,14 +73,14 @@ fun OdsVerticalHeaderFirstCard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(IntrinsicSize.Min)
-                    .padding(all = dimensionResource(id = R.dimen.spacing_m)),
+                    .padding(all = OdsTheme.spacings.medium),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 thumbnail?.Content()
-                Column(modifier = Modifier.padding(start = thumbnail?.let { dimensionResource(id = R.dimen.spacing_s) }.orElse { 0.dp })) {
-                    OdsText(text = title, style = OdsTextStyle.TitleL)
+                Column(modifier = Modifier.padding(start = thumbnail?.let { OdsTheme.spacings.small }.orElse { 0.dp })) {
+                    OdsText(text = title, style = OdsTheme.typography.titleLarge)
                     subtitle?.let {
-                        OdsText(text = it, style = OdsTextStyle.BodyM)
+                        OdsText(text = it, style = OdsTheme.typography.bodyMedium)
                     }
                 }
             }
@@ -93,19 +93,19 @@ fun OdsVerticalHeaderFirstCard(
             text?.let {
                 OdsText(
                     modifier = Modifier
-                        .padding(top = dimensionResource(id = R.dimen.spacing_m))
-                        .padding(horizontal = dimensionResource(id = R.dimen.spacing_m)),
+                        .padding(top = OdsTheme.spacings.medium)
+                        .padding(horizontal = OdsTheme.spacings.medium),
                     text = it,
-                    style = OdsTextStyle.BodyL
+                    style = OdsTheme.typography.bodyLarge
                 )
             }
 
             if (firstButton != null || secondButton != null || text != null) {
-                Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.spacing_m)))
+                Spacer(modifier = Modifier.height(OdsTheme.spacings.medium))
             }
 
             OdsCardButtonsFlowRow(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.spacing_s)),
+                modifier = Modifier.padding(horizontal = OdsTheme.spacings.small),
                 firstButton = firstButton,
                 secondButton = secondButton
             )

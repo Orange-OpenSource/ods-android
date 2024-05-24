@@ -30,7 +30,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -46,7 +45,6 @@ import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.theme.typography.OdsTextStyle
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/19a040-banners/b/497b77" class="external" target="_blank">ODS banners</a>.
@@ -85,16 +83,16 @@ fun OdsBanner(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(
-                    top = if (buttonCount == 0 || !isSingleLineBanner) dimensionResource(id = R.dimen.spacing_m) else dimensionResource(id = R.dimen.spacing_s),
+                    top = if (buttonCount == 0 || !isSingleLineBanner) OdsTheme.spacings.medium else OdsTheme.spacings.small,
                     bottom = when {
-                        buttonCount == 0 -> dimensionResource(id = R.dimen.spacing_m)
-                        isSingleLineBanner -> dimensionResource(id = R.dimen.spacing_s)
+                        buttonCount == 0 -> OdsTheme.spacings.medium
+                        isSingleLineBanner -> OdsTheme.spacings.small
                         else -> 0.dp
                     }
                 )
-                .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
+                .padding(horizontal = OdsTheme.spacings.medium)
         ) {
-            image?.Content(modifier = Modifier.padding(end = dimensionResource(id = R.dimen.spacing_m)))
+            image?.Content(modifier = Modifier.padding(end = OdsTheme.spacings.medium))
 
             Row(
                 verticalAlignment = Alignment.CenterVertically
@@ -102,7 +100,7 @@ fun OdsBanner(
                 OdsText(
                     modifier = Modifier.weight(1f),
                     text = message,
-                    style = OdsTextStyle.BodyM,
+                    style = OdsTheme.typography.bodyMedium,
                     color = OdsTheme.colors.onSurface,
                     maxLines = if (hasVisualOverflowText) Int.MAX_VALUE else 2,
                     overflow = TextOverflow.Ellipsis,
@@ -113,18 +111,18 @@ fun OdsBanner(
                     }
                 )
                 if (isSingleLineBanner) {
-                    firstButton?.Content(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_xs)))
-                    secondButton?.Content(modifier = Modifier.padding(start = dimensionResource(id = R.dimen.spacing_xs)))
+                    firstButton?.Content(modifier = Modifier.padding(start = OdsTheme.spacings.extraSmall))
+                    secondButton?.Content(modifier = Modifier.padding(start = OdsTheme.spacings.extraSmall))
                 }
             }
         }
         if (!isSingleLineBanner && buttonCount > 0) {
             FlowRow(
                 modifier = Modifier
-                    .padding(horizontal = dimensionResource(id = R.dimen.spacing_m))
-                    .padding(bottom = dimensionResource(id = R.dimen.spacing_xs))
+                    .padding(horizontal = OdsTheme.spacings.medium)
+                    .padding(bottom = OdsTheme.spacings.extraSmall)
                     .align(Alignment.End),
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_s), Alignment.End),
+                horizontalArrangement = Arrangement.spacedBy(OdsTheme.spacings.small, Alignment.End),
                 verticalArrangement = Arrangement.spacedBy((-6).dp)
             ) {
                 firstButton?.Content()

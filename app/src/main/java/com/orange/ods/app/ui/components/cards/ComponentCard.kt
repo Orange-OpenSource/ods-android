@@ -27,6 +27,7 @@ import com.orange.ods.app.ui.utilities.composable.Subtitle
 import com.orange.ods.compose.component.card.OdsCard
 import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.listitem.OdsListItem
+import com.orange.ods.compose.theme.OdsTheme
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -50,7 +51,7 @@ fun ComponentCard(variant: Variant) {
                     Subtitle(textRes = R.string.component_card_horizontal_image_position, horizontalPadding = true)
                     OdsChoiceChipsFlowRow(
                         selectedChoiceChipIndex = OdsCard.Image.Position.entries.indexOf(imagePosition.value),
-                        modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+                        modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium),
                         choiceChips = OdsCard.Image.Position.entries.map { imagePosition ->
                             val textResId = when (imagePosition) {
                                 OdsCard.Image.Position.Start -> R.string.component_card_horizontal_image_position_start

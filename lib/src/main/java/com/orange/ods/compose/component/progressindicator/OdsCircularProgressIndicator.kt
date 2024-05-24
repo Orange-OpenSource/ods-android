@@ -18,16 +18,14 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import com.orange.ods.R
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
-import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.extension.orElse
-import com.orange.ods.theme.typography.OdsTextStyle
+import com.orange.ods.compose.text.OdsText
+import com.orange.ods.compose.theme.OdsTheme
 
 
 /**
@@ -61,8 +59,8 @@ fun OdsCircularProgressIndicator(
         if (label != null) {
             OdsText(
                 text = label,
-                modifier = Modifier.padding(top = dimensionResource(id = R.dimen.spacing_s)),
-                style = OdsTextStyle.BodyS
+                modifier = Modifier.padding(top = OdsTheme.spacings.small),
+                style = OdsTheme.typography.bodySmall
             )
         }
     }
