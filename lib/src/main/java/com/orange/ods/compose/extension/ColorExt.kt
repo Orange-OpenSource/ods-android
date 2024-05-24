@@ -12,9 +12,8 @@
 
 package com.orange.ods.compose.extension
 
-import androidx.compose.material.ContentAlpha
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 @Composable
-fun Color.enable(enabled: Boolean) = if (enabled) this else copy(alpha = ContentAlpha.disabled)
+fun Color.enable(enabled: Boolean) = if (enabled) this else copy(alpha = 0.38f)

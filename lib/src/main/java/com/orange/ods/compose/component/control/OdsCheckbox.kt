@@ -12,8 +12,8 @@
 
 package com.orange.ods.compose.component.control
 
-import androidx.compose.material.Checkbox
-import androidx.compose.material.CheckboxDefaults
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -51,16 +51,19 @@ fun OdsCheckbox(
     enabled: Boolean = true
 ) {
     CompositionLocalProvider(LocalRippleTheme provides OdsPrimaryRippleTheme) {
+        val disabledColor = OdsTheme.colors.secondary.enable(enabled = false)
         Checkbox(
             modifier = modifier,
             checked = checked,
             onCheckedChange = onCheckedChange,
             enabled = enabled,
-            colors = if (checked) {
-                CheckboxDefaults.colors(disabledColor = OdsTheme.colors.secondary.enable(enabled = false))
-            } else {
-                CheckboxDefaults.colors()
-            }
+            colors = CheckboxDefaults.colors(
+                checkedColor = OdsTheme.colors.primary,
+                uncheckedColor = OdsTheme.colors.onSurface,
+                disabledCheckedColor = disabledColor,
+                disabledUncheckedColor = disabledColor,
+                disabledIndeterminateColor = disabledColor
+            )
         )
     }
 }
