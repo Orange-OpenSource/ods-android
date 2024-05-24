@@ -14,9 +14,9 @@ package com.orange.ods.compose.component.control
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.material.RadioButton
-import androidx.compose.material.RadioButtonDefaults
-import androidx.compose.material.Text
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.RadioButtonDefaults
+import androidx.compose.material3.Text
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -54,19 +54,20 @@ fun OdsRadioButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true
 ) {
+    val disabledColor = OdsTheme.colors.secondary.enable(enabled = false)
     CompositionLocalProvider(LocalRippleTheme provides OdsPrimaryRippleTheme) {
         RadioButton(
             selected = selected,
             onClick = onClick,
             modifier = modifier,
             enabled = enabled,
-            colors = if (selected) {
-                RadioButtonDefaults.colors(
-                    disabledColor = OdsTheme.colors.secondary.enable(enabled = false)
+            colors = RadioButtonDefaults.colors(
+                    selectedColor = OdsTheme.colors.primary,
+                    unselectedColor = OdsTheme.colors.onSurface,
+                    disabledSelectedColor = disabledColor,
+                    disabledUnselectedColor = disabledColor
+
                 )
-            } else {
-                RadioButtonDefaults.colors()
-            }
         )
     }
 }
