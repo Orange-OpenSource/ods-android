@@ -14,8 +14,8 @@ package com.orange.ods.compose.component.button
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.ButtonColors
-import androidx.compose.material.ButtonDefaults
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -88,33 +88,33 @@ object OdsButton {
 
     @Composable
     private fun odsDefaultButtonColors() = buttonColors(
-        backgroundColor = OdsTheme.colors.onSurface,
+        containerColor = OdsTheme.colors.onSurface,
         contentColor = OdsTheme.colors.surface
     )
 
     @Composable
     private fun odsPrimaryButtonColors() = buttonColors(
-        backgroundColor = OdsTheme.colors.primary,
+        containerColor = OdsTheme.colors.primary,
         contentColor = OdsTheme.colors.onPrimary
     )
 
     @Composable
     private fun odsPositiveButtonColors() = buttonColors(
-        backgroundColor = OdsTheme.colors.functional.positive,
+        containerColor = OdsTheme.colors.functional.positive,
         contentColor = OdsTheme.colors.functional.onPositive
     )
 
     @Composable
     private fun odsNegativeButtonColors() = buttonColors(
-        backgroundColor = OdsTheme.colors.functional.negative,
+        containerColor = OdsTheme.colors.functional.negative,
         contentColor = OdsTheme.colors.functional.onNegative
     )
 
     @Composable
-    private fun buttonColors(backgroundColor: Color, contentColor: Color) = ButtonDefaults.buttonColors(
-        backgroundColor = backgroundColor,
+    private fun buttonColors(containerColor: Color, contentColor: Color) = ButtonDefaults.buttonColors(
+        containerColor = containerColor,
         contentColor = contentColor,
-        disabledBackgroundColor = OdsTheme.colors.onSurface.copy(alpha = 0.12f),
-        disabledContentColor = OdsTheme.colors.onSurface.enable(enabled = false)
+        disabledContainerColor = OdsTheme.colors.onSurface.copy(alpha = 0.12f),
+        disabledContentColor = OdsTheme.colors.onSurface.enable(enabled = false),
     )
 }
