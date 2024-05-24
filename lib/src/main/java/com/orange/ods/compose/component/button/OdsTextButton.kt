@@ -13,9 +13,9 @@
 package com.orange.ods.compose.component.button
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.TextButton
 import androidx.compose.material.ripple.LocalRippleTheme
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
