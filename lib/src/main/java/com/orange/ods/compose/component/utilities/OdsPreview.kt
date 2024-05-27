@@ -13,7 +13,7 @@
 package com.orange.ods.compose.component.utilities
 
 import android.content.res.Configuration
-import androidx.compose.material.Surface
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
@@ -27,7 +27,7 @@ import com.orange.ods.compose.theme.OdsTheme
  */
 @Composable
 fun OdsPreview(content: @Composable () -> Unit) = OdsTheme(BuildConfig.PREVIEW_THEME_CONFIGURATION) {
-    Surface(color = OdsTheme.colors.background, content = content) // Add a surface to be able to see components
+    Surface(content = content) // Add a surface to be able to see components
 }
 
 /**
