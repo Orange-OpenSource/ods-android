@@ -12,7 +12,8 @@
 
 package com.orange.ods.theme.orange
 
-import androidx.compose.material3.ColorScheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import com.orange.ods.theme.colors.OdsBottomNavigationColors
 import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.colors.OdsComponentsColors
@@ -24,7 +25,7 @@ import com.orange.ods.theme.colors.OdsTopAppBarColors
 
 internal val OrangeLightColors = with(OrangeColorPalette) {
     OdsColors(
-        colorScheme = ColorScheme(
+        colorScheme = lightColorScheme(
             primary = core.orange200,
             onPrimary = core.white100,
             primaryContainer = core.tmpOrangeFFA14D,
@@ -102,7 +103,7 @@ internal val OrangeLightColors = with(OrangeColorPalette) {
 
 internal val OrangeDarkColors = with(OrangeColorPalette) {
     OdsColors(
-        colorScheme = ColorScheme(
+        colorScheme = darkColorScheme(
             primary = core.orange100,
             onPrimary = core.black900,
             primaryContainer = core.tmpOrangeFFA14D,

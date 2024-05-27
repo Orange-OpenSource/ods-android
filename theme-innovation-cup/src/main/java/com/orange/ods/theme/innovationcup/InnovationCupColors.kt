@@ -12,14 +12,15 @@
 
 package com.orange.ods.theme.innovationcup
 
-import androidx.compose.material3.ColorScheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.colors.OdsComponentsColors
 import com.orange.ods.theme.colors.OdsFunctionalColors
 
 internal val InnovationCupLightColors = with(InnovationCupPalette) {
     OdsColors(
-        colorScheme = ColorScheme(
+        colorScheme = lightColorScheme(
             primary = core.primary40,
             onPrimary = core.white,
             primaryContainer = core.primary90,
@@ -71,7 +72,7 @@ internal val InnovationCupLightColors = with(InnovationCupPalette) {
 
 internal val InnovationCupDarkColors = with(InnovationCupPalette) {
     OdsColors(
-        colorScheme = ColorScheme(
+        colorScheme = darkColorScheme(
             primary = core.primary80,
             onPrimary = core.primary20,
             primaryContainer = core.primary30,
