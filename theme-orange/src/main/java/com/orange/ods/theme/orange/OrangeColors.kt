@@ -92,7 +92,7 @@ internal val OrangeLightColors = with(OrangeColorPalette) {
             )
 
             tab = OdsTabColors(
-                background = core.white100,
+                container = core.white100,
                 selectedContent = core.orange200,
                 unselectedContent = core.black900
             )
@@ -170,7 +170,7 @@ internal val OrangeDarkColors = with(OrangeColorPalette) {
             )
 
             tab = OdsTabColors(
-                background = custom.DarkSurfaceDefault,
+                container = custom.DarkSurfaceDefault,
                 selectedContent = core.orange100,
                 unselectedContent = core.white100
             )

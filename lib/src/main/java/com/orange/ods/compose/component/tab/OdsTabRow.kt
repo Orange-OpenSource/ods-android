@@ -13,9 +13,9 @@
 package com.orange.ods.compose.component.tab
 
 import androidx.annotation.DrawableRes
-import androidx.compose.material.TabRow
-import androidx.compose.material.TabRowDefaults
-import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
+import androidx.compose.material3.TabRow
+import androidx.compose.material3.TabRowDefaults
+import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -50,12 +50,12 @@ fun OdsTabRow(
 ) {
     TabRow(
         modifier = modifier,
-        backgroundColor = OdsTheme.colors.components.tab.background,
+        containerColor = OdsTheme.colors.components.tab.container,
         contentColor = OdsTheme.colors.components.tab.unselectedContent,
         selectedTabIndex = selectedTabIndex,
         indicator = { tabPositions ->
             if (selectedTabIndex < tabPositions.size) {
-                TabRowDefaults.Indicator(
+                TabRowDefaults.SecondaryIndicator( //TODO see with Design: Should probably be a PrimaryIndicator in M3 (add new parameter for component customization?)
                     modifier = Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex]),
                     color = OdsTheme.colors.components.tab.selectedContent
                 )

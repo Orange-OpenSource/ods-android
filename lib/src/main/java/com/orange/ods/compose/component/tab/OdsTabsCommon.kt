@@ -12,8 +12,8 @@
 
 package com.orange.ods.compose.component.tab
 
-import androidx.compose.material.LeadingIconTab
-import androidx.compose.material.Tab
+import androidx.compose.material3.LeadingIconTab
+import androidx.compose.material3.Tab
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap

@@ -12,13 +12,12 @@
 
 package com.orange.ods.compose.component.icon
 
-import androidx.compose.material.LocalContentAlpha
-import androidx.compose.material.LocalContentColor
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 internal object OdsIconDefaults {
 
     @Composable
-    fun tint(): Color = LocalContentColor.current.copy(alpha = LocalContentAlpha.current)
+    fun tint(): Color = LocalContentColor.current
 }

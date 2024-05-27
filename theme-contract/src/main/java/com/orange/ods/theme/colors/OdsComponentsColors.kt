@@ -192,13 +192,13 @@ internal val ColorScheme.DefaultOdsSwitchColors
  * Use [ColorScheme.DefaultOdsTabColors] to get the default component's colors based on Material Colors defined in theme
  */
 data class OdsTabColors(
-    override val background: Color,
+    override val container: Color,
     override val selectedContent: Color,
     override val unselectedContent: Color = selectedContent.copy(alpha = ContentUnselectedAlpha)
 ) : OdsTabColorsCatalog<Color>, OdsThemeConfigurationItem.TokenProvider<OdsTabColorsCatalog<OdsToken<Color>>> {
 
     override val tokens = object : OdsTabColorsCatalog<OdsToken<Color>> {
-        override val background = OdsToken(OdsToken.Colors.Component.Tab.Background, this@OdsTabColors.background)
+        override val container = OdsToken(OdsToken.Colors.Component.Tab.Background, this@OdsTabColors.container)
         override val selectedContent = OdsToken(OdsToken.Colors.Component.Tab.SelectedContent, this@OdsTabColors.selectedContent)
         override val unselectedContent = OdsToken(OdsToken.Colors.Component.Tab.UnselectedContent, this@OdsTabColors.unselectedContent)
     }
@@ -206,7 +206,7 @@ data class OdsTabColors(
 
 interface OdsTabColorsCatalog<T> : OdsThemeConfigurationItem.Catalog<T> {
 
-    val background: T
+    val container: T
     val selectedContent: T
     val unselectedContent: T
 }
@@ -214,6 +214,6 @@ interface OdsTabColorsCatalog<T> : OdsThemeConfigurationItem.Catalog<T> {
 //TODO Verify and change default colors if necessary
 internal val ColorScheme.DefaultOdsTabColors
     get() = OdsTabColors(
-        background = primaryContainer,
+        container = primaryContainer,
         selectedContent = onPrimaryContainer
     )
