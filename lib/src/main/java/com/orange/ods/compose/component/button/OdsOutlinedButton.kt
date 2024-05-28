@@ -12,10 +12,9 @@
 
 package com.orange.ods.compose.component.button
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.OutlinedButton
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -57,12 +56,9 @@ fun OdsOutlinedButton(
         modifier = modifier,
         interactionSource = remember { MutableInteractionSource() },
         shape = OdsTheme.shapes.small,
-        border = BorderStroke(
-            ButtonDefaults.OutlinedBorderSize,
-            color.enable(enabled = enabled)
-        ),
+        border = ButtonDefaults.outlinedButtonBorder,
         colors = ButtonDefaults.outlinedButtonColors(
-            backgroundColor = Color.Transparent,
+            containerColor = Color.Transparent,
             contentColor = color,
             disabledContentColor = color.enable(false)
         )
