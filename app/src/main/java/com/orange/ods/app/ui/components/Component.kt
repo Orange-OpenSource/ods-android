@@ -32,7 +32,6 @@ import com.orange.ods.app.ui.components.floatingactionbuttons.ComponentFloatingA
 import com.orange.ods.app.ui.components.imageitem.ComponentImageItem
 import com.orange.ods.app.ui.components.listitem.ComponentListItem
 import com.orange.ods.app.ui.components.menus.ComponentMenu
-import com.orange.ods.app.ui.components.navigationdrawers.ComponentModalDrawers
 import com.orange.ods.app.ui.components.progress.ComponentProgress
 import com.orange.ods.app.ui.components.radiobuttons.ComponentRadioButtons
 import com.orange.ods.app.ui.components.sheets.ComponentSheetsBottom
@@ -195,14 +194,6 @@ sealed class Component(
         R.string.component_menus_description,
         listOf(Variant.DropdownMenu, Variant.ExposedDropdownMenu),
         demoScreen = { variant -> if (variant != null) ComponentMenu(variant = variant) }
-    )
-
-    data object ModalDrawers : Component(
-        R.string.component_modal_drawers,
-        R.drawable.il_navigation_drawers,
-        null,
-        R.string.component_modal_drawers_description,
-        demoScreen = { _ -> ComponentModalDrawers() }
     )
 
     data object Progress : Component(
