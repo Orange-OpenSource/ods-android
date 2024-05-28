@@ -12,7 +12,8 @@
 
 package com.orange.ods.compose.component.textfield
 
-import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import com.orange.ods.compose.extension.enable
 import com.orange.ods.compose.theme.OdsTheme
@@ -20,17 +21,21 @@ import com.orange.ods.compose.theme.OdsTheme
 internal object OdsTextFieldDefaults {
 
     @Composable
-    fun textFieldColors() = TextFieldDefaults.textFieldColors(
-        leadingIconColor = OdsTheme.colors.onSurface,
-        trailingIconColor = OdsTheme.colors.onSurface,
+    fun textFieldColors() = TextFieldDefaults.colors(
+        focusedLeadingIconColor = OdsTheme.colors.onSurface,
+        unfocusedLeadingIconColor = OdsTheme.colors.onSurface,
+        focusedTrailingIconColor = OdsTheme.colors.onSurface,
+        unfocusedTrailingIconColor = OdsTheme.colors.onSurface,
         errorTrailingIconColor = OdsTheme.colors.onSurface,
         focusedLabelColor = OdsTheme.colors.onSurface
     )
 
     @Composable
-    fun outlinedTextFieldColors() = TextFieldDefaults.outlinedTextFieldColors(
-        leadingIconColor = OdsTheme.colors.onSurface,
-        trailingIconColor = OdsTheme.colors.onSurface,
+    fun outlinedTextFieldColors() = OutlinedTextFieldDefaults.colors(
+        focusedLeadingIconColor = OdsTheme.colors.onSurface,
+        unfocusedLeadingIconColor = OdsTheme.colors.onSurface,
+        focusedTrailingIconColor = OdsTheme.colors.onSurface,
+        unfocusedTrailingIconColor = OdsTheme.colors.onSurface,
         errorTrailingIconColor = OdsTheme.colors.onSurface,
         focusedLabelColor = OdsTheme.colors.onSurface,
         errorLabelColor = OdsTheme.colors.onSurface,

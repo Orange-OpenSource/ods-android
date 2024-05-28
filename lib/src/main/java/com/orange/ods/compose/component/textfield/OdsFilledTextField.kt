@@ -16,8 +16,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -59,7 +59,7 @@ internal fun OdsFilledTextField(
         TextField(
             modifier = Modifier.fillMaxWidth(),
             value = styledText(text = if (singleLine) value.filter { it != '\n' } else value, textStyle = textStyle),
-            onValueChange = { newValue ->
+            onValueChange = { newValue: String ->
                 if (!singleLine || !newValue.contains('\n')) {
                     onValueChange(newValue)
                 }

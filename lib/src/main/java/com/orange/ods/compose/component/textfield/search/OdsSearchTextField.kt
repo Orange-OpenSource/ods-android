@@ -13,12 +13,11 @@
 package com.orange.ods.compose.component.textfield.search
 
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.ContentAlpha
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -81,14 +80,20 @@ internal fun OdsSearchTextField(
             keyboardType = KeyboardType.Text,
             imeAction = ImeAction.Search
         ),
-        colors = TextFieldDefaults.textFieldColors(
-            textColor = OdsTheme.colors.components.topAppBar.content,
+        colors = TextFieldDefaults.colors(
+            focusedTextColor = OdsTheme.colors.components.topAppBar.content,
+            unfocusedTextColor = OdsTheme.colors.components.topAppBar.content,
             cursorColor = OdsTheme.colors.components.topAppBar.content,
-            leadingIconColor = OdsTheme.colors.components.topAppBar.content,
-            trailingIconColor = OdsTheme.colors.components.topAppBar.content,
-            backgroundColor = Color.Transparent,
+            focusedLeadingIconColor = OdsTheme.colors.components.topAppBar.content,
+            unfocusedLeadingIconColor = OdsTheme.colors.components.topAppBar.content,
+            focusedTrailingIconColor = OdsTheme.colors.components.topAppBar.content,
+            unfocusedTrailingIconColor = OdsTheme.colors.components.topAppBar.content,
+            focusedContainerColor = Color.Transparent,
+            unfocusedContainerColor = Color.Transparent,
             focusedIndicatorColor = Color.Transparent,
-            placeholderColor = OdsTheme.colors.components.topAppBar.content.copy(ContentAlpha.medium),
+            unfocusedIndicatorColor = Color.Transparent,
+            focusedPlaceholderColor = OdsTheme.colors.components.topAppBar.content.copy(0.74f), //TODO Use plain color
+            unfocusedPlaceholderColor = OdsTheme.colors.components.topAppBar.content.copy(0.74f), // TODO use plain color
         )
     )
 }
