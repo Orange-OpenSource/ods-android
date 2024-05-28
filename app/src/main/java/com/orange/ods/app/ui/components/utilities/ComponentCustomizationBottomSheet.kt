@@ -68,9 +68,9 @@ fun ComponentCustomizationBottomSheetScaffold(
         SheetValue.Hidden, SheetValue.PartiallyExpanded -> stringResource(R.string.component_state_bottom_sheet_collapsed)
         SheetValue.Expanded -> stringResource(R.string.component_state_bottom_sheet_expanded)
     }
-    BackHandler(bottomSheetScaffoldState.bottomSheetState.hasExpandedState) {
+    BackHandler(bottomSheetScaffoldState.bottomSheetState.currentValue == SheetValue.Expanded) {
         coroutineScope.launch {
-            bottomSheetScaffoldState.bottomSheetState.hide()
+            bottomSheetScaffoldState.bottomSheetState.partialExpand()
         }
     }
     OdsBottomSheetScaffold(
