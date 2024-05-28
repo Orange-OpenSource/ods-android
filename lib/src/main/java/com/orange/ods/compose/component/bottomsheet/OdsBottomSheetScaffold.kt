@@ -24,6 +24,7 @@ import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.theme.OdsTheme
 
@@ -64,6 +65,7 @@ fun OdsBottomSheetScaffold(
         sheetContainerColor = OdsTheme.colors.surface,
         sheetContentColor = OdsTheme.colors.onSurface,
         sheetDragHandle = null, //TODO Add this parameter in the API and manage the drag display
+        sheetTonalElevation = 6.dp,
         sheetSwipeEnabled = sheetSwipeEnabled,
         topBar = topBar,
         snackbarHost = snackbarHost,

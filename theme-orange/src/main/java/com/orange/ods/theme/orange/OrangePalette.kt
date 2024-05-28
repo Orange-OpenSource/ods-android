@@ -32,6 +32,7 @@ object OrangeColorPalette : OdsColorPalette {
         val tmpBrown52443C = Color(0xff52443C)
         val tmpGrey333333 = Color(0xff333333)
         val tmpGrey666666 = Color(0xff666666)
+        val tmpGrey999999 = Color(0xff999999)
         val tmpGreyCCCCCC = Color(0xffcccccc)
         val tmpGreyEBEBEB = Color(0xffebebeb)
         val tmpGreyEEEEEE = Color(0xffeeeeee)
