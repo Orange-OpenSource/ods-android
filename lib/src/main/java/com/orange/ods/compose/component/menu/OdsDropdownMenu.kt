@@ -14,9 +14,8 @@ package com.orange.ods.compose.component.menu
 
 import android.graphics.Bitmap
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.DropdownMenu
-import androidx.compose.material.DropdownMenuItem
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
@@ -165,23 +164,23 @@ object OdsDropdownMenu {
             with(extraParameters) {
                 DropdownMenuItem(
                     modifier = modifier,
+                    text = { OdsText(text = text, style = OdsTheme.typography.bodyLarge, enabled = enabled) },
                     onClick = {
                         onClick()
                         onDismissRequest()
                     },
+                    leadingIcon = icon?.let {
+                        {
+                            OdsIcon(
+                                graphicsObject = icon,
+                                contentDescription = "",
+                                tint = OdsTheme.colors.onSurface,
+                                enabled = enabled
+                            )
+                        }
+                    }, //TODO Add a trailingIcon parameter in the API
                     enabled = enabled
-                ) {
-                    icon?.let {
-                        OdsIcon(
-                            graphicsObject = icon,
-                            contentDescription = "",
-                            tint = OdsTheme.colors.onSurface,
-                            enabled = enabled,
-                            modifier = Modifier.padding(end = OdsTheme.spacings.medium.dp),
-                        )
-                    }
-                    OdsText(text = text, style = OdsTheme.typography.bodyLarge, enabled = enabled)
-                }
+                )
                 if (divider) OdsDivider()
             }
         }
