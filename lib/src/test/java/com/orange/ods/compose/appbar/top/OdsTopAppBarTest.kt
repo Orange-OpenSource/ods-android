@@ -13,6 +13,7 @@
 package com.orange.ods.compose.appbar.top
 
 import app.cash.paparazzi.Paparazzi
+import com.android.ide.common.rendering.api.SessionParams
 import com.orange.ods.compose.component.appbar.top.PreviewOdsTopAppBar
 import org.junit.Rule
 import org.junit.Test
@@ -20,7 +21,7 @@ import org.junit.Test
 internal class OdsTopAppBarTest {
 
     @get:Rule
-    val paparazzi = Paparazzi(maxPercentDifference = 0.0)
+    val paparazzi = Paparazzi(renderingMode = SessionParams.RenderingMode.SHRINK, maxPercentDifference = 0.0)
 
     @Test
     fun takeOdsTopAppBarLightThemeSnapshot() {
