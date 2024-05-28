@@ -12,17 +12,12 @@
 
 package com.orange.ods.compose.component.bottomnavigation
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.selection.selectable
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -34,13 +29,12 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.constraintlayout.compose.Dimension
+import androidx.compose.ui.unit.dp
 import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.content.OdsComponentScopeContent
+import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
@@ -68,14 +62,20 @@ fun OdsBottomNavigation(
     items: List<OdsBottomNavigation.Item>,
     modifier: Modifier = Modifier
 ) {
-    BottomNavigation(
+    NavigationBar(
         modifier = modifier.focusProperties { canFocus = false },
         // Need to define backgroundColor cause in Compose default backgroundColor is primarySurface
-        backgroundColor = OdsTheme.colors.components.bottomNavigation.barBackground,
+        containerColor = OdsTheme.colors.components.bottomNavigation.barBackground,
         contentColor = OdsTheme.colors.components.bottomNavigation.barContent,
+        tonalElevation = 0.dp, //TODO See with Design: should be a token.
         content = {
-            items.take(MaxBottomNavigationItemCount).forEach { item ->
-                with(item) { this@BottomNavigation.Content() }
+            Column {
+                OdsDivider()
+                Row {
+                    items.take(MaxBottomNavigationItemCount).forEach { item ->
+                        with(item) { this@NavigationBar.Content() }
+                    }
+                }
             }
         }
     )
@@ -119,60 +119,32 @@ object OdsBottomNavigation {
 
         @Composable
         override fun RowScope.Content(modifier: Modifier) {
-            val selectedLineMargin = OdsTheme.spacings.small.dp
-            val selectedLineHeight = OdsTheme.spacings.extraSmall.dp
-
-            ConstraintLayout(
-                modifier = modifier
-                    .weight(1f)
-                    .selectable(
-                        selected = selected,
-                        onClick = { },
-                        enabled = enabled,
-                        role = Role.Tab
-                    )
-            ) {
-                val (itemRef, lineRef) = createRefs()
-                this@Content.BottomNavigationItem(
-                    modifier = Modifier.constrainAs(itemRef) {
-                        centerTo(parent)
-                    },
-                    selected = selected,
-                    onClick = onClick,
-                    icon = { icon.Content() },
-                    enabled = enabled,
-                    label = label?.let {
-                        {
-                            OdsText(
-                                text = label,
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis,
-                                style = OdsTheme.typography.bodySmall
-                            )
-                        }
-                    },
-                    alwaysShowLabel = alwaysShowLabel,
-                    selectedContentColor = OdsTheme.colors.components.bottomNavigation.itemSelected,
-                    unselectedContentColor = OdsTheme.colors.components.bottomNavigation.itemUnselected
-                )
-
-                // Visual alternative for selected item (a11y)
-                this@Content.AnimatedVisibility(
-                    modifier = Modifier
-                        .constrainAs(lineRef) {
-                            bottom.linkTo(parent.bottom)
-                            start.linkTo(parent.start, selectedLineMargin)
-                            end.linkTo(parent.end, selectedLineMargin)
-                            height = Dimension.value(selectedLineHeight)
-                            width = Dimension.fillToConstraints
-                        },
-                    visible = selected,
-                    enter = fadeIn() + slideInVertically { it },
-                    exit = fadeOut() + slideOutVertically { it }
-                ) {
-                    Box(modifier = Modifier.background(OdsTheme.colors.components.bottomNavigation.itemSelected))
-                }
-            }
+            val selectedItemContentColor = OdsTheme.colors.components.bottomNavigation.itemSelected
+            val unselectedItemContentColor = OdsTheme.colors.components.bottomNavigation.itemUnselected
+            this@Content.NavigationBarItem(
+                selected = selected,
+                onClick = onClick,
+                icon = { icon.Content() },
+                enabled = enabled,
+                label = label?.let {
+                    {
+                        OdsText(
+                            text = label,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            style = OdsTheme.typography.bodySmall
+                        )
+                    }
+                },
+                alwaysShowLabel = alwaysShowLabel,
+                colors = NavigationBarItemDefaults.colors(
+                    selectedIconColor = selectedItemContentColor,
+                    selectedTextColor = selectedItemContentColor,
+                    unselectedIconColor = unselectedItemContentColor,
+                    unselectedTextColor = unselectedItemContentColor,
+                    indicatorColor = OdsTheme.colors.components.bottomNavigation.itemSelectedIndicator
+                ),
+            )
         }
 
         /**

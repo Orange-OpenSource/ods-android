@@ -75,11 +75,11 @@ class OdsToken<T> internal constructor(val name: String, val value: T) {
             const val SystemBarsBackground = "Colors.Component.SystemBarsBackground"
 
             object BottomNavigation {
-
                 const val BarBackground = "Colors.Component.BottomNavigation.BarBackground"
                 const val BarContent = "Colors.Component.BottomNavigation.BarContent"
                 const val ItemSelected = "Colors.Component.BottomNavigation.ItemSelected"
                 const val ItemUnselected = "Colors.Component.BottomNavigation.ItemUnselected"
+                const val ItemSelectedIndicator = "Colors.Component.BottomNavigation.Indicator"
             }
 
             object FloatingActionButton {

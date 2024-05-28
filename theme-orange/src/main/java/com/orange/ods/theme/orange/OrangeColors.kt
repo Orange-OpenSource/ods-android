@@ -74,6 +74,7 @@ internal val OrangeLightColors = with(OrangeColorPalette) {
             bottomNavigation = OdsBottomNavigationColors(
                 barBackground = core.white100,
                 barContent = core.black900,
+                itemSelectedIndicator = core.tmpGreyEEEEEE,
                 itemSelected = core.orange200,
                 itemUnselected = core.black900
             )
@@ -152,6 +153,7 @@ internal val OrangeDarkColors = with(OrangeColorPalette) {
             bottomNavigation = OdsBottomNavigationColors(
                 barBackground = core.black900,
                 barContent = core.white100,
+                itemSelectedIndicator = core.tmpGrey333333,
                 itemSelected = core.orange200,
                 itemUnselected = core.white100
             )
