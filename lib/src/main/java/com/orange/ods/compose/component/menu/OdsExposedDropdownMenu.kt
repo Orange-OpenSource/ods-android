@@ -16,8 +16,8 @@ import android.os.Parcelable
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.ExposedDropdownMenuBox
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
@@ -52,8 +52,8 @@ import kotlinx.parcelize.Parcelize
  * @param enabled Controls the enabled state of the dropdown menu. When `false`, the dropdown menu text field will be neither clickable nor focusable,
  * visually it will appear in the disabled state.
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @OdsComposable
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun OdsExposedDropdownMenu(
     label: String,
@@ -81,6 +81,7 @@ fun OdsExposedDropdownMenu(
     ) {
         OdsTextField(
             modifier = Modifier
+                .menuAnchor()
                 .fillMaxWidth()
                 .clickable { expanded = !expanded },
             value = selectedItem.value.label,
