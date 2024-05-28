@@ -91,8 +91,8 @@ internal val InnovationCupDarkColors = with(InnovationCupPalette) {
 
             background = core.black,
             onBackground = core.white,
-            surface = core.neutral98,
-            onSurface = core.neutral6,
+            surface = core.neutral6,
+            onSurface = core.neutral90,
             surfaceVariant = core.neutral24,
             onSurfaceVariant = core.neutralVariant90,
             surfaceTint = core.neutral98,
