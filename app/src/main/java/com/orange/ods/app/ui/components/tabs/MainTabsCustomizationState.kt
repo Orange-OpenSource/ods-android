@@ -15,9 +15,9 @@ package com.orange.ods.app.ui.components.tabs
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material.BottomSheetScaffoldState
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.rememberBottomSheetScaffoldState
+import androidx.compose.material3.BottomSheetScaffoldState
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableIntState
 import androidx.compose.runtime.MutableState
@@ -27,7 +27,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import com.orange.ods.app.ui.utilities.NavigationItem
 import com.orange.ods.compose.component.tab.OdsTabRow
 
-@OptIn(ExperimentalMaterialApi::class, ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun rememberMainTabsCustomizationState(
     bottomSheetScaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
@@ -41,8 +41,7 @@ fun rememberMainTabsCustomizationState(
         MainTabsCustomizationState(bottomSheetScaffoldState, pagerState, tabsCount, tabIconPosition, tabIconEnabled, tabTextEnabled)
     }
 
-@OptIn(ExperimentalMaterialApi::class, ExperimentalFoundationApi::class)
-class MainTabsCustomizationState(
+class MainTabsCustomizationState @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class) constructor(
     val bottomSheetScaffoldState: BottomSheetScaffoldState,
     val pagerState: PagerState,
     val tabsCount: MutableIntState,

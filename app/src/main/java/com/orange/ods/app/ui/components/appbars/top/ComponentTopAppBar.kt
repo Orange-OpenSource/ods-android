@@ -12,8 +12,8 @@
 
 package com.orange.ods.app.ui.components.appbars.top
 
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.rememberBottomSheetScaffoldState
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
@@ -28,7 +28,7 @@ import com.orange.ods.compose.component.listitem.OdsListItem
 val LocalTopAppBarCustomizationState =
     staticCompositionLocalOf<TopAppBarCustomizationState> { error("CompositionLocal TopAppBarCustomizationState not present") }
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ComponentTopAppBar(variant: Variant) {
     val customizationState = rememberTopAppBarCustomizationState()

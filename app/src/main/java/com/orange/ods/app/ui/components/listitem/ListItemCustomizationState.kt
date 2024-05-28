@@ -12,9 +12,9 @@
 
 package com.orange.ods.app.ui.components.listitem
 
-import androidx.compose.material.BottomSheetScaffoldState
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.rememberBottomSheetScaffoldState
+import androidx.compose.material3.BottomSheetScaffoldState
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -22,7 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import com.orange.ods.compose.component.listitem.OdsListItem
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun rememberListItemCustomizationState(
     bottomSheetScaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
@@ -33,8 +33,7 @@ fun rememberListItemCustomizationState(
     ListItemCustomizationState(bottomSheetScaffoldState, secondaryTextLineCount, selectedLeadingIconType, selectedTrailing)
 }
 
-@OptIn(ExperimentalMaterialApi::class)
-class ListItemCustomizationState(
+class ListItemCustomizationState @OptIn(ExperimentalMaterial3Api::class) constructor(
     val bottomSheetScaffoldState: BottomSheetScaffoldState,
     val secondaryTextLineCount: MutableState<OdsListItem.SecondaryTextLineCount?>,
     val selectedLeadingIconType: MutableState<OdsListItem.LeadingIcon.Type?>,

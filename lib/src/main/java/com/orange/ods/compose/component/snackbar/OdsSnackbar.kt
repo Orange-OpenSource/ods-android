@@ -13,11 +13,11 @@
 package com.orange.ods.compose.component.snackbar
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Snackbar
-import androidx.compose.material.SnackbarData
-import androidx.compose.material.SnackbarHost
-import androidx.compose.material.SnackbarHostState
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Snackbar
+import androidx.compose.material3.SnackbarData
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -79,8 +79,8 @@ object OdsSnackbarHost {
         override fun Content(modifier: Modifier) {
             OdsSnackbar(
                 modifier = modifier,
-                message = data.message,
-                actionLabel = data.actionLabel,
+                message = data.visuals.message,
+                actionLabel = data.visuals.actionLabel,
                 actionOnNewLine = actionOnNewLine,
                 onActionClick = onActionClick
             )

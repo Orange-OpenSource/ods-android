@@ -26,14 +26,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.BottomSheetScaffoldState
-import androidx.compose.material.BottomSheetState
-import androidx.compose.material.BottomSheetValue
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.FabPosition
-import androidx.compose.material.Icon
-import androidx.compose.material.SnackbarHost
-import androidx.compose.material.SnackbarHostState
+import androidx.compose.material3.BottomSheetScaffoldState
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.SheetState
+import androidx.compose.material3.SheetValue
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
@@ -55,40 +54,36 @@ import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ComponentCustomizationBottomSheetScaffold(
     bottomSheetScaffoldState: BottomSheetScaffoldState,
     snackbarHost: @Composable (SnackbarHostState) -> Unit = { SnackbarHost(hostState = it) },
     titleResId: Int = R.string.component_customize,
-    floatingActionButton: (@Composable () -> Unit)? = null,
-    floatingActionButtonPosition: FabPosition = FabPosition.End,
     bottomSheetContent: @Composable () -> Unit,
     content: @Composable BoxScope.() -> Unit
 ) {
     val coroutineScope = rememberCoroutineScope()
     val bottomSheetHeaderStateDescription = when (bottomSheetScaffoldState.bottomSheetState.currentValue) {
-        BottomSheetValue.Collapsed -> stringResource(R.string.component_state_bottom_sheet_collapsed)
-        BottomSheetValue.Expanded -> stringResource(R.string.component_state_bottom_sheet_expanded)
+        SheetValue.Hidden, SheetValue.PartiallyExpanded -> stringResource(R.string.component_state_bottom_sheet_collapsed)
+        SheetValue.Expanded -> stringResource(R.string.component_state_bottom_sheet_expanded)
     }
-    BackHandler(bottomSheetScaffoldState.bottomSheetState.isExpanded) {
+    BackHandler(bottomSheetScaffoldState.bottomSheetState.hasExpandedState) {
         coroutineScope.launch {
-            bottomSheetScaffoldState.bottomSheetState.collapse()
+            bottomSheetScaffoldState.bottomSheetState.hide()
         }
     }
     OdsBottomSheetScaffold(
         scaffoldState = bottomSheetScaffoldState,
-        floatingActionButton = floatingActionButton,
-        floatingActionButtonPosition = floatingActionButtonPosition,
         snackbarHost = snackbarHost,
-        sheetPeekHeight = 56.dp,
+        sheetSwipeEnabled = false,
         sheetContent = {
             Row(
                 modifier = Modifier
                     .clickable {
                         coroutineScope.launch {
-                            if (bottomSheetScaffoldState.bottomSheetState.isExpanded) {
-                                bottomSheetScaffoldState.bottomSheetState.collapse()
+                            if (bottomSheetScaffoldState.bottomSheetState.currentValue == SheetValue.Expanded) {
+                                bottomSheetScaffoldState.bottomSheetState.partialExpand()
                             } else {
                                 bottomSheetScaffoldState.bottomSheetState.expand()
                             }
@@ -102,7 +97,7 @@ fun ComponentCustomizationBottomSheetScaffold(
                     .padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                val degrees = if (bottomSheetScaffoldState.bottomSheetState.isExpanded) 0f else -180f
+                val degrees = if (bottomSheetScaffoldState.bottomSheetState.currentValue == SheetValue.Expanded) 0f else -180f
                 val angle by animateFloatAsState(targetValue = degrees, label = "ComponentCustomizationBottomSheetScaffoldIconRotation")
                 Icon(
                     modifier = Modifier.rotate(angle),
@@ -136,15 +131,15 @@ fun ComponentCustomizationBottomSheetScaffold(
     }
 }
 
-@OptIn(ExperimentalMaterialApi::class)
-private fun tryExpandBottomSheet(coroutineScope: CoroutineScope, bottomSheetState: BottomSheetState, retryCount: Int = 0) {
+@OptIn(ExperimentalMaterial3Api::class)
+private fun tryExpandBottomSheet(coroutineScope: CoroutineScope, sheetState: SheetState, retryCount: Int = 0) {
     coroutineScope.launch {
         try {
-            bottomSheetState.expand()
+            sheetState.expand()
         } catch (exception: CancellationException) {
             // Retry up to 3 times if animation was interrupted by a composition
             if (retryCount < 3) {
-                tryExpandBottomSheet(coroutineScope, bottomSheetState, retryCount + 1)
+                tryExpandBottomSheet(coroutineScope, sheetState, retryCount + 1)
             }
         }
     }

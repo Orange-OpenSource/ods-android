@@ -14,14 +14,13 @@ package com.orange.ods.compose.component.bottomsheet
 
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.material.BottomSheetScaffold
-import androidx.compose.material.BottomSheetScaffoldDefaults
-import androidx.compose.material.BottomSheetScaffoldState
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.FabPosition
-import androidx.compose.material.SnackbarHost
-import androidx.compose.material.SnackbarHostState
-import androidx.compose.material.rememberBottomSheetScaffoldState
+import androidx.compose.material3.BottomSheetDefaults
+import androidx.compose.material3.BottomSheetScaffold
+import androidx.compose.material3.BottomSheetScaffoldState
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
@@ -37,42 +36,39 @@ import com.orange.ods.compose.theme.OdsTheme
  * @param sheetContent Content of the bottom sheet.
  * @param modifier [Modifier] applied to this bottom sheet scaffold.
  * @param scaffoldState State of the scaffold.
+ * @param sheetPeekHeight Height of the bottom sheet when it is collapsed.
+ * @param sheetSwipeEnabled Whether the sheet swiping is enabled and should react to the user's input.
  * @param topBar Top app bar displayed in the scaffold.
  * @param snackbarHost Composable hosting the snackbars shown inside the scaffold.
- * @param floatingActionButton Floating action button displayed in the scaffold.
- * @param floatingActionButtonPosition Position of the floating action button.
- * @param sheetGesturesEnabled Whether the bottom sheet can be interacted with by gestures.
- * @param sheetPeekHeight Height of the bottom sheet when it is collapsed.
  * @param content Content of the screen.
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-@ExperimentalMaterialApi
 @OdsComposable
 fun OdsBottomSheetScaffold(
     sheetContent: @Composable ColumnScope.() -> Unit,
     modifier: Modifier = Modifier,
     scaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
+    sheetPeekHeight: Dp = BottomSheetDefaults.SheetPeekHeight,
+    sheetSwipeEnabled: Boolean = true,
     topBar: (@Composable () -> Unit)? = null,
     snackbarHost: @Composable (SnackbarHostState) -> Unit = { SnackbarHost(it) },
-    floatingActionButton: (@Composable () -> Unit)? = null,
-    floatingActionButtonPosition: FabPosition = FabPosition.End,
-    sheetGesturesEnabled: Boolean = true,
-    sheetPeekHeight: Dp = BottomSheetScaffoldDefaults.SheetPeekHeight,
     content: @Composable (PaddingValues) -> Unit
 ) {
+    //TODO Take a look at the new API to manage all available parameters
     BottomSheetScaffold(
         sheetContent = sheetContent,
         modifier = modifier,
         scaffoldState = scaffoldState,
+        sheetPeekHeight = sheetPeekHeight,
+        sheetContainerColor = OdsTheme.colors.surface,
+        sheetContentColor = OdsTheme.colors.onSurface,
+        sheetDragHandle = null, //TODO Add this parameter in the API and manage the drag display
+        sheetSwipeEnabled = sheetSwipeEnabled,
         topBar = topBar,
         snackbarHost = snackbarHost,
-        floatingActionButton = floatingActionButton,
-        floatingActionButtonPosition = floatingActionButtonPosition,
-        sheetGesturesEnabled = sheetGesturesEnabled,
         sheetShape = OdsTheme.shapes.large,
-        sheetPeekHeight = sheetPeekHeight,
-        backgroundColor = OdsTheme.colors.surface,
-        contentColor = OdsTheme.colors.onSurface,
+
         content = content
     )
 }

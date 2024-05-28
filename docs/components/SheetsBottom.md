@@ -12,7 +12,7 @@ Use Sheets bottom to:
 <br>**On this page**
 
 * Table of contents
-{:toc}
+  {:toc}
 
 ---
 
@@ -40,12 +40,9 @@ OdsBottomSheetScaffold(
     },
     modifier = Modifier,
     scaffoldState = rememberBottomSheetScaffoldState(),
+    sheetPeekHeight = 56.dp,
     topBar = null,
     snackbarHost = {},
-    floatingActionButton = {},
-    floatingActionButtonPosition = FabPosition.End,
-    sheetGesturesEnabled = true,
-    sheetPeekHeight = 56.dp,
     content = {
         // Put here the screen content
     }
@@ -54,15 +51,13 @@ OdsBottomSheetScaffold(
 
 #### OdsBottomSheetScaffold API [#](#odsbottomsheetscaffold-api-)
 
-| Parameter                                                 | Default&nbsp;value                            | Description                                                 |
-|-----------------------------------------------------------|-----------------------------------------------|-------------------------------------------------------------|
-| <b>`sheetContent: @Composable ColumnScope.() -> Unit`</b> |                                               | Content of the bottom sheet                                 |
-| `modifier: Modifier`                                      | `Modifier`                                    | `Modifier` applied to the bottom sheet scaffold             |
-| `scaffoldState: BottomSheetScaffoldState`                 | `rememberBottomSheetScaffoldState()`          | State of the scaffold                                       |
-| `topBar: (@Composable () -> Unit)?`                       | `null`                                        | Top app bar displayed in the scaffold                       |
-| `snackbarHost: @Composable (SnackbarHostState) -> Unit`   | `{ SnackbarHost(it) }`                        | Composable hosting the snackbars shown inside the scaffold  |
-| `floatingActionButton: (@Composable () -> Unit)?`         | `null`                                        | Floating action button displayed in the scaffold            |
-| `floatingActionButtonPosition: FabPosition`               | `FabPosition.End`                             | Position of the floating action button                      |
-| `sheetGesturesEnabled: Boolean`                           | `true`                                        | Whether the bottom sheet can be interacted with by gestures |
-| `sheetPeekHeight: Dp`                                     | `BottomSheetScaffoldDefaults.SheetPeekHeight` | Height of the bottom sheet when it is collapsed             |
-| <b>`content: @Composable (PaddingValues) -> Unit`</b>     |                                               | Content of the screen                                       |
+| Parameter                                                 | Default&nbsp;value                            | Description                                                               |
+|-----------------------------------------------------------|-----------------------------------------------|---------------------------------------------------------------------------|
+| <b>`sheetContent: @Composable ColumnScope.() -> Unit`</b> |                                               | Content of the bottom sheet                                               |
+| `modifier: Modifier`                                      | `Modifier`                                    | `Modifier` applied to the bottom sheet scaffold                           |
+| `scaffoldState: BottomSheetScaffoldState`                 | `rememberBottomSheetScaffoldState()`          | State of the scaffold                                                     |
+| `sheetPeekHeight: Dp`                                     | `BottomSheetScaffoldDefaults.SheetPeekHeight` | Height of the bottom sheet when it is collapsed                           |
+| `sheetSwipeEnabled: Boolean`                              | `true`                                        | Whether the sheet swiping is enabled and should react to the user's input |
+| `topBar: (@Composable () -> Unit)?`                       | `null`                                        | Top app bar displayed in the scaffold                                     |
+| `snackbarHost: @Composable (SnackbarHostState) -> Unit`   | `{ SnackbarHost(it) }`                        | Composable hosting the snackbars shown inside the scaffold                |
+| <b>`content: @Composable (PaddingValues) -> Unit`</b>     |                                               | Content of the screen                                                     |
