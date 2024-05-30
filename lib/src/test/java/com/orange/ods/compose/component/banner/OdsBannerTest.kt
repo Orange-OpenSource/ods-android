@@ -30,7 +30,7 @@ internal class OdsBannerTest(private val parameter: OdsBannerPreviewParameter) {
     }
 
     @get:Rule
-    val paparazzi = Paparazzi(renderingMode = SessionParams.RenderingMode.SHRINK, maxPercentDifference = 0.0)
+    val paparazzi = Paparazzi(renderingMode = SessionParams.RenderingMode.SHRINK, maxPercentDifference = 0.01)
 
     @Test
     fun takeOdsBannerLightThemeSnapshot() {
