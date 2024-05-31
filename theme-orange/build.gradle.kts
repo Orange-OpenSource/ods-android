@@ -26,7 +26,6 @@ dependencies {
     implementation(project(":theme-contract"))
 
     implementation(platform(Dependencies.composeBom))
-    implementation(Dependencies.composeMaterial)
     implementation(Dependencies.composeMaterial3)
     implementation(Dependencies.material)
 }
