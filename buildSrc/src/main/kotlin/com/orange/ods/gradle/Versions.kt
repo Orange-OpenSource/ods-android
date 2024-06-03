@@ -31,7 +31,7 @@ object Versions {
     const val customViewPoolingContainer = "1.0.0"
     const val dataStorePreferences = "1.1.1"
     const val firebaseAppDistributionGradlePlugin = "5.0.0"
-    const val firebaseBom = "33.0.0"
+    const val firebaseBom = "33.1.0"
     const val firebaseCrashlyticsGradlePlugin = "3.0.1"
     const val googleServicesGradlePlugin = "4.4.2"
     const val hilt = "2.51.1"
