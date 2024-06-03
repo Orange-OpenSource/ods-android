@@ -26,22 +26,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import coil.compose.rememberAsyncImagePainter
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
-import com.orange.ods.app.ui.LocalThemeManager
 import com.orange.ods.app.ui.components.utilities.ComponentCustomizationBottomSheetScaffold
-import com.orange.ods.app.ui.utilities.DrawableManager
 import com.orange.ods.app.ui.utilities.code.CodeImplementationColumn
 import com.orange.ods.app.ui.utilities.code.FunctionCallCode
-import com.orange.ods.app.ui.utilities.composable.Subtitle
-import com.orange.ods.app.ui.utilities.extension.buildImageRequest
 import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChip
-import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.component.chip.OdsFilterChip
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.theme.OdsTheme
@@ -50,8 +42,6 @@ import com.orange.ods.compose.theme.OdsTheme
 @Composable
 fun ChipFilter() {
     val chipCustomizationState = rememberChipCustomizationState(chipType = rememberSaveable { mutableStateOf(ChipCustomizationState.ChipType.Filter) })
-    val context = LocalContext.current
-    val darkModeEnabled = LocalThemeManager.current.darkModeEnabled
     val recipes = LocalRecipes.current
     val recipe = rememberSaveable { recipes.filter { it.ingredients.count() >= 3 }.random() }
 
@@ -59,18 +49,6 @@ fun ChipFilter() {
         ComponentCustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
             bottomSheetContent = {
-                Subtitle(textRes = R.string.component_element_leading, horizontalPadding = true)
-                val leadingElements = listOf(ChipCustomizationState.LeadingElement.None, ChipCustomizationState.LeadingElement.Avatar)
-                OdsChoiceChipsFlowRow(
-                    selectedChoiceChipIndex = leadingElements.indexOf(leadingElement.value),
-                    modifier = Modifier.padding(horizontal = OdsTheme.spacings.medium.dp),
-                    choiceChips = leadingElements.map { leadingElement ->
-                        val textResId =
-                            if (leadingElement == ChipCustomizationState.LeadingElement.None) R.string.component_element_none else R.string.component_element_avatar
-                        OdsChoiceChipsFlowRow.ChoiceChip(stringResource(id = textResId), { this.leadingElement.value = leadingElement })
-                    }
-                )
-
                 OdsListItem(
                     text = stringResource(id = R.string.component_state_enabled),
                     trailing = OdsListItem.TrailingSwitch(enabled.value, { enabled.value = it })
@@ -85,15 +63,6 @@ fun ChipFilter() {
                     recipe.ingredients.forEachIndexed { index, ingredient ->
                         OdsFilterChip(
                             text = ingredient.food.name,
-                            leadingAvatar = if (hasLeadingAvatar) {
-                                OdsChip.LeadingAvatar(
-                                    rememberAsyncImagePainter(
-                                        model = buildImageRequest(context, ingredient.food.imageUrl, darkModeEnabled),
-                                        placeholder = painterResource(id = DrawableManager.getPlaceholderSmallResId()),
-                                        error = painterResource(id = DrawableManager.getPlaceholderSmallResId(error = true))
-                                    ), ""
-                                )
-                            } else null,
                             onClick = {
                                 selectedChipIndexes = with(selectedChipIndexes) { if (contains(index)) minus(index) else plus(index) }
                             },

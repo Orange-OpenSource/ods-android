@@ -53,11 +53,13 @@ class OdsToken<T> internal constructor(val name: String, val value: T) {
         const val SecondaryVariant = "Colors.SecondaryVariant"
         const val Background = "Colors.Background"
         const val Surface = "Colors.Surface"
+        const val SurfaceVariant = "Colors.SurfaceVariant"
         const val Error = "Colors.Error"
         const val OnPrimary = "Colors.OnPrimary"
         const val OnSecondary = "Colors.OnSecondary"
         const val OnBackground = "Colors.OnBackground"
         const val OnSurface = "Colors.OnSurface"
+        const val OnSurfaceVariant = "Colors.OnSurfaceVariant"
         const val OnError = "Colors.OnError"
 
         object Functional {

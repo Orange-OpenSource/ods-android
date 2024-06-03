@@ -44,6 +44,8 @@ class OdsColors(
         private set
     override var surface = colorScheme.surface
         private set
+    override var surfaceVariant = colorScheme.surfaceVariant
+        private set
     override var error = colorScheme.error
         private set
     override var onPrimary = colorScheme.onPrimary
@@ -53,6 +55,8 @@ class OdsColors(
     override var onBackground = colorScheme.onBackground
         private set
     override var onSurface = colorScheme.onSurface
+        private set
+    override var onSurfaceVariant = colorScheme.onSurfaceVariant
         private set
     override var onError = colorScheme.onError
         private set
@@ -69,11 +73,13 @@ class OdsColors(
         override val secondaryVariant = OdsToken(OdsToken.Colors.SecondaryVariant, this@OdsColors.secondaryVariant)
         override val background = OdsToken(OdsToken.Colors.Background, this@OdsColors.background)
         override val surface = OdsToken(OdsToken.Colors.Surface, this@OdsColors.surface)
+        override val surfaceVariant = OdsToken(OdsToken.Colors.SurfaceVariant, this@OdsColors.surfaceVariant)
         override val error = OdsToken(OdsToken.Colors.Error, this@OdsColors.error)
         override val onPrimary = OdsToken(OdsToken.Colors.OnPrimary, this@OdsColors.onPrimary)
         override val onSecondary = OdsToken(OdsToken.Colors.OnSecondary, this@OdsColors.onSecondary)
         override val onBackground = OdsToken(OdsToken.Colors.OnBackground, this@OdsColors.onBackground)
         override val onSurface = OdsToken(OdsToken.Colors.OnSurface, this@OdsColors.onSurface)
+        override val onSurfaceVariant = OdsToken(OdsToken.Colors.OnSurfaceVariant, this@OdsColors.onSurfaceVariant)
         override val onError = OdsToken(OdsToken.Colors.OnError, this@OdsColors.onError)
         override val functional = this@OdsColors.functional.tokens
         override val components = this@OdsColors.components.tokens
@@ -88,11 +94,13 @@ interface OdsColorsCatalog<T> : OdsThemeConfigurationItem.Catalog<T> {
     val secondaryVariant: T
     val background: T
     val surface: T
+    val surfaceVariant: T
     val error: T
     val onPrimary: T
     val onSecondary: T
     val onBackground: T
     val onSurface: T
+    val onSurfaceVariant: T
     val onError: T
     val functional: OdsFunctionalColorsCatalog<T>
     val components: OdsComponentColorsCatalog<T>
