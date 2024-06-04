@@ -27,6 +27,7 @@ import com.orange.ods.app.ui.guidelines.GuidelinesScreen
 import com.orange.ods.app.ui.modules.ModulesScreen
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
 import com.orange.ods.module.about.ui.configuration.OdsAboutConfiguration
+import com.orange.ods.module.about.ui.navigation.OdsAboutDestinations
 import com.orange.ods.module.about.ui.navigation.odsAboutGraph
 
 @Composable
@@ -67,5 +68,5 @@ enum class BottomBarItem(
     Guidelines(R.string.navigation_item_guidelines, R.drawable.ic_guideline_dna, "main/guidelines"),
     Components(R.string.navigation_item_components, R.drawable.ic_component_atom, "main/components"),
     Modules(R.string.navigation_item_modules, R.drawable.ic_module_molecule, "main/modules"),
-    About(R.string.navigation_item_about, R.drawable.ic_info, "ods/module/about/home");
+    About(R.string.navigation_item_about, R.drawable.ic_info, OdsAboutDestinations.HomeRoute);
 }

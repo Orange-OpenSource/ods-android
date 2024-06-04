@@ -62,7 +62,7 @@ import com.orange.ods.compose.component.tab.OdsTabRow
 import com.orange.ods.compose.extension.orElse
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.module.about.ui.navigation.navigateToOdsAbout
+import com.orange.ods.module.about.ui.navigation.OdsAboutDestinations
 import com.orange.ods.module.moreapps.ui.navigation.OdsMoreAppsDestinations
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.theme.annotation.ExperimentalOdsApi
@@ -187,7 +187,7 @@ fun MainScreen(themeConfigurations: List<OdsThemeConfigurationContract>, mainVie
                         navigateToElement = mainState.navigationState::navigateToElement,
                         navigateToAboutDemo = {
                             aboutConfiguration = aboutDemoConfiguration
-                            mainState.navigationState.navController.navigateToOdsAbout()
+                            mainState.navigationState.navController.navigate(OdsAboutDestinations.HomeRoute)
                         },
                         aboutConfiguration = {
                             aboutConfiguration

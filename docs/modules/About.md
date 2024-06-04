@@ -66,11 +66,11 @@ Follow these steps in order to integrate an ODS About into your app:
         //...
     }
     ```
-   
-3. Use the `NavController.navigateToOdsAbout()` extension method when you need to display the previously configured ODS About.
+
+3. Use the `NavController.navigate()` method with `OdsAboutDestinations.HomeRoute` parameter when you need to display the previously configured ODS About.
 
     ```kotlin
-    navController.navigateToOdsAbout()
+    navController.navigate(OdsAboutDestinations.HomeRoute)
     ```
 
 ## Configuration

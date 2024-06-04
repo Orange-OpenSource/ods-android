@@ -37,20 +37,24 @@ import com.orange.ods.module.about.ui.configuration.OdsAboutUrlMenuItem
 import com.orange.ods.module.about.ui.utilities.extension.launchUrl
 
 
-private object OdsAboutDestinations {
+object OdsAboutDestinations {
     const val HomeRoute = "ods/module/about/home"
-    const val AboutRoute = "ods/module/about/"
-    const val FileItemRoute = "ods/module/about/fileItem"
-    const val AppNewsRoute = "ods/module/about/appNews"
-    const val AccessibilityStatementRoute = "ods/module/about/accessibilityStatement"
+    internal const val AboutRoute = "ods/module/about/"
+    internal const val FileItemRoute = "ods/module/about/fileItem"
+    internal const val AppNewsRoute = "ods/module/about/appNews"
+    internal const val AccessibilityStatementRoute = "ods/module/about/accessibilityStatement"
 }
 
 private const val AboutItemIdKey = "aboutItemId"
 private const val AppNewsFileResId = "appNewsFileResId"
 private const val AccessibilityStatementItemIdKey = "accessibilityStatementItemIdKey"
 
+@Deprecated(
+    "Please use navigate method with OdsAboutDestinations.HomeRoute instead.",
+    ReplaceWith("navigate(OdsAboutDestinations.HomeRoute, navOptions)")
+)
 fun NavController.navigateToOdsAbout(navOptions: NavOptions? = null) {
-    navigate(OdsAboutDestinations.AboutRoute, navOptions)
+    navigate(OdsAboutDestinations.HomeRoute, navOptions)
 }
 
 /**
