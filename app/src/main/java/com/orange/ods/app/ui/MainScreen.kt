@@ -132,14 +132,12 @@ fun MainScreen(themeConfigurations: List<OdsThemeConfigurationContract>, mainVie
             // About module configuration
             val appAboutConfiguration = appAboutConfiguration()
             var aboutConfiguration by remember { mutableStateOf(appAboutConfiguration) }
-            val vm1 = viewModel<AboutCustomizationViewModel>()
-            val aboutDemoConfiguration = vm1.aboutConfiguration()
+            val aboutDemoConfiguration = viewModel<AboutCustomizationViewModel>().aboutConfiguration()
 
             // More apps module configuration
             val appMoreAppsConfiguration = appMoreAppsConfiguration()
             var moreAppsConfiguration by remember { mutableStateOf(appMoreAppsConfiguration) }
-            val vm2 = viewModel<MoreAppsCustomizationViewModel>()
-            val moreAppsDemoConfiguration = vm2.moreAppsConfiguration()
+            val moreAppsDemoConfiguration = viewModel<MoreAppsCustomizationViewModel>().moreAppsConfiguration()
 
             Scaffold(
                 modifier = modifier,
