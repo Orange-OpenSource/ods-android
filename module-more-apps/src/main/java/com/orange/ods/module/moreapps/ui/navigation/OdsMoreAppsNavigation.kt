@@ -12,19 +12,13 @@
 
 package com.orange.ods.module.moreapps.ui.navigation
 
-import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.orange.ods.module.moreapps.ui.OdsMoreAppsScreen
 import com.orange.ods.module.moreapps.ui.configuration.OdsMoreAppsConfiguration
 
-private object OdsMoreAppsDestinations {
+object OdsMoreAppsDestinations {
     const val MoreAppsRoute = "ods/module/moreApps/"
-}
-
-fun NavController.navigateToOdsMoreApps(navOptions: NavOptions? = null) {
-    navigate(OdsMoreAppsDestinations.MoreAppsRoute, navOptions)
 }
 
 /**

@@ -63,7 +63,7 @@ import com.orange.ods.compose.extension.orElse
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.module.about.ui.navigation.navigateToOdsAbout
-import com.orange.ods.module.moreapps.ui.navigation.navigateToOdsMoreApps
+import com.orange.ods.module.moreapps.ui.navigation.OdsMoreAppsDestinations
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.theme.annotation.ExperimentalOdsApi
 import com.orange.ods.theme.typography.OdsTextStyle
@@ -196,7 +196,7 @@ fun MainScreen(themeConfigurations: List<OdsThemeConfigurationContract>, mainVie
                         },
                         navigateToMoreAppsDemo = {
                             moreAppsConfiguration = moreAppsDemoConfiguration
-                            mainState.navigationState.navController.navigateToOdsMoreApps()
+                            mainState.navigationState.navController.navigate(OdsMoreAppsDestinations.MoreAppsRoute)
                         },
                         moreAppsConfiguration = {
                             moreAppsConfiguration

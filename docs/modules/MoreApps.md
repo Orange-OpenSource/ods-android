@@ -64,11 +64,11 @@ Follow these steps in order to integrate the ODS More apps module into your app:
     }
     ```
 
-3. Use the `NavController.navigateToOdsMoreApps()` extension method when you need to display the previously configured ODS MoreApps.
+3. Use the `NavController.navigate()` method with `OdsMoreAppsDestinations.MoreAppsRoute` parameter when you need to display the previously configured ODS MoreApps.
 
-    ```kotlin
-    navController.navigateToOdsMoreApps()
-    ```
+   ```kotlin
+   navController.navigate(OdsMoreAppsDestinations.MoreAppsRoute)
+   ```
 
 ## Configuration
 
@@ -76,8 +76,8 @@ In order to configure the ODS More Apps Module, you need to provide an `OdsMoreA
 
 ### OdsMoreAppsConfiguration API
 
-| Property | Default&nbsp;value | Description |
-|-|-|-|
+| Property                | Default&nbsp;value    | Description                                                                                                                                               |
+|-------------------------|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <b>`apiKey: String`</b> |                       | The Apps Plus API key available on OMA Apps plus portal. <b>Warning: You must never store unencrypted secrets in Git repository for security reasons.</b> |
-| `locale: Locale`        | `Locale.getDefault()` | The locale used to retrieve apps list from Apps Plus. The device locale is used by default.                                                        |
-| `filter: String?`       | `null`                | The apps in the provided `filter` container will be displayed by the module.                                                         |
+| `locale: Locale`        | `Locale.getDefault()` | The locale used to retrieve apps list from Apps Plus. The device locale is used by default.                                                               |
+| `filter: String?`       | `null`                | The apps in the provided `filter` container will be displayed by the module.                                                                              |
