@@ -12,7 +12,6 @@
 
 package com.orange.ods.module.moreapps.ui
 
-import android.content.Context
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -148,7 +147,8 @@ private fun getAppLeadingIcon(iconUrlByDensity: Map<Density, String>?): OdsListI
         val imageUrl = it[imageDensity]
         val imageSize = with(LocalDensity.current) { dimensionResource(id = com.orange.ods.R.dimen.list_square_image_size).toPx() }
         rememberAsyncImagePainter(
-            model = ImageRequest.Builder(buildImageRequest(LocalContext.current, imageUrl))
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(imageUrl)
                 .scale(Scale.FILL)
                 .size(Size(imageSize.toInt(), imageSize.toInt()))
                 .build(),
@@ -162,11 +162,6 @@ private fun getAppLeadingIcon(iconUrlByDensity: Map<Density, String>?): OdsListI
     return OdsListItem.LeadingIcon(OdsListItem.LeadingIcon.Type.SquareImage, painter, "")
 }
 
-private fun buildImageRequest(context: Context, data: Any?): ImageRequest {
-    return ImageRequest.Builder(context)
-        .data(data)
-        .build()
-}
 
 @Composable
 private fun getPlaceholderSmallResId(error: Boolean = false): Int { //TODO Duplicate code from app
