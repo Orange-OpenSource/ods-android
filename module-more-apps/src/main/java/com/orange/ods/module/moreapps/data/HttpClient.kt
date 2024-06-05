@@ -54,7 +54,7 @@ internal class HttpClient(context: Context, private val networkManager: NetworkM
             val response = chain.proceed(chain.request())
             val maxAge = 60 // 60 sec
             return response.newBuilder()
-                .header("Cache-control", "public, max-age=$maxAge")
+                .header("Cache-Control", "public, max-age=$maxAge")
                 .removeHeader("Pragma")
                 .build()
         }
