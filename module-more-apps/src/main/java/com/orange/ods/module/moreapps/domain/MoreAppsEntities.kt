@@ -39,8 +39,8 @@ internal enum class Density {
     companion object {
         fun fromDisplayMetrics(displayMetrics: DisplayMetrics) = when {
             displayMetrics.densityDpi >= DisplayMetrics.DENSITY_XXXHIGH -> Xxxhdpi
-            displayMetrics.densityDpi >= DisplayMetrics.DENSITY_XHIGH -> Xxhdpi
-            displayMetrics.densityDpi >= DisplayMetrics.DENSITY_HIGH -> Xhdpi
+            displayMetrics.densityDpi >= DisplayMetrics.DENSITY_XXHIGH -> Xxhdpi
+            displayMetrics.densityDpi >= DisplayMetrics.DENSITY_XHIGH -> Xhdpi
             displayMetrics.densityDpi >= DisplayMetrics.DENSITY_HIGH -> Hdpi
             else -> Mdpi
         }
