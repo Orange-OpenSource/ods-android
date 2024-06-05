@@ -17,6 +17,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -53,7 +54,10 @@ internal fun OdsAboutHomeScreen(configuration: OdsAboutConfiguration, onAboutMen
     val context = LocalContext.current
     val menuItemById = configuration.menuItemById
 
-    LazyColumn(contentPadding = PaddingValues(bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))) {
+    LazyColumn(
+        modifier = Modifier.fillMaxSize(),
+        contentPadding = PaddingValues(bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
+    ) {
         item {
             Image(
                 painter = painterResource(id = configuration.appIllustrationRes),

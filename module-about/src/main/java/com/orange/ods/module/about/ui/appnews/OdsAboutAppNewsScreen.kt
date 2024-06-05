@@ -15,6 +15,7 @@ package com.orange.ods.module.about.ui.appnews
 import androidx.annotation.RawRes
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -37,7 +38,10 @@ internal fun OdsAboutAppNewsScreen(@RawRes fileRes: Int, viewModel: OdsAboutAppN
         viewModel.getAppNews(fileRes)
     }
 
-    LazyColumn(contentPadding = PaddingValues(bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))) {
+    LazyColumn(
+        modifier = Modifier.fillMaxSize(),
+        contentPadding = PaddingValues(bottom = dimensionResource(id = com.orange.ods.R.dimen.spacing_m))
+    ) {
         itemsIndexed(viewModel.appNews) { index, news ->
             Row(
                 modifier = Modifier
