@@ -62,7 +62,7 @@ internal fun OdsMoreAppsScreen(
 
     LaunchedEffect(key1 = Unit) {
         viewModel.configuration = configuration
-        viewModel.getAppsSections()
+        viewModel.getMoreAppsItems()
     }
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()

@@ -37,7 +37,7 @@ internal class OdsMoreAppsViewModel @Inject constructor(private val moreAppsServ
     private val _uiState = MutableStateFlow<OdsMoreAppsUiState>(OdsMoreAppsUiState.Success(emptyList()))
     val uiState: StateFlow<OdsMoreAppsUiState> = _uiState
 
-    fun getAppsSections() {
+    fun getMoreAppsItems() {
         configuration?.let { configuration ->
             if (_uiState.value != OdsMoreAppsUiState.Loading) {
                 _uiState.value = OdsMoreAppsUiState.Loading
