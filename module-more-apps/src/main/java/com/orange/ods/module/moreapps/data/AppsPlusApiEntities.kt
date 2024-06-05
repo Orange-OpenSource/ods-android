@@ -73,13 +73,11 @@ internal fun ItemDto.toModel(): MoreAppsItem? {
     }
 }
 
-internal fun IconsDto.toModel(): Map<Density, String> {
-    val iconUrlByDensity: MutableMap<Density, String> = mutableMapOf()
-    iconUrlByDensity[Density.Mdpi] = this.mdpi
-    iconUrlByDensity[Density.Hdpi] = this.hdpi
-    iconUrlByDensity[Density.Xhdpi] = this.xhdpi
-    iconUrlByDensity[Density.Xxhdpi] = this.xxhdpi
-    iconUrlByDensity[Density.Xxxhdpi] = this.xxxhdpi
 
-    return iconUrlByDensity
-}
+internal fun IconsDto.toModel() = mapOf(
+    Density.Mdpi to mdpi,
+    Density.Hdpi to hdpi,
+    Density.Xhdpi to xhdpi,
+    Density.Xxhdpi to xxhdpi,
+    Density.Xxxhdpi to xxxhdpi
+)
