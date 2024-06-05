@@ -4,7 +4,7 @@ title: More apps
 description: More apps module helps to make discovering Orange Apps easier than ever.
 ---
 
-The ODS More apps module queries the Apps+ backend to display other Orange applications to discover.
+The ODS More apps module queries the OMA Apps Plus backend to display other Orange applications to discover.
 
 <br>**On this page**
 
@@ -78,6 +78,6 @@ In order to configure the ODS More Apps Module, you need to provide an `OdsMoreA
 
 | Property                | Default&nbsp;value    | Description                                                                                                                                               |
 |-------------------------|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <b>`apiKey: String`</b> |                       | The Apps Plus API key available on OMA Apps plus portal. <b>Warning: You must never store unencrypted secrets in Git repository for security reasons.</b> |
+| <b>`apiKey: String`</b> |                       | The Apps Plus API key available on OMA Apps Plus portal. <b>Warning: You must never store unencrypted secrets in Git repository for security reasons.</b> |
 | `locale: Locale`        | `Locale.getDefault()` | The locale used to retrieve apps list from Apps Plus. The device locale is used by default.                                                               |
 | `filter: String?`       | `null`                | The apps in the provided `filter` container will be displayed by the module.                                                                              |
