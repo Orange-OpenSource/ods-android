@@ -22,7 +22,7 @@ import java.util.Locale
 
 internal class MoreAppsRepositoryImpl(private val appsPlusApi: AppsPlusApi) : MoreAppsRepository {
 
-    override fun getMoreAppsItems(apiKey: String, locale: Locale, filter: String?): Flow<Result<List<MoreAppsItem>>> = flow {
+    override fun getMoreAppsItems(apiKey: String, locale: Locale, filter: String?): Flow<Result<List<MoreAppsItem?>>> = flow {
         val response = appsPlusApi.getApps(apiKey, locale.toString(), filter)
 
         if (!response.isSuccessful) {

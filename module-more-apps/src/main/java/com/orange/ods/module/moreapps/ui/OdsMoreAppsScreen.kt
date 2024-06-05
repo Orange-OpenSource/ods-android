@@ -91,7 +91,7 @@ internal fun OdsMoreAppsScreen(
 }
 
 @Composable
-private fun MoreAppsItem(item: MoreAppsItem, firstItem: Boolean = false) {
+private fun MoreAppsItem(item: MoreAppsItem?, firstItem: Boolean = false) {
     when (item) {
         is AppsSection -> MoreAppsSection(item.name, item.items, firstItem)
         is AppsList -> MoreAppsList(item.items)
@@ -101,7 +101,7 @@ private fun MoreAppsItem(item: MoreAppsItem, firstItem: Boolean = false) {
 
 
 @Composable
-private fun MoreAppsSection(name: String?, items: List<MoreAppsItem>, firstItem: Boolean) {
+private fun MoreAppsSection(name: String?, items: List<MoreAppsItem?>, firstItem: Boolean) {
     if (!firstItem) {
         OdsDivider(modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)))
     }
@@ -118,7 +118,7 @@ private fun MoreAppsSection(name: String?, items: List<MoreAppsItem>, firstItem:
 }
 
 @Composable
-private fun MoreAppsList(items: List<MoreAppsItem>) {
+private fun MoreAppsList(items: List<MoreAppsItem?>) {
     if (items.isNotEmpty()) {
         Column {
             items.forEach { item ->

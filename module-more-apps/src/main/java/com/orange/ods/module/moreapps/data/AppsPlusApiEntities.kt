@@ -48,13 +48,13 @@ internal enum class ItemType {
     CAROUSEL, LIST, SECTION, APP
 }
 
-internal fun List<ItemDto>.toModel(): List<MoreAppsItem> = this.map { itemDto -> itemDto.toModel() }
+internal fun List<ItemDto>.toModel(): List<MoreAppsItem?> = this.map { itemDto -> itemDto.toModel() }
 
-internal fun ItemDto.toModel(): MoreAppsItem {
+internal fun ItemDto.toModel(): MoreAppsItem? {
     val type = try {
         ItemType.valueOf(this.type.uppercase())
     } catch (_: Exception) {
-        ItemType.LIST
+        null
     }
 
     return when (type) {
@@ -69,6 +69,7 @@ internal fun ItemDto.toModel(): MoreAppsItem {
             url = this.link,
             iconUrlByDensity = this.icons?.toModel().orEmpty()
         )
+        else -> null
     }
 }
 

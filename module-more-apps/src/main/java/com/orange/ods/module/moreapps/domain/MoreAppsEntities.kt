@@ -18,11 +18,11 @@ internal interface MoreAppsItem
 
 internal data class AppsSection(
     val name: String?,
-    val items: List<MoreAppsItem>
+    val items: List<MoreAppsItem?>
 ) : MoreAppsItem
 
 internal data class AppsList(
-    val items: List<MoreAppsItem>
+    val items: List<MoreAppsItem?>
 ) : MoreAppsItem
 
 internal class App(
