@@ -40,6 +40,7 @@ internal object OdsMoreAppsDataModule {
         return HttpClient(context, networkManager).build()
     }
 
+    @Singleton
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
@@ -49,6 +50,7 @@ internal object OdsMoreAppsDataModule {
             .build()
     }
 
+    @Singleton
     @Provides
     fun provideAppsPlusApi(retrofit: Retrofit): AppsPlusApi {
         return retrofit.create(AppsPlusApi::class.java)
