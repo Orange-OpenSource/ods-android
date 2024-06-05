@@ -23,7 +23,6 @@ import com.orange.ods.compose.extension.orElse
 import com.orange.ods.module.moreapps.R
 import com.orange.ods.module.moreapps.domain.MoreAppsItem
 import com.orange.ods.module.moreapps.domain.MoreAppsService
-import com.orange.ods.module.moreapps.domain.Resource
 import com.orange.ods.module.moreapps.ui.configuration.OdsMoreAppsConfiguration
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -42,10 +41,10 @@ internal class OdsMoreAppsViewModel @Inject constructor(private val moreAppsServ
         configuration?.let { configuration ->
             _uiState.value = OdsMoreAppsUiState.Loading
             viewModelScope.launch {
-                moreAppsService.getMoreAppsItems(configuration.apiKey, configuration.locale, configuration.filter).collect { resource ->
-                    _uiState.value = when (resource) {
-                        is Resource.Success -> OdsMoreAppsUiState.Success(resource.value)
-                        is Resource.Failure -> OdsMoreAppsUiState.Error(MoreAppsError.RequestFailure(resource.throwable.message.orElse { resource.throwable.stackTrace.toString() }))
+                moreAppsService.getMoreAppsItems(configuration.apiKey, configuration.locale, configuration.filter).collect { result ->
+                    _uiState.value = when {
+                        result.isSuccess -> OdsMoreAppsUiState.Success(result.getOrDefault(emptyList()))
+                        else -> OdsMoreAppsUiState.Error(MoreAppsError.RequestFailure(result.exceptionOrNull()?.message.orElse { result.exceptionOrNull()?.stackTrace.toString() }))
                     }
                 }
             }

@@ -14,7 +14,6 @@ package com.orange.ods.module.moreapps.data
 
 import com.orange.ods.module.moreapps.domain.MoreAppsItem
 import com.orange.ods.module.moreapps.domain.MoreAppsRepository
-import com.orange.ods.module.moreapps.domain.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.io.IOException
@@ -23,13 +22,13 @@ import java.util.Locale
 
 internal class MoreAppsRepositoryImpl(private val appsPlusApi: AppsPlusApi) : MoreAppsRepository {
 
-    override fun getMoreAppsItems(apiKey: String, locale: Locale, filter: String?): Flow<Resource<List<MoreAppsItem>>> = flow {
+    override fun getMoreAppsItems(apiKey: String, locale: Locale, filter: String?): Flow<Result<List<MoreAppsItem>>> = flow {
         val response = appsPlusApi.getApps(apiKey, locale.toString(), filter)
 
         if (!response.isSuccessful) {
-            emit(Resource.Failure(IOException("Unexpected HTTP code: ${response.code()}")))
+            emit(Result.failure(IOException("Unexpected HTTP code: ${response.code()}")))
         } else {
-            emit(Resource.Success(response.body()?.items?.toModel().orEmpty()))
+            emit(Result.success(response.body()?.items?.toModel().orEmpty()))
         }
     }
 }
