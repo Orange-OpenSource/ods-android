@@ -71,7 +71,7 @@ internal fun OdsMoreAppsScreen(
             val moreAppsItems = (uiState as OdsMoreAppsUiState.Success).moreAppsItems
             LazyColumn(contentPadding = PaddingValues(bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))) {
                 items(moreAppsItems) { item ->
-                    MoreAppsItem(item = item, firstItem = true)
+                    MoreAppsItem(item = item, rootItem = true)
                 }
             }
         }
@@ -91,9 +91,9 @@ internal fun OdsMoreAppsScreen(
 }
 
 @Composable
-private fun MoreAppsItem(item: MoreAppsItem?, firstItem: Boolean = false) {
+private fun MoreAppsItem(item: MoreAppsItem?, rootItem: Boolean = false) {
     when (item) {
-        is AppsSection -> MoreAppsSection(item.name, item.items, firstItem)
+        is AppsSection -> MoreAppsSection(item.name, item.items, rootItem)
         is AppsList -> MoreAppsList(item.items)
         is App -> MoreAppsApp(item)
     }
