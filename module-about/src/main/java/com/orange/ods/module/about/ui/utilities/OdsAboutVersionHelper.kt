@@ -16,7 +16,6 @@ import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Build
-import androidx.compose.runtime.Composable
 import com.orange.ods.compose.extension.ifNotNull
 import com.orange.ods.compose.extension.orElse
 import com.orange.ods.module.about.R
@@ -26,7 +25,6 @@ object OdsAboutVersionHelper {
     /**
      * @return a displayable version: `Version <versionName> (<versionCode>)`
      */
-    @Composable
     fun getFromPackageInfo(context: Context): String {
         val packageInfo = ifNotNull(context.packageManager, context.packageName) { packageManager, packageName ->
             PackageManagerCompat.getPackageInfo(packageManager, packageName, 0)
