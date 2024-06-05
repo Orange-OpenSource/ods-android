@@ -12,11 +12,9 @@
 
 package com.orange.ods.app.ui.about.moreapps
 
-import androidx.compose.runtime.Composable
 import com.orange.ods.app.BuildConfig
 import com.orange.ods.module.moreapps.ui.configuration.OdsMoreAppsConfiguration
 
-@Composable
 fun appMoreAppsConfiguration() = OdsMoreAppsConfiguration(
     apiKey = BuildConfig.APPS_PLUS_API_KEY
 )

@@ -12,7 +12,6 @@
 
 package com.orange.ods.app.ui.modules.moreapps
 
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -22,7 +21,6 @@ import com.orange.ods.module.moreapps.ui.configuration.OdsMoreAppsConfiguration
 
 class MoreAppsCustomizationViewModel : ViewModel() {
     var filter: String? by mutableStateOf(null)
-
-    @Composable
+    
     fun moreAppsConfiguration() = OdsMoreAppsConfiguration(apiKey = BuildConfig.APPS_PLUS_API_KEY, filter = filter)
 }
