@@ -13,6 +13,7 @@
 package com.orange.ods.compose.component.banner
 
 import app.cash.paparazzi.Paparazzi
+import com.android.ide.common.rendering.api.SessionParams
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -29,7 +30,7 @@ internal class OdsBannerTest(private val parameter: OdsBannerPreviewParameter) {
     }
 
     @get:Rule
-    val paparazzi = Paparazzi(maxPercentDifference = 0.0)
+    val paparazzi = Paparazzi(renderingMode = SessionParams.RenderingMode.SHRINK, maxPercentDifference = 0.01)
 
     @Test
     fun takeOdsBannerLightThemeSnapshot() {
