@@ -31,14 +31,13 @@ internal class HttpClient(context: Context, private val networkManager: NetworkM
     private val cache = Cache(context.cacheDir, CACHE_SIZE)
 
     fun build() = OkHttpClient.Builder()
-        .addInterceptor(
-            HttpLoggingInterceptor()
-                .apply {
-                    if (BuildConfig.DEBUG) {
-                        setLevel(HttpLoggingInterceptor.Level.BODY)
-                    }
-                },
-        )
+        .apply {
+            if (BuildConfig.DEBUG) {
+                addInterceptor(
+                    HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+                )
+            }
+        }
         .addInterceptor(CacheLoggingInterceptor())
         .addInterceptor(OfflineInterceptor())
         .addNetworkInterceptor(OnlineInterceptor())
