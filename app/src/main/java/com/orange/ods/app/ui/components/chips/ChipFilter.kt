@@ -13,11 +13,14 @@
 package com.orange.ods.app.ui.components.chips
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
@@ -26,6 +29,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalRecipes
@@ -36,6 +40,7 @@ import com.orange.ods.compose.OdsComposable
 import com.orange.ods.compose.component.chip.OdsChip
 import com.orange.ods.compose.component.chip.OdsFilterChip
 import com.orange.ods.compose.component.listitem.OdsListItem
+import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
 
 @OptIn(ExperimentalLayoutApi::class, ExperimentalMaterial3Api::class)
@@ -100,5 +105,24 @@ fun ChipFilter() {
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun ChipTypeDemo(chipType: ChipCustomizationState.ChipType, content: @Composable () -> Unit) {
+    Column(
+        modifier = Modifier
+            .verticalScroll(rememberScrollState())
+            .padding(
+                horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin),
+                vertical = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin)
+            )
+    ) {
+        OdsText(
+            modifier = Modifier.padding(bottom = OdsTheme.spacings.small.dp),
+            text = stringResource(id = chipType.descriptionRes),
+            style = OdsTheme.typography.bodyMedium
+        )
+        content()
     }
 }

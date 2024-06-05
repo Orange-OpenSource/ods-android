@@ -25,10 +25,8 @@ import com.orange.ods.app.ui.components.buttons.ComponentButtons
 import com.orange.ods.app.ui.components.buttons.icons.ComponentButtonsIcons
 import com.orange.ods.app.ui.components.cards.ComponentCard
 import com.orange.ods.app.ui.components.checkboxes.ComponentCheckboxes
-import com.orange.ods.app.ui.components.chips.Chip
 import com.orange.ods.app.ui.components.chips.ChipFilter
 import com.orange.ods.app.ui.components.dialogs.ComponentDialog
-import com.orange.ods.app.ui.components.floatingactionbuttons.ComponentFloatingActionButton
 import com.orange.ods.app.ui.components.imageitem.ComponentImageItem
 import com.orange.ods.app.ui.components.listitem.ComponentListItem
 import com.orange.ods.app.ui.components.menus.ComponentMenu
@@ -52,6 +50,7 @@ sealed class Component(
     val composableName: String? = null,
     val demoScreen: @Composable (variant: Variant?) -> Unit,
     val imageAlignment: Alignment = Alignment.Center,
+    val m3ImplementationAvailable: Boolean = true
 ) {
 
     companion object {
@@ -146,7 +145,7 @@ sealed class Component(
         demoScreen = { variant ->
             when {
                 variant == Variant.ChipFilter -> ChipFilter()
-                variant != null -> Chip(variant = variant)
+                variant != null -> {}
             }
         }
     )
@@ -165,8 +164,9 @@ sealed class Component(
         R.drawable.il_fab,
         null,
         R.string.component_floating_action_buttons_description,
-        composableName = OdsComposable.OdsFloatingActionButton.name,
-        demoScreen = { _ -> ComponentFloatingActionButton() }
+        composableName = "OdsFloatingActionButton",
+        demoScreen = { _ -> },
+        m3ImplementationAvailable = false
     )
 
     data object ImageItem : Component(
@@ -276,7 +276,8 @@ sealed class Variant(
     val composableName: String,
     val topAppBarType: Screen.TopAppBarType = Screen.TopAppBarType.Default,
     val customizableTopAppBar: Boolean = false,
-    val hasTabs: Boolean = false
+    val hasTabs: Boolean = false,
+    val m3ImplementationAvailable: Boolean = true
 ) {
 
     companion object {
@@ -316,9 +317,9 @@ sealed class Variant(
     data object CardSmall : Variant(R.string.component_card_small, OdsComposable.OdsSmallCard.name)
     data object CardHorizontal : Variant(R.string.component_card_horizontal, OdsComposable.OdsHorizontalCard.name)
 
-    data object ChipAction : Variant(R.string.component_chip_action, OdsComposable.OdsChip.name)
-    data object ChipChoice : Variant(R.string.component_chip_choice, OdsComposable.OdsChip.name)
-    data object ChipInput : Variant(R.string.component_chip_input, OdsComposable.OdsChip.name)
+    data object ChipAction : Variant(R.string.component_chip_action, "OdsChip", m3ImplementationAvailable = false)
+    data object ChipChoice : Variant(R.string.component_chip_choice, "OdsChip", m3ImplementationAvailable = false)
+    data object ChipInput : Variant(R.string.component_chip_input, "OdsChip", m3ImplementationAvailable = false)
     data object ChipFilter : Variant(R.string.component_chip_filter, OdsComposable.OdsFilterChip.name)
 
     data object DropdownMenu : Variant(R.string.component_menu_dropdown, OdsComposable.OdsDropdownMenu.name)

@@ -16,7 +16,6 @@ import android.content.Context
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -27,11 +26,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.ListItem
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -177,7 +175,6 @@ internal fun OdsListItem(
     }
 }
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 private fun OdsListItemInternal(
     text: String,
@@ -196,10 +193,9 @@ private fun OdsListItemInternal(
 
     ListItem(
         modifier = modifier
-            .height(IntrinsicSize.Min)
             .fillMaxWidth(),
-        icon = leadingIcon?.let { { it.Content() } },
-        secondaryText = if (secondaryText.isNotNullOrBlank()) {
+        leadingContent = leadingIcon?.let { { it.Content() } },
+        supportingContent = if (secondaryText.isNotNullOrBlank()) {
             {
                 OdsText(
                     text = secondaryText,
@@ -210,12 +206,11 @@ private fun OdsListItemInternal(
                 )
             }
         } else null,
-        singleLineSecondaryText = singleLineSecondaryText,
-        overlineText = if (overlineText.isNotNullOrBlank()) {
+        overlineContent = if (overlineText.isNotNullOrBlank()) {
             { OdsText(text = overlineText, style = OdsTheme.typography.labelSmall, color = OdsTheme.colors.onSurface.copy(alpha = 0.6f)) }
         } else null,
-        trailing = (trailing as? OdsComponentContent<*>)?.let { { it.Content() } },
-        text = {
+        trailingContent = (trailing as? OdsComponentContent<*>)?.let { { it.Content() } },
+        headlineContent = {
             if (hasText) {
                 OdsText(text = text, style = textStyle, color = textColor, fontWeight = textFontWeight)
             }

@@ -24,7 +24,6 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.semantics.SemanticsPropertyReceiver
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
@@ -95,7 +94,7 @@ object OdsChoiceChipsFlowRow {
         @Composable
         override fun Content(modifier: Modifier) {
             val chipStateDescription = selectionStateDescription(selected = extraParameters.selected)
-            OdsChip(
+            OdsFilterChip(
                 text = text,
                 modifier = Modifier.semantics {
                     stateDescription = chipStateDescription

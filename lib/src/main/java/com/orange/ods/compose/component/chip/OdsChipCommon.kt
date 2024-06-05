@@ -14,8 +14,6 @@ package com.orange.ods.compose.component.chip
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.ChipDefaults
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
@@ -127,10 +125,9 @@ object OdsChip {
 
 }
 
-@OptIn(ExperimentalMaterialApi::class)
 internal fun Modifier.odsChipAvatar(enabled: Boolean): Modifier = composed {
     this
         .size(dimensionResource(R.dimen.icon_size))
         .clip(CircleShape)
-        .alpha(if (enabled) 1f else ChipDefaults.LeadingIconOpacity)
+        .alpha(if (enabled) 1f else 0.38f) //TODO hardcoded value
 }

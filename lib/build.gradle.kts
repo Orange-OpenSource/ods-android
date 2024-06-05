@@ -56,8 +56,7 @@ dependencies {
 
     implementation(Dependencies.appCompat)
     implementation(platform(Dependencies.composeBom))
-    api(Dependencies.composeMaterial)
-    implementation(Dependencies.composeMaterial3)
+    api(Dependencies.composeMaterial3)
     implementation(Dependencies.composeUi)
     implementation(Dependencies.composeUiTooling)
     implementation(Dependencies.composeUiToolingPreview)

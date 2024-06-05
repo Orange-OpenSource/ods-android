@@ -15,8 +15,7 @@ package com.orange.ods.app.ui.utilities.composable
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.ContentAlpha
-import androidx.compose.material.Text
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -61,6 +60,6 @@ fun TechnicalText(text: String, modifier: Modifier = Modifier) {
         modifier = modifier.fillMaxWidth(),
         fontFamily = courier,
         fontSize = 14.sp,
-        color = OdsTheme.colors.onSurface.copy(alpha = ContentAlpha.medium)
+        color = OdsTheme.colors.onSurface.copy(alpha = 0.60f)
     )
 }
