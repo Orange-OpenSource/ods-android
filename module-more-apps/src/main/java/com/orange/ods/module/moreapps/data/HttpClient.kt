@@ -46,8 +46,6 @@ internal class HttpClient(context: Context, private val networkManager: NetworkM
 
     /**
      * Read from cache for 60 seconds even if there is Internet connection.
-     * Remove "no-cache" attribute from "Pragma" and "Cache-Control" response headers
-     * otherwise we won't be able to fetch response from cache when network is offline.
      */
     private inner class OnlineInterceptor : Interceptor {
         override fun intercept(chain: Interceptor.Chain): Response {
@@ -55,7 +53,6 @@ internal class HttpClient(context: Context, private val networkManager: NetworkM
             val maxAge = 60 // 60 sec
             return response.newBuilder()
                 .header("Cache-Control", "public, max-age=$maxAge")
-                .removeHeader("Pragma")
                 .build()
         }
     }
