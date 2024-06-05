@@ -25,7 +25,7 @@ The ODS More apps module is built to support accessibility criteria and is reada
 
 ## Integration
 
-**Prerequisites:** Before using the ODS More apps module, you need to create an applications list from the [OMA Apps Plus website](https://admin.appsplus-oma.apps-details.com). Create an account and create you own list from the "App lists" tab. This will create the API key to use in the module configuration.
+**Prerequisites:** Before using the ODS More apps module, you need to create an applications list from the [OMA Apps Plus website](https://admin.appsplus-oma.apps-details.com). Create an account and create your own list from the "App lists" tab. This will create the API key to use in the module configuration.
 
 ![More apps light](images/moreApps_light.png)
 
