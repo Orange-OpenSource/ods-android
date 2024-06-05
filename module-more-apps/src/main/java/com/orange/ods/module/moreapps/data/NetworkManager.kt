@@ -36,7 +36,7 @@ internal class NetworkManager(context: Context) {
     private fun hasOneOfCapabilities(capabilities: List<Int>): Boolean {
         val network = connectivityManager.activeNetwork
         val networkCapabilities = connectivityManager.getNetworkCapabilities(network)
-        return if (network != null && networkCapabilities != null) {
+        return if (networkCapabilities != null) {
             capabilities.any { networkCapabilities.hasTransport(it) }
         } else {
             false
