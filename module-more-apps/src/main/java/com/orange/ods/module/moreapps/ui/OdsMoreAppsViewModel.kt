@@ -39,12 +39,14 @@ internal class OdsMoreAppsViewModel @Inject constructor(private val moreAppsServ
 
     fun getAppsSections() {
         configuration?.let { configuration ->
-            _uiState.value = OdsMoreAppsUiState.Loading
-            viewModelScope.launch {
-                moreAppsService.getMoreAppsItems(configuration.apiKey, configuration.locale, configuration.filter).collect { result ->
-                    _uiState.value = when {
-                        result.isSuccess -> OdsMoreAppsUiState.Success(result.getOrDefault(emptyList()))
-                        else -> OdsMoreAppsUiState.Error(MoreAppsError.RequestFailure(result.exceptionOrNull()?.message.orElse { result.exceptionOrNull()?.stackTrace.toString() }))
+            if (_uiState.value != OdsMoreAppsUiState.Loading) {
+                _uiState.value = OdsMoreAppsUiState.Loading
+                viewModelScope.launch {
+                    moreAppsService.getMoreAppsItems(configuration.apiKey, configuration.locale, configuration.filter).collect { result ->
+                        _uiState.value = when {
+                            result.isSuccess -> OdsMoreAppsUiState.Success(result.getOrDefault(emptyList()))
+                            else -> OdsMoreAppsUiState.Error(MoreAppsError.RequestFailure(result.exceptionOrNull()?.message.orElse { result.exceptionOrNull()?.stackTrace.toString() }))
+                        }
                     }
                 }
             }
