@@ -9,6 +9,7 @@
  *
  * Software description: Android library of reusable graphical components
  */
+ 
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import com.orange.ods.gradle.Dependencies
 import com.orange.ods.gradle.Versions
