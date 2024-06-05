@@ -61,7 +61,7 @@ fun MoreAppsCustomizationScreen(navigateToMoreAppsDemo: () -> Unit, viewModel: M
         }
         OdsChoiceChipsFlowRow(
             selectedChoiceChipIndex = AppsPlusFilter.entries.indexOf(selectedFilter),
-            modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.spacing_m)),
+            modifier = Modifier.padding(horizontal = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin)),
             choiceChips = AppsPlusFilter.entries.map { filter ->
                 OdsChoiceChipsFlowRow.ChoiceChip(
                     stringResource(id = filter.choiceLabelRes),
