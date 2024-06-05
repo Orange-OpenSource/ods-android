@@ -36,7 +36,7 @@ internal object OdsMoreAppsDataModule {
 
     @Singleton
     @Provides
-    fun provideOkHttp(@ApplicationContext context: Context, networkManager: NetworkManager): OkHttpClient {
+    fun provideOkHttpClient(@ApplicationContext context: Context, networkManager: NetworkManager): OkHttpClient {
         return HttpClient(context, networkManager).build()
     }
 
