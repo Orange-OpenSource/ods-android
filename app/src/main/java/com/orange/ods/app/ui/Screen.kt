@@ -145,7 +145,7 @@ sealed class Screen(
 
     data object ModuleMoreAppsCustomization : Screen(
         route = ModulesNavigation.MoreAppsCustomizationRoute,
-        title = UiString.StringResource(R.string.module_moreApps_title)
+        title = UiString.StringResource(com.orange.ods.module.moreapps.R.string.odsMoreApps_title)
     )
 
     data object ModuleEmptyStateCustomization : Screen(

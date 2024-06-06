@@ -11,5 +11,5 @@
   -->
 
 <resources>
-    <public />
+    <public type="string" name="odsMoreApps_title" />
 </resources>

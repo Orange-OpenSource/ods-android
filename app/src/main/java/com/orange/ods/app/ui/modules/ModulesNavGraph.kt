@@ -19,7 +19,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.orange.ods.app.R
 import com.orange.ods.app.ui.CustomAppBarConfiguration
 import com.orange.ods.app.ui.LocalAppBarManager
 import com.orange.ods.app.ui.modules.ModulesNavigation.AboutCustomizationRoute
@@ -74,7 +73,7 @@ fun NavGraphBuilder.addModulesGraph(
 
     composable(route = MoreAppsCustomizationRoute) { _ ->
         val appBarManager = LocalAppBarManager.current
-        val appBarTitle = stringResource(id = R.string.module_moreApps_title)
+        val appBarTitle = stringResource(id = com.orange.ods.module.moreapps.R.string.odsMoreApps_title)
         val viewModelStoreOwner = LocalContext.current as ViewModelStoreOwner
         val viewModel = viewModel<MoreAppsCustomizationViewModel>(viewModelStoreOwner)
         MoreAppsCustomizationScreen(

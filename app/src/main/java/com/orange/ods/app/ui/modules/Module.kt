@@ -43,7 +43,7 @@ sealed class Module(
     )
 
     data object MoreApps : Module(
-        R.string.module_moreApps_title,
+        com.orange.ods.module.moreapps.R.string.odsMoreApps_title,
         R.drawable.il_more_apps,
         R.string.module_moreApps_description,
         route = ModulesNavigation.MoreAppsCustomizationRoute
