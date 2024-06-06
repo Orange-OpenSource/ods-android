@@ -26,7 +26,6 @@ internal data class AppsList(
 ) : MoreAppsItem
 
 internal class App(
-    val type: String,
     val name: String?,
     val description: String?,
     val url: String?,
