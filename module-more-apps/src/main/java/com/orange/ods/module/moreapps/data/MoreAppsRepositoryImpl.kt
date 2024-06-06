@@ -22,13 +22,13 @@ import java.util.Locale
 
 internal class MoreAppsRepositoryImpl(private val appsPlusApi: AppsPlusApi) : MoreAppsRepository {
 
-    override fun getMoreAppsItems(apiKey: String, locale: Locale, filter: String?): Flow<Result<List<MoreAppsItem?>>> = flow {
+    override fun getMoreAppsItems(apiKey: String, locale: Locale, filter: String?): Flow<List<MoreAppsItem?>> = flow {
         val response = appsPlusApi.getApps(apiKey, locale.toString(), filter)
 
         if (!response.isSuccessful) {
-            emit(Result.failure(IOException("Unexpected HTTP code: ${response.code()}")))
+            throw IOException("Unexpected HTTP code: ${response.code()}")
         } else {
-            emit(Result.success(response.body()?.items?.toModel().orEmpty()))
+            emit(response.body()?.items?.toModel().orEmpty())
         }
     }
 }
