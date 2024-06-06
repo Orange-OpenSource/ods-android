@@ -25,7 +25,11 @@ android {
     namespace = "com.orange.ods.module.moreapps"
 
     defaultConfig {
-        buildConfigField("String", "APPS_PLUS_URL", "\"${gradleLocalProperties(rootDir, providers).getProperty("APPS_PLUS_URL")}\"")
+        gradleLocalProperties(rootDir, providers).getProperty("APPS_PLUS_URL")?.let {
+            buildConfigField("String", "APPS_PLUS_URL", "\"$it\"")
+        } ?: run {
+            throw GradleException("Required APPS_PLUS_URL property in local.properties not set.")
+        }
     }
 
     buildFeatures {

@@ -78,6 +78,28 @@ In order to configure the ODS More Apps Module, you need to provide an `OdsMoreA
 
 | Property                | Default&nbsp;value    | Description                                                                                                                                               |
 |-------------------------|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <b>`apiKey: String`</b> |                       | The Apps Plus API key available on OMA Apps Plus portal. <b>Warning: You must never store unencrypted secrets in Git repository for security reasons.</b> |
+| <b>`apiKey: String`</b> |                       | The Apps Plus API key available on OMA Apps Plus portal. <b>Warning: You must never store unencrypted secrets in Git repository for security reasons.</b> See below how to [use OdsMoreApps module locally](#use-odsmoreapps-module-locally). |
 | `locale: Locale`        | `Locale.getDefault()` | The locale used to retrieve apps list from Apps Plus. The device locale is used by default.                                                               |
 | `filter: String?`       | `null`                | The apps in the provided `filter` container will be displayed by the module.                                                                              |
+
+## Use OdsMoreApps module locally 
+
+As the API key must not be added to Git, you can define it locally in `local.properties` file at the root of your project. This file must be added to your `.gitignore`.
+
+```
+APPS_PLUS_API_KEY=abcdefgh
+```
+
+Set a build config field by adding the following lines into your `build.gradle` (inside `android{ defaultConfig{ } }`)
+
+```kotlin
+buildConfigField("String", "APPS_PLUS_API_KEY", "\"${gradleLocalProperties(rootDir, providers).getProperty("APPS_PLUS_API_KEY")}\"")
+```
+
+Then, you can use your API key in your code as follow:
+
+```kotlin
+OdsMoreAppsConfiguration(
+    apiKey = BuildConfig.APPS_PLUS_API_KEY
+)
+```
