@@ -14,7 +14,6 @@ package com.orange.ods.module.moreapps.data
 
 import com.orange.ods.module.moreapps.domain.App
 import com.orange.ods.module.moreapps.domain.AppsList
-import com.orange.ods.module.moreapps.domain.AppsSection
 import com.orange.ods.module.moreapps.domain.Density
 import com.orange.ods.module.moreapps.domain.MoreAppsItem
 
@@ -58,10 +57,8 @@ internal fun ItemDto.toModel(): MoreAppsItem? {
     }
 
     return when (type) {
-        ItemType.CAROUSEL, ItemType.LIST -> AppsList(
-            this.children?.toModel().orEmpty()
-        ) // For the moment Carousel is managed like a List because we are waiting developments on Apps+ side
-        ItemType.SECTION -> AppsSection(this.description, this.children?.toModel().orEmpty())
+        ItemType.CAROUSEL, ItemType.LIST -> AppsList(null, this.children?.toModel().orEmpty()) // For the moment Carousel is managed like a List because we are waiting developments on Apps+ side
+        ItemType.SECTION -> AppsList(this.description, this.children?.toModel().orEmpty())
         ItemType.APP -> App(
             name = this.title,
             description = this.description,

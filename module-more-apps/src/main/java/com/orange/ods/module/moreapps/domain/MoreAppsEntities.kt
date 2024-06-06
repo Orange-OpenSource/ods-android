@@ -16,12 +16,8 @@ import android.util.DisplayMetrics
 
 internal interface MoreAppsItem
 
-internal data class AppsSection(
-    val name: String?,
-    val items: List<MoreAppsItem?>
-) : MoreAppsItem
-
 internal data class AppsList(
+    val name: String?,
     val items: List<MoreAppsItem?>
 ) : MoreAppsItem
 

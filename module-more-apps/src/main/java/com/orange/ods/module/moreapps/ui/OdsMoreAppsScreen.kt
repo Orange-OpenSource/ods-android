@@ -51,7 +51,6 @@ import com.orange.ods.compose.text.OdsText
 import com.orange.ods.module.moreapps.R
 import com.orange.ods.module.moreapps.domain.App
 import com.orange.ods.module.moreapps.domain.AppsList
-import com.orange.ods.module.moreapps.domain.AppsSection
 import com.orange.ods.module.moreapps.domain.Density
 import com.orange.ods.module.moreapps.domain.MoreAppsItem
 import com.orange.ods.module.moreapps.ui.configuration.OdsMoreAppsConfiguration
@@ -103,8 +102,7 @@ private fun OdsMoreAppsScreen(uiState: OdsMoreAppsUiState) {
 @Composable
 private fun MoreAppsItem(item: MoreAppsItem?, firstItem: Boolean = false) {
     when (item) {
-        is AppsSection -> MoreAppsSection(item.name, item.items, firstItem)
-        is AppsList -> MoreAppsList(item.items)
+        is AppsList -> item.name?.let { MoreAppsSection(it, item.items, firstItem) }.orElse { MoreAppsSimpleList(item.items) }
         is App -> MoreAppsApp(item)
     }
 }
@@ -124,11 +122,11 @@ private fun MoreAppsSection(name: String?, items: List<MoreAppsItem?>, firstItem
         text = name.orElse { stringResource(id = R.string.odsMoreApps_section_uncategorizedApps) },
         style = OdsTextStyle.TitleS
     )
-    MoreAppsList(items = items)
+    MoreAppsSimpleList(items = items)
 }
 
 @Composable
-private fun MoreAppsList(items: List<MoreAppsItem?>) {
+private fun MoreAppsSimpleList(items: List<MoreAppsItem?>) {
     if (items.isNotEmpty()) {
         Column {
             items.forEach { item ->
@@ -202,16 +200,23 @@ private val previewParameterValues: List<OdsMoreAppsUiState>
     get() {
         val moreAppsItems = listOf(
             AppsList(
+                name = "Section 1 without divider",
                 items = listOf(
-                    App("App 1", "First app of the app list", null, null),
-                    App("App 2", "Second app of the app list", null, null),
+                    App("Toto App", "This application is the first app of the section 1", null, null),
                 )
             ),
-            AppsSection(
-                name = "Section 1",
+            AppsList(
+                name = null,
                 items = listOf(
-                    App("App 3", "The application 3 is the first app of the section 1", null, null),
-                    App("App 4", "The application 4 is the second app of the section 1 with a very big description that should be truncated.", null, null),
+                    App("Titi App", "First app of the simple app list", null, null),
+                    App("VeryVeryVeryVeryVeryVeryVeryVerylongName App", "Second app of the simple app list with a very long description.", null, null),
+                )
+            ),
+            AppsList(
+                name = "Section 2 with divider",
+                items = listOf(
+                    App("Tutu App", "This application is the first app of the section 2", null, null),
+                    App("Tata App", "This application 4 is the second app of the section 2 with a very big description that should be truncated.", null, null),
                 )
             )
         )
