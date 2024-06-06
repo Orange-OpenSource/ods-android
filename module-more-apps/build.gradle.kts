@@ -9,7 +9,7 @@
  *
  * Software description: Android library of reusable graphical components
  */
- 
+
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import com.orange.ods.gradle.Dependencies
 import com.orange.ods.gradle.Versions
@@ -46,6 +46,7 @@ dependencies {
     implementation(Dependencies.coil)
     implementation(Dependencies.coilCompose)
     implementation(Dependencies.composeMaterial)
+    implementation(Dependencies.composeUiToolingPreview)
     implementation(Dependencies.hiltAndroid)
     kapt(Dependencies.hiltCompiler)
     implementation(Dependencies.gson)

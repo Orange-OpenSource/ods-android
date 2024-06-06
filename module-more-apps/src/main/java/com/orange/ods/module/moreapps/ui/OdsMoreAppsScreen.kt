@@ -12,6 +12,7 @@
 
 package com.orange.ods.module.moreapps.ui
 
+import android.content.res.Configuration
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,6 +31,8 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -40,6 +43,8 @@ import coil.size.Size
 import com.orange.ods.compose.component.divider.OdsDivider
 import com.orange.ods.compose.component.listitem.OdsListItem
 import com.orange.ods.compose.component.progressindicator.OdsCircularProgressIndicator
+import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
+import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.extension.orElse
 import com.orange.ods.compose.module.emptystate.OdsEmptyStateView
 import com.orange.ods.compose.text.OdsText
@@ -64,10 +69,16 @@ internal fun OdsMoreAppsScreen(
         viewModel.getMoreAppsItems()
     }
 
+
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    OdsMoreAppsScreen(uiState = uiState)
+}
+
+@Composable
+private fun OdsMoreAppsScreen(uiState: OdsMoreAppsUiState) {
     when (uiState) {
         is OdsMoreAppsUiState.Success -> {
-            val moreAppsItems = (uiState as OdsMoreAppsUiState.Success).moreAppsItems
+            val moreAppsItems = uiState.moreAppsItems
             LazyColumn(contentPadding = PaddingValues(bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))) {
                 items(moreAppsItems) { item ->
                     MoreAppsItem(item = item, rootItem = true)
@@ -77,7 +88,7 @@ internal fun OdsMoreAppsScreen(
         is OdsMoreAppsUiState.Error -> {
             OdsEmptyStateView(
                 title = stringResource(id = R.string.odsMoreApps_error),
-                text = (uiState as OdsMoreAppsUiState.Error).moreAppsError.getMessage(),
+                text = uiState.moreAppsError.getMessage(),
                 image = OdsEmptyStateView.Image(painter = painterResource(id = R.drawable.il_empty_state_error))
             )
         }
@@ -173,3 +184,42 @@ private fun getPlaceholderSmallResId(error: Boolean = false): Int { //TODO Dupli
         else -> com.orange.ods.R.drawable.placeholder_error_small_dark
     }
 }
+
+
+@Preview(name = "Light")
+@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
+@Composable
+private fun PreviewOdsMoreAppsScreen(@PreviewParameter(OdsMoreAppsScreenPreviewUiStateProvider::class) uiState: OdsMoreAppsUiState) {
+    OdsPreview {
+        OdsMoreAppsScreen(uiState = uiState)
+    }
+}
+
+private class OdsMoreAppsScreenPreviewUiStateProvider :
+    BasicPreviewParameterProvider<OdsMoreAppsUiState>(*previewParameterValues.toTypedArray())
+
+private val previewParameterValues: List<OdsMoreAppsUiState>
+    get() {
+        val moreAppsItems = listOf(
+            AppsList(
+                items = listOf(
+                    App("App 1", "First app of the app list", null, null),
+                    App("App 2", "Second app of the app list", null, null),
+                )
+            ),
+            AppsSection(
+                name = "Section 1",
+                items = listOf(
+                    App("App 3", "The application 3 is the first app of the section 1", null, null),
+                    App("App 4", "The application 4 is the second app of the section 1 with a very big description that should be truncated.", null, null),
+                )
+            )
+        )
+
+        return listOf(
+            OdsMoreAppsUiState.Success(moreAppsItems = moreAppsItems),
+            OdsMoreAppsUiState.Error(MoreAppsError.MissingConfiguration),
+            OdsMoreAppsUiState.Error(MoreAppsError.RequestFailure("OMA Apps Plus backend not available")),
+            OdsMoreAppsUiState.Loading,
+        )
+    }
