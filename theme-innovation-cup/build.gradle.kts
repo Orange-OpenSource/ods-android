@@ -10,11 +10,9 @@
  * Software description: Android library of reusable graphical components
  */
 
-import com.orange.ods.gradle.Dependencies
-
 plugins {
     id("library")
-    id("kotlin-parcelize")
+    id(libs.plugins.kotlin.parcelize.get().pluginId) // https://github.com/gradle/gradle/issues/20084#issuecomment-1060822638
 }
 
 android {
@@ -24,6 +22,6 @@ android {
 dependencies {
     implementation(project(":theme-contract"))
 
-    implementation(platform(Dependencies.composeBom))
-    implementation(Dependencies.composeMaterial)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.material)
 }

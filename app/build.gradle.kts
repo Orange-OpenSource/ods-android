@@ -11,32 +11,30 @@
  */
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import com.android.build.gradle.internal.tasks.factory.dependsOn
-import com.orange.ods.gradle.Dependencies
 import com.orange.ods.gradle.Environment
-import com.orange.ods.gradle.Versions
 import com.orange.ods.gradle.findTypedProperty
 
 plugins {
-    id("com.android.application")
-    id("com.google.gms.google-services")
-    id("kotlin-android")
-    id("kotlin-parcelize")
-    id("com.google.firebase.appdistribution")
-    id("com.google.firebase.crashlytics")
     id("firebase")
-    id("dagger.hilt.android.plugin")
-    id("org.jetbrains.kotlin.plugin.compose")
-    id("kotlin-kapt") // This must be the last statement in the plugins {} to avoid "options not recognized" warning
+    id(libs.plugins.android.application.get().pluginId) // https://github.com/gradle/gradle/issues/20084#issuecomment-1060822638
+    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.firebase.appdistribution)
+    alias(libs.plugins.firebase.crashlytics)
+    alias(libs.plugins.google.services)
+    alias(libs.plugins.hilt)
+    id(libs.plugins.kotlin.android.get().pluginId)
+    id(libs.plugins.kotlin.parcelize.get().pluginId)
+    id(libs.plugins.kotlin.kapt.get().pluginId) // This must be the last statement in the plugins {} to avoid "options not recognized" warning
 }
 
 android {
     namespace = "com.orange.ods.app"
 
-    compileSdk = Versions.compileSdk
+    compileSdk = libs.versions.androidCompileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = Versions.minSdk
-        targetSdk = Versions.targetSdk
+        minSdk = libs.versions.androidMinSdk.get().toInt()
+        targetSdk = libs.versions.androidTargetSdk.get().toInt()
         val versionCodeProperty = project.findTypedProperty<String>("versionCode")
         versionCode = versionCodeProperty?.toInt() ?: 11
         versionName = version.toString()
@@ -129,34 +127,34 @@ android {
 dependencies {
     implementation(project(":lib"))
     implementation(project(":lib-xml"))
-    implementation(project(":theme-innovation-cup"))
     implementation(project(":module-about"))
     implementation(project(":module-more-apps"))
+    implementation(project(":theme-innovation-cup"))
 
-    implementation(Dependencies.accompanistSystemUiController)
-    implementation(Dependencies.activityCompose)
-    implementation(Dependencies.appCompat)
-    implementation(Dependencies.browser)
-    implementation(Dependencies.coil)
-    implementation(Dependencies.coilCompose)
-    implementation(platform(Dependencies.composeBom))
-    implementation(Dependencies.composeMaterial3)
-    implementation(Dependencies.composeUi)
-    debugImplementation(Dependencies.composeUiTooling)
-    implementation(Dependencies.composeUiToolingPreview)
-    implementation(Dependencies.coreKtx)
-    implementation(Dependencies.dataStorePreferences)
-    implementation(platform(Dependencies.firebaseBom))
-    implementation(Dependencies.firebaseCrashlytics)
-    implementation(Dependencies.hiltAndroid)
-    kapt(Dependencies.hiltCompiler)
-    implementation(Dependencies.kotlinReflect)
-    implementation(Dependencies.lifecycleRuntimeKtx)
-    implementation(Dependencies.lifecycleViewModelKtx)
-    implementation(Dependencies.material)
-    implementation(Dependencies.navigationCompose)
-    implementation(Dependencies.timber)
-    implementation(Dependencies.webkit)
+    implementation(libs.accompanist.systemuicontroller)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.browser)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.ui)
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.webkit)
+    implementation(libs.coil)
+    implementation(libs.coil.compose)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.crashlytics.ktx)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    implementation(libs.kotlin.reflect)
+    implementation(libs.material)
+    implementation(libs.timber)
 }
 
 tasks.register<Copy>("copyChangelog") {

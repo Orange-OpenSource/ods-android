@@ -12,30 +12,11 @@
 
 plugins {
     id("release")
-}
-
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath(com.orange.ods.gradle.Dependencies.androidGradlePlugin)
-        classpath(com.orange.ods.gradle.Dependencies.kotlinGradlePlugin)
-        classpath(com.orange.ods.gradle.Dependencies.firebaseAppDistributionGradlePlugin)
-        classpath(com.orange.ods.gradle.Dependencies.firebaseCrashlyticsGradlePlugin)
-        classpath(com.orange.ods.gradle.Dependencies.googleServicesGradlePlugin)
-        classpath(com.orange.ods.gradle.Dependencies.hiltAndroidGradlePlugin)
-        classpath(com.orange.ods.gradle.Dependencies.composeCompilerGradlePlugin)
-    }
-}
-
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
+    alias(libs.plugins.compose.compiler) apply false
+    alias(libs.plugins.firebase.appdistribution) apply false
+    alias(libs.plugins.firebase.crashlytics) apply false
+    alias(libs.plugins.google.services) apply false
+    alias(libs.plugins.hilt) apply false
 }
 
 tasks.register<Delete>("clean") {

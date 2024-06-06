@@ -10,15 +10,13 @@
  * Software description: Android library of reusable graphical components
  */
 
-import com.orange.ods.gradle.Dependencies
-
 plugins {
-    id("com.google.devtools.ksp") version "2.0.0-1.0.22"
-    id("library")
     id("github")
-    id("kotlin-parcelize")
-    id("app.cash.paparazzi") version "1.3.4"
-    id("org.jetbrains.kotlin.plugin.compose")
+    id("library")
+    alias(libs.plugins.compose.compiler)
+    id(libs.plugins.kotlin.parcelize.get().pluginId) // https://github.com/gradle/gradle/issues/20084#issuecomment-1060822638
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.paparazzi)
 }
 
 buildscript {
@@ -58,24 +56,24 @@ dependencies {
     api(project(":theme-contract"))
     api(project(":theme-orange"))
 
-    implementation(Dependencies.appCompat)
-    implementation(platform(Dependencies.composeBom))
-    api(Dependencies.composeMaterial)
-    implementation(Dependencies.composeMaterial3)
-    implementation(Dependencies.composeUi)
-    implementation(Dependencies.composeUiTooling)
-    implementation(Dependencies.composeUiToolingPreview)
-    implementation(Dependencies.constraintLayoutCompose)
-    implementation(Dependencies.coreKtx)
-    implementation(Dependencies.customViewPoolingContainer) // This dependency is needed otherwise the compose preview does not work properly
-    implementation(Dependencies.lifecycleRuntimeKtx)
+    implementation(libs.androidx.appcompat)
+    implementation(platform(libs.androidx.compose.bom))
+    api(libs.androidx.compose.material)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.constraintlayout.compose)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.customview.poolingcontainer) // This dependency is needed otherwise the compose preview does not work properly
+    implementation(libs.androidx.lifecycle.runtime.ktx)
 
-    androidTestImplementation(Dependencies.composeUiTestJUnit)
-    androidTestImplementation(Dependencies.kotlinReflect)
-    androidTestImplementation(Dependencies.mockitoAndroid)
-    androidTestImplementation(Dependencies.mockitoKotlin)
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    androidTestImplementation(libs.kotlin.reflect)
+    androidTestImplementation(libs.mockito.android)
+    androidTestImplementation(libs.mockito.kotlin)
     // Needed for createComposeRule(), but not for createAndroidComposeRule<YourActivity>():
-    debugImplementation(Dependencies.composeUiTestManifest)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
 
 // TODO Remove when https://github.com/google/guava/issues/6567 is fixed.

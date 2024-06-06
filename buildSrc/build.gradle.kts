@@ -25,7 +25,8 @@ kotlin {
 }
 
 dependencies {
-    implementation("com.android.tools.build:gradle:8.5.0")
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.0") // https://issuetracker.google.com/issues/176079157#comment14
-    implementation("com.squareup:javapoet:1.13.0") // https://github.com/google/dagger/issues/3282
+    implementation(libs.android.gradle.plugin)
+    implementation(libs.javapoet) // https://github.com/google/dagger/issues/3282
+    implementation(libs.kotlin.gradle.plugin) // https://issuetracker.google.com/issues/176079157#comment14
+    implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location)) // https://github.com/gradle/gradle/issues/15383
 }

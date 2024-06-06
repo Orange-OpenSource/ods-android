@@ -11,7 +11,9 @@
  */
 
 import com.orange.ods.gradle.MavenCentralPublishPluginExtension
-import com.orange.ods.gradle.Versions
+import org.gradle.accessors.dm.LibrariesForLibs
+
+private val libs = the<LibrariesForLibs>() // https://github.com/gradle/gradle/issues/15383
 
 plugins {
     id("com.android.library")
@@ -20,10 +22,10 @@ plugins {
 }
 
 android {
-    compileSdk = Versions.compileSdk
+    compileSdk = libs.versions.androidCompileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = Versions.minSdk
+        minSdk = libs.versions.androidMinSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFile("consumer-rules.pro")
     }
