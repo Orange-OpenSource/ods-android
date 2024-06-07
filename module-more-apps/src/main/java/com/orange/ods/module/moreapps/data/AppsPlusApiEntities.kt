@@ -47,7 +47,7 @@ internal enum class ItemType {
     CAROUSEL, LIST, SECTION, APP
 }
 
-internal fun List<ItemDto>.toModel(): List<MoreAppsItem?> = this.map { itemDto -> itemDto.toModel() }
+internal fun List<ItemDto>.toModel(): List<MoreAppsItem> = this.mapNotNull { itemDto -> itemDto.toModel() }
 
 internal fun ItemDto.toModel(): MoreAppsItem? {
     val type = try {
@@ -57,7 +57,10 @@ internal fun ItemDto.toModel(): MoreAppsItem? {
     }
 
     return when (type) {
-        ItemType.CAROUSEL, ItemType.LIST -> AppsList(null, this.children?.toModel().orEmpty()) // For the moment Carousel is managed like a List because we are waiting developments on Apps+ side
+        ItemType.CAROUSEL, ItemType.LIST -> AppsList(
+            null,
+            this.children?.toModel().orEmpty()
+        ) // For the moment Carousel is managed like a List because we are waiting developments on Apps+ side
         ItemType.SECTION -> AppsList(this.description, this.children?.toModel().orEmpty())
         ItemType.APP -> App(
             name = this.title,

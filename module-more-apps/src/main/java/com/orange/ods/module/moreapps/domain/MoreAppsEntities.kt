@@ -18,7 +18,7 @@ internal interface MoreAppsItem
 
 internal data class AppsList(
     val name: String?,
-    val items: List<MoreAppsItem?>
+    val items: List<MoreAppsItem>
 ) : MoreAppsItem
 
 internal class App(

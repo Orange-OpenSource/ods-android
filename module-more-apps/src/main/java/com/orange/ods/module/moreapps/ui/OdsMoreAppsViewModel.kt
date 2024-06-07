@@ -61,7 +61,7 @@ internal class OdsMoreAppsViewModel @Inject constructor(private val moreAppsServ
 
 internal sealed class OdsMoreAppsUiState {
     data object Loading : OdsMoreAppsUiState()
-    data class Success(val moreAppsItems: List<MoreAppsItem?>) : OdsMoreAppsUiState()
+    data class Success(val moreAppsItems: List<MoreAppsItem>) : OdsMoreAppsUiState()
     data class Error(val moreAppsError: MoreAppsError) : OdsMoreAppsUiState()
 }
 

@@ -100,7 +100,7 @@ private fun OdsMoreAppsScreen(uiState: OdsMoreAppsUiState) {
 }
 
 @Composable
-private fun MoreAppsItem(item: MoreAppsItem?, firstItem: Boolean = false) {
+private fun MoreAppsItem(item: MoreAppsItem, firstItem: Boolean = false) {
     when (item) {
         is AppsList -> item.name?.let { MoreAppsSection(it, item.items, firstItem) }.orElse { MoreAppsSimpleList(item.items) }
         is App -> MoreAppsApp(item)
@@ -109,7 +109,7 @@ private fun MoreAppsItem(item: MoreAppsItem?, firstItem: Boolean = false) {
 
 
 @Composable
-private fun MoreAppsSection(name: String?, items: List<MoreAppsItem?>, firstItem: Boolean) {
+private fun MoreAppsSection(name: String?, items: List<MoreAppsItem>, firstItem: Boolean) {
     if (!firstItem) {
         OdsDivider(modifier = Modifier.padding(top = dimensionResource(id = com.orange.ods.R.dimen.spacing_s)))
     }
@@ -126,7 +126,7 @@ private fun MoreAppsSection(name: String?, items: List<MoreAppsItem?>, firstItem
 }
 
 @Composable
-private fun MoreAppsSimpleList(items: List<MoreAppsItem?>) {
+private fun MoreAppsSimpleList(items: List<MoreAppsItem>) {
     if (items.isNotEmpty()) {
         Column {
             items.forEach { item ->
