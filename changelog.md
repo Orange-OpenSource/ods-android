@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \[Lib\] `ODSComponentsColors` constructor is deprecated, replaced by the new one with `statusBar` parameter ([#876](https://github.com/Orange-OpenSource/ods-android/issues/876))
 - \[Lib\] `ODSComponentsColors` function is deprecated, replaced by the new one with only `init` parameter ([#876](https://github.com/Orange-OpenSource/ods-android/issues/876))
 
+### Fixed
+
+- \[About\] Remove useless Composable annotation in about module ([#950](https://github.com/Orange-OpenSource/ods-android/issues/950))
+
 ## [1.0.0](https://github.com/Orange-OpenSource/ods-android/compare/0.18.0...1.0.0) - 2024-03-13
 
 ### Added
