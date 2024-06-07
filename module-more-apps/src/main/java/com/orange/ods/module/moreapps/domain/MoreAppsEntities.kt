@@ -22,7 +22,7 @@ internal data class AppsList(
 ) : MoreAppsItem
 
 internal class App(
-    val name: String?,
+    val name: String,
     val description: String?,
     val url: String?,
     val iconUrlByDensity: Map<Density, String>?,

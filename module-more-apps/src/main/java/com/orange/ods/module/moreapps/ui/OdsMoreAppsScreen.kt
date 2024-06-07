@@ -140,7 +140,7 @@ private fun MoreAppsSimpleList(items: List<MoreAppsItem>) {
 private fun MoreAppsApp(app: App) {
     val context = LocalContext.current
     OdsListItem(
-        text = app.name.orEmpty(),
+        text = app.name,
         secondaryText = app.description.orEmpty(),
         secondaryTextLineCount = OdsListItem.SecondaryTextLineCount.Two,
         leadingIcon = getAppLeadingIcon(app.iconUrlByDensity),
