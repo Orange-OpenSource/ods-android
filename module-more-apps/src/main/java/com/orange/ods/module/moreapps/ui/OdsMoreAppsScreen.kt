@@ -187,13 +187,13 @@ private fun getPlaceholderSmallResId(error: Boolean = false): Int { //TODO Dupli
 @Preview(name = "Light")
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
-private fun PreviewOdsMoreAppsScreen(@PreviewParameter(OdsMoreAppsScreenPreviewUiStateProvider::class) uiState: OdsMoreAppsUiState) {
+private fun PreviewOdsMoreAppsScreen(@PreviewParameter(OdsMoreAppsScreenPreviewParameterProvider::class) uiState: OdsMoreAppsUiState) {
     OdsPreview {
         OdsMoreAppsScreen(uiState = uiState)
     }
 }
 
-private class OdsMoreAppsScreenPreviewUiStateProvider :
+private class OdsMoreAppsScreenPreviewParameterProvider :
     BasicPreviewParameterProvider<OdsMoreAppsUiState>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OdsMoreAppsUiState>
