@@ -210,14 +210,14 @@ private val previewParameterValues: List<OdsMoreAppsUiState>
                 name = null,
                 items = listOf(
                     App("Titi App", "First app of the simple app list", null, null),
-                    App("VeryVeryVeryVeryVeryVeryVeryVerylongName App", "Second app of the simple app list with a very long description.", null, null),
+                    App("VeryVeryVeryVeryVeryVeryVeryVeryLongName App", "Second app of the simple app list with a very long description.", null, null),
                 )
             ),
             AppsList(
                 name = "Section 2 with divider",
                 items = listOf(
                     App("Tutu App", "This application is the first app of the section 2", null, null),
-                    App("Tata App", "This application 4 is the second app of the section 2 with a very big description that should be truncated.", null, null),
+                    App("Tata App", "This application is the second app of the section 2 with a very big description that should be truncated.", null, null),
                 )
             )
         )
