@@ -62,12 +62,10 @@ internal fun OdsMoreAppsScreen(
     configuration: OdsMoreAppsConfiguration,
     viewModel: OdsMoreAppsViewModel = viewModel(LocalContext.current as ViewModelStoreOwner)
 ) {
-
     LaunchedEffect(key1 = Unit) {
         viewModel.configuration = configuration
         viewModel.getMoreAppsItems()
     }
-
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     OdsMoreAppsScreen(uiState = uiState)
@@ -78,7 +76,10 @@ private fun OdsMoreAppsScreen(uiState: OdsMoreAppsUiState) {
     when (uiState) {
         is OdsMoreAppsUiState.Success -> {
             val moreAppsItems = uiState.moreAppsItems
-            LazyColumn(contentPadding = PaddingValues(bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))) {
+            LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                contentPadding = PaddingValues(bottom = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin))
+            ) {
                 items(moreAppsItems) { item ->
                     MoreAppsItem(item = item, firstItem = item == moreAppsItems.firstOrNull())
                 }
