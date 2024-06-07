@@ -25,9 +25,11 @@ import com.orange.ods.module.moreapps.domain.MoreAppsItem
 import com.orange.ods.module.moreapps.domain.MoreAppsService
 import com.orange.ods.module.moreapps.ui.configuration.OdsMoreAppsConfiguration
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -44,6 +46,7 @@ internal class OdsMoreAppsViewModel @Inject constructor(private val moreAppsServ
                 _uiState.value = OdsMoreAppsUiState.Loading
                 viewModelScope.launch {
                     moreAppsService.getMoreAppsItems(configuration.apiKey, configuration.locale, configuration.filter)
+                        .flowOn(Dispatchers.IO)
                         .catch { cause ->
                             _uiState.value = OdsMoreAppsUiState.Error(MoreAppsError.RequestFailure(cause.message.orElse { cause.stackTrace.toString() }))
                         }
