@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - \[About\] Remove useless Composable annotation in about module ([#950](https://github.com/Orange-OpenSource/ods-android/issues/950))
+- \[About\] Fix a bug where about screen slides up on enter transition when content height is smaller than device screen ([#948](https://github.com/Orange-OpenSource/ods-android/issues/948))
 
 ## [1.0.0](https://github.com/Orange-OpenSource/ods-android/compare/0.18.0...1.0.0) - 2024-03-13
 

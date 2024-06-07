@@ -17,7 +17,9 @@ import android.graphics.Color
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.viewinterop.AndroidView
@@ -39,6 +41,7 @@ internal fun OdsAboutFileScreen(fileMenuItem: OdsAboutFileMenuItem, darkModeEnab
     val horizontalPadding = dimensionResource(id = com.orange.ods.R.dimen.screen_horizontal_margin).value
     val verticalPadding = dimensionResource(id = com.orange.ods.R.dimen.screen_vertical_margin).value
     AndroidView(
+        modifier = Modifier.fillMaxSize(),
         factory = {
             WebView(context).apply {
                 @SuppressLint("SetJavaScriptEnabled")
