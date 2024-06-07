@@ -18,6 +18,7 @@ import android.content.ContextWrapper
 import android.net.Uri
 import androidx.activity.ComponentActivity
 import androidx.browser.customtabs.CustomTabsIntent
+import timber.log.Timber
 
 //Method to get the resource name with the color id
 fun Context.getStringName(res: Int): String =
@@ -30,7 +31,7 @@ fun Context.launchUrl(url: String) {
             .build()
             .launchUrl(this, Uri.parse(url))
     } catch (e: ActivityNotFoundException) {
-        println("${e.message}: ${e.stackTrace}")
+        Timber.e("${e.message}: ${e.stackTrace}")
     }
 }
 
