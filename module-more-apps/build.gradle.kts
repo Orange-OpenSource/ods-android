@@ -12,12 +12,12 @@
 
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import com.orange.ods.gradle.Dependencies
-import com.orange.ods.gradle.Versions
 
 plugins {
     id("library")
     id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
+    id("org.jetbrains.kotlin.plugin.compose")
     id("kotlin-kapt") // This must be the last statement in the plugins {} to avoid "options not recognized" warning
 }
 
@@ -37,9 +37,6 @@ android {
         compose = true
         viewBinding = true
         dataBinding = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = Versions.composeCompiler
     }
 }
 
