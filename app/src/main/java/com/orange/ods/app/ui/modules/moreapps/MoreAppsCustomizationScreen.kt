@@ -31,7 +31,7 @@ import com.orange.ods.compose.component.chip.OdsChoiceChipsFlowRow
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.theme.typography.OdsTextStyle
 
-// Filters labels set in Apps+ applications list demo
+// Filters labels set in Apps Plus applications list demo
 private const val SectionsFilter = "sections"
 
 private enum class AppsPlusFilter(@StringRes val choiceLabelRes: Int, val value: String?) {

@@ -60,7 +60,7 @@ internal fun ItemDto.toModel(): MoreAppsItem? {
         ItemType.CAROUSEL, ItemType.LIST -> AppsList(
             null,
             this.children?.toModel().orEmpty()
-        ) // For the moment Carousel is managed like a List because we are waiting developments on Apps+ side
+        ) // For the moment Carousel is managed like a List because we are waiting developments on Apps Plus side
         ItemType.SECTION -> AppsList(this.description, this.children?.toModel().orEmpty())
         ItemType.APP -> App(
             name = this.title.orEmpty(),
