@@ -45,7 +45,7 @@ object Versions {
     const val mockitoKotlin = "5.3.1"
     const val navigation = "2.7.7"
     const val okHttpLoggingInterceptor = "4.12.0"
-    const val retrofit = "2.9.0"
+    const val retrofit = "2.11.0"
     const val timber = "5.0.1"
     const val webkit = "1.11.0"
 }
