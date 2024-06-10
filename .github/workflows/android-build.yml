@@ -38,6 +38,14 @@ jobs:
           key-alias: ${{ secrets.SIGNING_KEY_ALIAS }}
           key-password: ${{ secrets.SIGNING_KEY_PASSWORD }}
 
+      - name: Set up AppsPlus configuration
+        env:
+          APPS_PLUS_URL: ${{ secrets.APPS_PLUS_URL }}
+          APPS_PLUS_API_KEY: ${{ secrets.APPS_PLUS_API_KEY }}
+        run: |
+          echo APPS_PLUS_URL="$APPS_PLUS_URL" > $GITHUB_WORKSPACE/local.properties
+          echo APPS_PLUS_API_KEY="$APPS_PLUS_API_KEY" >> $GITHUB_WORKSPACE/local.properties         
+
       - name: Enable KVM group perms
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
@@ -52,14 +60,6 @@ jobs:
 
       - name: Run snapshot tests
         run: ./gradlew :lib:verifyPaparazziDebug
-
-      - name: Set up AppsPlus configuration
-        env:
-          APPS_PLUS_URL: ${{ secrets.APPS_PLUS_URL }}
-          APPS_PLUS_API_KEY: ${{ secrets.APPS_PLUS_API_KEY }}
-        run: |
-          echo APPS_PLUS_URL="$APPS_PLUS_URL" > $GITHUB_WORKSPACE/local.properties
-          echo APPS_PLUS_API_KEY="$APPS_PLUS_API_KEY" >> $GITHUB_WORKSPACE/local.properties          
 
       - name: Run Android Linter
         run: ./gradlew lintDebug
