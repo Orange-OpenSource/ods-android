@@ -398,6 +398,14 @@
     <string name="module_about_demo_share_title">Share title</string>
     <string name="module_about_demo_share_text">Add your share text here.</string>
 
+    <!-- Module More Apps -->
+    <string name="module_moreApps_description">More apps module helps to make discovering Orange Apps easier than ever.</string>
+    <string name="module_moreApps_customization_subtitle">Create your Apps Plus list</string>
+    <string name="module_moreApps_customization_text">Note that you need to create your own list in the Apps Plus backend. You can use carousel, sections and filters. We propose apps lists examples using filter parameter.</string>
+    <string name="module_moreApps_customization_filter">Filter</string>
+    <string name="module_moreApps_customization_filter_carousel">With carousel</string>
+    <string name="module_moreApps_customization_filter_sections">With sections</string>
+
     <!-- Module Empty state -->
     <string name="module_emptyState_title">Empty state</string>
     <string name="module_emptyState_description">An empty state can occur when no content or data is available to display in the UI. Avoid displaying completely empty screens.</string>

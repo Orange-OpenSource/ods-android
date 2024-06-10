@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - \[Lib\] Add status bar appearance management in `OdsTheme`. Applications no longer have to worry about the appearance of the status bar. ([#876](https://github.com/Orange-OpenSource/ods-android/issues/876))
+- \[MoreApps\] Add More Apps module with its documentation ([#556](https://github.com/Orange-OpenSource/ods-android/issues/556))
 
 ### Deprecated
 

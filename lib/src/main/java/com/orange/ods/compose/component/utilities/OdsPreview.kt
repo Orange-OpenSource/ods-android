@@ -40,7 +40,7 @@ fun OdsPreview(darkThemeEnabled: Boolean = isSystemInDarkTheme(), content: @Comp
  * @param T The type of the preview parameter.
  * @param values The preview parameter values.
  */
-internal open class BasicPreviewParameterProvider<T>(vararg values: T) : PreviewParameterProvider<T> {
+open class BasicPreviewParameterProvider<T>(vararg values: T) : PreviewParameterProvider<T> {
 
     override val values = values.asSequence()
 }

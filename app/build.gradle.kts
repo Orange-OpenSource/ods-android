@@ -9,6 +9,7 @@
  *
  * Software description: Android library of reusable graphical components
  */
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import com.android.build.gradle.internal.tasks.factory.dependsOn
 import com.orange.ods.gradle.Dependencies
 import com.orange.ods.gradle.Environment
@@ -46,6 +47,9 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        // Set AppsPlus API key
+        buildConfigField("String", "APPS_PLUS_API_KEY", "\"${gradleLocalProperties(rootDir, providers).getProperty("APPS_PLUS_API_KEY")}\"")
     }
 
     val signingConfigName = "signingConfig"
@@ -127,6 +131,7 @@ dependencies {
     implementation(project(":lib-xml"))
     implementation(project(":theme-innovation-cup"))
     implementation(project(":module-about"))
+    implementation(project(":module-more-apps"))
 
     implementation(Dependencies.accompanistSystemUiController)
     implementation(Dependencies.activityCompose)

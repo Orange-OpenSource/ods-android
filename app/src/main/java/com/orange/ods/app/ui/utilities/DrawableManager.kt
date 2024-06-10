@@ -66,6 +66,8 @@ object DrawableManager {
         R.drawable.il_tabs_small_generic to R.drawable.il_tabs_small,
         R.drawable.il_text_fields_generic to R.drawable.il_text_fields,
         R.drawable.il_text_fields_small_generic to R.drawable.il_text_fields_small,
+        // Modules
+        R.drawable.il_more_apps_generic to R.drawable.il_more_apps,
     )
 
     private val genericResIdByOrangeResId = orangeResIdByGenericResId.entries.associate { it.value to it.key }

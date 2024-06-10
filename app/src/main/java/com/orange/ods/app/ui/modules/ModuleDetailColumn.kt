@@ -33,6 +33,7 @@ import com.orange.ods.compose.component.button.OdsButton
 fun ModuleDetailColumn(
     module: Module,
     onViewDemoButtonClick: () -> Unit,
+    showCustomizeSubtitle: Boolean = true,
     content: @Composable ColumnScope.() -> Unit
 ) {
     Column(
@@ -48,7 +49,9 @@ fun ModuleDetailColumn(
         )
 
         Column {
-            Subtitle(textRes = com.orange.ods.app.R.string.module_customize, horizontalPadding = true)
+            if (showCustomizeSubtitle) {
+                Subtitle(textRes = com.orange.ods.app.R.string.module_customize, horizontalPadding = true)
+            }
             content()
             OdsButton(
                 modifier = Modifier

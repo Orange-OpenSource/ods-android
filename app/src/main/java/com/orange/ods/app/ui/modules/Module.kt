@@ -41,4 +41,11 @@ sealed class Module(
         R.string.module_emptyState_description,
         route = ModulesNavigation.EmptyStateCustomizationRoute
     )
+
+    data object MoreApps : Module(
+        com.orange.ods.module.moreapps.R.string.odsMoreApps_title,
+        R.drawable.il_more_apps,
+        R.string.module_moreApps_description,
+        route = ModulesNavigation.MoreAppsCustomizationRoute
+    )
 }
