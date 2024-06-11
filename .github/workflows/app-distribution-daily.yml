@@ -29,6 +29,14 @@ jobs:
           key-alias: ${{ secrets.SIGNING_KEY_ALIAS }}
           key-password: ${{ secrets.SIGNING_KEY_PASSWORD }}
 
+      - name: Set up AppsPlus configuration
+        env:
+          APPS_PLUS_URL: ${{ secrets.APPS_PLUS_URL }}
+          APPS_PLUS_API_KEY: ${{ secrets.APPS_PLUS_API_KEY }}
+        run: |
+          echo APPS_PLUS_URL="$APPS_PLUS_URL" > $GITHUB_WORKSPACE/local.properties
+          echo APPS_PLUS_API_KEY="$APPS_PLUS_API_KEY" >> $GITHUB_WORKSPACE/local.properties        
+          
       - name: Upload APK to Firebase App Distribution
         uses: ./.github/actions/app-distribution
         with:
