@@ -22,6 +22,7 @@ import com.orange.ods.app.ui.modules.ModulesNavigation
 import com.orange.ods.app.ui.utilities.UiString
 import com.orange.ods.compose.component.appbar.top.OdsTopAppBar
 import com.orange.ods.compose.extension.orElse
+import com.orange.ods.module.about.ui.navigation.OdsAboutDestinations
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -101,7 +102,7 @@ sealed class Screen(
     )
 
     data object About : Screen(
-        route = BottomBarItem.About.route,
+        route = OdsAboutDestinations.HomeRoute,
         title = UiString.StringResource(R.string.navigation_item_about)
     )
 

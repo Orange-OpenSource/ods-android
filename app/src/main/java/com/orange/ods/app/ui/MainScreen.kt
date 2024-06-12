@@ -187,7 +187,7 @@ fun MainScreen(themeConfigurations: List<OdsThemeConfigurationContract>, mainVie
                         navigateToElement = mainState.navigationState::navigateToElement,
                         navigateToAboutDemo = {
                             aboutConfiguration = aboutDemoConfiguration
-                            mainState.navigationState.navController.navigate(OdsAboutDestinations.HomeRoute)
+                            mainState.navigationState.navController.navigate(OdsAboutDestinations.AboutRoute)
                         },
                         aboutConfiguration = {
                             aboutConfiguration
