@@ -21,7 +21,6 @@ private const val ContentUnselectedAlpha = 0.74f
 
 class OdsComponentsColors(
     override val systemBarsBackground: Color,
-    override val bottomNavigation: OdsBottomNavigationColors,
     override val floatingActionButton: OdsFloatingActionButtonColors,
     override val switch: OdsSwitchColors,
     override val tab: OdsTabColors,
@@ -30,7 +29,6 @@ class OdsComponentsColors(
 
     class Builder internal constructor(val systemBarsBackground: Color) {
 
-        var bottomNavigation: OdsBottomNavigationColors? = null
         var floatingActionButton: OdsFloatingActionButtonColors? = null
         var switch: OdsSwitchColors? = null
         var tab: OdsTabColors? = null
@@ -38,7 +36,6 @@ class OdsComponentsColors(
 
         internal fun build(colorScheme: ColorScheme) = OdsComponentsColors(
             systemBarsBackground,
-            bottomNavigation ?: colorScheme.DefaultOdsBottomNavigationColors,
             floatingActionButton ?: colorScheme.DefaultOdsFloatingActionButtonColors,
             switch ?: colorScheme.DefaultOdsSwitchColors,
             tab ?: colorScheme.DefaultOdsTabColors,
@@ -48,7 +45,6 @@ class OdsComponentsColors(
 
     override val tokens = object : OdsComponentColorsCatalog<OdsToken<Color>> {
         override val systemBarsBackground = OdsToken(OdsToken.Colors.Component.SystemBarsBackground, this@OdsComponentsColors.systemBarsBackground)
-        override val bottomNavigation = this@OdsComponentsColors.bottomNavigation.tokens
         override val floatingActionButton = this@OdsComponentsColors.floatingActionButton.tokens
         override val switch = this@OdsComponentsColors.switch.tokens
         override val tab = this@OdsComponentsColors.tab.tokens
@@ -59,7 +55,6 @@ class OdsComponentsColors(
 interface OdsComponentColorsCatalog<T> : OdsThemeConfigurationItem.Catalog<T> {
 
     val systemBarsBackground: T
-    val bottomNavigation: OdsBottomNavigationColorsCatalog<T>
     val floatingActionButton: OdsFloatingActionButtonColorsCatalog<T>
     val switch: OdsSwitchColorsCatalog<T>
     val tab: OdsTabColorsCatalog<T>
@@ -70,46 +65,6 @@ interface OdsComponentColorsCatalog<T> : OdsThemeConfigurationItem.Catalog<T> {
 fun OdsComponentsColors(systemBarsBackground: Color, init: OdsComponentsColors.Builder.() -> Unit = {}): OdsComponentsColors.Builder {
     return OdsComponentsColors.Builder(systemBarsBackground).apply(init)
 }
-
-/**
- * Customizable colors for `OdsBottomNavigation` component
- *
- * Use [ColorScheme.DefaultOdsBottomNavigationColors] to get the default component's colors based on Material Colors defined in theme
- */
-data class OdsBottomNavigationColors(
-    override val barBackground: Color,
-    override val barContent: Color,
-    override val itemSelectedIndicator: Color,
-    override val itemSelected: Color,
-    override val itemUnselected: Color = itemSelected.copy(alpha = ContentUnselectedAlpha)
-) : OdsBottomNavigationColorsCatalog<Color>, OdsThemeConfigurationItem.TokenProvider<OdsBottomNavigationColorsCatalog<OdsToken<Color>>> {
-
-    override val tokens = object : OdsBottomNavigationColorsCatalog<OdsToken<Color>> {
-        override val barBackground = OdsToken(OdsToken.Colors.Component.BottomNavigation.BarBackground, this@OdsBottomNavigationColors.barBackground)
-        override val barContent = OdsToken(OdsToken.Colors.Component.BottomNavigation.BarContent, this@OdsBottomNavigationColors.barContent)
-        override val itemSelectedIndicator =
-            OdsToken(OdsToken.Colors.Component.BottomNavigation.ItemSelectedIndicator, this@OdsBottomNavigationColors.itemSelectedIndicator)
-        override val itemSelected = OdsToken(OdsToken.Colors.Component.BottomNavigation.ItemSelected, this@OdsBottomNavigationColors.itemSelected)
-        override val itemUnselected = OdsToken(OdsToken.Colors.Component.BottomNavigation.ItemUnselected, this@OdsBottomNavigationColors.itemUnselected)
-    }
-}
-
-interface OdsBottomNavigationColorsCatalog<T> : OdsThemeConfigurationItem.Catalog<T> {
-    val barBackground: T
-    val barContent: T
-    val itemSelectedIndicator: T
-    val itemSelected: T
-    val itemUnselected: T
-}
-
-//TODO Verify and change default colors if necessary
-internal val ColorScheme.DefaultOdsBottomNavigationColors
-    get() = OdsBottomNavigationColors(
-        barBackground = primaryContainer,
-        barContent = onPrimaryContainer,
-        itemSelectedIndicator = secondaryContainer,
-        itemSelected = onSurface
-    )
 
 /**
  * Customizable colors for `OdsFloatingActionButton` component

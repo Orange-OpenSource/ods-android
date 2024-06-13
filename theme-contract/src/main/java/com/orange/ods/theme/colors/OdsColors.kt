@@ -13,12 +13,14 @@
 package com.orange.ods.theme.colors
 
 import androidx.compose.material3.ColorScheme
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import com.orange.ods.theme.OdsThemeConfigurationItem
 import com.orange.ods.theme.OdsToken
+import com.orange.ods.theme.tokens.OdsSemanticColorsTokens
 
 /**
  * ODS color system.
@@ -87,7 +89,6 @@ class OdsColors(
 }
 
 interface OdsColorsCatalog<T> : OdsThemeConfigurationItem.Catalog<T> {
-
     val primary: T
     val primaryVariant: T
     val secondary: T
@@ -104,4 +105,47 @@ interface OdsColorsCatalog<T> : OdsThemeConfigurationItem.Catalog<T> {
     val onError: T
     val functional: OdsFunctionalColorsCatalog<T>
     val components: OdsComponentColorsCatalog<T>
+}
+
+@Stable
+fun OdsColors.fromToken(value: OdsSemanticColorsTokens): Color {
+    return when (value) {
+        OdsSemanticColorsTokens.Background -> background
+        OdsSemanticColorsTokens.Error -> error
+        OdsSemanticColorsTokens.ErrorContainer -> colorScheme.errorContainer
+        OdsSemanticColorsTokens.InverseOnSurface -> colorScheme.inverseOnSurface
+        OdsSemanticColorsTokens.InversePrimary -> colorScheme.inversePrimary
+        OdsSemanticColorsTokens.InverseSurface -> colorScheme.inverseSurface
+        OdsSemanticColorsTokens.OnBackground -> onBackground
+        OdsSemanticColorsTokens.OnError -> onError
+        OdsSemanticColorsTokens.OnErrorContainer -> colorScheme.onErrorContainer
+        OdsSemanticColorsTokens.OnPrimary -> onPrimary
+        OdsSemanticColorsTokens.OnPrimaryContainer -> colorScheme.onPrimaryContainer
+        OdsSemanticColorsTokens.OnSecondary -> onSecondary
+        OdsSemanticColorsTokens.OnSecondaryContainer -> colorScheme.onSecondaryContainer
+        OdsSemanticColorsTokens.OnSurface -> onSurface
+        OdsSemanticColorsTokens.OnSurfaceVariant -> onSurfaceVariant
+        OdsSemanticColorsTokens.SurfaceTint -> colorScheme.surfaceTint
+        OdsSemanticColorsTokens.OnTertiary -> colorScheme.onTertiary
+        OdsSemanticColorsTokens.OnTertiaryContainer -> colorScheme.onTertiaryContainer
+        OdsSemanticColorsTokens.Outline -> colorScheme.outline
+        OdsSemanticColorsTokens.OutlineVariant -> colorScheme.outlineVariant
+        OdsSemanticColorsTokens.Primary -> primary
+        OdsSemanticColorsTokens.PrimaryContainer -> colorScheme.primaryContainer
+        OdsSemanticColorsTokens.Scrim -> colorScheme.scrim
+        OdsSemanticColorsTokens.Secondary -> secondary
+        OdsSemanticColorsTokens.SecondaryContainer -> colorScheme.secondaryContainer
+        OdsSemanticColorsTokens.Surface -> surface
+        OdsSemanticColorsTokens.SurfaceVariant -> surfaceVariant
+        OdsSemanticColorsTokens.SurfaceBright -> colorScheme.surfaceBright
+        OdsSemanticColorsTokens.SurfaceContainer -> colorScheme.surfaceContainer
+        OdsSemanticColorsTokens.SurfaceContainerHigh -> colorScheme.surfaceContainerHigh
+        OdsSemanticColorsTokens.SurfaceContainerHighest -> colorScheme.surfaceContainerHighest
+        OdsSemanticColorsTokens.SurfaceContainerLow -> colorScheme.surfaceContainerLow
+        OdsSemanticColorsTokens.SurfaceContainerLowest -> colorScheme.surfaceContainerLowest
+        OdsSemanticColorsTokens.SurfaceDim -> colorScheme.surfaceDim
+        OdsSemanticColorsTokens.Tertiary -> colorScheme.tertiary
+        OdsSemanticColorsTokens.TertiaryContainer -> colorScheme.tertiaryContainer
+        else -> Color.Unspecified
+    }
 }

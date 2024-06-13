@@ -13,12 +13,14 @@
 package com.orange.ods.theme.typography
 
 import androidx.compose.material3.Typography
+import androidx.compose.runtime.Stable
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.orange.ods.theme.OdsThemeConfigurationItem
 import com.orange.ods.theme.OdsToken
+import com.orange.ods.theme.tokens.OdsTypographyTokens
 
 /**
  * ODS typography system.
@@ -173,4 +175,20 @@ interface OdsTypographyCatalog<T> : OdsThemeConfigurationItem.Catalog<T> {
     val bodySmall: T
     val labelLarge: T
     val labelSmall: T
+}
+
+@Stable
+internal fun OdsTypography.fromToken(value: OdsTypographyTokens): OdsTextStyle {
+    return when (value) {
+        OdsTypographyTokens.BodyLarge -> bodyLarge
+        OdsTypographyTokens.BodyMedium -> bodyMedium
+        OdsTypographyTokens.BodySmall -> bodySmall
+        OdsTypographyTokens.HeadlineLarge -> headlineLarge
+        OdsTypographyTokens.HeadlineSmall -> headlineSmall
+        OdsTypographyTokens.LabelLarge -> labelLarge
+        OdsTypographyTokens.LabelSmall -> labelSmall
+        OdsTypographyTokens.TitleLarge -> titleLarge
+        OdsTypographyTokens.TitleMedium -> titleMedium
+        OdsTypographyTokens.TitleSmall -> titleSmall
+    }
 }

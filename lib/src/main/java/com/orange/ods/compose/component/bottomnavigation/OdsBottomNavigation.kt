@@ -39,6 +39,7 @@ import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.colors.fromToken
 
 private const val MaxBottomNavigationItemCount = 5
 
@@ -65,8 +66,7 @@ fun OdsBottomNavigation(
     NavigationBar(
         modifier = modifier.focusProperties { canFocus = false },
         // Need to define backgroundColor cause in Compose default backgroundColor is primarySurface
-        containerColor = OdsTheme.colors.components.bottomNavigation.barBackground,
-        contentColor = OdsTheme.colors.components.bottomNavigation.barContent,
+        containerColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.navigationBar.containerColor),
         tonalElevation = 0.dp, //TODO See with Design: should be a token.
         content = {
             Column {
@@ -119,8 +119,6 @@ object OdsBottomNavigation {
 
         @Composable
         override fun RowScope.Content(modifier: Modifier) {
-            val selectedItemContentColor = OdsTheme.colors.components.bottomNavigation.itemSelected
-            val unselectedItemContentColor = OdsTheme.colors.components.bottomNavigation.itemUnselected
             this@Content.NavigationBarItem(
                 selected = selected,
                 onClick = onClick,
@@ -138,11 +136,11 @@ object OdsBottomNavigation {
                 },
                 alwaysShowLabel = alwaysShowLabel,
                 colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = selectedItemContentColor,
-                    selectedTextColor = selectedItemContentColor,
-                    unselectedIconColor = unselectedItemContentColor,
-                    unselectedTextColor = unselectedItemContentColor,
-                    indicatorColor = OdsTheme.colors.components.bottomNavigation.itemSelectedIndicator
+                    selectedIconColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.navigationBar.activeIconColor),
+                    selectedTextColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.navigationBar.activeLabelTextColor),
+                    unselectedIconColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.navigationBar.inactiveIconColor),
+                    unselectedTextColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.navigationBar.inactiveLabelTextColor),
+                    indicatorColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.navigationBar.activeIndicatorColor)
                 ),
             )
         }

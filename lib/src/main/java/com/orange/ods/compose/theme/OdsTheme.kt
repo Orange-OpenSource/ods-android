@@ -28,6 +28,7 @@ import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.theme.colors.OdsColorPalette
 import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.spacing.OdsSpacings
+import com.orange.ods.theme.tokens.OdsComponentsTokens
 import com.orange.ods.theme.typography.OdsTypography
 
 private fun odsThemeError(message: Any): Nothing = error("OdsTheme not found. $message")
@@ -41,6 +42,7 @@ private val LocalShapes = staticCompositionLocalOf { Shapes() }
 private val LocalTypography = staticCompositionLocalOf { OdsTypography() }
 private val LocalSpacings = staticCompositionLocalOf { OdsSpacings() }
 private val LocalComponentsConfiguration = staticCompositionLocalOf { OdsComponentsConfiguration() }
+private val LocalComponentsTokens = staticCompositionLocalOf { OdsComponentsTokens() }
 
 private val LocalDarkThemeEnabled = staticCompositionLocalOf<Boolean> { odsThemeError("LocalDarkThemeEnabled CompositionLocal not present.") }
 
@@ -85,6 +87,11 @@ object OdsTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalComponentsConfiguration.current
+
+    val componentsTokens: OdsComponentsTokens
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalComponentsTokens.current
 }
 
 /**
@@ -112,7 +119,8 @@ fun OdsTheme(
         LocalTypography provides themeConfiguration.typography,
         LocalSpacings provides themeConfiguration.spacings,
         LocalShapes provides themeConfiguration.shapes,
-        LocalComponentsConfiguration provides themeConfiguration.componentsConfiguration
+        LocalComponentsConfiguration provides themeConfiguration.componentsConfiguration,
+        LocalComponentsTokens provides themeConfiguration.componentsTokens,
     ) {
         MaterialTheme(
             colorScheme = colors.colorScheme,

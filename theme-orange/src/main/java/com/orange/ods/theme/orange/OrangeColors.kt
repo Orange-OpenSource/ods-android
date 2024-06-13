@@ -14,7 +14,6 @@ package com.orange.ods.theme.orange
 
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
-import com.orange.ods.theme.colors.OdsBottomNavigationColors
 import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.colors.OdsComponentsColors
 import com.orange.ods.theme.colors.OdsFloatingActionButtonColors
@@ -71,14 +70,6 @@ internal val OrangeLightColors = with(OrangeColorPalette) {
         components = OdsComponentsColors(
             systemBarsBackground = core.white100
         ) {
-            bottomNavigation = OdsBottomNavigationColors(
-                barBackground = core.white100,
-                barContent = core.black900,
-                itemSelectedIndicator = core.tmpGreyEEEEEE,
-                itemSelected = core.orange200,
-                itemUnselected = core.black900
-            )
-
             floatingActionButton = OdsFloatingActionButtonColors(
                 background = core.orange200,
                 content = core.black900
@@ -150,14 +141,6 @@ internal val OrangeDarkColors = with(OrangeColorPalette) {
         components = OdsComponentsColors(
             systemBarsBackground = core.black900
         ) {
-            bottomNavigation = OdsBottomNavigationColors(
-                barBackground = core.black900,
-                barContent = core.white100,
-                itemSelectedIndicator = core.tmpGrey333333,
-                itemSelected = core.orange200,
-                itemUnselected = core.white100
-            )
-
             floatingActionButton = OdsFloatingActionButtonColors(
                 background = core.orange100,
                 content = core.black900
