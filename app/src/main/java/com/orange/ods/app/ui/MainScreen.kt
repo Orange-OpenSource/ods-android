@@ -46,6 +46,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalCategories
 import com.orange.ods.app.domain.recipes.LocalRecipes
@@ -158,6 +159,7 @@ fun MainScreen(themeConfigurations: List<OdsThemeConfigurationContract>, mainVie
                     }
                 },
                 bottomBar = {
+                    val navBackStackEntry by mainState.navigationState.navController.currentBackStackEntryAsState()
                     AnimatedVisibility(
                         visible = mainState.shouldShowBottomBar,
                         enter = fadeIn(tween(100)),
@@ -165,7 +167,7 @@ fun MainScreen(themeConfigurations: List<OdsThemeConfigurationContract>, mainVie
                     ) {
                         BottomBar(
                             items = BottomBarItem.entries.toTypedArray(),
-                            currentRoute = mainState.navigationState.currentRoute.orEmpty(),
+                            currentDestination = navBackStackEntry?.destination,
                             navigateToRoute = { route ->
                                 if (route == BottomBarItem.About.route) {
                                     aboutConfiguration = appAboutConfiguration
