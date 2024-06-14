@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \[Lib\] `ODSComponentsColors` constructor is deprecated, replaced by the new one with `statusBar` parameter ([#876](https://github.com/Orange-OpenSource/ods-android/issues/876))
 - \[Lib\] `ODSComponentsColors` function is deprecated, replaced by the new one with only `init` parameter ([#876](https://github.com/Orange-OpenSource/ods-android/issues/876))
-- \[About\] `navigateToOdsAbout` is deprecated, replaced by the `navigate` method with `OdsAboutDestinations.AboutRoute` parameter ([#946](https://github.com/Orange-OpenSource/ods-android/issues/946))
+- \[About\] `navigateToOdsAbout` is deprecated, replaced by the `navigate` method with `OdsAboutDestinations.AboutNavRoute` parameter ([#946](https://github.com/Orange-OpenSource/ods-android/issues/946))
 
 ### Fixed
 
