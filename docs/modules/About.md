@@ -13,7 +13,7 @@ Share and feedback functionalities are optional but can be added and configured.
 <br>**On this page**
 
 * Table of contents
-{:toc}
+  {:toc}
 
 ---
 
@@ -66,11 +66,11 @@ Follow these steps in order to integrate an ODS About into your app:
         //...
     }
     ```
-   
-3. Use the `NavController.navigateToOdsAbout()` extension method when you need to display the previously configured ODS About.
+
+3. Use the `NavController.navigate()` method with `OdsAboutDestinations.AboutNavRoute` parameter when you need to display the previously configured ODS About.
 
     ```kotlin
-    navController.navigateToOdsAbout()
+    navController.navigate(OdsAboutDestinations.AboutNavRoute)
     ```
 
 ## Configuration

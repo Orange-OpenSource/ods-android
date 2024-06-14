@@ -37,9 +37,9 @@ import com.orange.ods.module.about.ui.configuration.OdsAboutUrlMenuItem
 import com.orange.ods.module.about.ui.utilities.extension.launchUrl
 
 
-private object OdsAboutDestinations {
+object OdsAboutDestinations {
+    const val AboutNavRoute = "ods/module/about/"
     const val HomeRoute = "ods/module/about/home"
-    const val AboutRoute = "ods/module/about/"
     const val FileItemRoute = "ods/module/about/fileItem"
     const val AppNewsRoute = "ods/module/about/appNews"
     const val AccessibilityStatementRoute = "ods/module/about/accessibilityStatement"
@@ -49,15 +49,19 @@ private const val AboutItemIdKey = "aboutItemId"
 private const val AppNewsFileResId = "appNewsFileResId"
 private const val AccessibilityStatementItemIdKey = "accessibilityStatementItemIdKey"
 
+@Deprecated(
+    "Please use navigate method with OdsAboutDestinations.AboutNavRoute instead.",
+    ReplaceWith("navigate(OdsAboutDestinations.AboutNavRoute, navOptions)")
+)
 fun NavController.navigateToOdsAbout(navOptions: NavOptions? = null) {
-    navigate(OdsAboutDestinations.AboutRoute, navOptions)
+    navigate(OdsAboutDestinations.AboutNavRoute, navOptions)
 }
 
 /**
  * Add this graph to your app in order to integrate the ODS About module.
  */
 fun NavGraphBuilder.odsAboutGraph(navController: NavController, configuration: () -> OdsAboutConfiguration) {
-    navigation(startDestination = OdsAboutDestinations.HomeRoute, route = OdsAboutDestinations.AboutRoute) {
+    navigation(startDestination = OdsAboutDestinations.HomeRoute, route = OdsAboutDestinations.AboutNavRoute) {
         composable(route = OdsAboutDestinations.HomeRoute) { navBackStackEntry ->
             val aboutViewModel = viewModel<OdsAboutViewModel>(navBackStackEntry)
             with(configuration()) {

@@ -46,6 +46,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.orange.ods.app.R
 import com.orange.ods.app.domain.recipes.LocalCategories
 import com.orange.ods.app.domain.recipes.LocalRecipes
@@ -62,7 +63,7 @@ import com.orange.ods.compose.component.tab.OdsTabRow
 import com.orange.ods.compose.extension.orElse
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.module.about.ui.navigation.navigateToOdsAbout
+import com.orange.ods.module.about.ui.navigation.OdsAboutDestinations
 import com.orange.ods.module.moreapps.ui.navigation.OdsMoreAppsDestinations
 import com.orange.ods.theme.OdsThemeConfigurationContract
 import com.orange.ods.theme.annotation.ExperimentalOdsApi
@@ -158,6 +159,7 @@ fun MainScreen(themeConfigurations: List<OdsThemeConfigurationContract>, mainVie
                     }
                 },
                 bottomBar = {
+                    val navBackStackEntry by mainState.navigationState.navController.currentBackStackEntryAsState()
                     AnimatedVisibility(
                         visible = mainState.shouldShowBottomBar,
                         enter = fadeIn(tween(100)),
@@ -165,7 +167,7 @@ fun MainScreen(themeConfigurations: List<OdsThemeConfigurationContract>, mainVie
                     ) {
                         BottomBar(
                             items = BottomBarItem.entries.toTypedArray(),
-                            currentRoute = mainState.navigationState.currentRoute.orEmpty(),
+                            currentDestination = navBackStackEntry?.destination,
                             navigateToRoute = { route ->
                                 if (route == BottomBarItem.About.route) {
                                     aboutConfiguration = appAboutConfiguration
@@ -187,7 +189,7 @@ fun MainScreen(themeConfigurations: List<OdsThemeConfigurationContract>, mainVie
                         navigateToElement = mainState.navigationState::navigateToElement,
                         navigateToAboutDemo = {
                             aboutConfiguration = aboutDemoConfiguration
-                            mainState.navigationState.navController.navigateToOdsAbout()
+                            mainState.navigationState.navController.navigate(OdsAboutDestinations.AboutNavRoute)
                         },
                         aboutConfiguration = {
                             aboutConfiguration

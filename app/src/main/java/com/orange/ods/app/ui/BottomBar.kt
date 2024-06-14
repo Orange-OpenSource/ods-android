@@ -18,6 +18,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
+import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.orange.ods.app.R
@@ -27,16 +29,17 @@ import com.orange.ods.app.ui.guidelines.GuidelinesScreen
 import com.orange.ods.app.ui.modules.ModulesScreen
 import com.orange.ods.compose.component.bottomnavigation.OdsBottomNavigation
 import com.orange.ods.module.about.ui.configuration.OdsAboutConfiguration
+import com.orange.ods.module.about.ui.navigation.OdsAboutDestinations
 import com.orange.ods.module.about.ui.navigation.odsAboutGraph
 
 @Composable
-fun BottomBar(items: Array<BottomBarItem>, currentRoute: String, navigateToRoute: (String) -> Unit) {
+fun BottomBar(items: Array<BottomBarItem>, currentDestination: NavDestination?, navigateToRoute: (String) -> Unit) {
     OdsBottomNavigation(
         items = items.map { item ->
             OdsBottomNavigation.Item(
                 icon = OdsBottomNavigation.Item.Icon(painter = painterResource(id = item.iconRes), contentDescription = ""),
                 label = stringResource(id = item.titleRes),
-                selected = currentRoute == item.route,
+                selected = currentDestination?.hierarchy?.any { it.route == item.route } == true,
                 onClick = {
                     navigateToRoute(item.route)
                 }
@@ -67,5 +70,5 @@ enum class BottomBarItem(
     Guidelines(R.string.navigation_item_guidelines, R.drawable.ic_guideline_dna, "main/guidelines"),
     Components(R.string.navigation_item_components, R.drawable.ic_component_atom, "main/components"),
     Modules(R.string.navigation_item_modules, R.drawable.ic_module_molecule, "main/modules"),
-    About(R.string.navigation_item_about, R.drawable.ic_info, "ods/module/about/home");
+    About(R.string.navigation_item_about, R.drawable.ic_info, OdsAboutDestinations.AboutNavRoute);
 }
