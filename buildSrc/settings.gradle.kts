@@ -10,21 +10,10 @@
  * Software description: Android library of reusable graphical components
  */
 
-plugins {
-    id("library")
-    alias(libs.plugins.compose.compiler)
-}
-
-android {
-    namespace = "com.orange.ods.theme"
-
-    buildFeatures {
-        compose = true
+dependencyResolutionManagement {
+    versionCatalogs {
+        create("libs") {
+            from(files("../gradle/libs.versions.toml"))
+        }
     }
-}
-
-dependencies {
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.compose.material)
-    implementation(libs.material)
 }

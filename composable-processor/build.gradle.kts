@@ -10,11 +10,9 @@
  * Software description: Android library of reusable graphical components
  */
 
-import com.orange.ods.gradle.Dependencies
-
 plugins {
-    kotlin("jvm")
-    id("com.google.devtools.ksp") version "2.0.0-1.0.22"
+    id(libs.plugins.kotlin.jvm.get().pluginId) // https://github.com/gradle/gradle/issues/20084#issuecomment-1060822638
+    alias(libs.plugins.ksp)
 }
 
 sourceSets.main {
@@ -22,7 +20,7 @@ sourceSets.main {
 }
 
 dependencies {
-    implementation(Dependencies.ksp)
-    implementation(Dependencies.kotlinPoet)
-    implementation(Dependencies.kotlinPoetKsp)
+    implementation(libs.kotlinpoet)
+    implementation(libs.kotlinpoet.ksp)
+    implementation(libs.ksp)
 }

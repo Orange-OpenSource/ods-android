@@ -9,14 +9,13 @@
  *
  * Software description: Android library of reusable graphical components
  */
-import com.orange.ods.gradle.Dependencies
 
 plugins {
     id("library")
-    id("kotlin-parcelize")
-    id("dagger.hilt.android.plugin")
-    id("org.jetbrains.kotlin.plugin.compose")
-    id("kotlin-kapt") // This must be the last statement in the plugins {} to avoid "options not recognized" warning
+    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.hilt)
+    id(libs.plugins.kotlin.parcelize.get().pluginId) // https://github.com/gradle/gradle/issues/20084#issuecomment-1060822638
+    id(libs.plugins.kotlin.kapt.get().pluginId) // This must be the last statement in the plugins {} to avoid "options not recognized" warning
 }
 
 android {
@@ -40,12 +39,13 @@ android {
 dependencies {
     implementation(project(":accessibility-statement"))
     implementation(project(":lib"))
-    implementation(Dependencies.appCompat)
-    implementation(Dependencies.browser)
-    implementation(Dependencies.composeMaterial)
-    implementation(Dependencies.composeUiViewBinding)
-    implementation(Dependencies.hiltAndroid)
-    kapt(Dependencies.hiltCompiler)
-    implementation(Dependencies.navigationCompose)
-    implementation(Dependencies.timber)
+
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.browser)
+    implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.compose.ui.viewbinding)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    implementation(libs.timber)
 }

@@ -10,8 +10,6 @@
  * Software description: Android library of reusable graphical components
  */
 
-import com.orange.ods.gradle.Dependencies
-
 plugins {
     id("library")
 }
@@ -34,8 +32,8 @@ android {
 }
 
 dependencies {
-    api(Dependencies.constraintLayout)
-    implementation(Dependencies.coreKtx)
+    api(libs.androidx.constraintlayout)
+    implementation(libs.androidx.core.ktx)
 }
 
 mavenCentralPublish {

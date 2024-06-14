@@ -10,12 +10,10 @@
  * Software description: Android library of reusable graphical components
  */
 
-import com.orange.ods.gradle.Dependencies
-
 plugins {
     id("library")
-    id("kotlin-kapt")
-    id("org.jetbrains.kotlin.plugin.compose")
+    alias(libs.plugins.compose.compiler)
+    id(libs.plugins.kotlin.kapt.get().pluginId) // https://github.com/gradle/gradle/issues/20084#issuecomment-1060822638
 }
 
 android {
@@ -39,11 +37,11 @@ android {
 dependencies {
     implementation(project(":lib"))
 
-    implementation(Dependencies.accompanistDrawablePainter)
-    implementation(Dependencies.appCompat)
-    implementation(platform(Dependencies.composeBom))
-    implementation(Dependencies.composeMaterial)
-    implementation(Dependencies.composeUi)
+    implementation(libs.accompanist.drawablepainter)
+    implementation(libs.androidx.appcompat)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.compose.ui)
 }
 
 mavenCentralPublish {
