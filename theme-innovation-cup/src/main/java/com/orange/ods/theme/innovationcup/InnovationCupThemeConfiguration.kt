@@ -27,7 +27,7 @@ class InnovationCupThemeConfiguration : OdsThemeConfigurationContract<Innovation
         get() = "Innovation Cup"
 
     override val colors: OdsThemeColors<InnovationCupPalette>
-        get() = OdsThemeColors(InnovationCupLightColors, InnovationCupDarkColors, InnovationCupPalette)
+        get() = OdsThemeColors(InnovationCupPalette, InnovationCupSemanticColors)
 
     override val shapes: Shapes
         get() = Shapes().copy(

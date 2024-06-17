@@ -16,6 +16,7 @@ import android.os.Parcelable
 import androidx.compose.material3.Shapes
 import com.orange.ods.theme.colors.OdsColorPalette
 import com.orange.ods.theme.colors.OdsColors
+import com.orange.ods.theme.colors.OdsSemanticColors
 import com.orange.ods.theme.spacing.OdsSpacings
 import com.orange.ods.theme.tokens.OdsComponentsTokens
 import com.orange.ods.theme.typography.OdsTypography
@@ -26,7 +27,6 @@ interface OdsThemeConfigurationContract<T> : Parcelable where T : OdsColorPalett
 
     /**
      * Customization of the colors
-     * Colors are different in light and dark
      */
     val colors: OdsThemeColors<T>
 
@@ -63,5 +63,5 @@ interface OdsThemeConfigurationContract<T> : Parcelable where T : OdsColorPalett
         get() = OdsComponentsTokens()
 }
 
-data class OdsThemeColors<T>(val lightColors: OdsColors, val darkColors: OdsColors, val palette: T) where T : OdsColorPalette
+data class OdsThemeColors<T>(val palette: T, val semanticColors: OdsSemanticColors) where T : OdsColorPalette
 

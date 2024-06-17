@@ -107,14 +107,14 @@ fun OdsTheme(
     darkThemeEnabled: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colors = if (darkThemeEnabled) themeConfiguration.colors.darkColors else themeConfiguration.colors.lightColors
+    val colors = if (darkThemeEnabled) themeConfiguration.colors.semanticColors.dark else themeConfiguration.colors.semanticColors.light
 
     CompositionLocalProvider(
         LocalDarkThemeEnabled provides darkThemeEnabled,
         LocalRippleTheme provides OdsRippleTheme,
         LocalColors provides colors,
-        LocalLightThemeColors provides themeConfiguration.colors.lightColors,
-        LocalDarkThemeColors provides themeConfiguration.colors.darkColors,
+        LocalLightThemeColors provides themeConfiguration.colors.semanticColors.light,
+        LocalDarkThemeColors provides themeConfiguration.colors.semanticColors.dark,
         LocalColorPalette provides themeConfiguration.colors.palette,
         LocalTypography provides themeConfiguration.typography,
         LocalSpacings provides themeConfiguration.spacings,
