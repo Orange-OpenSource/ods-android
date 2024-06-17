@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.orange.ods.theme.OdsComponentsConfiguration
 import com.orange.ods.theme.OdsThemeColors
 import com.orange.ods.theme.OdsThemeConfigurationContract
+import com.orange.ods.theme.tokens.OdsComponentsTokens
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -44,4 +45,6 @@ class InnovationCupThemeConfiguration : OdsThemeConfigurationContract<Innovation
                 get() = ComponentStyle.Filled
         }
 
+    override val componentsTokens: OdsComponentsTokens
+        get() = InnovationCupComponentsTokens
 }

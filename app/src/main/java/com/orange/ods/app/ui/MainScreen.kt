@@ -65,6 +65,7 @@ import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
 import com.orange.ods.module.about.ui.navigation.navigateToOdsAbout
 import com.orange.ods.theme.OdsThemeConfigurationContract
+import com.orange.ods.theme.colors.fromToken
 import com.orange.ods.xml.theme.OdsXml
 import com.orange.ods.xml.utilities.extension.xml
 import kotlinx.coroutines.flow.launchIn
@@ -212,17 +213,20 @@ private fun getCurrentThemeConfiguration(
 
 @Composable
 private fun SystemBarsColorSideEffect(mainState: MainState) {
-    val systemBarsBackground = OdsTheme.colors.components.systemBarsBackground
-    val activity = LocalContext.current as? ComponentActivity
-    activity?.window?.let { window ->
+    val systemBarContainerColor = OdsTheme.componentsTokens.systemBar.containerColor?.let {
+        OdsTheme.colors.fromToken(it)
+    }
+    val systemBarAppearanceLight = OdsTheme.componentsTokens.systemBar.appearanceLight && !mainState.themeState.darkModeEnabled
+    (LocalContext.current as? ComponentActivity)?.window?.let { window ->
         val view = LocalView.current
         SideEffect {
-            window.statusBarColor = systemBarsBackground.toArgb()
-            window.navigationBarColor = systemBarsBackground.toArgb()
-            val isAppearanceLightBars = with(mainState.themeState) { if (currentThemeConfiguration.isOrange) !darkModeEnabled else false }
+            systemBarContainerColor?.let { color ->
+                window.statusBarColor = color.toArgb()
+                window.navigationBarColor = color.toArgb()
+            }
             with(WindowCompat.getInsetsController(window, view)) {
-                isAppearanceLightStatusBars = isAppearanceLightBars
-                isAppearanceLightNavigationBars = isAppearanceLightBars
+                isAppearanceLightStatusBars = systemBarAppearanceLight
+                isAppearanceLightNavigationBars = systemBarAppearanceLight
             }
         }
     }

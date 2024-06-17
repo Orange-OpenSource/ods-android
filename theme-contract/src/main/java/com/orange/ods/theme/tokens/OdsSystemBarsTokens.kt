@@ -12,7 +12,7 @@
 
 package com.orange.ods.theme.tokens
 
-class OdsComponentsTokens(
-    val navigationBar: OdsNavigationBarTokens = OdsNavigationBarTokens(),
-    val systemBar: OdsSystemBarsTokens = OdsSystemBarsTokens()
+open class OdsSystemBarsTokens(
+    val containerColor: OdsSemanticColorsTokens? = null, // If null, system bars will have default Material color
+    val appearanceLight: Boolean = false, // Light appearance will only be applied in light mode
 )

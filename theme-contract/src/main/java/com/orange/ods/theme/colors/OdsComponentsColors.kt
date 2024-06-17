@@ -20,14 +20,13 @@ import com.orange.ods.theme.OdsToken
 private const val ContentUnselectedAlpha = 0.74f
 
 class OdsComponentsColors(
-    override val systemBarsBackground: Color,
     override val floatingActionButton: OdsFloatingActionButtonColors,
     override val switch: OdsSwitchColors,
     override val tab: OdsTabColors,
     override val topAppBar: OdsTopAppBarColors
 ) : OdsComponentColorsCatalog<Color>, OdsThemeConfigurationItem.TokenProvider<OdsComponentColorsCatalog<OdsToken<Color>>> {
 
-    class Builder internal constructor(val systemBarsBackground: Color) {
+    class Builder internal constructor() {
 
         var floatingActionButton: OdsFloatingActionButtonColors? = null
         var switch: OdsSwitchColors? = null
@@ -35,7 +34,6 @@ class OdsComponentsColors(
         var topAppBar: OdsTopAppBarColors? = null
 
         internal fun build(colorScheme: ColorScheme) = OdsComponentsColors(
-            systemBarsBackground,
             floatingActionButton ?: colorScheme.DefaultOdsFloatingActionButtonColors,
             switch ?: colorScheme.DefaultOdsSwitchColors,
             tab ?: colorScheme.DefaultOdsTabColors,
@@ -44,7 +42,6 @@ class OdsComponentsColors(
     }
 
     override val tokens = object : OdsComponentColorsCatalog<OdsToken<Color>> {
-        override val systemBarsBackground = OdsToken(OdsToken.Colors.Component.SystemBarsBackground, this@OdsComponentsColors.systemBarsBackground)
         override val floatingActionButton = this@OdsComponentsColors.floatingActionButton.tokens
         override val switch = this@OdsComponentsColors.switch.tokens
         override val tab = this@OdsComponentsColors.tab.tokens
@@ -53,8 +50,6 @@ class OdsComponentsColors(
 }
 
 interface OdsComponentColorsCatalog<T> : OdsThemeConfigurationItem.Catalog<T> {
-
-    val systemBarsBackground: T
     val floatingActionButton: OdsFloatingActionButtonColorsCatalog<T>
     val switch: OdsSwitchColorsCatalog<T>
     val tab: OdsTabColorsCatalog<T>
@@ -62,8 +57,8 @@ interface OdsComponentColorsCatalog<T> : OdsThemeConfigurationItem.Catalog<T> {
 }
 
 @Suppress("FunctionName")
-fun OdsComponentsColors(systemBarsBackground: Color, init: OdsComponentsColors.Builder.() -> Unit = {}): OdsComponentsColors.Builder {
-    return OdsComponentsColors.Builder(systemBarsBackground).apply(init)
+fun OdsComponentsColors(init: OdsComponentsColors.Builder.() -> Unit = {}): OdsComponentsColors.Builder {
+    return OdsComponentsColors.Builder().apply(init)
 }
 
 /**

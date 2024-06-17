@@ -64,9 +64,7 @@ internal val InnovationCupLightColors = with(InnovationCupPalette) {
             alert = core.yellow
         ),
 
-        components = OdsComponentsColors(
-            systemBarsBackground = core.primary40
-        )
+        components = OdsComponentsColors()
     )
 }
 
@@ -116,8 +114,6 @@ internal val InnovationCupDarkColors = with(InnovationCupPalette) {
             alert = core.yellow
         ),
 
-        components = OdsComponentsColors(
-            systemBarsBackground = core.black
-        )
+        components = OdsComponentsColors()
     )
 }

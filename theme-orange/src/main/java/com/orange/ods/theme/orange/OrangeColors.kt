@@ -67,9 +67,7 @@ internal val OrangeLightColors = with(OrangeColorPalette) {
             alert = functional.alert200
         ),
 
-        components = OdsComponentsColors(
-            systemBarsBackground = core.white100
-        ) {
+        components = OdsComponentsColors {
             floatingActionButton = OdsFloatingActionButtonColors(
                 background = core.orange200,
                 content = core.black900
@@ -138,9 +136,7 @@ internal val OrangeDarkColors = with(OrangeColorPalette) {
             alert = functional.alert100
         ),
 
-        components = OdsComponentsColors(
-            systemBarsBackground = core.black900
-        ) {
+        components = OdsComponentsColors {
             floatingActionButton = OdsFloatingActionButtonColors(
                 background = core.orange100,
                 content = core.black900

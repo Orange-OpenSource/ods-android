@@ -10,9 +10,14 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ods.theme.tokens
+package com.orange.ods.theme.innovationcup
 
-class OdsComponentsTokens(
-    val navigationBar: OdsNavigationBarTokens = OdsNavigationBarTokens(),
-    val systemBar: OdsSystemBarsTokens = OdsSystemBarsTokens()
+import com.orange.ods.theme.tokens.OdsComponentsTokens
+import com.orange.ods.theme.tokens.OdsSemanticColorsTokens
+import com.orange.ods.theme.tokens.OdsSystemBarsTokens
+
+internal val InnovationCupComponentsTokens = OdsComponentsTokens(
+    systemBar = OdsSystemBarsTokens(
+        containerColor = OdsSemanticColorsTokens.Primary,
+    )
 )
