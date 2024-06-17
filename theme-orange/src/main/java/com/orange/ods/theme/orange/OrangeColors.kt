@@ -18,7 +18,6 @@ import com.orange.ods.theme.colors.OdsColors
 import com.orange.ods.theme.colors.OdsComponentsColors
 import com.orange.ods.theme.colors.OdsFloatingActionButtonColors
 import com.orange.ods.theme.colors.OdsFunctionalColors
-import com.orange.ods.theme.colors.OdsSwitchColors
 import com.orange.ods.theme.colors.OdsTabColors
 
 internal val OrangeLightColors = with(OrangeColorPalette) {
@@ -70,10 +69,6 @@ internal val OrangeLightColors = with(OrangeColorPalette) {
             floatingActionButton = OdsFloatingActionButtonColors(
                 background = core.orange200,
                 content = core.black900
-            )
-
-            switch = OdsSwitchColors(
-                uncheckedThumb = core.white100
             )
 
             tab = OdsTabColors(
@@ -134,10 +129,6 @@ internal val OrangeDarkColors = with(OrangeColorPalette) {
             floatingActionButton = OdsFloatingActionButtonColors(
                 background = core.orange100,
                 content = core.black900
-            )
-
-            switch = OdsSwitchColors(
-                uncheckedThumb = grey.Grey400
             )
 
             tab = OdsTabColors(

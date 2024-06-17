@@ -12,9 +12,9 @@
 
 package com.orange.ods.compose.component.control
 
+import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
-import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
@@ -27,6 +27,7 @@ import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsPrimaryRippleTheme
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.colors.fromToken
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/14638a-selection-controls/b/352c00" class="external" target="_blank">ODS switch</a>.
@@ -53,7 +54,13 @@ fun OdsSwitch(
             onCheckedChange = onCheckedChange,
             modifier = modifier,
             enabled = enabled,
-            colors = SwitchDefaults.colors(uncheckedThumbColor = OdsTheme.colors.components.switch.uncheckedThumb)
+            colors = SwitchDefaults.colors(
+                checkedThumbColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.switch.selectedHandleColor),
+                checkedTrackColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.switch.selectedTrackColor),
+                uncheckedThumbColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.switch.unselectedHandleColor),
+                uncheckedTrackColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.switch.unselectedTrackColor),
+                uncheckedBorderColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.switch.unselectedTrackOutlineColor),
+            )
         )
     }
 }

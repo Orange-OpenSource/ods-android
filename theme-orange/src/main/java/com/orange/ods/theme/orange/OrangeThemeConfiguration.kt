@@ -17,7 +17,6 @@ import androidx.compose.material3.Shapes
 import androidx.compose.ui.unit.dp
 import com.orange.ods.theme.OdsThemeColors
 import com.orange.ods.theme.OdsThemeConfigurationContract
-import com.orange.ods.theme.colors.OdsSemanticColors
 import com.orange.ods.theme.tokens.OdsComponentsTokens
 import com.orange.ods.theme.typography.OdsTypography
 import kotlinx.parcelize.Parcelize

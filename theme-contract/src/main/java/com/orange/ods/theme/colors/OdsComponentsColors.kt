@@ -21,32 +21,27 @@ private const val ContentUnselectedAlpha = 0.74f
 
 class OdsComponentsColors(
     override val floatingActionButton: OdsFloatingActionButtonColors,
-    override val switch: OdsSwitchColors,
     override val tab: OdsTabColors,
 ) : OdsComponentColorsCatalog<Color>, OdsThemeConfigurationItem.TokenProvider<OdsComponentColorsCatalog<OdsToken<Color>>> {
 
     class Builder internal constructor() {
         var floatingActionButton: OdsFloatingActionButtonColors? = null
-        var switch: OdsSwitchColors? = null
         var tab: OdsTabColors? = null
 
         internal fun build(colorScheme: ColorScheme) = OdsComponentsColors(
             floatingActionButton ?: colorScheme.DefaultOdsFloatingActionButtonColors,
-            switch ?: colorScheme.DefaultOdsSwitchColors,
             tab ?: colorScheme.DefaultOdsTabColors,
         )
     }
 
     override val tokens = object : OdsComponentColorsCatalog<OdsToken<Color>> {
         override val floatingActionButton = this@OdsComponentsColors.floatingActionButton.tokens
-        override val switch = this@OdsComponentsColors.switch.tokens
         override val tab = this@OdsComponentsColors.tab.tokens
     }
 }
 
 interface OdsComponentColorsCatalog<T> : OdsThemeConfigurationItem.Catalog<T> {
     val floatingActionButton: OdsFloatingActionButtonColorsCatalog<T>
-    val switch: OdsSwitchColorsCatalog<T>
     val tab: OdsTabColorsCatalog<T>
 }
 
