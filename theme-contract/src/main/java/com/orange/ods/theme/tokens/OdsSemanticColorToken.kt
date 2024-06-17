@@ -12,7 +12,7 @@
 
 package com.orange.ods.theme.tokens
 
-enum class OdsSemanticColorsTokens {
+enum class OdsSemanticColorToken {
     Background,
     Error,
     ErrorContainer,

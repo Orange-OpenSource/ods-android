@@ -13,9 +13,9 @@
 package com.orange.ods.theme.tokens
 
 open class OdsSwitchTokens(
-    val selectedHandleColor: OdsSemanticColorsTokens = OdsSemanticColorsTokens.OnPrimary,
-    val selectedTrackColor: OdsSemanticColorsTokens = OdsSemanticColorsTokens.Primary,
-    val unselectedHandleColor: OdsSemanticColorsTokens = OdsSemanticColorsTokens.Outline,
-    val unselectedTrackColor: OdsSemanticColorsTokens = OdsSemanticColorsTokens.SurfaceVariant,
-    val unselectedTrackOutlineColor: OdsSemanticColorsTokens = OdsSemanticColorsTokens.Outline
+    val selectedHandleColor: OdsSemanticColorToken = OdsSemanticColorToken.OnPrimary,
+    val selectedTrackColor: OdsSemanticColorToken = OdsSemanticColorToken.Primary,
+    val unselectedHandleColor: OdsSemanticColorToken = OdsSemanticColorToken.Outline,
+    val unselectedTrackColor: OdsSemanticColorToken = OdsSemanticColorToken.SurfaceVariant,
+    val unselectedTrackOutlineColor: OdsSemanticColorToken = OdsSemanticColorToken.Outline
 )

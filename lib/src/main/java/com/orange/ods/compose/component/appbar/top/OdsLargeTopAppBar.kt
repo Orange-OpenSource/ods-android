@@ -43,6 +43,7 @@ import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.colors.fromToken
 import kotlinx.coroutines.delay
 
 /**
@@ -68,7 +69,6 @@ fun OdsLargeTopAppBar(
     overflowMenuItems: List<OdsDropdownMenu.Item> = emptyList(),
     scrollBehavior: TopAppBarScrollBehavior? = null
 ) {
-    val contentColor = OdsTheme.colors.components.topAppBar.content
     val expandedTitleStartPadding = 48.dp
     val collapsedTitleStartPadding = 8.dp
     val expandedTitleAlpha = 1f
@@ -129,10 +129,10 @@ fun OdsLargeTopAppBar(
         navigationIcon = { navigationIcon?.Content() },
         actions = { OdsTopAppBarActions(actions = actions, overflowMenuItems = overflowMenuItems) },
         colors = TopAppBarDefaults.largeTopAppBarColors(
-            containerColor = OdsTheme.colors.components.topAppBar.container,
-            navigationIconContentColor = contentColor,
-            titleContentColor = contentColor,
-            actionIconContentColor = contentColor
+            containerColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.topAppBar.containerColor),
+            navigationIconContentColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.topAppBar.leadingIconColor),
+            titleContentColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.topAppBar.headlineColor),
+            actionIconContentColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.topAppBar.trailingIconColor)
         ),
         scrollBehavior = scrollBehavior
     )

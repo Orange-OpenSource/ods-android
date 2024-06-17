@@ -13,11 +13,11 @@
 package com.orange.ods.theme.innovationcup
 
 import com.orange.ods.theme.tokens.OdsComponentsTokens
-import com.orange.ods.theme.tokens.OdsSemanticColorsTokens
+import com.orange.ods.theme.tokens.OdsSemanticColorToken
 import com.orange.ods.theme.tokens.OdsSystemBarsTokens
 
 internal val InnovationCupComponentsTokens = OdsComponentsTokens(
     systemBar = OdsSystemBarsTokens(
-        containerColor = OdsSemanticColorsTokens.Primary,
+        containerColor = OdsSemanticColorToken.Primary,
     )
 )

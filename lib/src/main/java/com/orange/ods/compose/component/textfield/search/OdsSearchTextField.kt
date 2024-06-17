@@ -35,6 +35,7 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.colors.fromToken
 
 /**
  *
@@ -72,7 +73,7 @@ internal fun OdsSearchTextField(
                 onClick = { onValueChange(TextFieldValue("")) },
                 graphicsObject = rememberVectorPainter(image = Icons.Default.Close),
                 contentDescription = stringResource(id = R.string.ods_searchTextField_clear_labelA11y),
-                tint = OdsTheme.colors.components.topAppBar.content
+                tint = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.topAppBar.trailingIconColor)
             )
         },
         singleLine = false,
@@ -81,19 +82,19 @@ internal fun OdsSearchTextField(
             imeAction = ImeAction.Search
         ),
         colors = TextFieldDefaults.colors(
-            focusedTextColor = OdsTheme.colors.components.topAppBar.content,
-            unfocusedTextColor = OdsTheme.colors.components.topAppBar.content,
-            cursorColor = OdsTheme.colors.components.topAppBar.content,
-            focusedLeadingIconColor = OdsTheme.colors.components.topAppBar.content,
-            unfocusedLeadingIconColor = OdsTheme.colors.components.topAppBar.content,
-            focusedTrailingIconColor = OdsTheme.colors.components.topAppBar.content,
-            unfocusedTrailingIconColor = OdsTheme.colors.components.topAppBar.content,
+            focusedTextColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.topAppBar.headlineColor),
+            unfocusedTextColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.topAppBar.headlineColor),
+            cursorColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.topAppBar.headlineColor),
+            focusedLeadingIconColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.topAppBar.leadingIconColor),
+            unfocusedLeadingIconColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.topAppBar.leadingIconColor),
+            focusedTrailingIconColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.topAppBar.trailingIconColor),
+            unfocusedTrailingIconColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.topAppBar.trailingIconColor),
             focusedContainerColor = Color.Transparent,
             unfocusedContainerColor = Color.Transparent,
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,
-            focusedPlaceholderColor = OdsTheme.colors.components.topAppBar.content.copy(0.74f), //TODO Use plain color
-            unfocusedPlaceholderColor = OdsTheme.colors.components.topAppBar.content.copy(0.74f), // TODO use plain color
+            focusedPlaceholderColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.topAppBar.headlineColor).copy(0.74f), //TODO Use plain color
+            unfocusedPlaceholderColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.topAppBar.headlineColor).copy(0.74f), // TODO use plain color
         )
     )
 }

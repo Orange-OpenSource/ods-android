@@ -13,8 +13,8 @@
 package com.orange.ods.theme.tokens
 
 open class OdsTopAppBarTokens(
-    val containerColor: OdsSemanticColorsTokens = OdsSemanticColorsTokens.Surface,
-    val headlineColor: OdsSemanticColorsTokens = OdsSemanticColorsTokens.OnSurface,
-    val leadingIconColor: OdsSemanticColorsTokens = OdsSemanticColorsTokens.OnSurface,
-    val trailingIconColor: OdsSemanticColorsTokens = OdsSemanticColorsTokens.OnSurfaceVariant,
+    val containerColor: OdsSemanticColorToken = OdsSemanticColorToken.Surface,
+    val headlineColor: OdsSemanticColorToken = OdsSemanticColorToken.OnSurface,
+    val leadingIconColor: OdsSemanticColorToken = OdsSemanticColorToken.OnSurface,
+    val trailingIconColor: OdsSemanticColorToken = OdsSemanticColorToken.OnSurfaceVariant,
 )

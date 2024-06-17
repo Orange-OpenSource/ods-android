@@ -14,10 +14,10 @@ package com.orange.ods.theme.tokens
 
 
 open class OdsNavigationBarTokens(
-    val containerColor: OdsSemanticColorsTokens = OdsSemanticColorsTokens.Surface,
-    val inactiveIconColor: OdsSemanticColorsTokens = OdsSemanticColorsTokens.OnSurfaceVariant,
-    val inactiveLabelTextColor: OdsSemanticColorsTokens = OdsSemanticColorsTokens.OnSurfaceVariant,
-    val activeIconColor: OdsSemanticColorsTokens = OdsSemanticColorsTokens.OnSecondaryContainer,
-    val activeLabelTextColor: OdsSemanticColorsTokens = OdsSemanticColorsTokens.OnSurface,
-    val activeIndicatorColor: OdsSemanticColorsTokens = OdsSemanticColorsTokens.SecondaryContainer,
+    val containerColor: OdsSemanticColorToken = OdsSemanticColorToken.Surface,
+    val inactiveIconColor: OdsSemanticColorToken = OdsSemanticColorToken.OnSurfaceVariant,
+    val inactiveLabelTextColor: OdsSemanticColorToken = OdsSemanticColorToken.OnSurfaceVariant,
+    val activeIconColor: OdsSemanticColorToken = OdsSemanticColorToken.OnSecondaryContainer,
+    val activeLabelTextColor: OdsSemanticColorToken = OdsSemanticColorToken.OnSurface,
+    val activeIndicatorColor: OdsSemanticColorToken = OdsSemanticColorToken.SecondaryContainer,
 )
