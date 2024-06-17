@@ -23,21 +23,17 @@ class OdsComponentsColors(
     override val floatingActionButton: OdsFloatingActionButtonColors,
     override val switch: OdsSwitchColors,
     override val tab: OdsTabColors,
-    override val topAppBar: OdsTopAppBarColors
 ) : OdsComponentColorsCatalog<Color>, OdsThemeConfigurationItem.TokenProvider<OdsComponentColorsCatalog<OdsToken<Color>>> {
 
     class Builder internal constructor() {
-
         var floatingActionButton: OdsFloatingActionButtonColors? = null
         var switch: OdsSwitchColors? = null
         var tab: OdsTabColors? = null
-        var topAppBar: OdsTopAppBarColors? = null
 
         internal fun build(colorScheme: ColorScheme) = OdsComponentsColors(
             floatingActionButton ?: colorScheme.DefaultOdsFloatingActionButtonColors,
             switch ?: colorScheme.DefaultOdsSwitchColors,
             tab ?: colorScheme.DefaultOdsTabColors,
-            topAppBar ?: colorScheme.DefaultOdsTopAppBarColors
         )
     }
 
@@ -45,7 +41,6 @@ class OdsComponentsColors(
         override val floatingActionButton = this@OdsComponentsColors.floatingActionButton.tokens
         override val switch = this@OdsComponentsColors.switch.tokens
         override val tab = this@OdsComponentsColors.tab.tokens
-        override val topAppBar = this@OdsComponentsColors.topAppBar.tokens
     }
 }
 
@@ -53,7 +48,6 @@ interface OdsComponentColorsCatalog<T> : OdsThemeConfigurationItem.Catalog<T> {
     val floatingActionButton: OdsFloatingActionButtonColorsCatalog<T>
     val switch: OdsSwitchColorsCatalog<T>
     val tab: OdsTabColorsCatalog<T>
-    val topAppBar: OdsTopAppBarColorsCatalog<T>
 }
 
 @Suppress("FunctionName")
@@ -78,7 +72,6 @@ data class OdsFloatingActionButtonColors(
 }
 
 interface OdsFloatingActionButtonColorsCatalog<T> : OdsThemeConfigurationItem.Catalog<T> {
-
     val background: T
     val content: T
 }
@@ -87,33 +80,6 @@ internal val ColorScheme.DefaultOdsFloatingActionButtonColors
     get() = OdsFloatingActionButtonColors(
         background = secondary,
         content = onSecondary
-    )
-
-/**
- * Customizable colors for `OdsTopAppBar` component
- *
- * Use [ColorScheme.DefaultOdsTopAppBarColors] to get the default component's colors based on Material Colors defined in theme
- */
-data class OdsTopAppBarColors(
-    override val container: Color,
-    override val content: Color
-) : OdsTopAppBarColorsCatalog<Color>, OdsThemeConfigurationItem.TokenProvider<OdsTopAppBarColorsCatalog<OdsToken<Color>>> {
-
-    override val tokens = object : OdsTopAppBarColorsCatalog<OdsToken<Color>> {
-        override val container = OdsToken(OdsToken.Colors.Component.TopAppBar.Container, this@OdsTopAppBarColors.container)
-        override val content = OdsToken(OdsToken.Colors.Component.TopAppBar.Content, this@OdsTopAppBarColors.content)
-    }
-}
-
-interface OdsTopAppBarColorsCatalog<T> : OdsThemeConfigurationItem.Catalog<T> {
-    val container: T
-    val content: T
-}
-
-internal val ColorScheme.DefaultOdsTopAppBarColors
-    get() = OdsTopAppBarColors(
-        container = surface,
-        content = onSurface
     )
 
 /**

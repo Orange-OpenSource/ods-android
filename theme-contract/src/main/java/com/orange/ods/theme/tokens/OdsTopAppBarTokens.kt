@@ -12,10 +12,9 @@
 
 package com.orange.ods.theme.tokens
 
-open class OdsTopAppBarSmallTokens(
+open class OdsTopAppBarTokens(
     val containerColor: OdsSemanticColorsTokens = OdsSemanticColorsTokens.Surface,
     val headlineColor: OdsSemanticColorsTokens = OdsSemanticColorsTokens.OnSurface,
-    val headlineFont: OdsTypographyTokens = OdsTypographyTokens.TitleLarge,
     val leadingIconColor: OdsSemanticColorsTokens = OdsSemanticColorsTokens.OnSurface,
     val trailingIconColor: OdsSemanticColorsTokens = OdsSemanticColorsTokens.OnSurfaceVariant,
 )

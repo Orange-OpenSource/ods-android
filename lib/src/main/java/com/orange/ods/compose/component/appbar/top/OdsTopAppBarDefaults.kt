@@ -16,15 +16,16 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.colors.fromToken
 
 object OdsTopAppBarDefaults {
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun topAppBarColors() = TopAppBarDefaults.topAppBarColors().copy(
-        containerColor = OdsTheme.colors.components.topAppBar.container,
-        titleContentColor = OdsTheme.colors.components.topAppBar.content,
-        navigationIconContentColor = OdsTheme.colors.components.topAppBar.content,
-        actionIconContentColor = OdsTheme.colors.components.topAppBar.content
+        containerColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.topAppBar.containerColor),
+        titleContentColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.topAppBar.headlineColor),
+        navigationIconContentColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.topAppBar.leadingIconColor),
+        actionIconContentColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.topAppBar.trailingIconColor)
     )
 }

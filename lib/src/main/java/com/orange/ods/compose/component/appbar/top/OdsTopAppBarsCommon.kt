@@ -29,6 +29,7 @@ import com.orange.ods.R
 import com.orange.ods.compose.component.content.OdsComponentIcon
 import com.orange.ods.compose.component.menu.OdsDropdownMenu
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.colors.fromToken
 
 @Composable
 internal fun OdsTopAppBarActions(actions: List<OdsTopAppBar.ActionButton>, overflowMenuItems: List<OdsDropdownMenu.Item>) {
@@ -93,7 +94,7 @@ object OdsTopAppBar {
 
         override val tint: Color?
             @Composable
-            get() = OdsTheme.colors.components.topAppBar.content
+            get() = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.topAppBar.leadingIconColor)
     }
 
     /**
@@ -156,7 +157,7 @@ object OdsTopAppBar {
 
         override val tint: Color
             @Composable
-            get() = OdsTheme.colors.components.topAppBar.content
+            get() = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.topAppBar.trailingIconColor)
     }
 
 }
