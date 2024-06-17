@@ -28,6 +28,7 @@ import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.colors.fromToken
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/513d27-tabs/b/50cb71" class="external" target="_blank">ODS tabs</a>.
@@ -50,14 +51,15 @@ fun OdsScrollableTabRow(
 ) {
     ScrollableTabRow(
         modifier = modifier,
-        containerColor = OdsTheme.colors.components.tab.container,
-        contentColor = OdsTheme.colors.components.tab.unselectedContent,
+        containerColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.primaryNavigationTab.containerColor),
+        contentColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.primaryNavigationTab.inactiveContentColor),
         selectedTabIndex = selectedTabIndex,
         indicator = { tabPositions ->
             if (selectedTabIndex < tabPositions.size) {
-                TabRowDefaults.SecondaryIndicator( //TODO see with Design: Should probably be a PrimaryIndicator in M3 (add new parameter for component customization?)
+                TabRowDefaults.SecondaryIndicator(
+                    //TODO see with Design: Should probably be a PrimaryIndicator in M3 (add new parameter for component customization?)
                     modifier = Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex]),
-                    color = OdsTheme.colors.components.tab.selectedContent
+                    color = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.primaryNavigationTab.activeContentColor),
                 )
             }
         },

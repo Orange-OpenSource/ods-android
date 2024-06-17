@@ -14,6 +14,7 @@ package com.orange.ods.theme.orange
 
 import com.orange.ods.theme.tokens.OdsComponentsTokens
 import com.orange.ods.theme.tokens.OdsNavigationBarTokens
+import com.orange.ods.theme.tokens.OdsPrimaryNavigationTabTokens
 import com.orange.ods.theme.tokens.OdsSemanticColorToken
 import com.orange.ods.theme.tokens.OdsSystemBarsTokens
 
@@ -24,6 +25,9 @@ internal val OrangeComponentsTokens = OdsComponentsTokens(
         activeIconColor = OdsSemanticColorToken.Primary,
         activeLabelTextColor = OdsSemanticColorToken.Primary,
         activeIndicatorColor = OdsSemanticColorToken.SurfaceVariant,
+    ),
+    primaryNavigationTab = OdsPrimaryNavigationTabTokens(
+        inactiveContentColor = OdsSemanticColorToken.OnSurface
     ),
     systemBar = OdsSystemBarsTokens(
         containerColor = OdsSemanticColorToken.Surface,

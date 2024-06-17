@@ -26,6 +26,7 @@ import com.orange.ods.compose.component.utilities.BasicPreviewParameterProvider
 import com.orange.ods.compose.extension.enable
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
+import com.orange.ods.theme.colors.fromToken
 
 /**
  * Contains classes to build an [com.orange.ods.compose.component.tab.OdsTabRow] or an [com.orange.ods.compose.component.tab.OdsScrollableTabRow].
@@ -46,8 +47,9 @@ object OdsTabRow {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            val selectedContentColor = OdsTheme.colors.components.tab.selectedContent.enable(enabled = enabled)
-            val unselectedContentColor = OdsTheme.colors.components.tab.unselectedContent.enable(enabled = enabled)
+            val selectedContentColor = OdsTheme.colors.fromToken(OdsTheme.componentsTokens.primaryNavigationTab.activeContentColor).enable(enabled = enabled)
+            val unselectedContentColor =
+                OdsTheme.colors.fromToken(OdsTheme.componentsTokens.primaryNavigationTab.inactiveContentColor).enable(enabled = enabled)
 
             if (extraParameters.iconPosition == Icon.Position.Leading && text != null && icon != null) {
                 LeadingIconTab(

@@ -12,10 +12,9 @@
 
 package com.orange.ods.theme.tokens
 
-class OdsComponentsTokens(
-    val topAppBar: OdsTopAppBarTokens = OdsTopAppBarTokens(),
-    val navigationBar: OdsNavigationBarTokens = OdsNavigationBarTokens(),
-    val primaryNavigationTab: OdsPrimaryNavigationTabTokens = OdsPrimaryNavigationTabTokens(),
-    val switch: OdsSwitchTokens = OdsSwitchTokens(),
-    val systemBar: OdsSystemBarsTokens = OdsSystemBarsTokens(),
+
+open class OdsPrimaryNavigationTabTokens(
+    val containerColor: OdsSemanticColorToken = OdsSemanticColorToken.Surface,
+    val activeContentColor: OdsSemanticColorToken = OdsSemanticColorToken.Primary,
+    val inactiveContentColor: OdsSemanticColorToken = OdsSemanticColorToken.OnSurfaceVariant
 )
