@@ -96,7 +96,6 @@ class OdsSemanticColors(
             info = info.light,
             alert = alert.light
         ),
-        components = OdsComponentsColors() // TODO remove
     )
 
     val dark = OdsColors(
@@ -140,7 +139,6 @@ class OdsSemanticColors(
             info = info.dark,
             alert = alert.dark
         ),
-        components = OdsComponentsColors() // TODO remove
     )
 }
 

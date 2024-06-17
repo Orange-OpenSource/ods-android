@@ -26,13 +26,10 @@ import com.orange.ods.theme.tokens.OdsSemanticColorToken
  * ODS color system.
  *
  * The ODS color system can help you create an ODS color theme that reflects your brand or style.
- * Default components' colors are based on the provided [colorScheme] but you can override these colors by providing your colors for each component. As an
- * example, if you need to change the switches' colors you can provide your own [OdsSwitchColors] in the ODS color system.
  */
 class OdsColors(
     val colorScheme: ColorScheme,
-    functional: OdsFunctionalColors,
-    components: OdsComponentsColors.Builder
+    functional: OdsFunctionalColors
 ) : OdsColorsCatalog<Color>, OdsThemeConfigurationItem.TokenProvider<OdsColorsCatalog<OdsToken<Color>>> {
     override var primary = colorScheme.primary
         private set
@@ -66,8 +63,6 @@ class OdsColors(
     override var functional by mutableStateOf(functional)
         private set
 
-    override val components = components.build(colorScheme)
-
     override val tokens = object : OdsColorsCatalog<OdsToken<Color>> {
         override val primary = OdsToken(OdsToken.Colors.Primary, this@OdsColors.primary)
         override val primaryVariant = OdsToken(OdsToken.Colors.PrimaryVariant, this@OdsColors.primaryVariant)
@@ -84,7 +79,6 @@ class OdsColors(
         override val onSurfaceVariant = OdsToken(OdsToken.Colors.OnSurfaceVariant, this@OdsColors.onSurfaceVariant)
         override val onError = OdsToken(OdsToken.Colors.OnError, this@OdsColors.onError)
         override val functional = this@OdsColors.functional.tokens
-        override val components = this@OdsColors.components.tokens
     }
 }
 
@@ -104,7 +98,6 @@ interface OdsColorsCatalog<T> : OdsThemeConfigurationItem.Catalog<T> {
     val onSurfaceVariant: T
     val onError: T
     val functional: OdsFunctionalColorsCatalog<T>
-    val components: OdsComponentColorsCatalog<T>
 }
 
 @Stable
