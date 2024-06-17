@@ -35,7 +35,7 @@ import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.text.OdsText
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.theme.OdsComponentsConfiguration
+import com.orange.ods.theme.tokens.OdsChipStyle
 
 /**
  * <a href="https://system.design.orange.com/0c1af118d/p/81aa91-chips/b/13c40e" target="_blank">ODS Chips</a>.
@@ -65,7 +65,7 @@ fun OdsFilterChip(
         text = text,
         onClick = onClick,
         modifier = modifier,
-        outlined = OdsTheme.componentsConfiguration.chipStyle == OdsComponentsConfiguration.ComponentStyle.Outlined,
+        outlined = OdsTheme.componentsTokens.chip.style == OdsChipStyle.Outlined,
         enabled = enabled,
         selected = selected,
     )

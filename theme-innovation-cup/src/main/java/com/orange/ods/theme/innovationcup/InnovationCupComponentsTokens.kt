@@ -12,12 +12,22 @@
 
 package com.orange.ods.theme.innovationcup
 
+import com.orange.ods.theme.tokens.OdsChipStyle
+import com.orange.ods.theme.tokens.OdsChipTokens
 import com.orange.ods.theme.tokens.OdsComponentsTokens
 import com.orange.ods.theme.tokens.OdsSemanticColorToken
 import com.orange.ods.theme.tokens.OdsSystemBarsTokens
+import com.orange.ods.theme.tokens.OdsTextFieldStyle
+import com.orange.ods.theme.tokens.OdsTextFieldTokens
 
 internal val InnovationCupComponentsTokens = OdsComponentsTokens(
+    chip = OdsChipTokens(
+        style = OdsChipStyle.Filled
+    ),
     systemBar = OdsSystemBarsTokens(
         containerColor = OdsSemanticColorToken.Primary,
+    ),
+    textField = OdsTextFieldTokens(
+        style = OdsTextFieldStyle.Outlined
     )
 )

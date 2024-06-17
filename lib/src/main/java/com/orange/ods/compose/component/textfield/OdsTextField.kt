@@ -31,7 +31,7 @@ import com.orange.ods.compose.component.OdsComposable
 import com.orange.ods.compose.component.utilities.OdsPreview
 import com.orange.ods.compose.component.utilities.UiModePreviews
 import com.orange.ods.compose.theme.OdsTheme
-import com.orange.ods.theme.OdsComponentsConfiguration
+import com.orange.ods.theme.tokens.OdsTextFieldStyle
 import com.orange.ods.theme.typography.OdsTypography
 
 /**
@@ -99,48 +99,48 @@ fun OdsTextField(
     maxLines: Int = Int.MAX_VALUE,
     characterCounter: OdsTextField.CharacterCounter? = null
 ) {
-    val filledTextField = OdsTheme.componentsConfiguration.textFieldStyle == OdsComponentsConfiguration.ComponentStyle.Filled
+    when (OdsTheme.componentsTokens.textField.style) {
+        OdsTextFieldStyle.Filled ->
+            OdsFilledTextField(
+                value = value,
+                onValueChange = onValueChange,
+                modifier = modifier,
+                enabled = enabled,
+                readOnly = readOnly,
+                label = label,
+                placeholder = placeholder,
+                leadingIcon = leadingIcon,
+                trailing = trailing,
+                isError = isError,
+                errorMessage = errorMessage,
+                visualTransformation = visualTransformation,
+                keyboardOptions = keyboardOptions,
+                keyboardActions = keyboardActions,
+                singleLine = singleLine,
+                maxLines = maxLines,
+                characterCounter = characterCounter
+            )
 
-    if (filledTextField) {
-        OdsFilledTextField(
-            value = value,
-            onValueChange = onValueChange,
-            modifier = modifier,
-            enabled = enabled,
-            readOnly = readOnly,
-            label = label,
-            placeholder = placeholder,
-            leadingIcon = leadingIcon,
-            trailing = trailing,
-            isError = isError,
-            errorMessage = errorMessage,
-            visualTransformation = visualTransformation,
-            keyboardOptions = keyboardOptions,
-            keyboardActions = keyboardActions,
-            singleLine = singleLine,
-            maxLines = maxLines,
-            characterCounter = characterCounter
-        )
-    } else {
-        OdsOutlinedTextField(
-            value = value,
-            onValueChange = onValueChange,
-            modifier = modifier,
-            enabled = enabled,
-            readOnly = readOnly,
-            label = label,
-            placeholder = placeholder,
-            leadingIcon = leadingIcon,
-            trailing = trailing,
-            isError = isError,
-            errorMessage = errorMessage,
-            visualTransformation = visualTransformation,
-            keyboardOptions = keyboardOptions,
-            keyboardActions = keyboardActions,
-            singleLine = singleLine,
-            maxLines = maxLines,
-            characterCounter = characterCounter
-        )
+        OdsTextFieldStyle.Outlined ->
+            OdsOutlinedTextField(
+                value = value,
+                onValueChange = onValueChange,
+                modifier = modifier,
+                enabled = enabled,
+                readOnly = readOnly,
+                label = label,
+                placeholder = placeholder,
+                leadingIcon = leadingIcon,
+                trailing = trailing,
+                isError = isError,
+                errorMessage = errorMessage,
+                visualTransformation = visualTransformation,
+                keyboardOptions = keyboardOptions,
+                keyboardActions = keyboardActions,
+                singleLine = singleLine,
+                maxLines = maxLines,
+                characterCounter = characterCounter
+            )
     }
 }
 

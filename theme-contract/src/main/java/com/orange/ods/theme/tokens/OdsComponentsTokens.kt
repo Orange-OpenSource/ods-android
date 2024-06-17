@@ -13,9 +13,11 @@
 package com.orange.ods.theme.tokens
 
 class OdsComponentsTokens(
-    val topAppBar: OdsTopAppBarTokens = OdsTopAppBarTokens(),
+    val chip: OdsChipTokens = OdsChipTokens(),
     val navigationBar: OdsNavigationBarTokens = OdsNavigationBarTokens(),
     val primaryNavigationTab: OdsPrimaryNavigationTabTokens = OdsPrimaryNavigationTabTokens(),
     val switch: OdsSwitchTokens = OdsSwitchTokens(),
     val systemBar: OdsSystemBarsTokens = OdsSystemBarsTokens(),
+    val textField: OdsTextFieldTokens = OdsTextFieldTokens(),
+    val topAppBar: OdsTopAppBarTokens = OdsTopAppBarTokens(),
 )

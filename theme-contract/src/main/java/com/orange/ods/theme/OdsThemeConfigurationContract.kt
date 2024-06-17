@@ -50,13 +50,6 @@ interface OdsThemeConfigurationContract<T> : Parcelable where T : OdsColorPalett
 
     /**
      * Customization of the ODS components if needed
-     * TODO will be progressively replaced by [OdsComponentsTokens]
-     */
-    val componentsConfiguration: OdsComponentsConfiguration
-        get() = OdsComponentsConfiguration()
-
-    /**
-     * Customization of the ODS components if needed
      */
     val componentsTokens: OdsComponentsTokens
         get() = OdsComponentsTokens()
