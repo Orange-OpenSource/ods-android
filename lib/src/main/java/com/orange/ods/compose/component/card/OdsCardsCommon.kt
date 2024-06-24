@@ -153,7 +153,9 @@ object OdsCard {
         }
 
         enum class Position {
-            Start, End
+            Start, End;
+
+            companion object
         }
     }
 

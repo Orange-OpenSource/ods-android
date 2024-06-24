@@ -128,7 +128,7 @@ fun ComponentBanners() {
                         this.firstButtonText = firstButtonText
                         this.secondButtonText = secondButtonText
                         odsBanner.onFirstButtonClick = onFirstButtonClick
-                        odsBanner.onSecondButtonClick = onFirstButtonClick
+                        odsBanner.onSecondButtonClick = onSecondButtonClick
                         if (hasImage) {
                             odsBanner.image = AppCompatResources.getDrawable(context, placeholderResId)
                             val onDrawable: (Drawable?) -> Unit = { odsBanner.image = it }
