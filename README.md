@@ -11,6 +11,10 @@
   <a href="https://github.com/Orange-OpenSource/ods-android/issues/new?assignees=B3nz01d&labels=feature%2C%F0%9F%94%8D%20triage&template=feature_request.yml&title=[feature]%3A+">Request feature</a>
 </p>
 
+> [!CAUTION]
+> ODS is not maintained anymore.
+> You should use [Orange Unified Design System](https://github.com/Orange-OpenSource/ouds-android) instead.
+
 ## Table of contents
 
 - [Status](#status)
