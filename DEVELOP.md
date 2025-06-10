@@ -1,5 +1,9 @@
 # Developer guide
 
+> [!CAUTION]
+> ODS is not maintained anymore.
+> You should use [Orange Unified Design System](https://github.com/Orange-OpenSource/ouds-android) instead.
+
 ## Publication
 
 Artifacts are published on [MavenCentral](https://mvnrepository.com/artifact/com.orange.ods.android).
